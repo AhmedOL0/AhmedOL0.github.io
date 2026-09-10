@@ -25,7 +25,7 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
   return (
     <>
       <a href="assets/CV_Ahmed_Ouarrali.pdf" download data-magnetic
-        className="btn btn-gold btn-sm top-left fixed left-5 top-5 z-50 md:left-8">
+        className="btn btn-sm top-left top-pill fixed left-5 top-5 z-50 md:left-8">
         Résumé
       </a>
       <div className="top-right fixed right-5 top-5 z-50 flex max-w-[calc(100vw-2.5rem)] flex-wrap items-center justify-end gap-2 md:right-8">
@@ -37,7 +37,7 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
           ))}
         </div>
         <button onClick={onToggle} aria-label="Toggle light / dark mode" title="Toggle light / dark mode"
-          className="iconbtn" style={{ border: '1px solid var(--line)', color: 'var(--muted)', background: 'var(--navbg)' }}>
+          className="iconbtn iconbtn-glass" style={{ border: '1px solid var(--line)', color: 'var(--muted)' }}>
           <Icon d={theme === 'dark' ? P.sun : P.moon} />
         </button>
       </div>
