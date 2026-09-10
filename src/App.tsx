@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Dock, { TopPills } from './components/Dock';
 import Preloader from './components/Preloader';
 import Stars from './components/Stars';
+import CursorGlow from './components/CursorGlow';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
 import Work from './components/Work';
@@ -9,7 +10,7 @@ import About from './components/About';
 import Experience, { Education } from './components/Experience';
 import Contact from './components/Contact';
 import { LangProvider, useLang } from './i18n';
-import { useActiveSection, useBackToTop, useProgress, useSpotlight, useTheme } from './hooks';
+import { useActiveSection, useBackToTop, useMagnetic, useProgress, useSpotlight, useTheme } from './hooks';
 
 function Footer() {
   const { t } = useLang();
@@ -61,6 +62,7 @@ function Site() {
   const [ready, setReady] = useState(false);
   const [loading, setLoading] = useState(true);
   useSpotlight();
+  useMagnetic();
   useEffect(() => {
     if (loading) return;
     const t = setTimeout(() => setReady(true), 30);
@@ -70,6 +72,7 @@ function Site() {
   return (
     <>
       {loading && <Preloader onDone={() => setLoading(false)} />}
+      <CursorGlow />
       <a href="#work" className="skip-link">Skip to content</a>
       <div className="grid-bg" />
       <Stars />

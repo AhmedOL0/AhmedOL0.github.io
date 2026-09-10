@@ -146,6 +146,37 @@ export function useActiveSection(ids: string[]) {
   return active;
 }
 
+export function useMagnetic() {
+  useEffect(() => {
+    if (
+      window.matchMedia('(pointer:coarse)').matches ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      return;
+    }
+    const els = Array.from(document.querySelectorAll<HTMLElement>('[data-magnetic]'));
+    const cleanups = els.map((el) => {
+      const strength = 0.25;
+      const onMove = (e: MouseEvent) => {
+        const r = el.getBoundingClientRect();
+        const dx = e.clientX - (r.left + r.width / 2);
+        const dy = e.clientY - (r.top + r.height / 2);
+        el.style.transform = `translate(${dx * strength}px,${dy * strength}px)`;
+      };
+      const onLeave = () => {
+        el.style.transform = '';
+      };
+      el.addEventListener('mousemove', onMove);
+      el.addEventListener('mouseleave', onLeave);
+      return () => {
+        el.removeEventListener('mousemove', onMove);
+        el.removeEventListener('mouseleave', onLeave);
+      };
+    });
+    return () => cleanups.forEach((fn) => fn());
+  }, []);
+}
+
 export function useBackToTop(threshold = 700) {
   const [show, setShow] = useState(false);
   useEffect(() => {

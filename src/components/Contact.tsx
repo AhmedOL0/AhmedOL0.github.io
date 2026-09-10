@@ -17,7 +17,7 @@ export default function Contact() {
           <label htmlFor="m">{t.contact.msg}</label>
           <textarea id="m" name="message" rows={5} placeholder={t.contact.msgPh} required />
           <div style={{ marginTop: 18 }}>
-            <button className="btn btn-gold" type="submit">{t.contact.send}</button>
+            <button className="btn btn-gold" data-magnetic type="submit">{t.contact.send}</button>
           </div>
         </form>
         <div className="direct text-[.95rem]">

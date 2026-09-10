@@ -24,7 +24,7 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
   const { lang, setLang } = useLang();
   return (
     <>
-      <a href="assets/CV_Ahmed_Ouarrali.pdf" download
+      <a href="assets/CV_Ahmed_Ouarrali.pdf" download data-magnetic
         className="btn btn-gold btn-sm top-left fixed left-5 top-5 z-50 md:left-8">
         Résumé
       </a>
