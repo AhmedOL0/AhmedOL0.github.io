@@ -9,8 +9,14 @@ export const LANGS: { code: Lang; label: string }[] = [
 
 export type ProjectT = {
   title: string; year: string; kind: string; heading: string; lead: string;
-  description: string; note?: string; linkLabel?: string;
+  description: string; note?: string; linkLabel?: string; linkHref?: string;
 };
+
+export function thumbTitle(p: ProjectT): { pre: string; em: string; post: string } {
+  const i = p.heading.indexOf(p.lead);
+  if (i === -1) return { pre: p.heading, em: '', post: '' };
+  return { pre: p.heading.slice(0, i), em: p.lead, post: p.heading.slice(i + 1) };
+}
 export type JobT = { when: string; title: string; org: string; where: string; points: string[] };
 export type EduT = { years: string; title: string; school: string; desc: string };
 
