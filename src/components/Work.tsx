@@ -41,7 +41,7 @@ export default function Work() {
                 </div>
                 <div className="mt-auto flex items-center gap-3 pt-[10px]">
                   {p.linkHref ? (
-                    <a className="btn btn-ghost btn-sm" href={p.linkHref}>{p.linkLabel}</a>
+                    <a className="btn btn-ghost btn-sm" href={p.linkHref}>{p.linkLabel}<span className="arr">→</span></a>
                   ) : (
                     <span className="note text-[.8rem] italic" style={{ color: 'var(--faint)' }}>{p.note}</span>
                   )}

@@ -53,14 +53,15 @@ export default function Hero() {
             {t.hero.lede1}<strong style={{ color: 'var(--ink)' }}>OdemLab</strong>{t.hero.lede2}
           </p>
           <div className="rise cta mt-8 flex flex-wrap gap-3.5" style={{ animationDelay: '.4s' }}>
-            <a className="btn btn-gold" data-magnetic href="#work">{t.hero.ctaWork}</a>
-            <a className="btn btn-ghost" data-magnetic href="#contact">{t.hero.ctaContact}</a>
+            <a className="btn btn-gold" data-magnetic href="#work">{t.hero.ctaWork}<span className="arr">→</span></a>
+            <a className="btn btn-ghost" data-magnetic href="#contact">{t.hero.ctaContact}<span className="arr">→</span></a>
           </div>
           <div className="rise core mt-11 flex flex-wrap gap-2.5" style={{ animationDelay: '.52s' }}>
             {core.map((c) => (
               <span key={c}>{c}</span>
             ))}
           </div>
+          <a href="#work" className="rise scroll-cue" style={{ animationDelay: '.65s' }} aria-hidden="true" tabIndex={-1}><i /></a>
         </div>
         <div className="rise" style={{ animationDelay: '.3s' }}><ProfileCard /></div>
       </div>

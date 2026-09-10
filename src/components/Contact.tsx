@@ -10,14 +10,20 @@ export default function Contact() {
       </p>
       <div className="contact-box mt-8 grid grid-cols-1 gap-10 p-7 lg:grid-cols-2 lg:p-[42px]">
         <form action="mailto:ahmedouarrali12@gmail.com" method="post" encType="text/plain">
-          <label htmlFor="n">{t.contact.name}</label>
-          <input id="n" name="name" type="text" placeholder={t.contact.namePh} required />
-          <label htmlFor="e">{t.contact.email}</label>
-          <input id="e" name="email" type="email" placeholder={t.contact.emailPh} required />
-          <label htmlFor="m">{t.contact.msg}</label>
-          <textarea id="m" name="message" rows={5} placeholder={t.contact.msgPh} required />
-          <div style={{ marginTop: 18 }}>
-            <button className="btn btn-gold" data-magnetic type="submit">{t.contact.send}</button>
+          <label className="field" htmlFor="n">
+            <input id="n" name="name" type="text" placeholder=" " required />
+            <span>{t.contact.name}</span>
+          </label>
+          <label className="field" htmlFor="e">
+            <input id="e" name="email" type="email" placeholder=" " required />
+            <span>{t.contact.email}</span>
+          </label>
+          <label className="field" htmlFor="m">
+            <textarea id="m" name="message" rows={5} placeholder=" " required />
+            <span>{t.contact.msg}</span>
+          </label>
+          <div style={{ marginTop: 22 }}>
+            <button className="btn btn-gold" data-magnetic type="submit">{t.contact.send}<span className="arr">→</span></button>
           </div>
         </form>
         <div className="direct text-[.95rem]">

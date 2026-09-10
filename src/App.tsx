@@ -21,7 +21,8 @@ function Footer() {
   ];
   return (
     <footer className="relative z-[1] mt-11 border-t px-7 pb-32 pt-12 text-[.85rem]"
-      style={{ borderColor: 'var(--line-soft)', color: 'var(--faint)' }}>
+      style={{ borderColor: 'var(--line-soft)', color: 'var(--faint)', overflow: 'hidden' }}>
+      <div className="foot-mark mx-auto max-w-[1120px]" aria-hidden="true">AO</div>
       <div className="mx-auto grid max-w-[1120px] grid-cols-2 gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <p className="font-serif-d text-2xl font-bold" style={{ color: 'var(--ink)' }}>
