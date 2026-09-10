@@ -321,6 +321,9 @@ export function LangProvider({ children }: { children: ReactNode }) {
     try {
       const s = localStorage.getItem('ao-lang');
       if (s === 'fr' || s === 'ar' || s === 'en') return s;
+      const nav = (navigator.language || 'en').toLowerCase();
+      if (nav.startsWith('ar')) return 'ar';
+      if (nav.startsWith('fr')) return 'fr';
     } catch { /* ignore */ }
     return 'en';
   });

@@ -1,0 +1,13 @@
+{
+  "name": "Ahmed Ouarrali — Full-Stack Software Engineer",
+  "short_name": "AOuarrali",
+  "description": "Portfolio of Ahmed Ouarrali: Spring Boot, Next.js, React Native, Flutter.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0b0b0e",
+  "theme_color": "#0b0b0e",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

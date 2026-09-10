@@ -61,7 +61,13 @@ function Site() {
   const showTop = useBackToTop();
   const active = useActiveSection(['work', 'about', 'experience', 'education', 'contact']);
   const [ready, setReady] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => {
+    try {
+      return !sessionStorage.getItem('ao-seen');
+    } catch {
+      return true;
+    }
+  });
   useSpotlight();
   useMagnetic();
   useEffect(() => {
@@ -72,7 +78,16 @@ function Site() {
 
   return (
     <>
-      {loading && <Preloader onDone={() => setLoading(false)} />}
+      {loading && (
+        <Preloader
+          onDone={() => {
+            try {
+              sessionStorage.setItem('ao-seen', '1');
+            } catch { /* ignore */ }
+            setLoading(false);
+          }}
+        />
+      )}
       <CursorGlow />
       <a href="#work" className="skip-link">Skip to content</a>
       <div className="grid-bg" />
