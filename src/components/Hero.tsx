@@ -7,6 +7,7 @@ const core = ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / F
 function ProfileCard() {
   const { t } = useLang();
   const [imgOk, setImgOk] = useState(true);
+  const [loaded, setLoaded] = useState(false);
   return (
     <aside className="pcard ml-auto w-full max-w-[330px]">
       <div className="pphoto">
@@ -15,7 +16,9 @@ function ProfileCard() {
             src="assets/photo.jpg"
             alt="Portrait of Ahmed Ouarrali, Full-Stack Software Engineer"
             fetchPriority="high"
+            onLoad={() => setLoaded(true)}
             onError={() => setImgOk(false)}
+            style={{ opacity: loaded ? 1 : 0, transition: 'opacity .9s ease, filter .4s' }}
           />
         ) : (
           <div className="pmono"><span>AO</span></div>

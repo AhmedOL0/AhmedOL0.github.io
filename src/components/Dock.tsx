@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { LANGS, useLang } from '../i18n';
 
 function Icon({ d, filled }: { d: string; filled?: boolean }) {
@@ -46,6 +47,28 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
 }
 
 export default function Dock({ active, theme, onToggle }: { active: string; theme: string; onToggle: () => void }) {
+  const [hidden, setHidden] = useState(false);
+  useEffect(() => {
+    let last = window.scrollY, raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const y = window.scrollY;
+        setHidden((prev) => {
+          if (y > 500 && y > last + 4) return true;
+          if (y < last - 4) return false;
+          return prev;
+        });
+        last = y;
+      });
+    };
+    document.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      document.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
   const items = [
     { id: 'top', href: '#top', label: 'Home', icon: <Icon d={P.home} /> },
     { id: 'work', href: '#work', label: 'Work', icon: <Icon d={P.work} /> },
@@ -54,7 +77,7 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
   const isActive = (id: string) =>
     id === 'top' ? active === '' : active === id;
   return (
-    <div className="dock" role="navigation" aria-label="Quick navigation">
+    <div className={`dock${hidden ? ' dock-hidden' : ''}`} role="navigation" aria-label="Quick navigation">
       {items.map((it) => (
         <a key={it.id} href={it.href} aria-label={it.label} title={it.label}
           className={isActive(it.id) ? 'active' : ''}>

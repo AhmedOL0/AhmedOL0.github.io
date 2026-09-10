@@ -41,11 +41,21 @@ export function useReveal<T extends HTMLElement>() {
 export function useCountUp(target: number, start: boolean, duration = 1500, onDone?: () => void) {
   const [value, setValue] = useState(0);
   const doneRef = useRef(false);
+  const calmRef = useRef(false);
+  if (!calmRef.current && typeof window !== 'undefined') {
+    calmRef.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
   // Stable ref: a fresh inline callback must NOT restart the loop every render.
   const onDoneRef = useRef(onDone);
   onDoneRef.current = onDone;
   useEffect(() => {
     if (!start || doneRef.current) return;
+    if (calmRef.current) {
+      setValue(target);
+      doneRef.current = true;
+      onDoneRef.current?.();
+      return;
+    }
     let raf = 0;
     const t0 = performance.now();
     const step = (t: number) => {

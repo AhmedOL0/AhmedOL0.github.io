@@ -1,9 +1,35 @@
+import { useEffect, useRef } from 'react';
 import Section from './Section';
 import { useLang, type JobT } from '../i18n';
 
 export function Timeline({ items }: { items: JobT[] }) {
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+  const fillRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const wrap = wrapRef.current, fill = fillRef.current;
+      if (!wrap || !fill) return;
+      const r = wrap.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, (window.innerHeight * 0.62 - r.top) / Math.max(r.height, 1)));
+      fill.style.transform = `scaleY(${p.toFixed(3)})`;
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    document.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      document.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
   return (
-    <div className="timeline mt-9">
+    <div className="timeline mt-9" ref={wrapRef}>
+      <div className="timeline-fill" ref={fillRef} aria-hidden="true" />
       {items.map((j) => (
         <div className="job" key={j.title}>
           <div className="when font-mono-d">{j.when}</div>
