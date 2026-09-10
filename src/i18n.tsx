@@ -231,7 +231,7 @@ const ar: Dict = {
   hero: {
     badge: 'متاح لتدريب PFE — لنناقش التوقيت',
     titleA: 'أبني ', titleEm: 'منتجات كاملة', titleB: ' — API، ويب، موبايل.',
-    lede1: 'مرحباً، أنا أحمد الورالي، طالب مهندس في السنة الخامسة بـ ENSIASD تارودانت. أنهيت للتو تدريب نهاية السنة (PFA) في Zorium حيث بنيت ',
+    lede1: 'مرحباً، أنا أحمد ورالي، طالب مهندس في السنة الخامسة بـ ENSIASD تارودانت. أنهيت للتو تدريب نهاية السنة (PFA) في Zorium حيث بنيت ',
     lede2: '، منصة تجارة إلكترونية للتجميل مدعومة بالذكاء الاصطناعي: API Spring Boot، متجر Next.js ومكتب خلفي، تطبيق React Native، PostgreSQL + Redis، منشورة عبر Docker على Google Cloud.',
     ctaWork: 'استعرض أعمالي', ctaContact: 'تواصل معي',
     cardRole: 'مهندس برمجيات Full-Stack', cardTech: 'التقنيات الأساسية',
