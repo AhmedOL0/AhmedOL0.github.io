@@ -93,7 +93,7 @@ export function useSpotlight() {
     const follow = () => {
       sx += (tx - sx) * 0.08;
       sy += (ty - sy) * 0.08;
-      spot.style.transform = `translate(${sx - 260}px,${sy - 260}px)`;
+      spot.style.transform = `translate(${sx - 380}px,${sy - 380}px)`;
       const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
       orbs.forEach((el, i) => {
         const d = depths[i % depths.length];
@@ -156,7 +156,7 @@ export function useMagnetic() {
     }
     const els = Array.from(document.querySelectorAll<HTMLElement>('[data-magnetic]'));
     const cleanups = els.map((el) => {
-      const strength = 0.25;
+      const strength = 0.32;
       const onMove = (e: MouseEvent) => {
         const r = el.getBoundingClientRect();
         const dx = e.clientX - (r.left + r.width / 2);

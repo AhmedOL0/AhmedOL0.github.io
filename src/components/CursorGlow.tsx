@@ -29,9 +29,9 @@ export default function CursorGlow() {
       y = e.clientY;
       if (!visible) show();
       const t = e.target as HTMLElement | null;
-      const hot = t && typeof t.closest === 'function' && t.closest('a,button,input,textarea,.card');
+      const hot = t && typeof t.closest === 'function' && t.closest('a,button,input,textarea,.card,.stat');
       if (ring.current) {
-        const s = hot ? 2.1 : 1;
+        const s = hot ? 2.6 : 1;
         ring.current.style.setProperty('--rs', String(s));
       }
       if (dot.current) dot.current.style.transform = `translate(${x}px,${y}px)`;
@@ -57,12 +57,14 @@ export default function CursorGlow() {
   };
   return (
     <>
-      <div ref={dot} style={{ ...base, width: 6, height: 6, margin: '-3px 0 0 -3px', borderRadius: '50%', background: 'var(--gold)' }} />
+      <div ref={dot} style={{ ...base, width: 9, height: 9, margin: '-4.5px 0 0 -4.5px', borderRadius: '50%',
+        background: 'var(--gold-hi)', boxShadow: '0 0 14px 3px rgba(201,168,118,.65)' }} />
       <div
         ref={ring}
         style={{
-          ...base, width: 30, height: 30, margin: '-15px 0 0 -15px', borderRadius: '50%',
-          border: '1px solid var(--gold)', transform: 'translate(-100px,-100px) scale(var(--rs,1))',
+          ...base, width: 40, height: 40, margin: '-20px 0 0 -20px', borderRadius: '50%',
+          border: '1.5px solid var(--gold)', transform: 'translate(-100px,-100px) scale(var(--rs,1))',
+          boxShadow: '0 0 22px rgba(201,168,118,.28), inset 0 0 12px rgba(201,168,118,.12)',
           transition: 'opacity .3s, border-color .3s',
         }}
       />
