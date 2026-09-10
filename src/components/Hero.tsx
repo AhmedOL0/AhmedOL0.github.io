@@ -42,27 +42,27 @@ export default function Hero() {
     <header id="top" ref={ref} className="relative pt-[110px] pb-[60px]">
       <div className="mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-12 px-7 lg:grid-cols-[1.45fr_.95fr]">
         <div>
-          <span className="mb-7 inline-flex items-center gap-2 rounded-full border px-4 py-[7px] text-[.79rem] tracking-[.03em]"
-            style={{ color: 'var(--muted)', borderColor: 'var(--line)', background: 'rgba(127,120,100,.08)' }}>
+          <span className="rise mb-7 inline-flex items-center gap-2 rounded-full border px-4 py-[7px] text-[.79rem] tracking-[.03em]"
+            style={{ color: 'var(--muted)', borderColor: 'var(--line)', background: 'rgba(127,120,100,.08)', animationDelay: '.05s' }}>
             <span className="dot" /> {t.hero.badge}
           </span>
-          <h1 className="h-display text-[clamp(2.8rem,6.4vw,4.8rem)] max-w-[16ch]">
+          <h1 className="rise h-display text-[clamp(2.8rem,6.4vw,4.8rem)] max-w-[16ch]" style={{ animationDelay: '.15s' }}>
             {t.hero.titleA}<em className="grad-text">{t.hero.titleEm}</em>{t.hero.titleB}
           </h1>
-          <p className="lede mt-6 max-w-[60ch] text-[1.06rem]" style={{ color: 'var(--muted)' }}>
+          <p className="rise lede mt-6 max-w-[60ch] text-[1.06rem]" style={{ color: 'var(--muted)', animationDelay: '.28s' }}>
             {t.hero.lede1}<strong style={{ color: 'var(--ink)' }}>OdemLab</strong>{t.hero.lede2}
           </p>
-          <div className="cta mt-8 flex flex-wrap gap-3.5">
+          <div className="rise cta mt-8 flex flex-wrap gap-3.5" style={{ animationDelay: '.4s' }}>
             <a className="btn btn-gold" href="#work">{t.hero.ctaWork}</a>
             <a className="btn btn-ghost" href="#contact">{t.hero.ctaContact}</a>
           </div>
-          <div className="core mt-11 flex flex-wrap gap-2.5">
+          <div className="rise core mt-11 flex flex-wrap gap-2.5" style={{ animationDelay: '.52s' }}>
             {core.map((c) => (
               <span key={c}>{c}</span>
             ))}
           </div>
         </div>
-        <div><ProfileCard /></div>
+        <div className="rise" style={{ animationDelay: '.3s' }}><ProfileCard /></div>
       </div>
     </header>
   );

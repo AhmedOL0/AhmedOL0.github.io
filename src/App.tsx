@@ -12,15 +12,41 @@ import { useActiveSection, useBackToTop, useProgress, useSpotlight, useTheme } f
 
 function Footer() {
   const { t } = useLang();
+  const cols: { head: string; links: { label: string; href: string }[] }[] = [
+    { head: t.nav.work, links: [{ label: 'OdemLab', href: '#work' }, { label: 'FitTrack', href: '#work' }, { label: 'Smart Campus', href: '#work' }] },
+    { head: t.nav.about, links: [{ label: t.nav.experience, href: '#experience' }, { label: t.nav.education, href: '#education' }, { label: t.nav.contact, href: '#contact' }] },
+    { head: 'Elsewhere', links: [{ label: 'GitHub', href: 'https://github.com/AhmedOL0' }, { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ahmed-ouarrali' }, { label: 'Email', href: 'mailto:ahmedouarrali12@gmail.com' }] },
+  ];
   return (
-    <footer className="relative z-[1] mt-11 border-t px-7 pb-10 pt-8 text-[.82rem]"
+    <footer className="relative z-[1] mt-11 border-t px-7 pb-32 pt-12 text-[.85rem]"
       style={{ borderColor: 'var(--line-soft)', color: 'var(--faint)' }}>
-      <div className="mx-auto flex max-w-[1120px] flex-wrap justify-between gap-4">
-        <span>
-          <a href="#top" className="mr-[18px] no-underline" style={{ color: 'var(--muted)' }}>{t.footer.top}</a>
-          <a href="https://github.com/AhmedOL0" className="mr-[18px] no-underline" style={{ color: 'var(--muted)' }}>GitHub</a>
-          <a href="https://www.linkedin.com/in/ahmed-ouarrali" className="no-underline" style={{ color: 'var(--muted)' }}>LinkedIn</a>
-        </span>
+      <div className="mx-auto grid max-w-[1120px] grid-cols-2 gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div>
+          <p className="font-serif-d text-2xl font-bold" style={{ color: 'var(--ink)' }}>
+            A<em className="not-italic" style={{ color: 'var(--gold)' }}>.</em>Ouarrali
+          </p>
+          <p className="mt-3 max-w-[30ch]" style={{ color: 'var(--muted)' }}>{t.hero.badge}</p>
+        </div>
+        {cols.map((c) => (
+          <div key={c.head}>
+            <p className="font-mono-d mb-4 text-[.72rem] uppercase tracking-[.2em]" style={{ color: 'var(--gold)' }}>{c.head}</p>
+            <ul className="flex list-none flex-col gap-2.5">
+              {c.links.map((l) => (
+                <li key={l.label}>
+                  <a href={l.href} className="no-underline transition-colors" style={{ color: 'var(--muted)' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--gold)'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--muted)'; }}>
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div className="mx-auto mt-10 flex max-w-[1120px] flex-wrap justify-end gap-4 border-t pt-6"
+        style={{ borderColor: 'var(--line-soft)' }}>
+        <a href="#top" className="no-underline" style={{ color: 'var(--muted)' }}>{t.footer.top} ↑</a>
       </div>
     </footer>
   );
@@ -40,6 +66,7 @@ function Site() {
 
   return (
     <>
+      <a href="#work" className="skip-link">Skip to content</a>
       <div className="grid-bg" />
       <Stars />
       <div className="orb orb-1" />
