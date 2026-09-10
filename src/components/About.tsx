@@ -1,5 +1,5 @@
 import Section from './Section';
-import { stats } from '../data';
+import { STAT_VALUES, useLang } from '../i18n';
 import { useCountUp, useInView } from '../hooks';
 
 function Stat({ value, label, sub }: { value: number; label: string; sub: string }) {
@@ -13,44 +13,28 @@ function Stat({ value, label, sub }: { value: number; label: string; sub: string
   );
 }
 
-const best = [
-  'REST API design: versioning, contracts, OpenAPI-first with generated clients',
-  'Transactional integrity: state machines, idempotence, optimistic/pessimistic locking',
-  'Test strategy: Testcontainers on real Postgres, E2E, contract and architecture tests',
-  'Trilingual interfaces with real RTL, not translated labels',
-];
-const method = [
-  'Kanban flow with review + green CI as the merge gate',
-  'Schema changes only as replayable, re-runnable migrations',
-  'Security in depth: short-lived JWTs, encrypted PII, per-route rate limits',
-  'Honest scoping: conditions claimed only when verified, limits named',
-];
-
 export default function About() {
+  const { t } = useLang();
   return (
-    <Section
-      id="about" num="02" kicker="Background"
-      title="Backend-leaning, product-minded — from sensor to storefront."
-      sub="From ESP8266 firmware to Cloud Run deploys: I care about the places where a bug costs real money, and I prefer executable guarantees over conventions."
-    >
+    <Section id="about" num="02" kicker={t.about.kicker} title={t.about.title} sub={t.about.sub}>
       <div className="stats mt-9 grid grid-cols-2 gap-4 lg:grid-cols-4">
-        {stats.map((s) => (
-          <Stat key={s.label} value={s.value} label={s.label} sub={s.sub} />
+        {t.about.stats.map((s, i) => (
+          <Stat key={s.label} value={STAT_VALUES[i]} label={s.label} sub={s.sub} />
         ))}
       </div>
       <div className="about-grid mt-[34px] grid grid-cols-1 gap-11 lg:grid-cols-2">
         <div>
-          <h4>What I do best</h4>
-          <ul>{best.map((li) => <li key={li}>{li}</li>)}</ul>
+          <h4>{t.about.bestTitle}</h4>
+          <ul>{t.about.best.map((li) => <li key={li}>{li}</li>)}</ul>
         </div>
         <div>
-          <h4>How I work</h4>
-          <ul>{method.map((li) => <li key={li}>{li}</li>)}</ul>
+          <h4>{t.about.methodTitle}</h4>
+          <ul>{t.about.method.map((li) => <li key={li}>{li}</li>)}</ul>
         </div>
       </div>
       <div className="langs mt-[26px] flex flex-wrap gap-2.5">
-        {[['Arabic', 'native'], ['French', 'professional'], ['English', 'professional']].map(([l, lvl]) => (
-          <span key={l}><b>{l}</b> — {lvl}</span>
+        {t.about.langs.map((l) => (
+          <span key={l.l}><b>{l.l}</b> — {l.lvl}</span>
         ))}
       </div>
     </Section>

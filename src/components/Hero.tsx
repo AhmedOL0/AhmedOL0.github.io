@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useLang } from '../i18n';
 import { useReveal } from '../hooks';
 
 const core = ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Python'];
 
 function ProfileCard() {
+  const { t } = useLang();
   const [imgOk, setImgOk] = useState(true);
   return (
     <aside className="pcard ml-auto w-full max-w-[330px]">
@@ -20,13 +22,13 @@ function ProfileCard() {
         )}
       </div>
       <h3 className="font-serif-d">Ahmed Ouarrali</h3>
-      <p className="prole">Full-Stack Software Engineer</p>
+      <p className="prole">{t.hero.cardRole}</p>
       <p className="ploc">Morocco · GMT+1</p>
       <div className="pdiv" />
-      <p className="ptech-title">Core technologies</p>
+      <p className="ptech-title">{t.hero.cardTech}</p>
       <div className="pchips">
-        {['Spring Boot', 'TypeScript', 'Next.js', 'React Native', 'Python', 'PostgreSQL'].map((t) => (
-          <span key={t}>{t}</span>
+        {['Spring Boot', 'TypeScript', 'Next.js', 'React Native', 'Python', 'PostgreSQL'].map((tech) => (
+          <span key={tech}>{tech}</span>
         ))}
       </div>
     </aside>
@@ -34,6 +36,7 @@ function ProfileCard() {
 }
 
 export default function Hero() {
+  const { t } = useLang();
   const ref = useReveal<HTMLElement>();
   return (
     <header id="top" ref={ref} className="relative pt-[158px] pb-[60px]">
@@ -41,21 +44,17 @@ export default function Hero() {
         <div>
           <span className="mb-7 inline-flex items-center gap-2 rounded-full border px-4 py-[7px] text-[.79rem] tracking-[.03em]"
             style={{ color: 'var(--muted)', borderColor: 'var(--line)', background: 'rgba(127,120,100,.08)' }}>
-            <span className="dot" /> Open to a PFE internship — let&apos;s discuss timing
+            <span className="dot" /> {t.hero.badge}
           </span>
           <h1 className="h-display text-[clamp(2.8rem,6.4vw,4.8rem)] max-w-[16ch]">
-            Building <em className="grad-text">complete products</em> — API, web, mobile.
+            {t.hero.titleA}<em className="grad-text">{t.hero.titleEm}</em>{t.hero.titleB}
           </h1>
           <p className="lede mt-6 max-w-[60ch] text-[1.06rem]" style={{ color: 'var(--muted)' }}>
-            Hi, I&apos;m <strong style={{ color: 'var(--ink)' }}>Ahmed Ouarrali</strong>, a 5th-year Software
-            Engineering student at ENSIASD Taroudant. I recently completed my end-of-year internship (PFA)
-            at Zorium, building <strong style={{ color: 'var(--ink)' }}>OdemLab</strong>, an AI-augmented
-            skincare e-commerce platform: Spring Boot API, Next.js storefront and back-office, React Native
-            app, PostgreSQL + Redis, shipped with Docker to Google Cloud.
+            {t.hero.lede1}<strong style={{ color: 'var(--ink)' }}>OdemLab</strong>{t.hero.lede2}
           </p>
           <div className="cta mt-8 flex flex-wrap gap-3.5">
-            <a className="btn btn-gold" href="#work">Explore selected work</a>
-            <a className="btn btn-ghost" href="#contact">Get in touch</a>
+            <a className="btn btn-gold" href="#work">{t.hero.ctaWork}</a>
+            <a className="btn btn-ghost" href="#contact">{t.hero.ctaContact}</a>
           </div>
           <div className="core mt-11 flex flex-wrap gap-2.5">
             {core.map((c) => (

@@ -107,6 +107,29 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .pcard:hover .pphoto img{filter:none}
 .pmono{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(155deg,#241d12,#101014 70%)}
 .pmono span{font-family:var(--serif);font-size:4.6rem;color:var(--gold)}
+.pcard h3{font-family:var(--serif);font-size:1.65rem;font-weight:700;text-align:center;margin-top:18px;color:#f2ede4;position:relative}
+.prole{font-family:var(--mono);font-size:.76rem;color:#ecd3a8;text-align:center;margin-top:6px;letter-spacing:.04em;position:relative}
+.ploc{font-size:.82rem;color:#a8a29a;text-align:center;margin-top:4px;position:relative}
+.pdiv{height:1px;background:rgba(255,255,255,.1);margin:16px 4px 14px;position:relative}
+.ptech-title{font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:#8d8574;text-align:center;margin-bottom:12px;position:relative}
+.pchips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;position:relative}
+.pchips span{font-family:var(--mono);font-size:.72rem;color:#d8d2c4;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:6px 13px;border-radius:999px}
+
+/* Language switcher */
+.langsw{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.langsw button{background:transparent;border:none;color:var(--muted);font-family:var(--mono);font-size:.72rem;padding:7px 11px;cursor:pointer;letter-spacing:.06em;transition:all .2s}
+.langsw button.active{background:var(--gold);color:#fff;font-weight:600}
+:root[data-theme="dark"] .langsw button.active{color:#171310}
+
+/* RTL adjustments */
+[dir="rtl"] .timeline{border-left:none;border-right:1px solid var(--line);padding-left:0;padding-right:32px}
+[dir="rtl"] .timeline::before{left:auto;right:-1px}
+[dir="rtl"] .job::before{left:auto;right:-38px}
+[dir="rtl"] .about-grid li,[dir="rtl"] .job li{padding-left:0;padding-right:20px}
+[dir="rtl"] .about-grid li::before{left:auto;right:2px}
+[dir="rtl"] .job li::before{left:auto;right:2px}
+[dir="rtl"] .edu-card{border-left:1px solid var(--line);border-right:3px solid var(--gold);border-radius:18px 6px 6px 18px}
+[dir="rtl"] .about-grid h4::before{margin-right:0;margin-left:10px}
 
 /* Marquee */
 .marquee{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);overflow:hidden;white-space:nowrap;padding:15px 0;background:rgba(127,120,100,.05);position:relative;z-index:1}

@@ -1,33 +1,41 @@
-const links = [
-  { id: 'work', label: 'Work' },
-  { id: 'about', label: 'About' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'education', label: 'Education' },
-  { id: 'contact', label: 'Contact' },
-];
+import { LANGS, useLang } from '../i18n';
+
+const ids = ['work', 'about', 'experience', 'education', 'contact'] as const;
 
 export default function Nav({
   theme, onToggle, active,
 }: {
   theme: string; onToggle: () => void; active: string;
 }) {
+  const { lang, setLang, t } = useLang();
+  const labels: Record<string, string> = {
+    work: t.nav.work, about: t.nav.about, experience: t.nav.experience,
+    education: t.nav.education, contact: t.nav.contact,
+  };
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b" style={{ background: 'var(--navbg)', backdropFilter: 'blur(14px)', borderColor: 'var(--line-soft)' }}>
       <div className="mx-auto flex h-[66px] max-w-[1120px] items-center justify-between px-7">
         <a href="#top" className="font-serif-d text-2xl font-bold tracking-wide no-underline">
           A<em className="not-italic" style={{ color: 'var(--gold)' }}>.</em>Ouarrali
         </a>
-        <div className="flex items-center gap-6">
-          {links.map((l) => (
+        <div className="flex items-center gap-5">
+          {ids.map((id) => (
             <a
-              key={l.id}
-              href={`#${l.id}`}
-              className="hidden text-[.85rem] tracking-[.05em] no-underline transition-colors md:inline"
-              style={{ color: active === l.id ? 'var(--gold)' : 'var(--muted)' }}
+              key={id}
+              href={`#${id}`}
+              className="hidden text-[.85rem] tracking-[.05em] no-underline transition-colors lg:inline"
+              style={{ color: active === id ? 'var(--gold)' : 'var(--muted)' }}
             >
-              {l.label}
+              {labels[id]}
             </a>
           ))}
+          <div className="langsw" role="group" aria-label="Language">
+            {LANGS.map((l) => (
+              <button key={l.code} className={lang === l.code ? 'active' : ''} onClick={() => setLang(l.code)}>
+                {l.label}
+              </button>
+            ))}
+          </div>
           <button
             onClick={onToggle}
             aria-label="Toggle light / dark mode"
@@ -46,7 +54,7 @@ export default function Nav({
               </svg>
             )}
           </button>
-          <a className="btn btn-gold btn-sm" href="assets/CV_Ahmed_Ouarrali.pdf" download>Résumé</a>
+          <a className="btn btn-gold btn-sm" href="assets/CV_Ahmed_Ouarrali.pdf" download>{t.nav.resume}</a>
         </div>
       </div>
     </nav>

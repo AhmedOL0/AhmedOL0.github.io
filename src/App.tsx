@@ -6,15 +6,17 @@ import Work from './components/Work';
 import About from './components/About';
 import Experience, { Education } from './components/Experience';
 import Contact from './components/Contact';
+import { LangProvider, useLang } from './i18n';
 import { useActiveSection, useBackToTop, useProgress, useSpotlight, useTheme } from './hooks';
 
 function Footer() {
+  const { t } = useLang();
   return (
     <footer className="relative z-[1] mt-11 border-t px-7 pb-10 pt-8 text-[.82rem]"
       style={{ borderColor: 'var(--line-soft)', color: 'var(--faint)' }}>
       <div className="mx-auto flex max-w-[1120px] flex-wrap justify-between gap-4">
         <span>
-          <a href="#top" className="mr-[18px] no-underline" style={{ color: 'var(--muted)' }}>Top</a>
+          <a href="#top" className="mr-[18px] no-underline" style={{ color: 'var(--muted)' }}>{t.footer.top}</a>
           <a href="https://github.com/AhmedOL0" className="mr-[18px] no-underline" style={{ color: 'var(--muted)' }}>GitHub</a>
           <a href="https://www.linkedin.com/in/ahmed-ouarrali" className="no-underline" style={{ color: 'var(--muted)' }}>LinkedIn</a>
         </span>
@@ -23,7 +25,7 @@ function Footer() {
   );
 }
 
-export default function App() {
+function Site() {
   const { theme, toggle } = useTheme();
   const progress = useProgress();
   const showTop = useBackToTop();
@@ -67,5 +69,13 @@ export default function App() {
       </button>
       <Footer />
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <LangProvider>
+      <Site />
+    </LangProvider>
   );
 }
