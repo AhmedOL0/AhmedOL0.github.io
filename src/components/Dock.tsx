@@ -25,10 +25,10 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
   return (
     <>
       <a href="assets/CV_Ahmed_Ouarrali.pdf" download
-        className="btn btn-gold btn-sm fixed left-5 top-5 z-50 md:left-8">
+        className="btn btn-gold btn-sm top-left fixed left-5 top-5 z-50 md:left-8">
         Résumé
       </a>
-      <div className="fixed right-5 top-5 z-50 flex items-center gap-2 md:right-8">
+      <div className="top-right fixed right-5 top-5 z-50 flex max-w-[calc(100vw-2.5rem)] flex-wrap items-center justify-end gap-2 md:right-8">
         <div className="langsw" role="group" aria-label="Language">
           {LANGS.map((l) => (
             <button key={l.code} className={lang === l.code ? 'active' : ''} onClick={() => setLang(l.code)}>

@@ -120,6 +120,36 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .pchips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;position:relative}
 .pchips span{font-family:var(--mono);font-size:.72rem;color:#d8d2c4;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:6px 13px;border-radius:999px}
 
+/* RTL: mirror the floating top pills so nothing clips off-screen */
+[dir="rtl"] .top-left{left:auto;right:1.25rem}
+[dir="rtl"] .top-right{right:auto;left:1.25rem}
+@media(min-width:768px){
+  [dir="rtl"] .top-left{right:2rem}
+  [dir="rtl"] .top-right{left:2rem}
+}
+
+/* Glass boost: buttons + dock */
+.btn-ghost{background:rgba(127,120,100,.1);backdrop-filter:blur(12px) saturate(1.5);-webkit-backdrop-filter:blur(12px) saturate(1.5)}
+.iconbtn{background:rgba(127,120,100,.1) !important;backdrop-filter:blur(12px) saturate(1.5);-webkit-backdrop-filter:blur(12px) saturate(1.5)}
+.langsw{background:rgba(127,120,100,.1);backdrop-filter:blur(12px) saturate(1.5);-webkit-backdrop-filter:blur(12px) saturate(1.5)}
+.filters button{background:rgba(127,120,100,.08);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.dock{backdrop-filter:blur(24px) saturate(1.8);-webkit-backdrop-filter:blur(24px) saturate(1.8)}
+
+/* Preloader signature */
+.loader{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
+  background:var(--bg);transition:opacity .6s ease,visibility .6s}
+.loader.done{opacity:0;visibility:hidden}
+.loader-inner{text-align:center}
+.loader-name{font-family:'Caveat',cursive;font-size:clamp(3.4rem,9vw,5.6rem);font-weight:700;color:var(--ink);line-height:1;
+  animation:sign-in 1s cubic-bezier(.2,.7,.2,1) both}
+.loader-sub{font-family:var(--mono);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-top:6px;
+  animation:sign-in 1s cubic-bezier(.2,.7,.2,1) .15s both}
+.loader-line{width:min(300px,60vw);height:24px;margin:2px auto 0;overflow:visible}
+.loader-line path{fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round;
+  stroke-dasharray:400;stroke-dashoffset:400;animation:draw 1s cubic-bezier(.4,0,.2,1) .35s forwards}
+@keyframes sign-in{from{opacity:0;transform:translateY(18px) rotate(-1.5deg)}to{opacity:1;transform:none}}
+@keyframes draw{to{stroke-dashoffset:0}}
+
 /* Language switcher */
 .langsw{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
 .langsw button{background:transparent;border:none;color:var(--muted);font-family:var(--mono);font-size:.72rem;padding:7px 11px;cursor:pointer;letter-spacing:.06em;transition:all .2s}

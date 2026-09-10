@@ -18,10 +18,10 @@ export default function Stars() {
     const px = { x: 0.5, y: 0.4 };
 
     const seed = () => {
-      const n = Math.min(190, Math.floor((w * h) / 9000));
+      const n = Math.min(750, Math.floor((w * h) / 2400));
       stars = Array.from({ length: n }, () => ({
         x: Math.random(), y: Math.random(),
-        r: 0.3 + Math.random() * 1.2,
+        r: 0.3 + Math.random() * 1.1,
         phase: Math.random() * Math.PI * 2,
         speed: 0.4 + Math.random() * 1.4,
         depth: 0.3 + Math.random() * 0.7,
@@ -47,15 +47,18 @@ export default function Stars() {
       ctx.clearRect(0, 0, w, h);
       px.x += (mouse.x - px.x) * 0.04;
       px.y += (mouse.y - px.y) * 0.04;
+      // Slow constant drift (like a rotating star sphere) + mouse parallax
+      const driftX = reduced ? 0 : Math.sin(t * 0.000045) * 26;
+      const driftY = reduced ? 0 : Math.cos(t * 0.00006) * 18;
       for (const s of stars) {
         const tw = reduced ? 0.7 : 0.3 + 0.7 * Math.abs(Math.sin(t * 0.001 * s.speed + s.phase));
-        const ox = (px.x - 0.5) * 36 * s.depth;
-        const oy = (px.y - 0.5) * 36 * s.depth;
+        const ox = (px.x - 0.5) * 40 * s.depth + driftX * s.depth;
+        const oy = (px.y - 0.5) * 40 * s.depth + driftY * s.depth;
         ctx.beginPath();
         ctx.arc(s.x * w + ox, s.y * h + oy, s.r, 0, Math.PI * 2);
         ctx.fillStyle = dark
-          ? `rgba(235,228,214,${(tw * 0.75).toFixed(3)})`
-          : `rgba(90,70,40,${(tw * 0.4).toFixed(3)})`;
+          ? `rgba(235,228,214,${(tw * 0.8).toFixed(3)})`
+          : `rgba(45,38,26,${(tw * 0.5).toFixed(3)})`;
         ctx.fill();
       }
       if (!reduced) raf = requestAnimationFrame(draw);

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Dock, { TopPills } from './components/Dock';
+import Preloader from './components/Preloader';
 import Stars from './components/Stars';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
@@ -58,14 +59,17 @@ function Site() {
   const showTop = useBackToTop();
   const active = useActiveSection(['work', 'about', 'experience', 'education', 'contact']);
   const [ready, setReady] = useState(false);
+  const [loading, setLoading] = useState(true);
   useSpotlight();
   useEffect(() => {
+    if (loading) return;
     const t = setTimeout(() => setReady(true), 30);
     return () => clearTimeout(t);
-  }, []);
+  }, [loading]);
 
   return (
     <>
+      {loading && <Preloader onDone={() => setLoading(false)} />}
       <a href="#work" className="skip-link">Skip to content</a>
       <div className="grid-bg" />
       <Stars />
