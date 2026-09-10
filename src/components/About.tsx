@@ -1,12 +1,19 @@
+import { useEffect, useState } from 'react';
 import Section from './Section';
 import { STAT_VALUES, useLang } from '../i18n';
 import { useCountUp, useInView } from '../hooks';
 
 function Stat({ value, label, sub }: { value: number; label: string; sub: string }) {
-  const { ref, inView } = useInView<HTMLDivElement>();
-  const v = useCountUp(value, inView);
+  const { ref, inView } = useInView<HTMLDivElement>(0.25);
+  const [flash, setFlash] = useState(false);
+  const v = useCountUp(value, inView, 1500, () => setFlash(true));
+  useEffect(() => {
+    if (!flash) return;
+    const t = setTimeout(() => setFlash(false), 1800);
+    return () => clearTimeout(t);
+  }, [flash]);
   return (
-    <div ref={ref} className="stat">
+    <div ref={ref} className={`stat${flash ? ' flash' : ''}`}>
       <b className="font-serif-d">{v}</b>
       <span>{label}<br />{sub}</span>
     </div>

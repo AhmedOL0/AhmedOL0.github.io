@@ -38,20 +38,27 @@ export function useReveal<T extends HTMLElement>() {
   return ref;
 }
 
-export function useCountUp(target: number, start: boolean, duration = 1100) {
+export function useCountUp(target: number, start: boolean, duration = 1500, onDone?: () => void) {
   const [value, setValue] = useState(0);
+  const doneRef = useRef(false);
   useEffect(() => {
-    if (!start) return;
+    if (!start || doneRef.current) return;
     let raf = 0;
     const t0 = performance.now();
     const step = (t: number) => {
       const p = Math.min((t - t0) / duration, 1);
-      setValue(Math.round(target * (1 - Math.pow(1 - p, 3))));
-      if (p < 1) raf = requestAnimationFrame(step);
+      const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
+      setValue(Math.round(target * eased));
+      if (p < 1) {
+        raf = requestAnimationFrame(step);
+      } else {
+        doneRef.current = true;
+        onDone?.();
+      }
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [start, target, duration]);
+  }, [start, target, duration, onDone]);
   return value;
 }
 
