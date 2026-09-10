@@ -88,10 +88,18 @@ export function useSpotlight() {
       spot.style.opacity = '1';
     };
     const onLeave = () => { spot.style.opacity = '0'; };
+    const orbs = Array.from(document.querySelectorAll<HTMLElement>('.orb'));
+    const depths = [0.05, -0.07, 0.035];
     const follow = () => {
       sx += (tx - sx) * 0.08;
       sy += (ty - sy) * 0.08;
       spot.style.transform = `translate(${sx - 260}px,${sy - 260}px)`;
+      const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+      orbs.forEach((el, i) => {
+        const d = depths[i % depths.length];
+        // `translate` property: independent from the CSS keyframe `transform`
+        el.style.translate = `${(sx - cx) * d}px ${(sy - cy) * d}px`;
+      });
       raf = requestAnimationFrame(follow);
     };
     document.addEventListener('mousemove', onMove);

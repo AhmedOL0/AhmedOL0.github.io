@@ -39,7 +39,7 @@ export default function Hero() {
   const { t } = useLang();
   const ref = useReveal<HTMLElement>();
   return (
-    <header id="top" ref={ref} className="relative pt-[158px] pb-[60px]">
+    <header id="top" ref={ref} className="relative pt-[110px] pb-[60px]">
       <div className="mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-12 px-7 lg:grid-cols-[1.45fr_.95fr]">
         <div>
           <span className="mb-7 inline-flex items-center gap-2 rounded-full border px-4 py-[7px] text-[.79rem] tracking-[.03em]"

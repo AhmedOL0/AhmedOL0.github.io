@@ -17,6 +17,7 @@ export function thumbTitle(p: ProjectT): { pre: string; em: string; post: string
   if (i === -1) return { pre: p.heading, em: '', post: '' };
   return { pre: p.heading.slice(0, i), em: p.lead, post: p.heading.slice(i + 1) };
 }
+
 export type JobT = { when: string; title: string; org: string; where: string; points: string[] };
 export type EduT = { years: string; title: string; school: string; desc: string };
 
@@ -60,7 +61,8 @@ const en: Dict = {
     titleA: 'Building ', titleEm: 'complete products', titleB: ' — API, web, mobile.',
     lede1: 'Hi, I’m Ahmed Ouarrali, a 5th-year Software Engineering student at ENSIASD Taroudant. I recently completed my end-of-year internship (PFA) at Zorium, building ',
     lede2: ', an AI-augmented skincare e-commerce platform: Spring Boot API, Next.js storefront and back-office, React Native app, PostgreSQL + Redis, shipped with Docker to Google Cloud.',
-    ctaWork: 'Explore selected work', ctaContact: 'Get in touch', cardRole: 'Full-Stack Software Engineer', cardTech: 'Core technologies',
+    ctaWork: 'Explore selected work', ctaContact: 'Get in touch',
+    cardRole: 'Full-Stack Software Engineer', cardTech: 'Core technologies',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Python'],
   filters: { all: 'All', web: 'Web', mobile: 'Mobile', backend: 'Backend', ai: 'AI', iot: 'IoT' },
@@ -145,7 +147,8 @@ const fr: Dict = {
     titleA: 'Des ', titleEm: 'produits complets', titleB: ' — API, web, mobile.',
     lede1: 'Salut, je suis Ahmed Ouarrali, élève-ingénieur en 5ᵉ année à l’ENSIASD Taroudant. Je viens de terminer mon stage de fin d’année (PFA) chez Zorium, où j’ai construit ',
     lede2: ', plateforme e-commerce cosmétique augmentée par l’IA : API Spring Boot, boutique Next.js et back-office, app React Native, PostgreSQL + Redis, livrée avec Docker sur Google Cloud.',
-    ctaWork: 'Voir mes projets', ctaContact: 'Me contacter', cardRole: 'Ing�nieur Logiciel Full-Stack', cardTech: 'Technologies cl�s',
+    ctaWork: 'Voir mes projets', ctaContact: 'Me contacter',
+    cardRole: 'Ingénieur Logiciel Full-Stack', cardTech: 'Technologies clés',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Python'],
   filters: { all: 'Tous', web: 'Web', mobile: 'Mobile', backend: 'Backend', ai: 'IA', iot: 'IoT' },
@@ -230,7 +233,8 @@ const ar: Dict = {
     titleA: 'أبني ', titleEm: 'منتجات كاملة', titleB: ' — API، ويب، موبايل.',
     lede1: 'مرحباً، أنا أحمد الورالي، طالب مهندس في السنة الخامسة بـ ENSIASD تارودانت. أنهيت للتو تدريب نهاية السنة (PFA) في Zorium حيث بنيت ',
     lede2: '، منصة تجارة إلكترونية للتجميل مدعومة بالذكاء الاصطناعي: API Spring Boot، متجر Next.js ومكتب خلفي، تطبيق React Native، PostgreSQL + Redis، منشورة عبر Docker على Google Cloud.',
-    ctaWork: 'استعرض أعمالي', ctaContact: 'تواصل معي', cardRole: 'مهندس برمجيات Full-Stack', cardTech: 'التقنيات الأساسية',
+    ctaWork: 'استعرض أعمالي', ctaContact: 'تواصل معي',
+    cardRole: 'مهندس برمجيات Full-Stack', cardTech: 'التقنيات الأساسية',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Python'],
   filters: { all: 'الكل', web: 'ويب', mobile: 'موبايل', backend: 'باك-إند', ai: 'ذكاء اصطناعي', iot: 'إنترنت الأشياء' },
@@ -342,4 +346,3 @@ export const PROJECT_CATS: string[][] = [
 ];
 export const PROJECT_THUMBS = ['thumb-odem', 'thumb-med', 'thumb-fit', 'thumb-campus', 'thumb-sum', 'thumb-iot'];
 export const STAT_VALUES = [6, 3, 275, 124];
-

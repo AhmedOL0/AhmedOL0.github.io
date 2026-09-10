@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import Nav from './components/Nav';
+import Dock, { TopPills } from './components/Dock';
+import Stars from './components/Stars';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
 import Work from './components/Work';
@@ -40,13 +41,15 @@ function Site() {
   return (
     <>
       <div className="grid-bg" />
+      <Stars />
       <div className="orb orb-1" />
       <div className="orb orb-2" />
       <div className="orb orb-3" />
       <div id="spot" />
       <div id="progress" style={{ width: `${progress}%` }} />
       <div className="grain" />
-      <Nav theme={theme} onToggle={toggle} active={active} />
+      <TopPills theme={theme} onToggle={toggle} />
+      <Dock active={active} theme={theme} onToggle={toggle} />
       <div className="relative z-[1] mx-auto max-w-[1120px] px-7" style={{ opacity: ready ? 1 : 0 }}>
         <Hero />
       </div>
