@@ -89,16 +89,20 @@ export function useSpotlight() {
     };
     const onLeave = () => { spot.style.opacity = '0'; };
     const orbs = Array.from(document.querySelectorAll<HTMLElement>('.orb'));
-    const depths = [0.05, -0.07, 0.035];
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const depths = calm ? [0, 0, 0, 0] : [0.05, -0.07, 0.035, -0.05];
+    const scrollK = [0.06, 0.12, 0.04, 0.1];
     const follow = () => {
       sx += (tx - sx) * 0.08;
       sy += (ty - sy) * 0.08;
       spot.style.transform = `translate(${sx - 380}px,${sy - 380}px)`;
       const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+      const sy2 = calm ? 0 : window.scrollY;
       orbs.forEach((el, i) => {
         const d = depths[i % depths.length];
+        const k = scrollK[i % scrollK.length];
         // `translate` property: independent from the CSS keyframe `transform`
-        el.style.translate = `${(sx - cx) * d}px ${(sy - cy) * d}px`;
+        el.style.translate = `${(sx - cx) * d}px ${(sy - cy) * d + sy2 * k}px`;
       });
       raf = requestAnimationFrame(follow);
     };
@@ -175,6 +179,31 @@ export function useMagnetic() {
     });
     return () => cleanups.forEach((fn) => fn());
   }, []);
+}
+
+export function useScrollY() {
+  const [y, setY] = useState(0);
+  useEffect(() => {
+    let raf = 0;
+    let last = -1;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const v = window.scrollY;
+        if (v !== last) {
+          last = v;
+          setY(v);
+        }
+      });
+    };
+    onScroll();
+    document.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      document.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+  return y;
 }
 
 export function useBackToTop(threshold = 700) {

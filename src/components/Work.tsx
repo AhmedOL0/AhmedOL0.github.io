@@ -25,7 +25,22 @@ export default function Work() {
           if (f !== 'all' && !PROJECT_CATS[i].includes(f)) return null;
           const th = thumbTitle(p);
           return (
-            <article className="card" key={p.title}>
+            <article
+              className="card rise" style={{ animationDelay: `${Math.min(i, 5) * 90}ms` }} key={f + p.title}
+              onAnimationEnd={(e) => { e.currentTarget.classList.remove('rise'); }}
+              onMouseMove={(e) => {
+                if (
+                  window.matchMedia('(pointer:coarse)').matches ||
+                  window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                ) return;
+                const el = e.currentTarget;
+                const r = el.getBoundingClientRect();
+                const dx = (e.clientX - r.left) / r.width - 0.5;
+                const dy = (e.clientY - r.top) / r.height - 0.5;
+                el.style.transform = `perspective(950px) rotateX(${(-dy * 5).toFixed(2)}deg) rotateY(${(dx * 6).toFixed(2)}deg) translateY(-5px)`;
+              }}
+              onMouseLeave={(e) => { e.currentTarget.style.transform = ''; }}
+            >
               <div className={`thumb ${PROJECT_THUMBS[i]}`}>
                 <span className="tag-corner">{p.year}</span>
                 <b>{th.pre}<i>{th.em}</i>{th.post}</b>

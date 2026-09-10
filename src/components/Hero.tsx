@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLang } from '../i18n';
-import { useReveal } from '../hooks';
+import { useReveal, useScrollY } from '../hooks';
 
 const core = ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Python'];
 
@@ -38,9 +38,13 @@ function ProfileCard() {
 export default function Hero() {
   const { t } = useLang();
   const ref = useReveal<HTMLElement>();
+  const y = useScrollY();
+  const calm =
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fade = calm ? {} : { opacity: Math.max(0, 1 - y / 750), transform: `translateY(${y * 0.14}px)` };
   return (
     <header id="top" ref={ref} className="relative pt-[110px] pb-[60px]">
-      <div className="mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-12 px-7 lg:grid-cols-[1.45fr_.95fr]">
+      <div className="mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-12 px-7 lg:grid-cols-[1.45fr_.95fr]" style={fade}>
         <div>
           <span className="rise mb-7 inline-flex items-center gap-2 rounded-full border px-4 py-[7px] text-[.79rem] tracking-[.03em]"
             style={{ color: 'var(--muted)', borderColor: 'var(--line)', background: 'rgba(127,120,100,.08)', animationDelay: '.05s' }}>
