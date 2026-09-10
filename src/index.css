@@ -218,8 +218,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .stat.flash b{text-shadow:0 0 26px rgba(201,168,118,.8);transform:scale(1.07)}
 .ghost{opacity:.9;-webkit-text-stroke-width:1.5px}
 
-/* Scrolling performance: skip off-screen rendering cost */
-main section:not(:first-of-type){content-visibility:auto;contain-intrinsic-size:auto 900px}
 @media(max-width:820px){
   .orb-2,.orb-4{display:none}
   .marquee-track{animation-duration:44s}
