@@ -37,7 +37,7 @@ export default function Work() {
   );
 }
 
-function Card({ p, th, i, skipTilt }: { p: { year: string; kind: string; title: string; description: string; note?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; skipTilt: boolean }) {
+function Card({ p, th, i, skipTilt }: { p: { year: string; kind: string; title: string; description: string; result?: string; note?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; skipTilt: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
 
   const handleMove = useCallback((e: React.MouseEvent) => {
@@ -70,6 +70,7 @@ function Card({ p, th, i, skipTilt }: { p: { year: string; kind: string; title: 
         <span className="flag">{p.kind}</span>
         <h3 className="font-serif-d">{p.title}</h3>
         <p className="text-[.88rem] leading-relaxed" style={{ color: 'var(--muted)' }}>{p.description}</p>
+        {p.result && <p className="result text-[.82rem] font-medium" style={{ color: 'var(--gold)' }}>{p.result}</p>}
         <div className="tags flex flex-wrap gap-1.5">
           {PROJECT_TAGS[i].slice(0, 6).map((tag) => (
             <span key={tag}>{tag}</span>
