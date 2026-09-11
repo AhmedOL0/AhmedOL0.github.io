@@ -216,6 +216,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .orb-2,.orb-4{display:none}
   .marquee-track{animation-duration:44s}
 }
+@media(max-width:420px){
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+}
 :root[data-theme="light"] .orb{opacity:.35}
 :root[data-theme="light"] .hero-orb{opacity:.5}
 :root[data-theme="light"] .hero-orb-2{opacity:.4}

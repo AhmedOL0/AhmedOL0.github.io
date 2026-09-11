@@ -25,7 +25,7 @@ function PillarCard({ pillar }: { pillar: Pillar }) {
   return (
     <div className="pillar-card">
       <div className="pillar-header">
-        <svg className="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg className="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d={pillar.icon} />
         </svg>
         <div>

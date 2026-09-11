@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect, useState, Component, type ReactNode } from 'react';
 import Dock, { TopPills } from './components/Dock';
 import Preloader from './components/Preloader';
 import Hero from './components/Hero';
@@ -15,6 +15,12 @@ const Stars = lazy(() => import('./components/Stars'));
 const CursorGlow = lazy(() => import('./components/CursorGlow'));
 const CursorTrail = lazy(() => import('./components/CursorTrail'));
 
+class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
+  state = { hasError: false };
+  static getDerivedStateFromError() { return { hasError: true }; }
+  render() { return this.state.hasError ? null : this.props.children; }
+}
+
 function Footer() {
   const { t } = useLang();
   const cols: { head: string; links: { label: string; href: string }[] }[] = [
@@ -26,7 +32,7 @@ function Footer() {
     <footer className="relative z-[1] mt-11 border-t px-7 pb-32 pt-12 text-[.85rem]"
       style={{ borderColor: 'var(--line-soft)', color: 'var(--faint)', overflow: 'hidden' }}>
       <div className="foot-mark mx-auto max-w-[1120px]" aria-hidden="true">AO</div>
-      <div className="mx-auto grid max-w-[1120px] grid-cols-2 gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <nav className="mx-auto grid max-w-[1120px] grid-cols-2 gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]" aria-label="Footer">
         <div>
           <p className="font-serif-d text-2xl font-bold" style={{ color: 'var(--ink)' }}>
             A<em className="not-italic" style={{ color: 'var(--gold)' }}>.</em>Ouarrali
@@ -49,7 +55,7 @@ function Footer() {
             </ul>
           </div>
         ))}
-      </div>
+      </nav>
       <div className="mx-auto mt-10 flex max-w-[1120px] flex-wrap justify-end gap-4 border-t pt-6"
         style={{ borderColor: 'var(--line-soft)' }}>
         <a href="#top" className="no-underline" style={{ color: 'var(--muted)' }}>{t.footer.top} ↑</a>
@@ -91,15 +97,19 @@ function Site() {
           }}
         />
       )}
-      <Suspense fallback={null}>
-        <CursorGlow />
-        <CursorTrail />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={null}>
+          <CursorGlow />
+          <CursorTrail />
+        </Suspense>
+      </ErrorBoundary>
       <a href="#main" className="skip-link">Skip to content</a>
       <div className="grid-bg" />
-      <Suspense fallback={null}>
-        <Stars />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={null}>
+          <Stars />
+        </Suspense>
+      </ErrorBoundary>
       <div className="orb orb-1" />
       <div className="orb orb-2" />
       <div className="orb orb-3" />

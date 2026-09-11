@@ -1,10 +1,10 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 
 export type Lang = 'en' | 'fr' | 'ar';
-export const LANGS: { code: Lang; label: string }[] = [
-  { code: 'en', label: 'EN' },
-  { code: 'fr', label: 'FR' },
-  { code: 'ar', label: 'عر' },
+export const LANGS: { code: Lang; label: string; aria: string }[] = [
+  { code: 'en', label: 'EN', aria: 'English' },
+  { code: 'fr', label: 'FR', aria: 'Français' },
+  { code: 'ar', label: 'عر', aria: 'العربية' },
 ];
 
 export type ProjectT = {

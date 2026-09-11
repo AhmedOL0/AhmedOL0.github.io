@@ -35,6 +35,7 @@ export default function Contact() {
       </p>
       <div className="contact-box mt-8 grid grid-cols-1 gap-10 p-7 lg:grid-cols-2 lg:p-[42px]">
         <form onSubmit={handleSubmit}>
+          <input type="text" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true" />
           <label className="field" htmlFor="n">
             <input id="n" name="name" type="text" placeholder=" " required />
             <span>{t.contact.name}</span>
