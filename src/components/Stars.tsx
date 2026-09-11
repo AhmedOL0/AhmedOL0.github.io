@@ -16,9 +16,13 @@ export default function Stars() {
     let stars: Star[] = [];
     const mouse = { x: 0.5, y: 0.4 };
     const px = { x: 0.5, y: 0.4 };
+    let lastDraw = 0;
+    const isMobile = window.matchMedia('(pointer:coarse)').matches;
+    const throttleMs = isMobile ? 33 : 0; // 30fps mobile, 60fps desktop
 
     const seed = () => {
-      const n = Math.min(950, Math.floor((w * h) / 1700));
+      const maxStars = isMobile ? 350 : 700;
+      const n = Math.min(maxStars, Math.floor((w * h) / 2200));
       stars = Array.from({ length: n }, () => ({
         x: Math.random(), y: Math.random(),
         r: 0.3 + Math.random() * 1.4,
@@ -44,6 +48,11 @@ export default function Stars() {
       mouse.y = e.clientY / h;
     };
     const draw = (t: number) => {
+      if (throttleMs && t - lastDraw < throttleMs) {
+        raf = requestAnimationFrame(draw);
+        return;
+      }
+      lastDraw = t;
       const dark = document.documentElement.getAttribute('data-theme') !== 'light';
       ctx.clearRect(0, 0, w, h);
       px.x += (mouse.x - px.x) * 0.04;

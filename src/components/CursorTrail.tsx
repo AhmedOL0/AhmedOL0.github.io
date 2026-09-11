@@ -7,7 +7,7 @@ interface Point {
   size: number; hue: number;
 }
 
-const MAX = 40;
+const MAX = 30;
 const LINE_DIST = 120;
 
 export default function CursorTrail() {
@@ -84,19 +84,21 @@ export default function CursorTrail() {
         p.vy += 0.012;
       }
 
-      for (let i = 0; i < pts.length; i++) {
-        for (let j = i + 1; j < pts.length; j++) {
-          const a = pts[i], b = pts[j];
-          const dx = a.x - b.x, dy = a.y - b.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < LINE_DIST) {
-            const alpha = (1 - dist / LINE_DIST) * Math.min(a.life, b.life) * 0.18;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(201,168,118,${alpha})`;
-            ctx.lineWidth = 0.6;
-            ctx.stroke();
+      if (pts.length >= 4) {
+        for (let i = 0; i < pts.length; i++) {
+          for (let j = i + 1; j < pts.length; j++) {
+            const a = pts[i], b = pts[j];
+            const dx = a.x - b.x, dy = a.y - b.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < LINE_DIST) {
+              const alpha = (1 - dist / LINE_DIST) * Math.min(a.life, b.life) * 0.18;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.strokeStyle = `rgba(201,168,118,${alpha})`;
+              ctx.lineWidth = 0.6;
+              ctx.stroke();
+            }
           }
         }
       }
