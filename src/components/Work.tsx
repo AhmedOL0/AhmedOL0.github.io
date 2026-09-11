@@ -39,6 +39,7 @@ export default function Work() {
 
 function Card({ p, th, i, skipTilt }: { p: { year: string; kind: string; title: string; description: string; result?: string; note?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; skipTilt: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [tagsExpanded, setTagsExpanded] = useState(false);
 
   const handleMove = useCallback((e: React.MouseEvent) => {
     if (skipTilt) return;
@@ -72,10 +73,19 @@ function Card({ p, th, i, skipTilt }: { p: { year: string; kind: string; title: 
         <p className="text-[.88rem] leading-relaxed" style={{ color: 'var(--muted)' }}>{p.description}</p>
         {p.result && <p className="result text-[.82rem] font-medium" style={{ color: 'var(--gold)' }}>{p.result}</p>}
         <div className="tags flex flex-wrap gap-1.5">
-          {PROJECT_TAGS[i].slice(0, 6).map((tag) => (
+          {PROJECT_TAGS[i].slice(0, tagsExpanded ? undefined : 6).map((tag) => (
             <span key={tag}>{tag}</span>
           ))}
-          {PROJECT_TAGS[i].length > 6 && <span className="tag-more">+{PROJECT_TAGS[i].length - 6}</span>}
+          {!tagsExpanded && PROJECT_TAGS[i].length > 6 && (
+            <button className="tag-more" type="button" onClick={() => setTagsExpanded(true)}>
+              +{PROJECT_TAGS[i].length - 6}
+            </button>
+          )}
+          {tagsExpanded && PROJECT_TAGS[i].length > 6 && (
+            <button className="tag-more" type="button" onClick={() => setTagsExpanded(false)}>
+              show less
+            </button>
+          )}
         </div>
         <div className="flex items-center gap-3 pt-0.5">
           {p.linkHref ? (
