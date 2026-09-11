@@ -75,7 +75,7 @@ function Card({ p, th, i, skipTilt }: { p: { year: string; kind: string; title: 
             <span key={tag}>{tag}</span>
           ))}
         </div>
-        <div className="mt-auto flex items-center gap-3 pt-1">
+        <div className="flex items-center gap-3 pt-1">
           {p.linkHref ? (
             <a className="btn btn-ghost btn-sm" href={p.linkHref}>{p.linkLabel}<span className="arr">→</span></a>
           ) : (
