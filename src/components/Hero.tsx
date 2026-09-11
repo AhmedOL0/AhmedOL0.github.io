@@ -13,11 +13,11 @@ const core = [
   { name: 'Google Cloud Run', tip: 'Serverless containers, zero-traffic deploys', icon: 'M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z' },
 ];
 
-const stats = [
-  { value: 6, suffix: '+', label: 'Projects shipped' },
-  { value: 22, suffix: '', label: 'Technologies' },
-  { value: 3, suffix: '', label: 'Platforms' },
-  { value: 4, suffix: '', label: 'Internships completed' },
+const statValues: { value: number; suffix: string }[] = [
+  { value: 6, suffix: '+' },
+  { value: 22, suffix: '' },
+  { value: 3, suffix: '' },
+  { value: 4, suffix: '' },
 ];
 
 function StatItem({ target, suffix, label, inView }: { target: number; suffix: string; label: string; inView: boolean }) {
@@ -72,8 +72,6 @@ export default function Hero() {
   const ref = useReveal<HTMLElement>();
   const statsRef = useInView<HTMLDivElement>(0.3);
   const y = useScrollY();
-  const calm =
-    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fade = calm ? {} : { opacity: Math.max(0, 1 - y / 750), transform: `translateY(${y * 0.14}px)` };
   return (
     <header id="top" ref={ref} className="relative pt-[110px] pb-[60px]">
@@ -97,8 +95,8 @@ export default function Hero() {
             <a className="btn btn-ghost" data-magnetic href="#contact">{t.hero.ctaContact}<span className="arr">→</span></a>
           </div>
           <div className="rise hero-stats mt-10 grid grid-cols-4 gap-4" ref={statsRef.ref} style={{ animationDelay: '.48s' }}>
-            {stats.map((s) => (
-              <StatItem key={s.label} target={s.value} suffix={s.suffix} label={s.label} inView={statsRef.inView} />
+            {statValues.map((s, i) => (
+              <StatItem key={i} target={s.value} suffix={s.suffix} label={t.hero.statsLabels[i]} inView={statsRef.inView} />
             ))}
           </div>
           <div className="rise core mt-8 flex flex-wrap gap-2" style={{ animationDelay: '.56s' }}>
@@ -110,7 +108,7 @@ export default function Hero() {
             ))}
           </div>
           <a href="#tools" className="rise hero-view-all" style={{ animationDelay: '.62s' }}>
-            View all 22 technologies <span className="arr">→</span>
+            {t.hero.viewAll} <span className="arr">→</span>
           </a>
           <a href="#work" className="rise scroll-cue" style={{ animationDelay: '.7s' }} aria-hidden="true" tabIndex={-1}><i /></a>
         </div>

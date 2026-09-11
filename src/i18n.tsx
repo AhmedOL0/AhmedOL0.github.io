@@ -27,7 +27,7 @@ export type ToolLevel = { level: string; subtitle: string; tools: ToolItem[] };
 export type Dict = {
   dir: 'ltr' | 'rtl';
   nav: { work: string; about: string; experience: string; education: string; tools: string; contact: string; resume: string };
-  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede1: string; lede2: string; ctaWork: string; ctaContact: string; cardRole: string; cardTech: string };
+  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede1: string; lede2: string; ctaWork: string; ctaContact: string; cardRole: string; cardTech: string; statsLabels: [string, string, string, string]; viewAll: string };
   core: string[];
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
   work: { kicker: string; title: string; sub: string; projects: ProjectT[] };
@@ -48,7 +48,8 @@ export type Dict = {
   contact: {
     kicker: string; title: string; sub: string; subEm: string; subEnd: string;
     name: string; namePh: string; email: string; emailPh: string; msg: string; msgPh: string;
-    send: string; direct: string; phone: string; tz: string;
+    send: string; sending: string; success: string; error: string; timezone: string;
+    direct: string; phone: string; tz: string;
   };
   footer: { built: string; top: string };
 };
@@ -66,12 +67,14 @@ const en: Dict = {
   dir: 'ltr',
   nav: { work: 'Work', about: 'About', experience: 'Experience', education: 'Education', tools: 'QA Tools', contact: 'Contact', resume: 'Résumé' },
   hero: {
-    badge: 'Open to a PFE internship — let’s discuss timing',
-    titleA: 'Building ', titleEm: 'complete products', titleB: ' — API, web, mobile.',
-    lede1: 'Hi, I’m Ahmed Ouarrali, a 5th-year Software Engineering student at ENSIASD Taroudant. I recently completed my end-of-year internship (PFA) at Zorium, building ',
+    badge: 'Open to a PFE internship — let\u2019s discuss timing',
+    titleA: 'Building ', titleEm: 'complete products', titleB: ' \u2014 API, web, mobile.',
+    lede1: 'Hi, I\u2019m Ahmed Ouarrali, a 5th-year Software Engineering student at ENSIASD Taroudant. I recently completed my end-of-year internship (PFA) at Zorium, building ',
     lede2: ', an AI-augmented skincare e-commerce platform: Spring Boot API, Next.js storefront and back-office, React Native app, PostgreSQL + Redis, shipped with Docker to Google Cloud.',
     ctaWork: 'Explore selected work', ctaContact: 'Get in touch',
     cardRole: 'Full-Stack Software Engineer', cardTech: 'Core technologies',
+    statsLabels: ['Projects shipped', 'Technologies', 'Platforms', 'Internships completed'] as [string, string, string, string],
+    viewAll: 'View all 22 technologies',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
   filters: { all: 'All', web: 'Web', mobile: 'Mobile', backend: 'Backend', ai: 'AI', iot: 'IoT' },
@@ -174,10 +177,12 @@ const en: Dict = {
     },
   },
   contact: {
-    kicker: 'Contact', title: 'Let’s build something solid.',
-    sub: 'Looking for a ', subEm: 'PFE internship', subEnd: ' — backend or full-stack, Morocco or remote, ideally where code ships to production. I answer fast.',
+    kicker: 'Contact', title: 'Let\u2019s build something solid.',
+    sub: 'Looking for a ', subEm: 'PFE internship', subEnd: ' \u2014 backend or full-stack, Morocco or remote, ideally where code ships to production. I answer fast.',
     name: 'Your name', namePh: 'Your full name', email: 'Email address', emailPh: 'you@company.com',
-    msg: 'Project details', msgPh: 'What are you building, and when?', send: 'Send message',
+    msg: 'Project details', msgPh: 'What are you building, and when?', send: 'Send message', sending: '...',
+    success: '\u2713 Message sent \u2014 I\u2019ll get back to you soon.', error: '\u2717 Something went wrong. Try emailing me directly.',
+    timezone: 'Morocco (GMT+1) \u00b7 working remotely worldwide',
     direct: 'Direct email', phone: 'Phone', tz: 'Timezone',
   },
   footer: { built: '', top: 'Top' },
@@ -187,12 +192,14 @@ const fr: Dict = {
   dir: 'ltr',
   nav: { work: 'Projets', about: 'Profil', experience: 'Parcours', education: 'Formation', tools: 'Outils QA', contact: 'Contact', resume: 'CV' },
   hero: {
-    badge: 'Ouvert à un stage PFE — discutons du calendrier',
-    titleA: 'Des ', titleEm: 'produits complets', titleB: ' — API, web, mobile.',
-    lede1: 'Salut, je suis Ahmed Ouarrali, élève-ingénieur en 5ᵉ année à l’ENSIASD Taroudant. Je viens de terminer mon stage de fin d’année (PFA) chez Zorium, où j’ai construit ',
-    lede2: ', plateforme e-commerce cosmétique augmentée par l’IA : API Spring Boot, boutique Next.js et back-office, app React Native, PostgreSQL + Redis, livrée avec Docker sur Google Cloud.',
+    badge: 'Ouvert \u00e0 un stage PFE \u2014 discutons du calendrier',
+    titleA: 'Des ', titleEm: 'produits complets', titleB: ' \u2014 API, web, mobile.',
+    lede1: 'Salut, je suis Ahmed Ouarrali, \u00e9l\u00e8ve-ing\u00e9nieur en 5\u1d57\u02e3 ann\u00e9e \u00e0 l\u2019ENSIASD Taroudant. Je viens de terminer mon stage de fin d\u2019ann\u00e9e (PFA) chez Zorium, o\u00f9 j\u2019ai construit ',
+    lede2: ', plateforme e-commerce cosm\u00e9tique augment\u00e9e par l\u2019IA : API Spring Boot, boutique Next.js et back-office, app React Native, PostgreSQL + Redis, livr\u00e9e avec Docker sur Google Cloud.',
     ctaWork: 'Voir mes projets', ctaContact: 'Me contacter',
-    cardRole: 'Ingénieur Logiciel Full-Stack', cardTech: 'Technologies clés',
+    cardRole: 'Ing\u00e9nieur Logiciel Full-Stack', cardTech: 'Technologies cl\u00e9s',
+    statsLabels: ['Projets livr\u00e9s', 'Technologies', 'Plateformes', 'Stages compl\u00e9t\u00e9s'] as [string, string, string, string],
+    viewAll: 'Voir les 22 technologies',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
   filters: { all: 'Tous', web: 'Web', mobile: 'Mobile', backend: 'Backend', ai: 'IA', iot: 'IoT' },
@@ -296,10 +303,12 @@ const fr: Dict = {
   },
   contact: {
     kicker: 'Contact', title: 'Construisons quelque chose de solide.',
-    sub: 'Je cherche un ', subEm: 'stage PFE', subEnd: ' — backend ou full-stack, Maroc ou distanciel, idéalement là où le code part en production. Je réponds vite.',
+    sub: 'Je cherche un ', subEm: 'stage PFE', subEnd: ' \u2014 backend ou full-stack, Maroc ou distanciel, id\u00e9alement l\u00e0 o\u00f9 le code part en production. Je r\u00e9ponds vite.',
     name: 'Votre nom', namePh: 'Votre nom complet', email: 'Adresse e-mail', emailPh: 'vous@entreprise.com',
-    msg: 'Détails du projet', msgPh: 'Que construisez-vous, et pour quand ?', send: 'Envoyer',
-    direct: 'E-mail direct', phone: 'Téléphone', tz: 'Fuseau horaire',
+    msg: 'D\u00e9tails du projet', msgPh: 'Que construisez-vous, et pour quand ?', send: 'Envoyer', sending: '...',
+    success: '\u2713 Message envoy\u00e9 \u2014 Je vous r\u00e9ponds vite.', error: '\u2717 Une erreur s\u2019est produite. \u00c9crivez-moi directement.',
+    timezone: 'Maroc (GMT+1) \u00b7 travaille \u00e0 distance partout dans le monde',
+    direct: 'E-mail direct', phone: 'T\u00e9l\u00e9phone', tz: 'Fuseau horaire',
   },
   footer: { built: '', top: 'Haut' },
 };
@@ -314,6 +323,8 @@ const ar: Dict = {
     lede2: '، منصة تجارة إلكترونية للتجميل مدعومة بالذكاء الاصطناعي: API Spring Boot، متجر Next.js ومكتب خلفي، تطبيق React Native، PostgreSQL + Redis، منشورة عبر Docker على Google Cloud.',
     ctaWork: 'استعرض أعمالي', ctaContact: 'تواصل معي',
     cardRole: 'مهندس برمجيات Full-Stack', cardTech: 'التقنيات الأساسية',
+    statsLabels: ['مشاريع منشورة', 'تقنيات', 'منصات', 'تدريبات مكتملة'] as [string, string, string, string],
+    viewAll: 'عرض كل الـ 22 تقنية',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
   filters: { all: 'الكل', web: 'ويب', mobile: 'موبايل', backend: 'باك-إند', ai: 'ذكاء اصطناعي', iot: 'إنترنت الأشياء' },
@@ -419,7 +430,9 @@ const ar: Dict = {
     kicker: 'اتصل بي', title: 'لنبنِ شيئاً متيناً.',
     sub: 'أبحث عن ', subEm: 'تدريب PFE', subEnd: ' — باك-إند أو full-stack، المغرب أو عن بعد، حيث يُنشر الكود للإنتاج. أرد بسرعة.',
     name: 'اسمك', namePh: 'اسمك الكامل', email: 'البريد الإلكتروني', emailPh: 'you@company.com',
-    msg: 'تفاصيل المشروع', msgPh: 'ماذا تبني، ومتى؟', send: 'أرسل',
+    msg: 'تفاصيل المشروع', msgPh: 'ماذا تبني، ومتى؟', send: 'أرسل', sending: '...',
+    success: '✓ تم إرسال الرسالة — سأرد عليك قريباً.', error: '✗ حدث خطأ. أرسل لي بريداً إلكترونياً مباشرة.',
+    timezone: 'المغرب (GMT+1) · يعمل عن بُعد في جميع أنحاء العالم',
     direct: 'بريد مباشر', phone: 'الهاتف', tz: 'المنطقة الزمنية',
   },
   footer: { built: '', top: 'الأعلى' },

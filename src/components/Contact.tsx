@@ -54,18 +54,18 @@ export default function Contact() {
               type="submit"
               disabled={status === 'sending'}
             >
-              {status === 'sending' ? '...' : t.contact.send}
+              {status === 'sending' ? t.contact.sending : t.contact.send}
               <span className="arr">→</span>
             </button>
           </div>
           {status === 'ok' && (
             <p style={{ marginTop: 12, color: '#16a34a', fontSize: '.88rem' }}>
-              ✓ Message sent — I'll get back to you soon.
+              {t.contact.success}
             </p>
           )}
           {status === 'error' && (
             <p style={{ marginTop: 12, color: '#dc2626', fontSize: '.88rem' }}>
-              ✗ Something went wrong. Try emailing me directly.
+              {t.contact.error}
             </p>
           )}
         </form>
@@ -74,7 +74,7 @@ export default function Contact() {
           <div><strong>{t.contact.phone}</strong><br /><a href="tel:+212645372099">+212 645 372 099</a></div>
           <div><strong>LinkedIn</strong><br /><a href="https://www.linkedin.com/in/ahmed-ouarrali">linkedin.com/in/ahmed-ouarrali</a></div>
           <div><strong>GitHub</strong><br /><a href="https://github.com/AhmedOL0">github.com/AhmedOL0</a></div>
-          <div><strong>Timezone</strong><br />Morocco (GMT+1) · working remotely worldwide</div>
+          <div><strong>{t.contact.tz}</strong><br />{t.contact.timezone}</div>
         </div>
       </div>
     </Section>
