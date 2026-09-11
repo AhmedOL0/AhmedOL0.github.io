@@ -215,6 +215,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 /* Cards */
 .tags span{font-family:var(--mono);font-size:.71rem;color:var(--muted);background:rgba(127,120,100,.08);border:1px solid var(--line);padding:4px 11px;border-radius:999px}
 .tag-more{font-family:var(--mono);font-size:.71rem;color:var(--faint);background:none;border:1px dashed var(--line);padding:4px 9px;border-radius:999px}
+.result{font-size:.82rem;font-weight:500;color:var(--gold);margin-top:-2px}
 .note{font-size:.78rem;color:var(--faint);font-style:italic}
 
 /* Back to top */
