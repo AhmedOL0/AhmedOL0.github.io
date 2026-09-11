@@ -168,10 +168,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 [dir="rtl"] .about-grid h4::before{margin-right:0;margin-left:10px}
 
 /* Marquee */
-.marquee{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);overflow:hidden;white-space:nowrap;padding:15px 0;background:rgba(127,120,100,.05);position:relative;z-index:1}
-.marquee-track{display:inline-block;animation:mscroll 32s linear infinite}
-.marquee span{font-family:var(--mono);font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);margin-right:54px}
-.marquee span i{color:var(--gold-deep);font-style:normal;margin-right:54px}
+.marquee{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);overflow:hidden;padding:15px 0;background:rgba(127,120,100,.05);position:relative;z-index:1}
+.marquee-track{display:flex;width:max-content;animation:mscroll 32s linear infinite}
+.marquee-inner{display:flex;flex-shrink:0}
+.marquee-inner span{font-family:var(--mono);font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);white-space:nowrap;margin-right:54px}
+.marquee-inner span i{color:var(--gold-deep);font-style:normal;margin-right:54px}
 @keyframes mscroll{to{transform:translateX(-50%)}}
 
 /* Timeline */
