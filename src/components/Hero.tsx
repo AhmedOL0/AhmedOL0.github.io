@@ -21,11 +21,12 @@ const statValues: { value: number; suffix: string }[] = [
 ];
 
 function StatItem({ target, suffix, label, inView }: { target: number; suffix: string; label: string; inView: boolean }) {
-  const val = useCountUp(target, inView, 1400);
+  const [pop, setPop] = useState(false);
+  const val = useCountUp(target, inView, 1400, () => { setPop(true); setTimeout(() => setPop(false), 400); });
   const show = calm || inView;
   return (
     <div className="hero-stat">
-      <span className="hero-stat-val font-serif-d" style={{ opacity: show ? 1 : 0, transition: 'opacity .3s' }}>{val}{suffix}</span>
+      <span className={`hero-stat-val font-serif-d${pop ? ' pop' : ''}`} style={{ opacity: show ? 1 : 0, transition: 'opacity .3s' }}>{val}{suffix}</span>
       <span className="hero-stat-label">{label}</span>
     </div>
   );

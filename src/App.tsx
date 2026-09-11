@@ -56,8 +56,11 @@ function Footer() {
           </div>
         ))}
       </nav>
-      <div className="mx-auto mt-10 flex max-w-[1120px] flex-wrap justify-end gap-4 border-t pt-6"
+      <div className="mx-auto mt-10 flex max-w-[1120px] flex-wrap items-center justify-between gap-4 border-t pt-6"
         style={{ borderColor: 'var(--line-soft)' }}>
+        <a href="assets/CV_Ahmed_Ouarrali.pdf" download className="btn btn-sm btn-ghost">
+          {t.dock.resume} ↓
+        </a>
         <a href="#top" className="no-underline" style={{ color: 'var(--muted)' }}>{t.footer.top} ↑</a>
       </div>
     </footer>

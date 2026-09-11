@@ -2,8 +2,34 @@ import { useState, type FormEvent } from 'react';
 import Section from './Section';
 import { useLang } from '../i18n';
 
+function Spinner() {
+  return (
+    <svg className="send-spinner" viewBox="0 0 20 20" style={{ width: 16, height: 16, marginRight: 8, animation: 'spin .8s linear infinite' }}>
+      <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="32 18" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function SuccessAnim() {
+  return (
+    <div className="form-success-box">
+      <svg viewBox="0 0 52 52" style={{ width: 48, height: 48 }}>
+        <circle cx="26" cy="26" r="24" fill="none" stroke="#16a34a" strokeWidth="2.5"
+          style={{ strokeDasharray: 151, strokeDashoffset: 151, animation: 'check-circle .5s ease .1s forwards' }} />
+        <path d="M15 27l7 7 15-15" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+          style={{ strokeDasharray: 40, strokeDashoffset: 40, animation: 'check-mark .3s ease .45s forwards' }} />
+      </svg>
+      <p className="form-success-text">{t_contact.success}</p>
+      <p className="form-success-sub">Typically respond within 24 hours</p>
+    </div>
+  );
+}
+
+let t_contact: ReturnType<typeof useLang>['t']['contact'];
+
 export default function Contact() {
   const { t } = useLang();
+  t_contact = t.contact;
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'error'>('idle');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -11,7 +37,7 @@ export default function Contact() {
     setStatus('sending');
     const form = e.currentTarget;
     const formData = new FormData(form);
-    formData.append('access_key', 'fd030d65-d69e-4963-b5f3-111d39ca65bb');
+    formData.append('access_key', import.meta.env.VITE_WEB3FORMS_KEY);
     formData.append('subject', 'New message from portfolio');
     formData.append('from_name', 'Portfolio Contact');
 
@@ -55,15 +81,12 @@ export default function Contact() {
               type="submit"
               disabled={status === 'sending'}
             >
+              {status === 'sending' && <Spinner />}
               {status === 'sending' ? t.contact.sending : t.contact.send}
-              <span className="arr">→</span>
+              {status !== 'sending' && <span className="arr">→</span>}
             </button>
           </div>
-          {status === 'ok' && (
-            <p className="form-success">
-              {t.contact.success}
-            </p>
-          )}
+          {status === 'ok' && <SuccessAnim />}
           {status === 'error' && (
             <p className="form-error">
               {t.contact.error}
