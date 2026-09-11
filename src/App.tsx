@@ -1,9 +1,6 @@
-import { useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import Dock, { TopPills } from './components/Dock';
 import Preloader from './components/Preloader';
-import Stars from './components/Stars';
-import CursorGlow from './components/CursorGlow';
-import CursorTrail from './components/CursorTrail';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
 import Work from './components/Work';
@@ -14,12 +11,16 @@ import Contact from './components/Contact';
 import { LangProvider, useLang } from './i18n';
 import { useActiveSection, useBackToTop, useMagnetic, useProgress, useSpotlight, useTheme } from './hooks';
 
+const Stars = lazy(() => import('./components/Stars'));
+const CursorGlow = lazy(() => import('./components/CursorGlow'));
+const CursorTrail = lazy(() => import('./components/CursorTrail'));
+
 function Footer() {
   const { t } = useLang();
   const cols: { head: string; links: { label: string; href: string }[] }[] = [
     { head: t.nav.work, links: [{ label: 'OdemLab', href: '#work' }, { label: 'FitTrack', href: '#work' }, { label: 'Smart Campus', href: '#work' }] },
     { head: t.nav.about, links: [{ label: t.nav.experience, href: '#experience' }, { label: t.nav.education, href: '#education' }, { label: t.nav.contact, href: '#contact' }] },
-    { head: 'Elsewhere', links: [{ label: 'GitHub', href: 'https://github.com/AhmedOL0' }, { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ahmed-ouarrali' }, { label: 'Email', href: 'mailto:ahmedouarrali12@gmail.com' }] },
+    { head: t.footer.elsewhere, links: [{ label: 'GitHub', href: 'https://github.com/AhmedOL0' }, { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ahmed-ouarrali' }, { label: 'Email', href: 'mailto:ahmedouarrali12@gmail.com' }] },
   ];
   return (
     <footer className="relative z-[1] mt-11 border-t px-7 pb-32 pt-12 text-[.85rem]"
@@ -90,11 +91,15 @@ function Site() {
           }}
         />
       )}
-      <CursorGlow />
-      <CursorTrail />
-      <a href="#work" className="skip-link">Skip to content</a>
+      <Suspense fallback={null}>
+        <CursorGlow />
+        <CursorTrail />
+      </Suspense>
+      <a href="#main" className="skip-link">Skip to content</a>
       <div className="grid-bg" />
-      <Stars />
+      <Suspense fallback={null}>
+        <Stars />
+      </Suspense>
       <div className="orb orb-1" />
       <div className="orb orb-2" />
       <div className="orb orb-3" />
@@ -108,7 +113,7 @@ function Site() {
         <Hero />
       </div>
       <Marquee />
-      <main className="relative z-[1] mx-auto max-w-[1120px] px-7">
+      <main id="main" className="relative z-[1] mx-auto max-w-[1120px] px-7">
         <Work />
         <About />
         <Experience />

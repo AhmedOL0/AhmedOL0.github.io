@@ -54,7 +54,8 @@ export type Dict = {
     send: string; sending: string; success: string; error: string; timezone: string;
     direct: string; phone: string; tz: string; linkedin: string; github: string;
   };
-  footer: { built: string; top: string };
+  footer: { built: string; top: string; elsewhere: string };
+  dock: { home: string; work: string; contact: string; lang: string; nav: string; toggle: string; resume: string };
 };
 
 const tags = {
@@ -213,7 +214,8 @@ const en: Dict = {
     timezone: 'Morocco (GMT+1) \u00b7 working remotely worldwide',
     direct: 'Direct email', phone: 'Phone', tz: 'Timezone', linkedin: 'LinkedIn', github: 'GitHub',
   },
-  footer: { built: '', top: 'Top' },
+  footer: { built: '', top: 'Top', elsewhere: 'Elsewhere' },
+  dock: { home: 'Home', work: 'Work', contact: 'Contact', lang: 'Language', nav: 'Quick navigation', toggle: 'Toggle light / dark mode', resume: 'Résumé' },
 };
 
 const fr: Dict = {
@@ -364,7 +366,8 @@ const fr: Dict = {
     timezone: 'Maroc (GMT+1) \u00b7 travaille \u00e0 distance partout dans le monde',
     direct: 'E-mail direct', phone: 'T\u00e9l\u00e9phone', tz: 'Fuseau horaire', linkedin: 'LinkedIn', github: 'GitHub',
   },
-  footer: { built: '', top: 'Haut' },
+  footer: { built: '', top: 'Haut', elsewhere: 'Ailleurs' },
+  dock: { home: 'Accueil', work: 'Projets', contact: 'Contact', lang: 'Langue', nav: 'Navigation rapide', toggle: 'Basculer mode clair / sombre', resume: 'CV' },
 };
 
 const ar: Dict = {
@@ -515,7 +518,8 @@ const ar: Dict = {
     timezone: 'المغرب (GMT+1) · يعمل عن بُعد في جميع أنحاء العالم',
     direct: 'بريد مباشر', phone: 'الهاتف', tz: 'المنطقة الزمنية', linkedin: 'LinkedIn', github: 'GitHub',
   },
-  footer: { built: '', top: 'الأعلى' },
+  footer: { built: '', top: 'الأعلى', elsewhere: 'منصات أخرى' },
+  dock: { home: 'الرئيسية', work: 'أعمالي', contact: 'اتصل بي', lang: 'اللغة', nav: 'تنقل سريع', toggle: 'تبديل الوضع الفاتح / الداكن', resume: 'السيرة' },
 };
 
 export const DICTS: Record<Lang, Dict> = { en, fr, ar };

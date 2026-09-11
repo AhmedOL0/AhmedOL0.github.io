@@ -59,12 +59,12 @@ export default function Contact() {
             </button>
           </div>
           {status === 'ok' && (
-            <p style={{ marginTop: 12, color: '#16a34a', fontSize: '.88rem' }}>
+            <p className="form-success">
               {t.contact.success}
             </p>
           )}
           {status === 'error' && (
-            <p style={{ marginTop: 12, color: '#dc2626', fontSize: '.88rem' }}>
+            <p className="form-error">
               {t.contact.error}
             </p>
           )}

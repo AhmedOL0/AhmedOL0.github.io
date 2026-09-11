@@ -3,6 +3,8 @@
   "short_name": "AOuarrali",
   "description": "Portfolio of Ahmed Ouarrali: Spring Boot, Next.js, React Native, Flutter.",
   "start_url": "/",
+  "scope": "/",
+  "id": "/",
   "display": "browser",
   "background_color": "#0b0b0e",
   "theme_color": "#0b0b0e",

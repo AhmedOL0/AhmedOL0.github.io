@@ -41,7 +41,7 @@ test.describe('Accessibility (WCAG 2.2)', () => {
   });
 
   test('skip-to-content link exists and is focusable', async ({ page }) => {
-    const skipLink = page.locator('a[href="#work"]').first();
+    const skipLink = page.locator('a[href="#main"]').first();
     await expect(skipLink).toBeAttached();
     await skipLink.focus();
     await expect(skipLink).toBeVisible();

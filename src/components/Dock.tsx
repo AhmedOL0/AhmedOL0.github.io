@@ -22,22 +22,22 @@ const P = {
 };
 
 export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => void }) {
-  const { lang, setLang } = useLang();
+  const { lang, setLang, t } = useLang();
   return (
     <>
       <a href="assets/CV_Ahmed_Ouarrali.pdf" download data-magnetic
         className="btn btn-sm top-left top-pill fixed left-5 top-5 z-50 md:left-8">
-        Résumé
+        {t.dock.resume}
       </a>
       <div className="top-right fixed right-5 top-5 z-50 flex max-w-[calc(100vw-2.5rem)] flex-wrap items-center justify-end gap-2 md:right-8">
-        <div className="langsw" role="group" aria-label="Language">
+        <div className="langsw" role="group" aria-label={t.dock.lang}>
           {LANGS.map((l) => (
             <button key={l.code} className={lang === l.code ? 'active' : ''} onClick={() => setLang(l.code)}>
               {l.label}
             </button>
           ))}
         </div>
-        <button onClick={onToggle} aria-label="Toggle light / dark mode" title="Toggle light / dark mode"
+        <button onClick={onToggle} aria-label={t.dock.toggle} title={t.dock.toggle}
           className="iconbtn iconbtn-glass" style={{ border: '1px solid var(--line)', color: 'var(--muted)' }}>
           <Icon d={theme === 'dark' ? P.sun : P.moon} />
         </button>
@@ -47,6 +47,7 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
 }
 
 export default function Dock({ active, theme, onToggle }: { active: string; theme: string; onToggle: () => void }) {
+  const { t } = useLang();
   const [hidden, setHidden] = useState(false);
   useEffect(() => {
     let last = window.scrollY, raf = 0;
@@ -70,14 +71,14 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
     };
   }, []);
   const items = [
-    { id: 'top', href: '#top', label: 'Home', icon: <Icon d={P.home} /> },
-    { id: 'work', href: '#work', label: 'Work', icon: <Icon d={P.work} /> },
-    { id: 'contact', href: '#contact', label: 'Contact', icon: <Icon d={P.mail} /> },
+    { id: 'top', href: '#top', label: t.dock.home, icon: <Icon d={P.home} /> },
+    { id: 'work', href: '#work', label: t.dock.work, icon: <Icon d={P.work} /> },
+    { id: 'contact', href: '#contact', label: t.dock.contact, icon: <Icon d={P.mail} /> },
   ];
   const isActive = (id: string) =>
     id === 'top' ? active === '' : active === id;
   return (
-    <div className={`dock${hidden ? ' dock-hidden' : ''}`} role="navigation" aria-label="Quick navigation">
+    <div className={`dock${hidden ? ' dock-hidden' : ''}`} role="navigation" aria-label={t.dock.nav}>
       {items.map((it) => (
         <a key={it.id} href={it.href} aria-label={it.label} title={it.label}
           className={isActive(it.id) ? 'active' : ''}>
@@ -85,7 +86,7 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
         </a>
       ))}
       <span className="dock-sep" />
-      <button onClick={onToggle} aria-label="Toggle light / dark mode" title="Toggle light / dark mode">
+      <button onClick={onToggle} aria-label={t.dock.toggle} title={t.dock.toggle}>
         <Icon d={theme === 'dark' ? P.sun : P.moon} />
       </button>
       <span className="dock-sep" />
