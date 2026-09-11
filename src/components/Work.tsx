@@ -66,16 +66,16 @@ function Card({ p, th, i, skipTilt }: { p: { year: string; kind: string; title: 
         <span className="tag-corner">{p.year}</span>
         <b>{th.pre}<i>{th.em}</i>{th.post}</b>
       </div>
-      <div className="body flex flex-col gap-[13px] p-[26px_28px_28px] flex-1">
+      <div className="body flex flex-col gap-2.5 p-[26px_28px_28px] flex-1">
         <span className="flag">{p.kind}</span>
         <h3 className="font-serif-d">{p.title}</h3>
-        <p className="text-[.93rem]" style={{ color: 'var(--muted)' }}>{p.description}</p>
-        <div className="tags mt-[2px] flex flex-wrap gap-2">
+        <p className="text-[.93rem] leading-relaxed" style={{ color: 'var(--muted)' }}>{p.description}</p>
+        <div className="tags flex flex-wrap gap-2">
           {PROJECT_TAGS[i].map((tag) => (
             <span key={tag}>{tag}</span>
           ))}
         </div>
-        <div className="mt-auto flex items-center gap-3 pt-[10px]">
+        <div className="mt-auto flex items-center gap-3 pt-1">
           {p.linkHref ? (
             <a className="btn btn-ghost btn-sm" href={p.linkHref}>{p.linkLabel}<span className="arr">→</span></a>
           ) : (
