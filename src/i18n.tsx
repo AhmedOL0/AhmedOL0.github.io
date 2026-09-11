@@ -137,8 +137,8 @@ const en: Dict = {
     jobs: [
       { when: 'JUN 2026 — SEP 2026 · AGADIR, ON-SITE', title: 'End-of-year project (PFA) — Full-Stack Developer', org: 'Zorium, Technoparc Agadir', where: 'OdemLab platform · team of four',
         points: ['Owned backend business modules: orders, products, payments, auth, GDPR', 'Hardened the money paths: server-side pricing, idempotent checkout, audited order lifecycle', 'Shipped to Cloud Run: zero-traffic deploy, health check, promotion, auto-rollback on failure'] },
-      { when: 'JUL 2025 — SEP 2025 · REMOTE', title: 'Full-Stack Developer Intern', org: 'Medical booking platform', where: 'Laravel · MySQL · Bootstrap',
-        points: ['Patient–practitioner booking with slot no-overlap rules and role-based dashboards'] },
+      { when: 'JUL 2025 — SEP 2025 · REMOTE', title: 'Full-Stack Developer Intern', org: 'MOUSSA SOFT · Agadir', where: 'Laravel · MySQL · Bootstrap',
+        points: ['Built MediCare: patient-doctor booking, appointment scheduling, PDF report generation, Chart.js dashboards'] },
       { when: 'JUN 2023 — AUG 2023', title: 'QA Automation Intern', org: 'Web regression suites', where: 'Python · Selenium WebDriver · Page Objects',
         points: ['Replaced a manual campaign with automated non-regression suites, one change point per UI change'] },
     ],
@@ -293,8 +293,8 @@ const fr: Dict = {
     jobs: [
       { when: 'JUIN 2026 — SEPT. 2026 · AGADIR, SUR SITE', title: 'Projet de fin d’année (PFA) — Développeur Full-Stack', org: 'Zorium, Technoparc Agadir', where: 'Plateforme OdemLab · équipe de quatre',
         points: ['Modules métier backend : commandes, produits, paiements, auth, RGPD', 'Chemins monétaires fiabilisés : tarification serveur, checkout idempotent, cycle audité', 'Livraison Cloud Run : déploiement sans trafic, health check, promotion, rollback auto'] },
-      { when: 'JUIL. 2025 — SEPT. 2025 · DISTANCIEL', title: 'Stagiaire Développeur Full-Stack', org: 'Plateforme de rendez-vous médicaux', where: 'Laravel · MySQL · Bootstrap',
-        points: ['Réservation patients-praticiens avec règles anti-chevauchement et tableaux par rôle'] },
+      { when: 'JUIL. 2025 — SEPT. 2025 · DISTANCIEL', title: 'Stagiaire Développeur Full-Stack', org: 'MOUSSA SOFT · Agadir', where: 'Laravel · MySQL · Bootstrap',
+        points: ['MediCare : réservation patients-médecins, planning, génération de rapports PDF, tableaux Chart.js'] },
       { when: 'JUIN 2023 — AOÛT 2023', title: 'Stagiaire QA Automatisation', org: 'Suites de non-régression web', where: 'Python · Selenium WebDriver · Page Objects',
         points: ['Campagne manuelle remplacée par des suites automatisées, un point de changement par écran'] },
     ],
@@ -450,8 +450,8 @@ const ar: Dict = {
     jobs: [
       { when: 'يونيو 2026 — سبتمبر 2026 · أكادير، حضوري', title: 'مشروع نهاية السنة (PFA) — مطور Full-Stack', org: 'Zorium، تكنوبارك أكادير', where: 'منصة OdemLab · فريق من أربعة',
         points: ['وحدات الباك-إند: الطلبات، المنتجات، المدفوعات، المصادقة، GDPR', 'تحصين مسارات المال: تسعير من الخادم، دفع غير قابل للتكرار، دورة طلبات مدققة', 'النشر على Cloud Run: نشر بدون توقف، فحص صحة، ترقية الميزات، رجوع تلقائي عند الفشل'] },
-      { when: 'يوليوز 2025 — سبتمبر 2025 · عن بعد', title: 'متدرب مطور Full-Stack', org: 'منصة المواعيد الطبية', where: 'Laravel · MySQL · Bootstrap',
-        points: ['حجز مرضى-مدارسين مع قواعد عدم التعارض ولوحات حسب الدور'] },
+      { when: 'يوليوز 2025 — سبتمبر 2025 · عن بعد', title: 'متدرب مطور Full-Stack', org: 'MOUSSA SOFT، أكادير', where: 'Laravel · MySQL · Bootstrap',
+        points: ['MediCare: حجز المرضى-الأطباء، جدولة المواعيد، تقارير PDF، لوحات Chart.js'] },
       { when: 'يونيو 2023 — أغسطس 2023', title: 'متدرب أتمتة QA', org: 'حزم الانحدار الويب', where: 'Python · Selenium WebDriver · Page Objects',
         points: ['استبدال حملة يدوية بحزم انحدار آلية، نقطة تغيير واحدة لكل شاشة'] },
     ],
@@ -574,4 +574,4 @@ export const PROJECT_CATS: string[][] = [
   ['web', 'mobile', 'backend'], ['web', 'backend'], ['web', 'backend'], ['mobile'], ['ai'], ['iot'],
 ];
 export const PROJECT_THUMBS = ['thumb-odem', 'thumb-med', 'thumb-fit', 'thumb-campus', 'thumb-sum', 'thumb-iot'];
-export const STAT_VALUES = [6, 3, 275, 124];
+export const STAT_VALUES = [6, 3, 5, 93];
