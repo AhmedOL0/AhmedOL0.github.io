@@ -48,7 +48,7 @@ function PillarCard({ pillar }: { pillar: Pillar }) {
 export default function Tools() {
   const { t } = useLang();
   return (
-    <Section id="tools" num="06" kicker={t.tools.kicker} title={t.tools.title} sub={t.tools.sub} variant="left">
+    <Section id="tools" num="05" kicker={t.tools.kicker} title={t.tools.title} sub={t.tools.sub} variant="left">
       <div className="pyramid-wrap mt-9">
         <div className="pyramid-header">
           <h3>{t.tools.pyramid.title}</h3>

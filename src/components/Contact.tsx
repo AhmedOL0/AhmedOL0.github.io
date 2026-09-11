@@ -29,7 +29,7 @@ export default function Contact() {
   };
 
   return (
-    <Section id="contact" num="07" kicker={t.contact.kicker} title={t.contact.title} sub="" variant="right">
+    <Section id="contact" num="06" kicker={t.contact.kicker} title={t.contact.title} sub="" variant="right">
       <p className="sub">
         {t.contact.sub}<strong style={{ color: 'var(--ink)' }}>{t.contact.subEm}</strong>{t.contact.subEnd}
       </p>
