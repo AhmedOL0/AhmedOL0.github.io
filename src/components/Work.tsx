@@ -38,6 +38,7 @@ export default function Work() {
 }
 
 function Card({ p, th, i, skipTilt }: { p: { year: string; kind: string; title: string; description: string; result?: string; note?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; skipTilt: boolean }) {
+  const { t } = useLang();
   const ref = useRef<HTMLDivElement>(null);
   const [tagsExpanded, setTagsExpanded] = useState(false);
 
@@ -83,7 +84,7 @@ function Card({ p, th, i, skipTilt }: { p: { year: string; kind: string; title: 
           )}
           {tagsExpanded && PROJECT_TAGS[i].length > 6 && (
             <button className="tag-more" type="button" onClick={() => setTagsExpanded(false)}>
-              show less
+              {t.work.showLess}
             </button>
           )}
         </div>

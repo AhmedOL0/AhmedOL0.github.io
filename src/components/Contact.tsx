@@ -77,7 +77,7 @@ export default function Contact() {
                   style={{ strokeDasharray: 40, strokeDashoffset: 40, animation: 'check-mark .3s ease .45s forwards' }} />
               </svg>
               <p className="form-success-text">{t.contact.success}</p>
-              <p className="form-success-sub">Typically respond within 24 hours</p>
+              <p className="form-success-sub">{t.contact.respondTime}</p>
             </div>
           )}
           {status === 'error' && (

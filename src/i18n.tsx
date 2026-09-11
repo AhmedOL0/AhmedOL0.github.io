@@ -32,7 +32,7 @@ export type Dict = {
   hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede1: string; lede2: string; ctaWork: string; ctaContact: string; cardRole: string; cardTech: string; statsLabels: [string, string, string, string]; viewAll: string };
   core: string[];
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
-  work: { kicker: string; title: string; sub: string; projects: ProjectT[] };
+  work: { kicker: string; title: string; sub: string; showLess: string; projects: ProjectT[] };
   about: {
     kicker: string; title: string; sub: string;
     stats: { label: string; sub: string }[];
@@ -52,6 +52,7 @@ export type Dict = {
     kicker: string; title: string; sub: string; subEm: string; subEnd: string;
     name: string; namePh: string; email: string; emailPh: string; msg: string; msgPh: string;
     send: string; sending: string; success: string; error: string; timezone: string;
+    respondTime: string;
     direct: string; phone: string; tz: string; linkedin: string; github: string;
   };
   footer: { built: string; top: string; elsewhere: string };
@@ -85,6 +86,7 @@ const en: Dict = {
   work: {
     kicker: 'Selected work', title: 'Systems that run in production, not demos that run once.',
     sub: 'Six builds across web, mobile, backend, AI and IoT — each one deployed, used, or graded.',
+    showLess: 'show less',
     projects: [
       { title: 'OdemLab — AI skincare e-commerce', year: 'Flagship', kind: 'Team of 4 · Private repo', heading: 'OdemLab', lead: 'd',
         description: 'A full e-commerce platform with a Spring Boot API, Next.js storefront and back-office, and a React Native mobile app. Customers pay through Stripe, Moroccan CMI, or cash-on-delivery, all routed through one order lifecycle. AI skin analysis via Gemini degrades gracefully behind circuit breakers. Trilingual FR/EN/AR with real Arabic RTL layout. Deploys to Cloud Run with zero-traffic promotion and auto-rollback on health-check failure.',
@@ -141,6 +143,8 @@ const en: Dict = {
         points: ['Built MediCare: patient-doctor booking, appointment scheduling, PDF report generation, Chart.js dashboards'] },
       { when: 'JUN 2023 — AUG 2023', title: 'QA Automation Intern', org: 'Web regression suites', where: 'Python · Selenium WebDriver · Page Objects',
         points: ['Replaced a manual campaign with automated non-regression suites, one change point per UI change'] },
+      { when: 'JUN 2024 — JUN 2024 · AGADIR, ON-SITE', title: 'End-of-study internship (DUT) — Embedded Developer', org: 'MOUSSA SOFT · Agadir', where: 'ESP8266 · VL53L0X · PHP · MySQL',
+        points: ['Built a cane counting system with ESP8266 + laser sensor, OLED display, Wi-Fi to PHP/MySQL dashboard', 'Designed 3D-printed enclosures in SolidWorks, fabricated with Creality CR-10 Max'] },
     ],
   },
   edu: {
@@ -217,6 +221,7 @@ const en: Dict = {
     msg: 'Project details', msgPh: 'What are you building, and when?', send: 'Send message', sending: '...',
     success: '\u2713 Message sent \u2014 I\u2019ll get back to you soon.', error: '\u2717 Something went wrong. Try emailing me directly.',
     timezone: 'Morocco (GMT+1) \u00b7 working remotely worldwide',
+    respondTime: 'Typically respond within 24 hours',
     direct: 'Direct email', phone: 'Phone', tz: 'Timezone', linkedin: 'LinkedIn', github: 'GitHub',
   },
   footer: { built: '', top: 'Top', elsewhere: 'Elsewhere' },
@@ -241,6 +246,7 @@ const fr: Dict = {
   work: {
     kicker: 'Projets', title: 'Des systèmes qui tournent en production, pas des démos qui tournent une fois.',
     sub: 'Six réalisations web, mobile, backend, IA et IoT — chacune déployée, utilisée ou évaluée.',
+    showLess: 'voir moins',
     projects: [
       { title: 'OdemLab — e-commerce cosmétique IA', year: 'Vitrine', kind: 'Équipe de 4 · Dépôt privé', heading: 'OdemLab', lead: 'd',
         description: 'Plateforme e-commerce complète avec API Spring Boot, boutique Next.js et back-office, et application React Native. Les clients paient par Stripe, CMI marocaine ou contre-remboursement, tout passe par un seul cycle de commande. L\'analyse IA de la peau par Gemini dégrade gracieusement derrière des coupe-circuits. Trilingue FR/EN/AR avec vrai disposition RTL arabe. Déploiement Cloud Run sans trafic et retour arrière automatique.',
@@ -297,6 +303,8 @@ const fr: Dict = {
         points: ['MediCare : réservation patients-médecins, planning, génération de rapports PDF, tableaux Chart.js'] },
       { when: 'JUIN 2023 — AOÛT 2023', title: 'Stagiaire QA Automatisation', org: 'Suites de non-régression web', where: 'Python · Selenium WebDriver · Page Objects',
         points: ['Campagne manuelle remplacée par des suites automatisées, un point de changement par écran'] },
+      { when: 'JUIN 2024 — JUIN 2024 · AGADIR, SUR SITE', title: 'Stage de fin d\'études (DUT) — Développeur Embarqué', org: 'MOUSSA SOFT · Agadir', where: 'ESP8266 · VL53L0X · PHP · MySQL',
+        points: ['Système de comptage de cannes avec ESP8266 + capteur laser, écran OLED, Wi-Fi vers tableau PHP/MySQL', 'Boîtiers 3D imprimés conçus dans SolidWorks, fabriqués avec Creality CR-10 Max'] },
     ],
   },
   edu: {
@@ -374,6 +382,7 @@ const fr: Dict = {
     msg: 'D\u00e9tails du projet', msgPh: 'Que construisez-vous, et pour quand ?', send: 'Envoyer', sending: '...',
     success: '\u2713 Message envoy\u00e9 \u2014 Je vous r\u00e9ponds vite.', error: '\u2717 Une erreur s\u2019est produite. \u00c9crivez-moi directement.',
     timezone: 'Maroc (GMT+1) \u00b7 travaille \u00e0 distance partout dans le monde',
+    respondTime: 'Je r\u00e9ponds g\u00e9n\u00e9ralement sous 24 heures',
     direct: 'E-mail direct', phone: 'T\u00e9l\u00e9phone', tz: 'Fuseau horaire', linkedin: 'LinkedIn', github: 'GitHub',
   },
   footer: { built: '', top: 'Haut', elsewhere: 'Ailleurs' },
@@ -398,9 +407,10 @@ const ar: Dict = {
   work: {
     kicker: 'أعمال مختارة', title: 'أنظمة تعمل في الإنتاج، لا عروض تعمل مرة واحدة.',
     sub: 'ستة مشاريع عبر الويب والموبايل والباك-إند والذكاء الاصطناعي إنترنت الأشياء — كلها منشورة أو مستعملة أو مُقيّمة.',
+    showLess: 'عرض أقل',
     projects: [
       { title: 'OdemLab — تجارة التجميل بالذكاء الاصطناعي', year: 'الأبرز', kind: 'فريق من 4 · مستودع خاص', heading: 'OdemLab', lead: 'd',
-        description: 'منصة تجارة إلكترونية كاملة مع API Spring Boot، متجر Next.js ومكتب خلفي، وتطبيق React Native. العملاء يدفعون عبر Stripe أو CMI المغربية أو الدفع عند الاستلام، الكل يمر بدورة طلب واحدة. تحليل البشرة بالذكاء الاصطناعي من Gemini يتدهور بGrace خلف Circuit Breakers. ثلاث لغات FR/EN/AR مع تخطيط RTL عربي حقيقي. نشر على Cloud Run بدون توقف مع رجوع تلقائي.',
+        description: 'منصة تجارة إلكترونية كاملة مع API Spring Boot، متجر Next.js ومكتب خلفي، وتطبيق React Native. العملاء يدفعون عبر Stripe أو CMI المغربية أو الدفع عند الاستلام، الكل يمر بدورة طلب واحدة. تحليل البشرة بالذكاء الاصطناعي من Gemini يتدهور بأمان خلف القواطع. ثلاث لغات FR/EN/AR مع تخطيط RTL عربي حقيقي. نشر على Cloud Run بدون توقف مع رجوع تلقائي.',
         result: '3 طرق دفع، 3 لغات، نشر بدون توقف. يعمل على Google Cloud.',
         note: 'مستودع خاص — عرض حي ومراجعة الكود عند الطلب.' },
       { title: 'منصة المواعيد الطبية', year: '2025', kind: 'تدريب · Full-stack', heading: 'طبي', lead: 'ب',
@@ -410,7 +420,7 @@ const ar: Dict = {
         description: 'تطبيق ويب رياضي بـ backend Spring Boot و frontend Next.js وقاعدة بيانات MySQL. المستخدمون ينشئون برامج تمارين مخصصة، يتتبعون حصصهم لحظياً، ويعرضون إحصائيات مؤشر كتلة الجسم وسعر الحرق اليومي. لوحة الإدارة تتحقق من البرامج المقدمة من المستخدمين وتدير مكتبة من 38 تمريناً مع عروض فيديو. كل شيء يعمل في 3 حاويات Docker.',
         result: '38 تمريناً، 3 حاويات Docker، 3 أدوار. خط أنابيب إشراف كامل.' },
       { title: 'رفيق الحرم الذكي', year: '2026', kind: 'فريق من 4 · Flutter', heading: 'Campus', lead: 'a',
-        description: 'تطبيق Flutter لإدارة حرم ENSIASD. الطلاب يمسحون رموز QR على أبواب القاعات للحصول على معلومات فورية مع تصور واقع معزز. الأساتذة يحجزون قاعات وينشرون إعلانات. لوحة إدارة تدير جداول المواعيد والموافقات وتقارير الحوادettes وإنشاء رموز QR. مبني بـ Riverpod و Firebase Firestore.',
+        description: 'تطبيق Flutter لإدارة حرم ENSIASD. الطلاب يمسحون رموز QR على أبواب القاعات للحصول على معلومات فورية مع تصور واقع معزز. الأساتذة يحجزون قاعات وينشرون إعلانات. لوحة إدارة تدير جداول المواعيد والموافقات وتقارير الحوادث وإنشاء رموز QR. مبني بـ Riverpod و Firebase Firestore.',
         result: '3 أدوار، 7 مجموعات Firestore، مزامنة لحظية. معلومات القاعة بمسحة واحدة.' },
       { title: 'SmartSummarizer', year: '2025', kind: 'فريق من 4 · معالجة لغة', heading: 'ملخص', lead: 'خ',
         description: 'منصة Flask تحول ملفات PDF و DOCX إلى أدوات مراجعة باستخدام CamemBERT و Groq. تولّد ثلاثة مستويات من الملخصات، وتحوّل نصي إلى صوت، واختبارات تلقائية بمستوى صعوبة قابل للتعديل، وروبوت محادثة للأسئلة والأجوبة، وخرائط ذهنية. الطلاب يصدرون النتائج كـ PDF أو JSON أو MP3.',
@@ -454,6 +464,8 @@ const ar: Dict = {
         points: ['MediCare: حجز المرضى-الأطباء، جدولة المواعيد، تقارير PDF، لوحات Chart.js'] },
       { when: 'يونيو 2023 — أغسطس 2023', title: 'متدرب أتمتة QA', org: 'حزم الانحدار الويب', where: 'Python · Selenium WebDriver · Page Objects',
         points: ['استبدال حملة يدوية بحزم انحدار آلية، نقطة تغيير واحدة لكل شاشة'] },
+      { when: 'يونيو 2024 — يونيو 2024 · أكادير، حضوري', title: 'مشروع نهاية الدراسات (DUT) — مطور مدمج', org: 'MOUSSA SOFT، أكادير', where: 'ESP8266 · VL53L0X · PHP · MySQL',
+        points: ['نظام عد قصب بـ ESP8266 + حساس ليزر، شاشة OLED، Wi-Fi إلى لوحة PHP/MySQL', 'أغلفة 3D مطبوعة مصممة في SolidWorks، محضرة بـ Creality CR-10 Max'] },
     ],
   },
   edu: {
@@ -470,8 +482,8 @@ const ar: Dict = {
     levels: [
       { level: 'اختبار الوحدات', subtitle: 'سريعة، معزولة، تُنفَّذ مع كل commit', tools: [
         { name: 'JUnit 5', desc: 'يتحقق من منطق OdemLab التجاري — أسعار الطلبات، التحقق من الكوبونات، قواعد المخزون — قبل أي نشر. يلتقط أخطاء التسعير التي تخسر المال. أقل من ثانيتين لكل اختبار.' },
-        { name: 'Mockito', desc: 'يحل محل Stripe وGemini AI وSMTP في الاختبارات للتحقق من القواعد التجارية دون دفع أ.functions API حقيقية. يحاكي أيضاً الأعطال (مهلة، 500) للتأكيد على التدهور الرشيق.' },
-        { name: 'Vitest', desc: 'يشغل اختبارات OdemLab前端 بالمللي ثانية — يتحقق من أن متجر Next.js يعرض الأسعار الصحيحة، السلة تتحدث، والترجمة تبدّل اللغات. أسرع 10 مرات من Jest لـ TypeScript.' },
+        { name: 'Mockito', desc: 'يحل محل Stripe وGemini AI وSMTP في الاختبارات للتحقق من القواعد التجارية دون الدفع لاستدعاءات API حقيقية. يحاكي أيضاً الأعطال (مهلة، 500) للتأكيد على التدهور الرشيق.' },
+        { name: 'Vitest', desc: 'يشغل اختبارات OdemLab frontend بالمللي ثانية — يتحقق من أن متجر Next.js يعرض الأسعار الصحيحة، السلة تتحدث، والترجمة تبدّل اللغات. أسرع 10 مرات من Jest لـ TypeScript.' },
         { name: 'Jest', desc: 'يختبر تطبيق React Native على iOS وAndroid من كود واحد — يؤكد أن تسجيل الدخول، السلة، والأوامر تعمل بشكل مطابق لنسخة الويب.' },
       ]},
       { level: 'اختبارات التكامل', subtitle: 'قواعد بيانات حقيقية، حاويات حقيقية، عقود حقيقية', tools: [
@@ -494,7 +506,7 @@ const ar: Dict = {
         'تناقص بصري — لقطات baseline تكشف عندما يكسر تغيير CSS بالخطأ شبكة المنتجات أو يزيح البطل أو يغيّر لون العلامة التجارية.',
         'إمكانية الوصول أولاً — القواعد الهيكلية axe-core (نصوص بديلة مفقودة، معالم مكسورة، لا skip-link) هي بوابات CI صارمة على كل مسار عام في OdemLab.',
         'اختبارات العقود — مخططات OpenAPI مُتحقق منها ضد الخادم المباشر، لذلك فريق الواجهة لا يستهلك نقطة نهاية غير موجودة أبداً.',
-        'اختبارات الحمل — سكريبتات k6 تقيس عدد المستخدمين المتزامنين которые يتعامل معهم OdemLab قبل تدهور الاستجابة، مما ي informing إعدادات تحجيم Cloud Run.',
+        'اختبارات الحمل — سكريبتات k6 تقيس عدد المستخدمين المتزامنين الذين يتعامل معهم OdemLab قبل تدهور الاستجابة، مما ي inform إعدادات تحجيم Cloud Run.',
       ],
     },
     pillars: [
@@ -502,7 +514,7 @@ const ar: Dict = {
         { name: 'Docker', desc: 'بناء متعدد المراحل يُعلّب backend وfrontend OdemLab في صور إنتاج مصغرة — لا مكتبات تطوير، لا كود مصدر، سطحة هجوم مصغرة. Docker Compose يُعيد بناء الكامل محلياً للاختبار.' },
         { name: 'GitHub Actions', desc: 'عند كل push: اختبارات backend + frontend، بناء صور Docker، دفع إلى GHCR، نشر على Cloud Run. عند فشل الاختبارات، لا يبدأ النشر أبداً. رجوع تلقائي عند فشل فحص الصحة.' },
         { name: 'Google Cloud Run', desc: 'OdemLab يعمل على Cloud Run مع نشر بدون ترافيك (لا طلبات تصل للنسخة الجديدة حتى تجتاز فحص الصحة) ورجوع تلقائي إذا ارتفعت زمن الاستجابة أو معدل الخطأ.' },
-        { name: 'Grafana + Prometheus', desc: 'لوحات_dashboard في الوقت الحقيقي تُظهر أوقات استجابة OdemLab ومعدل الأخطاء وال throughput. تنبيهات عند تجاوز p95 لعتبات — نعرف قبل المستخدمين.' },
+        { name: 'Grafana + Prometheus', desc: 'لوحات التحكم في الوقت الحقيقي تُظهر أوقات استجابة OdemLab ومعدل الأخطاء وال throughput. تنبيهات عند تجاوز p95 لعتبات — نعرف قبل المستخدمين.' },
         { name: 'Flyway', desc: 'مخطط قاعدة OdemLab مُدير بـ 93 ترحيل SQL مُصدَر — قابل لإعادة التشغيل من الصفر. أي قاعدة جديدة تحصل على المخطط الصحيح في ثوانٍ، لا رقع SQL يدوية.' },
         { name: 'ShedLock', desc: 'أقفال موزعة تضمن أن مهام OdemLab الدورية (استرداد السلة، تذكيرات، تنظيف GDPR) تعمل مرة واحدة فقط عبر نسخ Cloud Run المتعددة — لا تضاعف، لا نسيان.' },
       ]},
@@ -531,6 +543,7 @@ const ar: Dict = {
     msg: 'تفاصيل المشروع', msgPh: 'ماذا تبني، ومتى؟', send: 'أرسل', sending: '...',
     success: '✓ تم إرسال الرسالة — سأرد عليك قريباً.', error: '✗ حدث خطأ. أرسل لي بريداً إلكترونياً مباشرة.',
     timezone: 'المغرب (GMT+1) · يعمل عن بُعد في جميع أنحاء العالم',
+    respondTime: 'أرد عادةً خلال 24 ساعة',
     direct: 'بريد مباشر', phone: 'الهاتف', tz: 'المنطقة الزمنية', linkedin: 'LinkedIn', github: 'GitHub',
   },
   footer: { built: '', top: 'الأعلى', elsewhere: 'منصات أخرى' },
