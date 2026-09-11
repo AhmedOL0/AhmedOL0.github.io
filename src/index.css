@@ -469,6 +469,21 @@ div.top-right{animation:drop-in .8s cubic-bezier(.2,.7,.2,1) .22s both}
 .reveal-left.in,.reveal-right.in,.reveal-scale.in{opacity:1;transform:none}
 section{scroll-margin-top:84px}
 section{padding:92px 0}
+
+/* Enhanced cursor effects */
+.cursor-ring.cursor-hot{
+  border-color:var(--gold)!important;
+  box-shadow:0 0 30px rgba(201,168,118,.45),0 0 60px rgba(201,168,118,.15),inset 0 0 16px rgba(201,168,118,.2)!important;
+  border-width:2px;
+}
+.cursor-magnetic-target{
+  transition:filter .3s,transform .3s;
+  filter:drop-shadow(0 0 8px rgba(201,168,118,.3));
+}
+.cursor-magnetic-target:hover{
+  filter:drop-shadow(0 0 14px rgba(201,168,118,.5));
+}
+
 @media(prefers-reduced-motion:reduce){
   .reveal,.reveal-left,.reveal-right,.reveal-scale,.stagger-item{opacity:1;transform:none}
   html{scroll-behavior:auto}
