@@ -17,7 +17,7 @@ const stats = [
   { value: 6, suffix: '+', label: 'Projects shipped' },
   { value: 22, suffix: '', label: 'Technologies' },
   { value: 3, suffix: '', label: 'Platforms' },
-  { value: 1, suffix: '', label: 'PFE internship' },
+  { value: 4, suffix: '', label: 'Internships completed' },
 ];
 
 function StatItem({ target, suffix, label, inView }: { target: number; suffix: string; label: string; inView: boolean }) {
