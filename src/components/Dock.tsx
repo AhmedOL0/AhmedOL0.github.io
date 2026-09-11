@@ -90,10 +90,10 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
         <Icon d={theme === 'dark' ? P.sun : P.moon} />
       </button>
       <span className="dock-sep" />
-      <a href="https://www.linkedin.com/in/ahmed-ouarrali" aria-label="LinkedIn" title="LinkedIn">
+      <a href="https://www.linkedin.com/in/ahmed-ouarrali" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
         <Icon d={P.linkedin} />
       </a>
-      <a href="https://github.com/AhmedOL0" aria-label="GitHub" title="GitHub">
+      <a href="https://github.com/AhmedOL0" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
         <Icon d={P.github} filled />
       </a>
     </div>

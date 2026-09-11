@@ -10,26 +10,8 @@ function Spinner() {
   );
 }
 
-function SuccessAnim() {
-  return (
-    <div className="form-success-box">
-      <svg viewBox="0 0 52 52" style={{ width: 48, height: 48 }}>
-        <circle cx="26" cy="26" r="24" fill="none" stroke="#16a34a" strokeWidth="2.5"
-          style={{ strokeDasharray: 151, strokeDashoffset: 151, animation: 'check-circle .5s ease .1s forwards' }} />
-        <path d="M15 27l7 7 15-15" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-          style={{ strokeDasharray: 40, strokeDashoffset: 40, animation: 'check-mark .3s ease .45s forwards' }} />
-      </svg>
-      <p className="form-success-text">{t_contact.success}</p>
-      <p className="form-success-sub">Typically respond within 24 hours</p>
-    </div>
-  );
-}
-
-let t_contact: ReturnType<typeof useLang>['t']['contact'];
-
 export default function Contact() {
   const { t } = useLang();
-  t_contact = t.contact;
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'error'>('idle');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -61,7 +43,7 @@ export default function Contact() {
       </p>
       <div className="contact-box mt-8 grid grid-cols-1 gap-10 p-7 lg:grid-cols-2 lg:p-[42px]">
         <form onSubmit={handleSubmit}>
-          <input type="text" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true" />
+          <input type="text" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
           <label className="field" htmlFor="n">
             <input id="n" name="name" type="text" placeholder=" " required />
             <span>{t.contact.name}</span>
@@ -86,7 +68,18 @@ export default function Contact() {
               {status !== 'sending' && <span className="arr">→</span>}
             </button>
           </div>
-          {status === 'ok' && <SuccessAnim />}
+          {status === 'ok' && (
+            <div className="form-success-box">
+              <svg viewBox="0 0 52 52" style={{ width: 48, height: 48 }}>
+                <circle cx="26" cy="26" r="24" fill="none" stroke="#16a34a" strokeWidth="2.5"
+                  style={{ strokeDasharray: 151, strokeDashoffset: 151, animation: 'check-circle .5s ease .1s forwards' }} />
+                <path d="M15 27l7 7 15-15" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                  style={{ strokeDasharray: 40, strokeDashoffset: 40, animation: 'check-mark .3s ease .45s forwards' }} />
+              </svg>
+              <p className="form-success-text">{t.contact.success}</p>
+              <p className="form-success-sub">Typically respond within 24 hours</p>
+            </div>
+          )}
           {status === 'error' && (
             <p className="form-error">
               {t.contact.error}
@@ -96,8 +89,8 @@ export default function Contact() {
         <div className="direct text-[.95rem]">
           <div><strong>{t.contact.direct}</strong><br /><a href="mailto:ahmedouarrali12@gmail.com">ahmedouarrali12@gmail.com</a></div>
           <div><strong>{t.contact.phone}</strong><br /><a href="tel:+212645372099">+212 645 372 099</a></div>
-          <div><strong>{t.contact.linkedin}</strong><br /><a href="https://www.linkedin.com/in/ahmed-ouarrali">linkedin.com/in/ahmed-ouarrali</a></div>
-          <div><strong>{t.contact.github}</strong><br /><a href="https://github.com/AhmedOL0">github.com/AhmedOL0</a></div>
+          <div><strong>{t.contact.linkedin}</strong><br /><a href="https://www.linkedin.com/in/ahmed-ouarrali" target="_blank" rel="noopener noreferrer">linkedin.com/in/ahmed-ouarrali</a></div>
+          <div><strong>{t.contact.github}</strong><br /><a href="https://github.com/AhmedOL0" target="_blank" rel="noopener noreferrer">github.com/AhmedOL0</a></div>
           <div><strong>{t.contact.tz}</strong><br />{t.contact.timezone}</div>
         </div>
       </div>

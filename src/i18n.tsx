@@ -75,7 +75,7 @@ const en: Dict = {
     titleA: 'Building ', titleEm: 'complete products', titleB: ' \u2014 API, web, mobile.',
     lede1: 'Hi, I\u2019m Ahmed Ouarrali, a 5th-year Software Engineering student at ENSIASD Taroudant. I recently completed my end-of-year internship (PFA) at Zorium, building ',
     lede2: ', an AI-augmented skincare e-commerce platform: Spring Boot API, Next.js storefront and back-office, React Native app, PostgreSQL + Redis, shipped with Docker to Google Cloud.',
-    ctaWork: 'Explore selected work', ctaContact: 'Get in touch',
+    ctaWork: 'Browse production work', ctaContact: 'Get in touch',
     cardRole: 'Full-Stack Software Engineer', cardTech: 'Core technologies',
     statsLabels: ['Projects shipped', 'Technologies', 'Platforms', 'Internships completed'] as [string, string, string, string],
     viewAll: 'View all 22 technologies',
@@ -139,7 +139,7 @@ const en: Dict = {
     ],
   },
   edu: {
-    kicker: 'Education', title: 'Schools, not jobs.', sub: 'The two formations behind the work above.',
+    kicker: 'Education', title: 'Schools, not jobs.', sub: 'The two programs behind the work above.',
     entries: [
       { years: '2024 — Present', title: 'Engineering Cycle, Software Engineering', school: 'ENSIASD · Ibn Zohr University — Taroudant', desc: 'Artificial intelligence, data science, software architecture.' },
       { years: '2022 — 2024 · With honors', title: 'DUT, Embedded Computer Engineering', school: 'EST Oujda — École Supérieure de Technologie', desc: 'Embedded systems, IoT, firmware — ESP32/ESP8266, Arduino, Raspberry Pi.' },
@@ -234,7 +234,7 @@ const fr: Dict = {
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
   filters: { all: 'Tous', web: 'Web', mobile: 'Mobile', backend: 'Backend', ai: 'IA', iot: 'IoT' },
   work: {
-    kicker: 'Projets', title: 'Des systèmes qui tournent en production, pas des démos.',
+    kicker: 'Projets', title: 'Des systèmes qui tournent en production, pas des démos qui tournent une fois.',
     sub: 'Six réalisations web, mobile, backend, IA et IoT — chacune déployée, utilisée ou évaluée.',
     projects: [
       { title: 'OdemLab — e-commerce cosmétique IA', year: 'Vitrine', kind: 'Équipe de 4 · Dépôt privé', heading: 'OdemLab', lead: 'd',
@@ -297,7 +297,7 @@ const fr: Dict = {
     ],
   },
   tools: {
-    kicker: 'Pratiques d\'Ingénierie', title: 'Comment je livrer — du test à la production.',
+    kicker: 'Pratiques d\'Ingénierie', title: 'Comment je livre — du test à la production.',
     sub: 'La qualité ne se limite pas aux tests. C\'est la boucle complète : écrire, sécuriser, déployer, et surveiller.',
     pyramid: { title: 'Pyramide de Test', subtitle: 'Vitesse et confiance à chaque couche' },
     levels: [
@@ -372,9 +372,9 @@ const fr: Dict = {
 
 const ar: Dict = {
   dir: 'rtl',
-  nav: { work: 'أعمالي', about: 'نبذة', experience: 'المسار', education: 'التكوين', tools: 'الهندسة', contact: 'اتصل بي', resume: 'السيرة' },
+  nav: { work: 'أعمالي', about: 'نبذة', experience: 'المسار', education: 'التكوين', tools: 'الهندسة', contact: 'اتصل بي', resume: 'السيرة الذاتية' },
   hero: {
-    badge: 'متاح لتدريب PFE — لنناقش التوقيت',
+    badge: 'متاح لتدريب PFE — لنحدد الموعد',
     titleA: 'أبني ', titleEm: 'منتجات كاملة', titleB: ' — API، ويب، موبايل.',
     lede1: 'مرحباً، أنا أحمد ورالي، طالب مهندس في السنة الخامسة بـ ENSIASD تارودانت. أنهيت للتو تدريب نهاية السنة (PFA) في Zorium حيث بنيت ',
     lede2: '، منصة تجارة إلكترونية للتجميل مدعومة بالذكاء الاصطناعي: API Spring Boot، متجر Next.js ومكتب خلفي، تطبيق React Native، PostgreSQL + Redis، منشورة عبر Docker على Google Cloud.',
@@ -433,11 +433,11 @@ const ar: Dict = {
   exp: {
     kicker: 'المسار', title: 'الخبرة والتكوين.',
     jobs: [
-      { when: 'يونيو 2026 — شتنبر 2026 · أكادير، حضوري', title: 'مشروع نهاية السنة (PFA) — مطور Full-Stack', org: 'Zorium، تكنوبارك أكادير', where: 'منصة OdemLab · فريق من أربعة',
-        points: ['وحدات الباك-إند: الطلبات، المنتجات، المدفوعات، المصادقة، GDPR', 'تحصين مسارات المال: تسعير من الخادم، دفع غير قابل للتكرار، دورة طلبات مدققة', 'النشر على Cloud Run: نشر بدون توقف، فحص صحة، ترقية، رجوع تلقائي عند الفشل'] },
-      { when: 'يوليوز 2025 — شتنبر 2025 · عن بعد', title: 'متدرب مطور Full-Stack', org: 'منصة المواعيد الطبية', where: 'Laravel · MySQL · Bootstrap',
-        points: ['حجز مرضى-ممارسين مع قواعد عدم التعارض ولوحات حسب الدور'] },
-      { when: 'يونيو 2023 — غشت 2023', title: 'متدرب أتمتة QA', org: 'حزم الانحدار الويب', where: 'Python · Selenium WebDriver · Page Objects',
+      { when: 'يونيو 2026 — سبتمبر 2026 · أكادير، حضوري', title: 'مشروع نهاية السنة (PFA) — مطور Full-Stack', org: 'Zorium، تكنوبارك أكادير', where: 'منصة OdemLab · فريق من أربعة',
+        points: ['وحدات الباك-إند: الطلبات، المنتجات، المدفوعات، المصادقة، GDPR', 'تحصين مسارات المال: تسعير من الخادم، دفع غير قابل للتكرار، دورة طلبات مدققة', 'النشر على Cloud Run: نشر بدون توقف، فحص صحة، ترقية الميزات، رجوع تلقائي عند الفشل'] },
+      { when: 'يوليوز 2025 — سبتمبر 2025 · عن بعد', title: 'متدرب مطور Full-Stack', org: 'منصة المواعيد الطبية', where: 'Laravel · MySQL · Bootstrap',
+        points: ['حجز مرضى-مدارسين مع قواعد عدم التعارض ولوحات حسب الدور'] },
+      { when: 'يونيو 2023 — أغسطس 2023', title: 'متدرب أتمتة QA', org: 'حزم الانحدار الويب', where: 'Python · Selenium WebDriver · Page Objects',
         points: ['استبدال حملة يدوية بحزم انحدار آلية، نقطة تغيير واحدة لكل شاشة'] },
     ],
   },
@@ -453,7 +453,7 @@ const ar: Dict = {
     sub: 'الجودة ليست مجرد اختبار. إنها الحلقة الكاملة: الكتابة، الأمان، النشر، والمراقبة.',
     pyramid: { title: 'هرم الاختبار', subtitle: 'السرعة والثقة في كل طبقة' },
     levels: [
-      { level: 'اختبار الوحدات', subtitle: 'سريعة، معزولة، تُفذ مع كل commit', tools: [
+      { level: 'اختبار الوحدات', subtitle: 'سريعة، معزولة، تُنفَّذ مع كل commit', tools: [
         { name: 'JUnit 5', desc: 'اختبارات وحدة وتكامل Java مع Spring Boot' },
         { name: 'Mockito', desc: 'إطار mock لعزل الخدمات' },
         { name: 'Vitest', desc: 'مُشغّل اختبارات TypeScript سريع (الواجهة الأمامية)' },
@@ -499,7 +499,7 @@ const ar: Dict = {
         { name: 'CORS + CSP', desc: 'قوائم أصل، سياسات نصوص بالـ nonce' },
         { name: 'CAPTCHA Turnstile', desc: 'حماية البوتات على الدفع كضيف ونقاط المصادقة' },
       ]},
-      { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: 'الأعمال والمنتج', subtitle: 'كود يُحدث إيرادات، ليس مجرد كود يعمل.', items: [
+      { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: 'الأعمال والمنتج', subtitle: 'كود يحقق إيرادات، ليس مجرد كود يعمل.', items: [
         { name: 'طلبات غير قابلة للتكرار', desc: 'مفاتيح عدم التكرار تمنع الدفع المزدوج' },
         { name: 'تسعير من الخادم', desc: 'العميل لا يُرسل الأسعار — الباك-إند يحسب كل شيء' },
         { name: 'Stripe + CMI + COD', desc: 'ثلاثة مسارات دفع، دورة طلب واحدة' },
@@ -519,7 +519,7 @@ const ar: Dict = {
     direct: 'بريد مباشر', phone: 'الهاتف', tz: 'المنطقة الزمنية', linkedin: 'LinkedIn', github: 'GitHub',
   },
   footer: { built: '', top: 'الأعلى', elsewhere: 'منصات أخرى' },
-  dock: { home: 'الرئيسية', work: 'أعمالي', contact: 'اتصل بي', lang: 'اللغة', nav: 'تنقل سريع', toggle: 'تبديل الوضع الفاتح / الداكن', resume: 'السيرة' },
+  dock: { home: 'الرئيسية', work: 'أعمالي', contact: 'اتصل بي', lang: 'اللغة', nav: 'تنقل سريع', toggle: 'تبديل الوضع الفاتح / الداكن', resume: 'السيرة الذاتية' },
 };
 
 export const DICTS: Record<Lang, Dict> = { en, fr, ar };
