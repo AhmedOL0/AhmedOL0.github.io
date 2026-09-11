@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { useLang } from '../i18n';
 import { useReveal, useScrollY, useCountUp, useInView } from '../hooks';
 
