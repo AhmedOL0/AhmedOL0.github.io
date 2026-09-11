@@ -64,7 +64,7 @@ const tags = {
   fit: ['Spring Boot', 'Java 17', 'Next.js', 'TypeScript', 'Tailwind CSS', 'MySQL', 'Docker', 'JWT', 'BCrypt'],
   campus: ['Flutter', 'Dart', 'Riverpod', 'Go Router', 'Firebase Auth', 'Cloud Firestore', 'ARCore', 'ARKit', 'QR Scanner'],
   sum: ['Python', 'Flask', 'PyTorch', 'Hugging Face', 'CamemBERT', 'spaCy', 'Groq', 'SQLAlchemy', 'MySQL', 'Bootstrap'],
-  iot: ['Embedded C', 'ESP8266', 'PHP', 'MySQL'],
+  iot: ['ESP8266', 'VL53L0X', 'Arduino IDE', 'PHP', 'MySQL', 'SolidWorks', '3D Printing'],
 };
 
 const en: Dict = {
@@ -102,9 +102,9 @@ const en: Dict = {
       { title: 'SmartSummarizer', year: '2025', kind: 'Team of 4 · NLP', heading: 'Summarizer', lead: 'u',
         description: 'A Flask-based platform that transforms lecture PDFs and DOCX files into study tools using CamemBERT and Groq. Generates three summary levels, audio synthesis, auto-quizzes with adjustable difficulty, a Q&A chatbot, and mind maps. Students export results as PDF, JSON, or MP3.',
         result: '9.9s average processing. 8.4/10 quality score from 30 students.' },
-      { title: 'Fish-box counting line', year: '2024 · DUT thesis', kind: 'Embedded · Final-year project', heading: 'IoT', lead: 'T',
-        description: 'An IR-sensor counting system on ESP8266 microcontrollers that logs fish-box counts to a web dashboard in real time. In a factory, measurement accuracy IS the product. Manual counting loses money, this system does not.',
-        result: 'Exact count on a production line. Real-time web dashboard.' },
+      { title: 'Cane counting system', year: '2024 · DUT thesis', kind: 'Embedded · Final-year project', heading: 'IoT', lead: 'T',
+        description: 'An ESP8266-based counting system using a VL53L0X laser distance sensor to detect and count canes on a production line. Data displays on an OLED screen in real time and transmits via Wi-Fi to a PHP/MySQL web dashboard. Custom 3D-printed enclosures designed in SolidWorks and fabricated with a Creality CR-10 Max.',
+        result: 'Real-time cane count on OLED + web dashboard. 3D-printed production-ready enclosure.' },
     ],
   },
   about: {
@@ -258,9 +258,9 @@ const fr: Dict = {
       { title: 'SmartSummarizer', year: '2025', kind: 'Équipe de 4 · NLP', heading: 'Résumeur', lead: 'u',
         description: 'Plateforme Flask qui transforme les PDF et DOCX de cours en outils d\'étude grâce à CamemBERT et Groq. Génère trois niveaux de résumés, synthèse audio, quiz auto-générés avec difficulté ajustable, chatbot Q/A et cartes mentales. Les étudiants exportent en PDF, JSON ou MP3.',
         result: '9.9s de traitement moyen. Score qualité 8.4/10 sur 30 étudiants.' },
-      { title: 'Comptage de boîtes de poisson', year: '2024 · PFE DUT', kind: 'Embarqué · Projet de fin d\'études', heading: 'IoT', lead: 'T',
-        description: 'Système de comptage par capteurs IR sur ESP8266 qui enregistre les boîtes de poisson en temps réel sur un tableau de bord web. En usine, la précision de mesure EST le produit. Le comptage manuel perd de l\'argent, ce système non.',
-        result: 'Comptage exact en production. Tableau de bord temps réel.' },
+      { title: 'Système de comptage de cannes', year: '2024 · PFE DUT', kind: 'Embarqué · Projet de fin d\'études', heading: 'IoT', lead: 'T',
+        description: 'Système de comptage basé sur ESP8266 utilisant un capteur laser VL53L0X pour détecter et compter les cannes sur une ligne de production. Les données s\'affichent en temps réel sur un écran OLED et se transmettent via Wi-Fi vers un tableau de bord web PHP/MySQL. Boîtiers 3D imprimés conçus dans SolidWorks et fabriqués avec une Creality CR-10 Max.',
+        result: 'Comptage en temps réel sur écran OLED + tableau de bord web. Boîtier 3D imprimé.' },
     ],
   },
   about: {
@@ -415,9 +415,9 @@ const ar: Dict = {
       { title: 'SmartSummarizer', year: '2025', kind: 'فريق من 4 · معالجة لغة', heading: 'ملخص', lead: 'خ',
         description: 'منصة Flask تحول ملفات PDF و DOCX إلى أدوات مراجعة باستخدام CamemBERT و Groq. تولّد ثلاثة مستويات من الملخصات، وتحوّل نصي إلى صوت، واختبارات تلقائية بمستوى صعوبة قابل للتعديل، وروبوت محادثة للأسئلة والأجوبة، وخرائط ذهنية. الطلاب يصدرون النتائج كـ PDF أو JSON أو MP3.',
         result: '9.9 ثانية معالجة متوسطة. درجة جودة 8.4/10 من 30 طالب.' },
-      { title: 'عدّ علب السمك', year: '2024 · مشروع التخرج', kind: 'مدمج · مشروع النهاية', heading: 'IoT', lead: 'T',
-        description: 'نظام عد بحساسات IR على ESP8266 يسجّل علب السمك لحظياً على لوحة ويب. في المصنع، دقة القياس هي المنتج. العد اليدوي يخسر المال، هذا النظام لا يخسر.',
-        result: 'عدّ دقيق على خط الإنتاج. لوحة ويب لحظية.' },
+      { title: 'نظام عد القصب', year: '2024 · مشروع التخرج', kind: 'مدمج · مشروع النهاية', heading: 'IoT', lead: 'T',
+        description: 'نظام عد مبني على ESP8266 يستخدم حساس ليزر VL53L0X لاكتشاف وعدّ القصب على خط الإنتاج. البيانات تُعرض لحظياً على شاشة OLED وتُرسل عبر Wi-Fi إلى لوحة ويب PHP/MySQL. أغلفة مطبوعة ثلاثية الأبعاد مصممة في SolidWorks ومحضرة بطباعة Creality CR-10 Max.',
+        result: 'عد لحظي على شاشة OLED + لوحة ويب. غلاف مطبوع ثلاثي الأبعاد.' },
     ],
   },
   about: {
