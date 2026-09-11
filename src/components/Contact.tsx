@@ -29,7 +29,7 @@ export default function Contact() {
   };
 
   return (
-    <Section id="contact" num="05" kicker={t.contact.kicker} title={t.contact.title} sub="" variant="right">
+    <Section id="contact" num="07" kicker={t.contact.kicker} title={t.contact.title} sub="" variant="right">
       <p className="sub">
         {t.contact.sub}<strong style={{ color: 'var(--ink)' }}>{t.contact.subEm}</strong>{t.contact.subEnd}
       </p>
@@ -72,8 +72,8 @@ export default function Contact() {
         <div className="direct text-[.95rem]">
           <div><strong>{t.contact.direct}</strong><br /><a href="mailto:ahmedouarrali12@gmail.com">ahmedouarrali12@gmail.com</a></div>
           <div><strong>{t.contact.phone}</strong><br /><a href="tel:+212645372099">+212 645 372 099</a></div>
-          <div><strong>LinkedIn</strong><br /><a href="https://www.linkedin.com/in/ahmed-ouarrali">linkedin.com/in/ahmed-ouarrali</a></div>
-          <div><strong>GitHub</strong><br /><a href="https://github.com/AhmedOL0">github.com/AhmedOL0</a></div>
+          <div><strong>{t.contact.linkedin}</strong><br /><a href="https://www.linkedin.com/in/ahmed-ouarrali">linkedin.com/in/ahmed-ouarrali</a></div>
+          <div><strong>{t.contact.github}</strong><br /><a href="https://github.com/AhmedOL0">github.com/AhmedOL0</a></div>
           <div><strong>{t.contact.tz}</strong><br />{t.contact.timezone}</div>
         </div>
       </div>

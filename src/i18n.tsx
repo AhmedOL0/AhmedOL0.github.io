@@ -52,7 +52,7 @@ export type Dict = {
     kicker: string; title: string; sub: string; subEm: string; subEnd: string;
     name: string; namePh: string; email: string; emailPh: string; msg: string; msgPh: string;
     send: string; sending: string; success: string; error: string; timezone: string;
-    direct: string; phone: string; tz: string;
+    direct: string; phone: string; tz: string; linkedin: string; github: string;
   };
   footer: { built: string; top: string };
 };
@@ -211,7 +211,7 @@ const en: Dict = {
     msg: 'Project details', msgPh: 'What are you building, and when?', send: 'Send message', sending: '...',
     success: '\u2713 Message sent \u2014 I\u2019ll get back to you soon.', error: '\u2717 Something went wrong. Try emailing me directly.',
     timezone: 'Morocco (GMT+1) \u00b7 working remotely worldwide',
-    direct: 'Direct email', phone: 'Phone', tz: 'Timezone',
+    direct: 'Direct email', phone: 'Phone', tz: 'Timezone', linkedin: 'LinkedIn', github: 'GitHub',
   },
   footer: { built: '', top: 'Top' },
 };
@@ -362,7 +362,7 @@ const fr: Dict = {
     msg: 'D\u00e9tails du projet', msgPh: 'Que construisez-vous, et pour quand ?', send: 'Envoyer', sending: '...',
     success: '\u2713 Message envoy\u00e9 \u2014 Je vous r\u00e9ponds vite.', error: '\u2717 Une erreur s\u2019est produite. \u00c9crivez-moi directement.',
     timezone: 'Maroc (GMT+1) \u00b7 travaille \u00e0 distance partout dans le monde',
-    direct: 'E-mail direct', phone: 'T\u00e9l\u00e9phone', tz: 'Fuseau horaire',
+    direct: 'E-mail direct', phone: 'T\u00e9l\u00e9phone', tz: 'Fuseau horaire', linkedin: 'LinkedIn', github: 'GitHub',
   },
   footer: { built: '', top: 'Haut' },
 };
@@ -513,7 +513,7 @@ const ar: Dict = {
     msg: 'تفاصيل المشروع', msgPh: 'ماذا تبني، ومتى؟', send: 'أرسل', sending: '...',
     success: '✓ تم إرسال الرسالة — سأرد عليك قريباً.', error: '✗ حدث خطأ. أرسل لي بريداً إلكترونياً مباشرة.',
     timezone: 'المغرب (GMT+1) · يعمل عن بُعد في جميع أنحاء العالم',
-    direct: 'بريد مباشر', phone: 'الهاتف', tz: 'المنطقة الزمنية',
+    direct: 'بريد مباشر', phone: 'الهاتف', tz: 'المنطقة الزمنية', linkedin: 'LinkedIn', github: 'GitHub',
   },
   footer: { built: '', top: 'الأعلى' },
 };
