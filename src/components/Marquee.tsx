@@ -4,7 +4,7 @@ const items = [
 ];
 
 export default function Marquee() {
-  const row = [...items, ...items];
+  const row = [...items, ...items, ...items, ...items];
   return (
     <div className="marquee" aria-hidden="true">
       <div className="marquee-track">
