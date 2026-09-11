@@ -340,7 +340,27 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 @media(max-width:640px){
   .pyramid-bar{flex-direction:column;align-items:flex-start;gap:4px}
   .pyramid-tools{grid-template-columns:1fr}
+  .pillars-grid{grid-template-columns:1fr}
 }
+@media(max-width:960px){
+  .pillars-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .pillars-grid{grid-template-columns:1fr}
+}
+
+/* Pillars (DevOps / Security / Business) */
+.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pillar-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;transition:border-color .25s,transform .2s;overflow:hidden}
+.pillar-card:hover{border-color:var(--gold-deep);transform:translateY(-3px)}
+.pillar-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}
+.pillar-icon{width:28px;height:28px;flex-shrink:0;color:var(--gold);margin-top:2px}
+.pillar-title{font-family:var(--mono);font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:4px;overflow-wrap:break-word;word-break:break-word}
+.pillar-subtitle{font-size:.78rem;color:var(--muted);line-height:1.4}
+.pillar-items{display:flex;flex-direction:column;gap:10px}
+.pillar-item{display:flex;flex-direction:column;gap:2px}
+.pillar-item-name{font-family:var(--mono);font-size:.76rem;font-weight:600;color:var(--gold-hi)}
+.pillar-item-desc{font-size:.76rem;color:var(--muted);line-height:1.45}
 
 /* Contact */
 .contact-box{background:linear-gradient(180deg,rgba(160,120,60,.07),transparent 40%),var(--card);border:1px solid var(--line);border-radius:22px;position:relative;overflow:hidden}

@@ -23,6 +23,8 @@ export type EduT = { years: string; title: string; school: string; desc: string 
 
 export type ToolItem = { name: string; desc: string };
 export type ToolLevel = { level: string; subtitle: string; tools: ToolItem[] };
+export type PillarItem = { name: string; desc: string };
+export type Pillar = { icon: string; title: string; subtitle: string; items: PillarItem[] };
 
 export type Dict = {
   dir: 'ltr' | 'rtl';
@@ -44,6 +46,7 @@ export type Dict = {
     pyramid: { title: string; subtitle: string };
     levels: ToolLevel[];
     extra: { title: string; items: string[] };
+    pillars: Pillar[];
   };
   contact: {
     kicker: string; title: string; sub: string; subEm: string; subEnd: string;
@@ -65,7 +68,7 @@ const tags = {
 
 const en: Dict = {
   dir: 'ltr',
-  nav: { work: 'Work', about: 'About', experience: 'Experience', education: 'Education', tools: 'QA Tools', contact: 'Contact', resume: 'Résumé' },
+  nav: { work: 'Work', about: 'About', experience: 'Experience', education: 'Education', tools: 'Engineering', contact: 'Contact', resume: 'Résumé' },
   hero: {
     badge: 'Open to a PFE internship — let\u2019s discuss timing',
     titleA: 'Building ', titleEm: 'complete products', titleB: ' \u2014 API, web, mobile.',
@@ -142,8 +145,7 @@ const en: Dict = {
     ],
   },
   tools: {
-    kicker: 'QA & Testing', title: 'The testing pyramid — from unit to production.',
-    sub: 'A systematic approach to quality: fast unit tests at the base, integration in the middle, E2E at the top. Every layer has a purpose, every tool earns its place.',
+    kicker: 'Engineering Practices', title: 'How I ship — from test to production.', sub: 'Quality is not just testing. It is the full loop: writing it, securing it, deploying it, and watching it run.',
     pyramid: { title: 'Testing Pyramid', subtitle: 'Speed and confidence at every layer' },
     levels: [
       { level: 'Unit Testing', subtitle: 'Fast, isolated, runs on every commit', tools: [
@@ -175,6 +177,32 @@ const en: Dict = {
         'Load testing — k6 scripts for API throughput baselines',
       ],
     },
+    pillars: [
+      { icon: 'M4 6h16M4 12h16m-7 6h7', title: 'DevOps & Infrastructure', subtitle: 'Ship fast, ship safe, watch it run.', items: [
+        { name: 'Docker', desc: 'Multi-stage builds, compose stacks for local + CI' },
+        { name: 'GitHub Actions', desc: 'CI/CD: test → build → push GHCR → deploy Cloud Run' },
+        { name: 'Google Cloud Run', desc: 'Zero-traffic deploys, auto-rollback, health checks' },
+        { name: 'Grafana + Prometheus', desc: 'Metrics dashboards, alerting on latency and errors' },
+        { name: 'Flyway', desc: 'Versioned schema migrations, replayable from zero' },
+        { name: 'ShedLock', desc: 'Distributed cron locks for background jobs' },
+      ]},
+      { icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z', title: 'Security & Compliance', subtitle: 'Defense in depth, not security by obscurity.', items: [
+        { name: 'JWT + Refresh Rotation', desc: 'Short-lived access tokens, single-use refresh tokens' },
+        { name: 'AES-256-GCM Encryption', desc: 'PII columns encrypted at rest (phone, address, name)' },
+        { name: 'Rate Limiting', desc: 'Per-IP and per-route sliding window limits' },
+        { name: 'GDPR Compliance', desc: 'Data retention jobs, right to erasure with audit logs' },
+        { name: 'CORS + CSP', desc: 'Origin allowlists, nonce-based script policies' },
+        { name: 'Turnstile CAPTCHA', desc: 'Bot protection on guest checkout and auth endpoints' },
+      ]},
+      { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Business & Product', subtitle: 'Code that makes money, not just code that works.', items: [
+        { name: 'Idempotent Orders', desc: 'Idempotency keys prevent double-charge on retry' },
+        { name: 'Server-Side Pricing', desc: 'Client never sends prices — backend computes all' },
+        { name: 'Stripe + CMI + COD', desc: 'Three payment paths, one order lifecycle' },
+        { name: 'Inventory Integrity', desc: 'SELECT FOR UPDATE on stock, atomic decrement' },
+        { name: 'Guest Checkout', desc: 'One-time access token, no account required' },
+        { name: 'Trilingual + RTL', desc: 'FR/EN/AR with real layout mirroring, not labels' },
+      ]},
+    ],
   },
   contact: {
     kicker: 'Contact', title: 'Let\u2019s build something solid.',
@@ -190,7 +218,7 @@ const en: Dict = {
 
 const fr: Dict = {
   dir: 'ltr',
-  nav: { work: 'Projets', about: 'Profil', experience: 'Parcours', education: 'Formation', tools: 'Outils QA', contact: 'Contact', resume: 'CV' },
+  nav: { work: 'Projets', about: 'Profil', experience: 'Parcours', education: 'Formation', tools: 'Ingénierie', contact: 'Contact', resume: 'CV' },
   hero: {
     badge: 'Ouvert \u00e0 un stage PFE \u2014 discutons du calendrier',
     titleA: 'Des ', titleEm: 'produits complets', titleB: ' \u2014 API, web, mobile.',
@@ -267,8 +295,8 @@ const fr: Dict = {
     ],
   },
   tools: {
-    kicker: 'QA & Tests', title: 'La pyramide de test — de l\'unitaire à la production.',
-    sub: 'Approche systématique de la qualité : tests unitaires rapides à la base, intégration au milieu, E2E au sommet. Chaque couche a un rôle, chaque outil mérite sa place.',
+    kicker: 'Pratiques d\'Ingénierie', title: 'Comment je livrer — du test à la production.',
+    sub: 'La qualité ne se limite pas aux tests. C\'est la boucle complète : écrire, sécuriser, déployer, et surveiller.',
     pyramid: { title: 'Pyramide de Test', subtitle: 'Vitesse et confiance à chaque couche' },
     levels: [
       { level: 'Tests Unitaires', subtitle: 'Rapides, isolés, exécutés à chaque commit', tools: [
@@ -300,6 +328,32 @@ const fr: Dict = {
         'Tests de charge — scripts k6 pour les bases de débit API',
       ],
     },
+    pillars: [
+      { icon: 'M4 6h16M4 12h16m-7 6h7', title: 'DevOps & Infrastructure', subtitle: 'Livrer vite, livrer sûr, surveiller l\'exécution.', items: [
+        { name: 'Docker', desc: 'Builds multi-étapes, compose pour local + CI' },
+        { name: 'GitHub Actions', desc: 'CI/CD : test → build → push GHCR → deploy Cloud Run' },
+        { name: 'Google Cloud Run', desc: 'Déploiements zéro-traffic, auto-rollback, health checks' },
+        { name: 'Grafana + Prometheus', desc: 'Tableaux de bord métriques, alertes latence et erreurs' },
+        { name: 'Flyway', desc: 'Migrations de schéma versionnées, rejouables depuis zéro' },
+        { name: 'ShedLock', desc: 'Verrous distribués pour les tâches cron' },
+      ]},
+      { icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z', title: 'Sécurité & Conformité', subtitle: 'Défense en profondeur, pas l\'obscurité.', items: [
+        { name: 'JWT + Rotation', desc: 'Tokens d\'accès courts, refresh tokens à usage unique' },
+        { name: 'Chiffrement AES-256-GCM', desc: 'Colonnes PII chiffrées au repos (téléphone, adresse, nom)' },
+        { name: 'Rate Limiting', desc: 'Limites glissantes par IP et par route' },
+        { name: 'Conformité RGPD', desc: 'Jobs de rétention, droit à l\'effacement avec logs d\'audit' },
+        { name: 'CORS + CSP', desc: 'Listes d\'origines, politiques de scripts par nonce' },
+        { name: 'CAPTCHA Turnstile', desc: 'Protection bots sur checkout invité et endpoints d\'auth' },
+      ]},
+      { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Business & Produit', subtitle: 'Du code qui génère du revenu, pas juste du code qui fonctionne.', items: [
+        { name: 'Commandes Idempotentes', desc: 'Clés d\'idempotence anti-double-paiement' },
+        { name: 'Prix côté Serveur', desc: 'Le client n\'envoie jamais les prix — le backend calcule' },
+        { name: 'Stripe + CMI + COD', desc: 'Trois modes de paiement, un cycle de commande' },
+        { name: 'Intégrité Stock', desc: 'SELECT FOR UPDATE, décrément atomique' },
+        { name: 'Checkout Invité', desc: 'Token à usage unique, pas de compte requis' },
+        { name: 'Trilingue + RTL', desc: 'FR/EN/AR avec miroir de mise en page réel' },
+      ]},
+    ],
   },
   contact: {
     kicker: 'Contact', title: 'Construisons quelque chose de solide.',
@@ -315,7 +369,7 @@ const fr: Dict = {
 
 const ar: Dict = {
   dir: 'rtl',
-  nav: { work: 'أعمالي', about: 'نبذة', experience: 'المسار', education: 'التكوين', tools: 'أدوات QA', contact: 'اتصل بي', resume: 'السيرة' },
+  nav: { work: 'أعمالي', about: 'نبذة', experience: 'المسار', education: 'التكوين', tools: 'الهندسة', contact: 'اتصل بي', resume: 'السيرة' },
   hero: {
     badge: 'متاح لتدريب PFE — لنناقش التوقيت',
     titleA: 'أبني ', titleEm: 'منتجات كاملة', titleB: ' — API، ويب، موبايل.',
@@ -392,11 +446,11 @@ const ar: Dict = {
     ],
   },
   tools: {
-    kicker: 'جودة و اختبار', title: 'هرم الاختبار — من الوحدة إلى الإنتاج.',
-    sub: 'نهج منهجي للجودة: اختبارات وحدة سريعة في الأساس، تكامل في الوسط، E2E في القمة. كل طبقة لها دور، كل أداة تستحق مكانها.',
+    kicker: 'ممارسات الهندسة', title: 'كيف أنشر — من الاختبار إلى الإنتاج.',
+    sub: 'الجودة ليست مجرد اختبار. إنها الحلقة الكاملة: الكتابة، الأمان، النشر، والمراقبة.',
     pyramid: { title: 'هرم الاختبار', subtitle: 'السرعة والثقة في كل طبقة' },
     levels: [
-      { level: 'اختبار الوحدات', subtitle: 'سريعة، معزولة، تُنفذ مع كل commit', tools: [
+      { level: 'اختبار الوحدات', subtitle: 'سريعة، معزولة، تُفذ مع كل commit', tools: [
         { name: 'JUnit 5', desc: 'اختبارات وحدة وتكامل Java مع Spring Boot' },
         { name: 'Mockito', desc: 'إطار mock لعزل الخدمات' },
         { name: 'Vitest', desc: 'مُشغّل اختبارات TypeScript سريع (الواجهة الأمامية)' },
@@ -425,6 +479,32 @@ const ar: Dict = {
         'اختبارات الحمل — سكريبتات k6 لخطوط أساسية throughput API',
       ],
     },
+    pillars: [
+      { icon: 'M4 6h16M4 12h16m-7 6h7', title: 'DevOps والبنية التحتية', subtitle: 'نشر سريع، نشر آمن، مراقبة التشغيل.', items: [
+        { name: 'Docker', desc: 'بناء متعدد المراحل، compose للمحلي + CI' },
+        { name: 'GitHub Actions', desc: 'CI/CD : test → build → push GHCR → deploy Cloud Run' },
+        { name: 'Google Cloud Run', desc: 'نشر بدون صفر توقف، رجوع تلقائي، فحص صحة' },
+        { name: 'Grafana + Prometheus', desc: 'لوحات مقاييس، تنبيهات زمن الاستجابة والأخطاء' },
+        { name: 'Flyway', desc: 'ترحيلات مخطط مُصدَرة، قابلة لإعادة التشغيل من الصفر' },
+        { name: 'ShedLock', desc: 'أقفال موزعة للمهام الدورية' },
+      ]},
+      { icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z', title: 'الأمان والامتثال', subtitle: 'دفاع متعدد الطبقات، ليس بالإخفاء.', items: [
+        { name: 'JWT + تدوير Refresh', desc: 'رموز وصول قصيرة، refresh tokens للاستخدام الواحد' },
+        { name: 'تشفير AES-256-GCM', desc: 'أعمدة PII مشفّرة عند الإقفال (هاتف، عنوان، اسم)' },
+        { name: 'Rate Limiting', desc: 'حدود منزلقة حسب IP وحسب المسار' },
+        { name: 'امتثال GDPR', desc: 'مهام الاحتفاظ، الحق في المحو مع سجلات التدقيق' },
+        { name: 'CORS + CSP', desc: 'قوائم أصل، سياسات نصوص بالـ nonce' },
+        { name: 'CAPTCHA Turnstile', desc: 'حماية البوتات على الدفع كضيف ونقاط المصادقة' },
+      ]},
+      { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: 'الأعمال والمنتج', subtitle: 'كود يُحدث إيرادات، ليس مجرد كود يعمل.', items: [
+        { name: 'طلبات غير قابلة للتكرار', desc: 'مفاتيح عدم التكرار تمنع الدفع المزدوج' },
+        { name: 'تسعير من الخادم', desc: 'العميل لا يُرسل الأسعار — الباك-إند يحسب كل شيء' },
+        { name: 'Stripe + CMI + COD', desc: 'ثلاثة مسارات دفع، دورة طلب واحدة' },
+        { name: 'سلامة المخزون', desc: 'SELECT FOR UPDATE، خصم ذري' },
+        { name: 'دفع كضيف', desc: 'رمز للاستخدام الواحد، لا حاجة لحساب' },
+        { name: 'ثلاث لغات + RTL', desc: 'FR/EN/AR مع انعكاس تخطيط حقيقي' },
+      ]},
+    ],
   },
   contact: {
     kicker: 'اتصل بي', title: 'لنبنِ شيئاً متيناً.',

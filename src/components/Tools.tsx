@@ -1,5 +1,5 @@
 import Section from './Section';
-import { useLang, type ToolLevel } from '../i18n';
+import { useLang, type ToolLevel, type Pillar } from '../i18n';
 
 function PyramidLevel({ level, index }: { level: ToolLevel; index: number }) {
   const width = [42, 62, 88][index] ?? 88;
@@ -14,6 +14,30 @@ function PyramidLevel({ level, index }: { level: ToolLevel; index: number }) {
           <div className="tool-card" key={tool.name}>
             <span className="tool-name">{tool.name}</span>
             <span className="tool-desc">{tool.desc}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PillarCard({ pillar }: { pillar: Pillar }) {
+  return (
+    <div className="pillar-card">
+      <div className="pillar-header">
+        <svg className="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d={pillar.icon} />
+        </svg>
+        <div>
+          <h3 className="pillar-title">{pillar.title}</h3>
+          <p className="pillar-subtitle">{pillar.subtitle}</p>
+        </div>
+      </div>
+      <div className="pillar-items">
+        {pillar.items.map((item) => (
+          <div className="pillar-item" key={item.name}>
+            <span className="pillar-item-name">{item.name}</span>
+            <span className="pillar-item-desc">{item.desc}</span>
           </div>
         ))}
       </div>
@@ -43,6 +67,11 @@ export default function Tools() {
             <div className="method-chip" key={item}>{item}</div>
           ))}
         </div>
+      </div>
+      <div className="pillars-grid mt-10">
+        {t.tools.pillars.map((pillar) => (
+          <PillarCard key={pillar.title} pillar={pillar} />
+        ))}
       </div>
     </Section>
   );
