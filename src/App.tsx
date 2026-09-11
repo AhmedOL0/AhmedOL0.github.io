@@ -3,11 +3,13 @@ import Dock, { TopPills } from './components/Dock';
 import Preloader from './components/Preloader';
 import Stars from './components/Stars';
 import CursorGlow from './components/CursorGlow';
+import CursorTrail from './components/CursorTrail';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
 import Work from './components/Work';
 import About from './components/About';
 import Experience, { Education } from './components/Experience';
+import Tools from './components/Tools';
 import Contact from './components/Contact';
 import { LangProvider, useLang } from './i18n';
 import { useActiveSection, useBackToTop, useMagnetic, useProgress, useSpotlight, useTheme } from './hooks';
@@ -59,7 +61,7 @@ function Site() {
   const { theme, toggle } = useTheme();
   const progress = useProgress();
   const showTop = useBackToTop();
-  const active = useActiveSection(['work', 'about', 'experience', 'education', 'contact']);
+  const active = useActiveSection(['work', 'about', 'experience', 'education', 'tools', 'contact']);
   const [ready, setReady] = useState(false);
   const [loading, setLoading] = useState(() => {
     try {
@@ -89,6 +91,7 @@ function Site() {
         />
       )}
       <CursorGlow />
+      <CursorTrail />
       <a href="#work" className="skip-link">Skip to content</a>
       <div className="grid-bg" />
       <Stars />
@@ -110,6 +113,7 @@ function Site() {
         <About />
         <Experience />
         <Education />
+        <Tools />
         <Contact />
       </main>
       <button

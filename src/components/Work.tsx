@@ -12,7 +12,7 @@ export default function Work() {
     backend: t.filters.backend, ai: t.filters.ai, iot: t.filters.iot,
   };
   return (
-    <Section id="work" num="01" kicker={t.work.kicker} title={t.work.title} sub={t.work.sub}>
+    <Section id="work" num="01" kicker={t.work.kicker} title={t.work.title} sub={t.work.sub} variant="default">
       <div className="filters mt-8 mb-[26px] flex flex-wrap gap-2.5">
         {filterKeys.map((k) => (
           <button key={k} className={f === k ? 'active' : ''} aria-pressed={f === k} onClick={() => setF(k)}>

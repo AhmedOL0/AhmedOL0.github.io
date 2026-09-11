@@ -21,9 +21,12 @@ export function thumbTitle(p: ProjectT): { pre: string; em: string; post: string
 export type JobT = { when: string; title: string; org: string; where: string; points: string[] };
 export type EduT = { years: string; title: string; school: string; desc: string };
 
+export type ToolItem = { name: string; desc: string };
+export type ToolLevel = { level: string; subtitle: string; tools: ToolItem[] };
+
 export type Dict = {
   dir: 'ltr' | 'rtl';
-  nav: { work: string; about: string; experience: string; education: string; contact: string; resume: string };
+  nav: { work: string; about: string; experience: string; education: string; tools: string; contact: string; resume: string };
   hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede1: string; lede2: string; ctaWork: string; ctaContact: string; cardRole: string; cardTech: string };
   core: string[];
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
@@ -36,6 +39,12 @@ export type Dict = {
   };
   exp: { kicker: string; title: string; jobs: JobT[] };
   edu: { kicker: string; title: string; sub: string; entries: EduT[] };
+  tools: {
+    kicker: string; title: string; sub: string;
+    pyramid: { title: string; subtitle: string };
+    levels: ToolLevel[];
+    extra: { title: string; items: string[] };
+  };
   contact: {
     kicker: string; title: string; sub: string; subEm: string; subEnd: string;
     name: string; namePh: string; email: string; emailPh: string; msg: string; msgPh: string;
@@ -45,7 +54,7 @@ export type Dict = {
 };
 
 const tags = {
-  odemlab: ['Spring Boot', 'Next.js', 'React Native', 'PostgreSQL', 'Redis', 'Stripe', 'Gemini', 'Docker'],
+  odemlab: ['Spring Boot 3.5', 'Java 21', 'Next.js 16', 'React Native', 'Expo SDK 54', 'PostgreSQL 18', 'Redis 7', 'Tailwind CSS', 'Framer Motion', 'Docker', 'GitHub Actions', 'GHCR', 'Google Cloud Run', 'Stripe', 'Gemini AI', 'Flyway', 'Caffeine', 'Resilience4j', 'ShedLock', 'Grafana', 'Prometheus', 'Playwright'],
   med: ['PHP', 'Laravel', 'MySQL', 'JavaScript', 'Bootstrap'],
   fit: ['Spring Boot', 'React', 'Next.js', 'Docker', 'MySQL'],
   campus: ['Flutter', 'Dart', 'Firebase', 'ARCore', 'Node.js'],
@@ -55,7 +64,7 @@ const tags = {
 
 const en: Dict = {
   dir: 'ltr',
-  nav: { work: 'Work', about: 'About', experience: 'Experience', education: 'Education', contact: 'Contact', resume: 'Résumé' },
+  nav: { work: 'Work', about: 'About', experience: 'Experience', education: 'Education', tools: 'QA Tools', contact: 'Contact', resume: 'Résumé' },
   hero: {
     badge: 'Open to a PFE internship — let’s discuss timing',
     titleA: 'Building ', titleEm: 'complete products', titleB: ' — API, web, mobile.',
@@ -64,7 +73,7 @@ const en: Dict = {
     ctaWork: 'Explore selected work', ctaContact: 'Get in touch',
     cardRole: 'Full-Stack Software Engineer', cardTech: 'Core technologies',
   },
-  core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Python'],
+  core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
   filters: { all: 'All', web: 'Web', mobile: 'Mobile', backend: 'Backend', ai: 'AI', iot: 'IoT' },
   work: {
     kicker: 'Selected work', title: 'Systems that run in production, not demos that run once.',
@@ -90,16 +99,16 @@ const en: Dict = {
     kicker: 'Background', title: 'Backend-leaning, product-minded — from sensor to storefront.',
     sub: 'From ESP8266 firmware to Cloud Run deploys: I care about the places where a bug costs real money, and I prefer executable guarantees over conventions.',
     stats: [
-      { label: 'Domains shipped', sub: 'web · mobile · API · AI · IoT' },
+      { label: 'Domains shipped', sub: 'web · mobile · API · QA · IoT' },
       { label: 'Languages live', sub: 'FR · EN · AR + RTL' },
-      { label: 'Versioned API routes', sub: 'under /api/v1' },
+      { label: 'E2E test suites', sub: 'Playwright · Selenium' },
       { label: 'Flyway migrations', sub: 'replayable from zero' },
     ],
     bestTitle: 'What I do best',
     best: [
       'REST API design: versioning, contracts, OpenAPI-first with generated clients',
       'Transactional integrity: state machines, idempotence, optimistic/pessimistic locking',
-      'Test strategy: Testcontainers on real Postgres, E2E, contract and architecture tests',
+      'E2E testing: Playwright multi-browser suites, Selenium Page Objects, CI-gated regression',
       'Trilingual interfaces with real RTL, not translated labels',
     ],
     methodTitle: 'How I work',
@@ -129,6 +138,41 @@ const en: Dict = {
       { years: '2022 — 2024 · With honors', title: 'DUT, Embedded Computer Engineering', school: 'EST Oujda — École Supérieure de Technologie', desc: 'Embedded systems, IoT, firmware — ESP32/ESP8266, Arduino, Raspberry Pi.' },
     ],
   },
+  tools: {
+    kicker: 'QA & Testing', title: 'The testing pyramid — from unit to production.',
+    sub: 'A systematic approach to quality: fast unit tests at the base, integration in the middle, E2E at the top. Every layer has a purpose, every tool earns its place.',
+    pyramid: { title: 'Testing Pyramid', subtitle: 'Speed and confidence at every layer' },
+    levels: [
+      { level: 'Unit Testing', subtitle: 'Fast, isolated, runs on every commit', tools: [
+        { name: 'JUnit 5', desc: 'Java unit & integration tests with Spring Boot' },
+        { name: 'Mockito', desc: 'Mocking framework for service isolation' },
+        { name: 'Vitest', desc: 'Blazing-fast TypeScript test runner (frontend)' },
+        { name: 'Jest', desc: 'React Native & Node.js unit tests (mobile)' },
+      ]},
+      { level: 'Integration Testing', subtitle: 'Real databases, real containers, real contracts', tools: [
+        { name: 'Testcontainers', desc: 'Spin up PostgreSQL/Redis in Docker for CI' },
+        { name: '@SpringBootTest', desc: 'Full application context with sliced tests' },
+        { name: 'Supertest', desc: 'HTTP assertion layer for Express/Next.js APIs' },
+        { name: 'React Testing Library', desc: 'Component behavior tests, not implementation' },
+      ]},
+      { level: 'E2E Testing', subtitle: 'Real browser, real user flows, zero mocks', tools: [
+        { name: 'Playwright', desc: 'Multi-browser (Chromium, Firefox, WebKit) with visual regression' },
+        { name: 'Selenium WebDriver', desc: 'Page Object Model for cross-browser regression suites' },
+        { name: 'axe-core', desc: 'WCAG 2.2 accessibility audit on every route' },
+      ]},
+    ],
+    extra: {
+      title: 'Methodologies & Practices',
+      items: [
+        'Page Object Model — reusable abstractions, not brittle selectors',
+        'CI-gated regression — Playwright runs on every PR, blocks merge on failure',
+        'Visual regression — screenshot baselines catch unintended UI drift',
+        'Accessibility-first — axe-core structural rules as hard CI gates',
+        'Contract testing — OpenAPI schemas validated against live backend',
+        'Load testing — k6 scripts for API throughput baselines',
+      ],
+    },
+  },
   contact: {
     kicker: 'Contact', title: 'Let’s build something solid.',
     sub: 'Looking for a ', subEm: 'PFE internship', subEnd: ' — backend or full-stack, Morocco or remote, ideally where code ships to production. I answer fast.',
@@ -141,7 +185,7 @@ const en: Dict = {
 
 const fr: Dict = {
   dir: 'ltr',
-  nav: { work: 'Projets', about: 'Profil', experience: 'Parcours', education: 'Formation', contact: 'Contact', resume: 'CV' },
+  nav: { work: 'Projets', about: 'Profil', experience: 'Parcours', education: 'Formation', tools: 'Outils QA', contact: 'Contact', resume: 'CV' },
   hero: {
     badge: 'Ouvert à un stage PFE — discutons du calendrier',
     titleA: 'Des ', titleEm: 'produits complets', titleB: ' — API, web, mobile.',
@@ -150,7 +194,7 @@ const fr: Dict = {
     ctaWork: 'Voir mes projets', ctaContact: 'Me contacter',
     cardRole: 'Ingénieur Logiciel Full-Stack', cardTech: 'Technologies clés',
   },
-  core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Python'],
+  core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
   filters: { all: 'Tous', web: 'Web', mobile: 'Mobile', backend: 'Backend', ai: 'IA', iot: 'IoT' },
   work: {
     kicker: 'Projets', title: 'Des systèmes qui tournent en production, pas des démos.',
@@ -176,16 +220,16 @@ const fr: Dict = {
     kicker: 'Profil', title: 'Backend d’abord, produit toujours — du capteur à la vitrine.',
     sub: 'Du firmware ESP8266 aux déploiements Cloud Run : je m’intéresse aux endroits où un bug coûte de l’argent, et je préfère les garanties exécutables aux conventions.',
     stats: [
-      { label: 'Domaines livrés', sub: 'web · mobile · API · IA · IoT' },
+      { label: 'Domaines livrés', sub: 'web · mobile · API · QA · IoT' },
       { label: 'Langues en ligne', sub: 'FR · EN · AR + RTL' },
-      { label: 'Routes API versionnées', sub: 'sous /api/v1' },
+      { label: 'Suites de tests E2E', sub: 'Playwright · Selenium' },
       { label: 'Migrations Flyway', sub: 'rejouables depuis zéro' },
     ],
     bestTitle: 'Mes points forts',
     best: [
-      'Conception d’API REST : versionnement, contrats, OpenAPI d’abord avec clients générés',
+      'Conception d\'API REST : versionnement, contrats, OpenAPI d\'abord avec clients générés',
       'Intégrité transactionnelle : machines à états, idempotence, verrouillages optimiste/pessimiste',
-      'Stratégie de tests : Testcontainers sur vrai Postgres, E2E, contrats et architecture',
+      'Tests E2E : suites Playwright multi-navigateurs, Page Objects Selenium, non-régression CI',
       'Interfaces trilingues avec vraie RTL, pas des libellés traduits',
     ],
     methodTitle: 'Ma méthode',
@@ -215,6 +259,41 @@ const fr: Dict = {
       { years: '2022 — 2024 · Mention bien', title: 'DUT, Génie informatique embarqué', school: 'EST Oujda — École Supérieure de Technologie', desc: 'Systèmes embarqués, IoT, firmware — ESP32/ESP8266, Arduino, Raspberry Pi.' },
     ],
   },
+  tools: {
+    kicker: 'QA & Tests', title: 'La pyramide de test — de l\'unitaire à la production.',
+    sub: 'Approche systématique de la qualité : tests unitaires rapides à la base, intégration au milieu, E2E au sommet. Chaque couche a un rôle, chaque outil mérite sa place.',
+    pyramid: { title: 'Pyramide de Test', subtitle: 'Vitesse et confiance à chaque couche' },
+    levels: [
+      { level: 'Tests Unitaires', subtitle: 'Rapides, isolés, exécutés à chaque commit', tools: [
+        { name: 'JUnit 5', desc: 'Tests unitaires & d\'intégration Java avec Spring Boot' },
+        { name: 'Mockito', desc: 'Framework de mock pour l\'isolation des services' },
+        { name: 'Vitest', desc: 'Runner de tests TypeScript ultra-rapide (frontend)' },
+        { name: 'Jest', desc: 'Tests unitaires React Native & Node.js (mobile)' },
+      ]},
+      { level: 'Tests d\'Intégration', subtitle: 'Vraies bases de données, vrais conteneurs, vrais contrats', tools: [
+        { name: 'Testcontainers', desc: 'Monter PostgreSQL/Redis en Docker pour le CI' },
+        { name: '@SpringBootTest', desc: 'Contexte application complet avec tests découpés' },
+        { name: 'Supertest', desc: 'Couche d\'assertion HTTP pour APIs Express/Next.js' },
+        { name: 'React Testing Library', desc: 'Tests de comportement composant, pas d\'implémentation' },
+      ]},
+      { level: 'Tests E2E', subtitle: 'Vrai navigateur, vrais parcours utilisateurs, zéro mocks', tools: [
+        { name: 'Playwright', desc: 'Multi-navigateur (Chromium, Firefox, WebKit) avec régression visuelle' },
+        { name: 'Selenium WebDriver', desc: 'Modèle Page Object pour suites de non-régression cross-browser' },
+        { name: 'axe-core', desc: 'Audit accessibilité WCAG 2.2 sur chaque route' },
+      ]},
+    ],
+    extra: {
+      title: 'Méthodes & Pratiques',
+      items: [
+        'Modèle Page Object — abstractions réutilisables, pas de sélecteurs fragiles',
+        'Régression gating CI — Playwright sur chaque PR, bloque le merge en cas d\'échec',
+        'Régression visuelle — captures d\'écran baseline détectent les dérives UI',
+        'Accessibilité d\'abord — règles structurales axe-core comme portes CI strictes',
+        'Tests de contrat — schémas OpenAPI validés contre le backend en direct',
+        'Tests de charge — scripts k6 pour les bases de débit API',
+      ],
+    },
+  },
   contact: {
     kicker: 'Contact', title: 'Construisons quelque chose de solide.',
     sub: 'Je cherche un ', subEm: 'stage PFE', subEnd: ' — backend ou full-stack, Maroc ou distanciel, idéalement là où le code part en production. Je réponds vite.',
@@ -227,7 +306,7 @@ const fr: Dict = {
 
 const ar: Dict = {
   dir: 'rtl',
-  nav: { work: 'أعمالي', about: 'نبذة', experience: 'المسار', education: 'التكوين', contact: 'اتصل بي', resume: 'السيرة' },
+  nav: { work: 'أعمالي', about: 'نبذة', experience: 'المسار', education: 'التكوين', tools: 'أدوات QA', contact: 'اتصل بي', resume: 'السيرة' },
   hero: {
     badge: 'متاح لتدريب PFE — لنناقش التوقيت',
     titleA: 'أبني ', titleEm: 'منتجات كاملة', titleB: ' — API، ويب، موبايل.',
@@ -236,7 +315,7 @@ const ar: Dict = {
     ctaWork: 'استعرض أعمالي', ctaContact: 'تواصل معي',
     cardRole: 'مهندس برمجيات Full-Stack', cardTech: 'التقنيات الأساسية',
   },
-  core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Python'],
+  core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
   filters: { all: 'الكل', web: 'ويب', mobile: 'موبايل', backend: 'باك-إند', ai: 'ذكاء اصطناعي', iot: 'إنترنت الأشياء' },
   work: {
     kicker: 'أعمال مختارة', title: 'أنظمة تعمل في الإنتاج، لا عروض تعمل مرة واحدة.',
@@ -262,16 +341,16 @@ const ar: Dict = {
     kicker: 'نبذة', title: 'ميل للباك-إند، عقلية منتج — من الحساس إلى المتجر.',
     sub: 'من firmware الـ ESP8266 إلى نشر Cloud Run: أهتم بالأماكن التي يكلّف فيها الخطأ مالاً حقيقياً، وأفضّل الضمانات المنفَّذة على الأعراف.',
     stats: [
-      { label: 'مجالات منشورة', sub: 'ويب · موبايل · API · ذكاء · IoT' },
+      { label: 'مجالات منشورة', sub: 'ويب · موبايل · API · QA · IoT' },
       { label: 'لغات حيّة', sub: 'FR · EN · AR + RTL' },
-      { label: 'مسارات API مُصدَرة', sub: 'تحت /api/v1' },
+      { label: 'حزم اختبار E2E', sub: 'Playwright · Selenium' },
       { label: 'ترحيلات Flyway', sub: 'قابلة لإعادة التشغيل من الصفر' },
     ],
     bestTitle: 'أفضل ما أفعله',
     best: [
       'تصميم REST API: إصدارات، عقود، OpenAPI أولاً مع عملاء مولّدين',
       'سلامة المعاملات: آلات الحالة، عدم التكرار، أقفال متفائلة/متشائمة',
-      'استراتيجية اختبار: Testcontainers على Postgres حقيقي، E2E، عقود ومعمارية',
+      'اختبار E2E: حزم Playwright متعددة المتصفحات، Page Objects Selenium، انحدار CI',
       'واجهات ثلاثية اللغات مع RTL حقيقي، لا مجرد تسميات مترجمة',
     ],
     methodTitle: 'كيف أعمل',
@@ -300,6 +379,41 @@ const ar: Dict = {
       { years: '2024 — الآن', title: 'سلك المهندسين، هندسة البرمجيات', school: 'ENSIASD · جامعة ابن زهر — تارودانت', desc: 'ذكاء اصطناعي، علم البيانات، معمارية البرمجيات.' },
       { years: '2022 — 2024 · بميزة', title: 'DUT، المعلوميات المدمجة', school: 'EST وجدة — المدرسة العليا للتكنولوجيا', desc: 'أنظمة مدمجة، إنترنت الأشياء، firmware — ESP32/ESP8266، Arduino، Raspberry Pi.' },
     ],
+  },
+  tools: {
+    kicker: 'جودة و اختبار', title: 'هرم الاختبار — من الوحدة إلى الإنتاج.',
+    sub: 'نهج منهجي للجودة: اختبارات وحدة سريعة في الأساس، تكامل في الوسط، E2E في القمة. كل طبقة لها دور، كل أداة تستحق مكانها.',
+    pyramid: { title: 'هرم الاختبار', subtitle: 'السرعة والثقة في كل طبقة' },
+    levels: [
+      { level: 'اختبار الوحدات', subtitle: 'سريعة، معزولة، تُنفذ مع كل commit', tools: [
+        { name: 'JUnit 5', desc: 'اختبارات وحدة وتكامل Java مع Spring Boot' },
+        { name: 'Mockito', desc: 'إطار mock لعزل الخدمات' },
+        { name: 'Vitest', desc: 'مُشغّل اختبارات TypeScript سريع (الواجهة الأمامية)' },
+        { name: 'Jest', desc: 'اختبارات وحدة React Native و Node.js (الموبايل)' },
+      ]},
+      { level: 'اختبارات التكامل', subtitle: 'قواعد بيانات حقيقية، حاويات حقيقية، عقود حقيقية', tools: [
+        { name: 'Testcontainers', desc: 'تشغيل PostgreSQL/Redis في Docker للCI' },
+        { name: '@SpringBootTest', desc: 'سياق تطبيق كامل مع اختبارات مجزأة' },
+        { name: 'Supertest', desc: 'طبقة تأكيد HTTP لـ APIs Express/Next.js' },
+        { name: 'React Testing Library', desc: 'اختبارات سلوك المكون، ليس التنفيذ' },
+      ]},
+      { level: 'اختبارات E2E', subtitle: 'متصفح حقيقي، مسارات مستخدم حقيقية، صفر mocks', tools: [
+        { name: 'Playwright', desc: 'متعدد المتصفحات (Chromium, Firefox, WebKit) مع تناقص بصري' },
+        { name: 'Selenium WebDriver', desc: 'نموذج Page Object لحقول غير التناقص عبر المتصفحات' },
+        { name: 'axe-core', desc: 'تدقيق إمكانية الوصول WCAG 2.2 على كل مسار' },
+      ]},
+    ],
+    extra: {
+      title: 'المناهج والممارسات',
+      items: [
+        'نموذج Page Object — تجرييدات قابلة لإعادة الاستخدام، ليس مُختارات هشّة',
+        'استيفاء CI — Playwright على كل PR، يمنع الدمج عند الفشل',
+        'تناقص بصري — لقطات شاشة baseline تكشف انحراف واجهة المستخدم',
+        'إمكانية الوصول أولاً — قواعد هيكلية axe-core كبوابات CI صارمة',
+        'اختبارات العقود — تحقق مخططات OpenAPI من الباك-إند المباشر',
+        'اختبارات الحمل — سكريبتات k6 لخطوط أساسية throughput API',
+      ],
+    },
   },
   contact: {
     kicker: 'اتصل بي', title: 'لنبنِ شيئاً متيناً.',

@@ -38,6 +38,31 @@ export function useReveal<T extends HTMLElement>() {
   return ref;
 }
 
+export function useStaggerReveal<T extends HTMLElement>(selector = ':scope > *') {
+  const ref = useRef<T | null>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const children = Array.from(el.querySelectorAll(selector)) as HTMLElement[];
+    children.forEach((child, i) => {
+      child.classList.add('stagger-item');
+      child.style.transitionDelay = `${i * 80}ms`;
+    });
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('stagger-in');
+          io.unobserve(e.target);
+        }
+      }),
+      { threshold: 0.1 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [selector]);
+  return ref;
+}
+
 export function useCountUp(target: number, start: boolean, duration = 1500, onDone?: () => void) {
   const [value, setValue] = useState(0);
   const doneRef = useRef(false);

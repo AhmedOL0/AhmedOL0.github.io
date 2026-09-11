@@ -1,15 +1,40 @@
+import { useState, type FormEvent } from 'react';
 import Section from './Section';
 import { useLang } from '../i18n';
 
 export default function Contact() {
   const { t } = useLang();
+  const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'error'>('idle');
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('sending');
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    formData.append('access_key', 'fd030d65-d69e-4963-b5f3-111d39ca65bb');
+    formData.append('subject', 'New message from portfolio');
+    formData.append('from_name', 'Portfolio Contact');
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+      setStatus(data.success ? 'ok' : 'error');
+      if (data.success) form.reset();
+    } catch {
+      setStatus('error');
+    }
+  };
+
   return (
-    <Section id="contact" num="05" kicker={t.contact.kicker} title={t.contact.title} sub="">
+    <Section id="contact" num="05" kicker={t.contact.kicker} title={t.contact.title} sub="" variant="right">
       <p className="sub">
         {t.contact.sub}<strong style={{ color: 'var(--ink)' }}>{t.contact.subEm}</strong>{t.contact.subEnd}
       </p>
       <div className="contact-box mt-8 grid grid-cols-1 gap-10 p-7 lg:grid-cols-2 lg:p-[42px]">
-        <form action="mailto:ahmedouarrali12@gmail.com" method="post" encType="text/plain">
+        <form onSubmit={handleSubmit}>
           <label className="field" htmlFor="n">
             <input id="n" name="name" type="text" placeholder=" " required />
             <span>{t.contact.name}</span>
@@ -23,8 +48,26 @@ export default function Contact() {
             <span>{t.contact.msg}</span>
           </label>
           <div style={{ marginTop: 22 }}>
-            <button className="btn btn-gold" data-magnetic type="submit">{t.contact.send}<span className="arr">→</span></button>
+            <button
+              className="btn btn-gold"
+              data-magnetic
+              type="submit"
+              disabled={status === 'sending'}
+            >
+              {status === 'sending' ? '...' : t.contact.send}
+              <span className="arr">→</span>
+            </button>
           </div>
+          {status === 'ok' && (
+            <p style={{ marginTop: 12, color: '#16a34a', fontSize: '.88rem' }}>
+              ✓ Message sent — I'll get back to you soon.
+            </p>
+          )}
+          {status === 'error' && (
+            <p style={{ marginTop: 12, color: '#dc2626', fontSize: '.88rem' }}>
+              ✗ Something went wrong. Try emailing me directly.
+            </p>
+          )}
         </form>
         <div className="direct text-[.95rem]">
           <div><strong>{t.contact.direct}</strong><br /><a href="mailto:ahmedouarrali12@gmail.com">ahmedouarrali12@gmail.com</a></div>
