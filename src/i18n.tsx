@@ -77,7 +77,7 @@ const en: Dict = {
     lede2: ' end-to-end: Spring Boot API, Next.js storefront, React Native app, PostgreSQL + Redis, deployed with Docker to Google Cloud.',
     ctaWork: 'Browse production work', ctaContact: 'Get in touch',
     cardRole: 'Full-Stack Software Engineer', cardTech: 'Core technologies',
-    statsLabels: ['Schema migrations', 'Automated tests', 'Payment integrations'] as [string, string, string],
+    statsLabels: ['Projects shipped', 'Platforms', 'Internships completed'] as [string, string, string],
     viewAll: '',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
@@ -213,7 +213,7 @@ const fr: Dict = {
     lede2: ' de bout en bout : API Spring Boot, boutique Next.js, app React Native, PostgreSQL + Redis, d\u00e9ploy\u00e9 avec Docker sur Google Cloud.',
     ctaWork: 'Voir mes projets', ctaContact: 'Me contacter',
     cardRole: 'Ing\u00e9nieur Logiciel Full-Stack', cardTech: 'Technologies cl\u00e9s',
-    statsLabels: ['Migrations schema', 'Tests automatis\u00e9s', 'Int\u00e9grations paiement'] as [string, string, string],
+    statsLabels: ['Projets livr\u00e9s', 'Plateformes', 'Stages compl\u00e9t\u00e9s'] as [string, string, string],
     viewAll: '',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
@@ -350,7 +350,7 @@ const ar: Dict = {
     lede2: ' من البداية للنهاية: API Spring Boot، متجر Next.js، تطبيق React Native، PostgreSQL + Redis، منشور عبر Docker على Google Cloud.',
     ctaWork: 'استعرض أعمالي', ctaContact: 'تواصل معي',
     cardRole: 'مهندس برمجيات Full-Stack', cardTech: 'التقنيات الأساسية',
-    statsLabels: [' الهجرات', 'اختبارات مؤتمتة', 'تكاملات الدفع'] as [string, string, string],
+    statsLabels: ['مشاريع منشورة', 'منصات', 'تدريبات مكتملة'] as [string, string, string],
     viewAll: '',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
@@ -514,4 +514,4 @@ export const PROJECT_CATS: string[][] = [
   ['web', 'mobile', 'backend'], ['web', 'backend'], ['web', 'backend'], ['mobile'], ['ai'], ['iot'],
 ];
 export const PROJECT_THUMBS = ['thumb-odem', 'thumb-med', 'thumb-fit', 'thumb-campus', 'thumb-sum', 'thumb-iot'];
-export const STAT_VALUES = [93, 810, 3];
+export const STAT_VALUES = [6, 3, 4];

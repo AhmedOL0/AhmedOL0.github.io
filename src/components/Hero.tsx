@@ -3,7 +3,6 @@ import { useLang } from '../i18n';
 import { useReveal, useScrollY, useCountUp, useInView } from '../hooks';
 import TechIcon from './TechIcon';
 import Typewriter from './Typewriter';
-import CharReveal from './CharReveal';
 
 const calm = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -19,9 +18,9 @@ const core = [
 ];
 
 const statValues: { value: number; suffix: string }[] = [
-  { value: 93, suffix: '' },
-  { value: 810, suffix: '' },
+  { value: 6, suffix: '+' },
   { value: 3, suffix: '' },
+  { value: 4, suffix: '' },
 ];
 
 function StatItem({ target, suffix, label, inView }: { target: number; suffix: string; label: string; inView: boolean }) {
@@ -90,7 +89,7 @@ export default function Hero() {
             <span className="beacon" /> {t.hero.badge}
           </span>
           <h1 className="rise h-display text-[clamp(2.6rem,6vw,4.5rem)] max-w-[18ch]" style={{ animationDelay: '.15s' }}>
-            <CharReveal text={t.hero.titleA} delay={200} /><em className="grad-text"><CharReveal text={t.hero.titleEm} delay={200 + t.hero.titleA.length * 50} /></em><CharReveal text={t.hero.titleB} delay={200 + (t.hero.titleA.length + t.hero.titleEm.length) * 50} />
+            {t.hero.titleA}<em className="grad-text">{t.hero.titleEm}</em>{t.hero.titleB}
           </h1>
           <p className="rise lede mt-5 max-w-[56ch] text-[1.02rem]" style={{ color: 'var(--muted)', animationDelay: '.28s' }}>
             {t.hero.lede1}<strong style={{ color: 'var(--ink)' }}>OdemLab</strong>{t.hero.lede2}

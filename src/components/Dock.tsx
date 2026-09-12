@@ -38,7 +38,7 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
       <div className="top-right fixed right-5 top-5 z-50 flex max-w-[calc(100vw-2.5rem)] flex-wrap items-center justify-end gap-2 md:right-8">
         <div className="langsw" role="group" aria-label={t.dock.lang}>
           {LANGS.map((l) => (
-            <button key={l.code} className={lang === l.code ? 'active' : ''} onClick={() => setLang(l.code)} aria-label={l.aria}>
+            <button key={l.code} className={`${lang === l.code ? 'active' : ''} tip`} data-tip={l.aria} onClick={() => setLang(l.code)} aria-label={l.aria}>
               {l.label}
             </button>
           ))}
