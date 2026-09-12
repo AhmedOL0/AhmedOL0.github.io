@@ -154,6 +154,17 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 @keyframes blink{50%{opacity:0}}
 @keyframes terminal-in{from{opacity:0;transform:scale(.96) translateY(10px)}to{opacity:1;transform:none}}
 
+/* Marquee */
+.marquee{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);overflow:hidden;padding:15px 0;background:rgba(127,120,100,.05);position:relative;z-index:1}
+.marquee-track{display:flex;width:max-content;animation:mscroll 32s linear infinite;will-change:transform}
+.marquee-inner{display:flex;flex-shrink:0}
+.marquee-item{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);white-space:nowrap;margin-right:54px;transition:color .25s}
+.marquee-item i{color:var(--gold-deep);font-style:normal;margin-right:54px}
+.marquee:hover .marquee-item{animation-play-state:paused}
+.marquee-item:hover{color:var(--gold)}
+@keyframes mscroll{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+
 /* Language switcher */
 .langsw{display:flex;border:1px solid var(--line);border-radius:999px;position:relative}
 .langsw button{background:transparent;border:none;color:var(--muted);font-family:var(--mono);font-size:.72rem;padding:7px 11px;cursor:pointer;letter-spacing:.06em;transition:all .2s}
