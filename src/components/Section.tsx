@@ -11,7 +11,7 @@ export default function Section({
   const staggerRef = useStaggerReveal<HTMLDivElement>();
   const variantClass = variant === 'left' ? 'reveal-left' : variant === 'right' ? 'reveal-right' : variant === 'scale' ? 'reveal-scale' : '';
   return (
-    <section id={id} ref={ref} className={`relative ${variantClass}`}>
+    <section id={id} ref={ref} className={`relative mx-auto max-w-[1120px] px-5 sm:px-7 ${variantClass}`}>
       <span className="ghost" aria-hidden="true">{num}</span>
       <div className="sec-head"><span className="sec-num">{num}</span></div>
       <div className="kicker">{kicker}</div>
