@@ -2,13 +2,14 @@ import { useEffect, useRef } from 'react';
 
 const TRAIL = 8;
 const calm = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isTouch = typeof window !== 'undefined' && window.matchMedia('(pointer:coarse)').matches;
 
 export default function CursorTrail() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const points = useRef<{ x: number; y: number; life: number }[]>([]);
 
   useEffect(() => {
-    if (calm) return;
+    if (calm || isTouch) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -60,7 +61,7 @@ export default function CursorTrail() {
     };
   }, []);
 
-  if (calm) return null;
+  if (calm || isTouch) return null;
   return (
     <canvas
       ref={canvasRef}

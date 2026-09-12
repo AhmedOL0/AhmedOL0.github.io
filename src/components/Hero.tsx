@@ -42,7 +42,7 @@ function ProfileCard() {
   const [imgOk, setImgOk] = useState(true);
   const [loaded, setLoaded] = useState(false);
   return (
-    <aside className="pcard ml-auto w-full max-w-[380px]">
+    <aside className="pcard mx-auto sm:ml-auto w-full max-w-[380px]">
       <div className="pphoto">
         {imgOk ? (
           <img

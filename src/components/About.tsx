@@ -30,7 +30,7 @@ export default function About() {
           <Stat key={s.label} value={STAT_VALUES[i]} label={s.label} sub={s.sub} />
         ))}
       </div>
-      <div className="about-grid mt-[30px] grid grid-cols-1 gap-10 lg:grid-cols-2">
+      <div className="about-grid mt-6 sm:mt-[30px] grid grid-cols-1 gap-6 sm:gap-10 lg:grid-cols-2">
         <div>
           <h3>{t.about.bestTitle}</h3>
           <ul>{t.about.best.map((li) => <li key={li}>{li}</li>)}</ul>
