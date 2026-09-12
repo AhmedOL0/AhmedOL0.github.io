@@ -42,7 +42,7 @@ export default function About() {
       </div>
       <div className="langs mt-[22px] flex flex-wrap gap-2">
         {t.about.langs.map((l) => (
-          <span key={l.l}><b>{l.l}</b> \u2014 {l.lvl}</span>
+          <span key={l.l}><b>{l.l}</b> — {l.lvl}</span>
         ))}
       </div>
     </Section>
