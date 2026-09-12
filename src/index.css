@@ -180,6 +180,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 [dir="rtl"] .job li::before{left:auto;right:2px}
 [dir="rtl"] .edu-card{border-left:1px solid var(--line);border-right:3px solid var(--gold);border-radius:18px 6px 6px 18px}
 [dir="rtl"] .about-grid h4::before{margin-right:0;margin-left:10px}
+@media(max-width:420px){
+  [dir="rtl"] .timeline{padding-right:20px}
+  [dir="rtl"] .job::before{right:-26px}
+  [dir="rtl"] .job li{padding-right:14px}
+}
 
 /* Timeline */
 .timeline{border-left:1px solid var(--line);padding-left:32px;display:flex;flex-direction:column;gap:32px;position:relative}
@@ -241,14 +246,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .dock{gap:2px;padding:8px 10px}
   .dock a,.dock button{width:40px;height:40px}
   .dock .dock-social{display:none}
-  section{padding-top:56px;padding-bottom:56px}
-  .hero-stat-val{font-size:1.5rem}
-  .hero-stat-label{font-size:.72rem}
-  .hero-stat-sub{font-size:.65rem}
-  .hero-stats{gap:8px}
+  section{padding-top:64px;padding-bottom:64px}
+  .hero-stat-val{font-size:1.6rem}
+  .hero-stat-label{font-size:.75rem}
+  .hero-stat-sub{font-size:.66rem}
+  .hero-stats{gap:8px;padding-top:20px}
   .marquee-item{font-size:.68rem;margin-right:28px;letter-spacing:.1em}
   .marquee-item i{margin-right:28px}
-  .core-chip{font-size:.64rem;padding:4px 9px;gap:3px;border-radius:8px}
+  .core-chip{font-size:.66rem;padding:5px 10px;gap:4px;border-radius:8px}
   .core-chip-icon{width:12px;height:12px}
   .core{flex-wrap:nowrap !important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:6px !important;padding-bottom:4px;max-width:100%}
   .core::-webkit-scrollbar{display:none}
@@ -256,14 +261,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .pcard{padding:20px}
   .pcard h2{font-size:1.4rem}
   .pmono span{font-size:3.6rem}
-  .stat{padding:20px 14px}
+  .stat{padding:22px 14px}
   .stat b{font-size:2rem}
-  .stat span{font-size:.75rem}
-  .stat .stat-sub{font-size:.65rem}
+  .stat span{font-size:.78rem}
+  .stat .stat-sub{font-size:.66rem}
   .contact-box{padding:20px !important}
-  .contact-box .field{margin-top:16px}
+  .contact-box .field{margin-top:18px}
   .direct{gap:16px}
-  .direct div{margin-bottom:8px}
+  .direct div{margin-bottom:10px}
   .pyramid-wrap{padding:20px 16px}
   .pyramid{gap:16px;margin-top:20px}
   .pyramid-level{gap:8px}
@@ -280,60 +285,79 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .field>span{font-size:.92rem}
   .iconbtn{width:40px;height:40px}
   .direct a{padding:6px 0;display:inline-block}
+  .timeline{gap:36px}
+  .job h3{font-size:1.05rem;margin:6px 0 3px}
+  .job .where{margin-bottom:12px}
+  .job li{padding:4px 0 4px 20px}
+  .job li::before{top:14px}
+  .job .when{margin-bottom:4px}
+  .about-grid li{padding:8px 0 8px 22px}
+  .contact-box .direct{margin-top:20px}
+  .langsw{gap:0}
+  .langsw button{padding:7px 10px;font-size:.7rem}
+  .hero-block{padding-top:72px;padding-bottom:28px}
+  .footer-block{padding-bottom:100px;padding-top:44px}
 }
 @media(max-width:420px){
-  .hero-stats{grid-template-columns:repeat(2,1fr)}
-  section{padding-top:32px;padding-bottom:32px}
-  .pcard{padding:16px}
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:10px}
+  section{padding-top:40px;padding-bottom:40px}
+  .pcard{padding:18px;border-radius:18px}
   .pcard h2{font-size:1.3rem}
   .pmono span{font-size:3.2rem}
-  .hero-stat-val{font-size:1.3rem}
-  .hero-stat-label{font-size:.68rem}
-  .hero-stat-sub{font-size:.62rem}
+  .hero-stat-val{font-size:1.4rem}
+  .hero-stat-label{font-size:.7rem}
+  .hero-stat-sub{font-size:.63rem}
   .langsw button{padding:8px 10px;font-size:.68rem;min-height:44px;display:inline-flex;align-items:center}
   .top-right{right:12px;top:12px}
   [dir="rtl"] .top-right{left:12px}
-  .btn{padding:10px 18px;font-size:.8rem;min-height:44px;display:inline-flex;align-items:center}
+  .btn{padding:12px 20px;font-size:.82rem;min-height:44px;display:inline-flex;align-items:center}
   .filters{gap:6px !important}
-  .filters button{padding:8px 14px;font-size:.78rem}
-  .typewriter{font-size:.78rem}
-  .core-chip{font-size:.6rem;padding:4px 8px;gap:2px}
+  .filters button{padding:9px 14px;font-size:.8rem}
+  .typewriter{font-size:.82rem}
+  .core-chip{font-size:.62rem;padding:4px 8px;gap:2px}
   .core-chip-icon{width:11px;height:11px}
-  .cta .btn{padding:10px 14px;font-size:.78rem;min-height:44px}
+  .cta .btn{padding:12px 16px;font-size:.8rem;min-height:44px}
   #toTop{width:44px;height:44px}
   .marquee{margin-top:20px}
   .marquee-item{font-size:.65rem;margin-right:20px;letter-spacing:.08em}
   .marquee-item i{margin-right:20px}
   .terminal-body{font-size:.72rem;padding:14px}
-  .edu-card{padding:14px 12px}
-  .timeline{padding-left:20px}
+  .edu-card{padding:16px 14px}
+  .timeline{padding-left:20px;gap:32px}
+  .job::before{left:-26px}
   .job li{padding-left:14px}
-  .contact-box .field input,.contact-box .field textarea{padding:18px 12px 8px}
+  .contact-box .field input,.contact-box .field textarea{padding:18px 14px 8px}
+  .contact-box .field{margin-top:16px}
   .pyramid-wrap{padding:16px 12px}
   .pyramid{gap:14px;margin-top:18px}
   .pyramid-level{gap:6px}
-  .pyramid-bar{padding:8px 14px;gap:8px}
-  .pyramid-label{font-size:.72rem}
-  .pyramid-sub{font-size:.7rem}
-  .tool-card{padding:10px 12px}
-  .tool-name{font-size:.75rem;margin-bottom:2px}
-  .tool-desc{font-size:.72rem;line-height:1.4}
-  .pillar-card{padding:14px}
-  .pillar-items{gap:8px}
-  .pillar-item-desc{font-size:.72rem}
-  .about-grid li{font-size:.85rem;padding:6px 0 6px 20px}
-  .langs span{font-size:.78rem;padding:5px 12px}
+  .pyramid-bar{padding:10px 14px;gap:8px}
+  .pyramid-label{font-size:.74rem}
+  .pyramid-sub{font-size:.72rem}
+  .tool-card{padding:12px}
+  .tool-name{font-size:.78rem;margin-bottom:2px}
+  .tool-desc{font-size:.74rem;line-height:1.4}
+  .pillar-card{padding:16px}
+  .pillar-items{gap:10px}
+  .pillar-item-desc{font-size:.74rem}
+  .about-grid li{font-size:.88rem;padding:8px 0 8px 22px}
+  .langs span{font-size:.8rem;padding:6px 14px}
   .job h3{font-size:1rem}
-  .job .where{font-size:.8rem}
-  .job li{font-size:.85rem}
+  .job .where{font-size:.82rem}
+  .job li{font-size:.88rem}
   .foot-mark{font-size:4rem}
   .card{border-radius:14px}
   .card .thumb{height:110px}
   .card .thumb b{font-size:2rem;left:12px;bottom:8px}
-  .stat{padding:16px 10px;border-radius:12px}
-  .stat b{font-size:1.8rem}
+  .stat{padding:18px 12px;border-radius:14px}
+  .stat b{font-size:1.9rem}
   .sub{max-width:100%}
   .sec-head{gap:10px}
+  .hero-block{padding-top:64px;padding-bottom:24px}
+  .hero-grid{gap:20px}
+  .direct div{margin-bottom:12px}
+  .contact-box .direct{margin-top:24px}
+  .footer-block{padding-bottom:110px;padding-top:40px}
 }
 :root[data-theme="light"] .orb{opacity:.35}
 :root[data-theme="light"] .hero-orb{opacity:.5}
@@ -516,9 +540,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .contact-box{background:linear-gradient(180deg,rgba(160,120,60,.07),transparent 40%),var(--card);border:1px solid var(--line);border-radius:22px;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr;gap:24px;padding:12px}
 .contact-box::before{content:"";position:absolute;top:-80px;right:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,var(--spot),transparent 65%);pointer-events:none}
 .contact-box label{display:block;font-size:.78rem;color:var(--muted);margin:15px 0 6px;letter-spacing:.06em;text-transform:uppercase;font-family:var(--mono)}
-.contact-box input,.contact-box textarea{width:100%;background:var(--inputbg);border:1px solid var(--line);border-radius:12px;color:var(--ink);padding:13px 16px;font-family:var(--sans);font-size:.9rem;resize:vertical;transition:border-color .25s,box-shadow .25s;box-shadow:inset 0 2px 6px rgba(0,0,0,.06)}
+.contact-box input,.contact-box textarea{width:100%;background:var(--inputbg);border:1px solid var(--line);border-radius:12px;color:var(--ink);padding:13px 16px;font-family:var(--sans);font-size:.92rem;resize:vertical;transition:border-color .25s,box-shadow .25s;box-shadow:inset 0 2px 6px rgba(0,0,0,.06)}
 .contact-box input:focus,.contact-box textarea:focus{outline:none;border-color:var(--gold);box-shadow:inset 0 2px 6px rgba(0,0,0,.05),0 0 0 4px rgba(160,120,60,.16)}
 .contact-box input::placeholder,.contact-box textarea::placeholder{color:var(--faint)}
+.direct{display:flex;flex-direction:column;gap:14px}
 .direct strong{color:var(--ink);font-weight:600}
 .direct a{color:var(--gold);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s,transform .2s;overflow-wrap:break-word;word-break:break-word}
 .direct a:hover{border-color:var(--gold);transform:translateY(-1px)}
@@ -664,10 +689,10 @@ section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
 
 /* Layout classes — unlayered so they're the authority (Tailwind v4 utilities can't override unlayered CSS) */
 .section-block{position:relative;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:12px;padding-right:12px}
-.hero-grid{display:grid;grid-template-columns:1fr;align-items:center;gap:24px;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:12px;padding-right:12px}
+.hero-grid{display:grid;grid-template-columns:1fr;align-items:start;gap:24px;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:12px;padding-right:12px}
 .hero-grid>*{min-width:0}
-.hero-block{overflow:clip;padding-top:56px;padding-bottom:20px}
-.footer-block{position:relative;z-index:1;margin-top:44px;padding-left:12px;padding-right:12px;padding-bottom:80px;padding-top:40px}
+.hero-block{overflow:clip;padding-top:72px;padding-bottom:28px}
+.footer-block{position:relative;z-index:1;margin-top:44px;padding-left:12px;padding-right:12px;padding-bottom:100px;padding-top:40px}
 
 /* Enhanced cursor effects */
 .cursor-ring.cursor-hot{
@@ -749,4 +774,5 @@ section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
   .pcard-hero .pchips span{font-size:.72rem;padding:6px 13px}
   .hero-block{padding-top:110px;padding-bottom:50px}
   .contact-box{grid-template-columns:1fr 1fr;gap:40px;padding:42px}
+  .direct{flex-direction:column}
 }
