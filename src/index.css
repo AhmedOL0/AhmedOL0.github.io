@@ -365,8 +365,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   box-shadow:0 4px 12px rgba(160,120,60,.2)}
 
 /* Social icon rotation */
-.direct a,.footer a{transition:color .25s,transform .3s cubic-bezier(.2,.7,.2,1)}
-.direct a:hover,.footer a:hover{display:inline-block;transform:rotate(-8deg) translateY(-1px)}
+.direct a{transition:border-color .2s,transform .2s}
+.direct a:hover{transform:translateY(-1px)}
 
 /* Tools / Testing Pyramid */
 .pyramid-wrap{background:linear-gradient(180deg,rgba(160,120,60,.06),transparent 55%),var(--card);border:1px solid var(--line);border-radius:18px;padding:32px 28px}
@@ -420,8 +420,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .contact-box input:focus,.contact-box textarea:focus{outline:none;border-color:var(--gold);box-shadow:inset 0 2px 6px rgba(0,0,0,.05),0 0 0 4px rgba(160,120,60,.16)}
 .contact-box input::placeholder,.contact-box textarea::placeholder{color:var(--faint)}
 .direct strong{color:var(--ink);font-weight:600}
-.direct a{color:var(--gold);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
-.direct a:hover{border-color:var(--gold)}
+.direct a{color:var(--gold);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s,transform .2s}
+.direct a:hover{border-color:var(--gold);transform:translateY(-1px)}
 
 /* Form feedback */
 .form-success-box{margin-top:16px;display:flex;flex-direction:column;align-items:center;gap:8px;

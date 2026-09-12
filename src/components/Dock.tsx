@@ -38,13 +38,13 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
       <div className="top-right fixed right-5 top-5 z-50 flex max-w-[calc(100vw-2.5rem)] flex-wrap items-center justify-end gap-2 md:right-8">
         <div className="langsw" role="group" aria-label={t.dock.lang}>
           {LANGS.map((l) => (
-            <button key={l.code} className={`${lang === l.code ? 'active' : ''} tip`} data-tip={l.aria} onClick={() => setLang(l.code)} aria-label={l.aria}>
+            <button key={l.code} className={`${lang === l.code ? 'active' : ''} tip-bottom`} data-tip={l.aria} onClick={() => setLang(l.code)} aria-label={l.aria}>
               {l.label}
             </button>
           ))}
         </div>
         <button onClick={onToggle} aria-label={t.dock.toggle} data-tip={t.dock.toggle}
-          className="iconbtn iconbtn-glass tip" style={{ border: '1px solid var(--line)', color: 'var(--muted)' }}>
+          className="iconbtn iconbtn-glass tip-bottom" style={{ border: '1px solid var(--line)', color: 'var(--muted)' }}>
           <Icon d={theme === 'dark' ? P.sun : P.moon} />
         </button>
       </div>

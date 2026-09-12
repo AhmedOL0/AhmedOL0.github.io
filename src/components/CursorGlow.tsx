@@ -113,7 +113,7 @@ export default function CursorGlow() {
   }, []);
 
   const base: React.CSSProperties = {
-    position: 'fixed', top: 0, left: 0, zIndex: 65, pointerEvents: 'none', opacity: 0,
+    position: 'fixed', top: 0, left: 0, zIndex: 10, pointerEvents: 'none', opacity: 0,
   };
 
   return (
@@ -147,9 +147,9 @@ export default function CursorGlow() {
         ref={ringRef}
         className="cursor-ring"
         style={{
-          ...base, width: 40, height: 40, margin: '-20px 0 0 -20px', borderRadius: '50%',
-          border: '1.5px solid rgba(201,168,118,.5)',
-          boxShadow: '0 0 20px rgba(201,168,118,.2), inset 0 0 10px rgba(201,168,118,.08)',
+          ...base, width: 32, height: 32, margin: '-16px 0 0 -16px', borderRadius: '50%',
+          border: '1px solid rgba(201,168,118,.3)',
+          boxShadow: '0 0 14px rgba(201,168,118,.12)',
           transition: 'opacity .3s, border-color .3s, box-shadow .3s',
         }}
       />
