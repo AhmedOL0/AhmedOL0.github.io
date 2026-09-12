@@ -327,6 +327,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .job .where{font-size:.8rem}
   .job li{font-size:.85rem}
   .foot-mark{font-size:4rem}
+  .card{border-radius:14px}
+  .card .thumb{height:110px}
+  .card .thumb b{font-size:2rem;left:12px;bottom:8px}
+  .stat{padding:16px 10px;border-radius:12px}
+  .stat b{font-size:1.8rem}
+  .sub{max-width:100%}
+  .sec-head{gap:10px}
 }
 :root[data-theme="light"] .orb{opacity:.35}
 :root[data-theme="light"] .hero-orb{opacity:.5}
@@ -650,11 +657,11 @@ div.top-right{animation:drop-in .8s cubic-bezier(.2,.7,.2,1) .22s both}
 section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
 
 /* Layout classes — unlayered so they're the authority (Tailwind v4 utilities can't override unlayered CSS) */
-.section-block{position:relative;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:8px;padding-right:8px}
-.hero-grid{display:grid;grid-template-columns:1fr;align-items:center;gap:24px;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:8px;padding-right:8px;overflow:hidden}
+.section-block{position:relative;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:4px;padding-right:4px}
+.hero-grid{display:grid;grid-template-columns:1fr;align-items:center;gap:24px;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:4px;padding-right:4px;overflow:hidden}
 .hero-grid>*{min-width:0}
 .hero-block{overflow:hidden;padding-top:56px;padding-bottom:20px}
-.footer-block{position:relative;z-index:1;margin-top:44px;padding-left:8px;padding-right:8px;padding-bottom:80px;padding-top:40px}
+.footer-block{position:relative;z-index:1;margin-top:44px;padding-left:4px;padding-right:4px;padding-bottom:80px;padding-top:40px}
 
 /* Enhanced cursor effects */
 .cursor-ring.cursor-hot{
@@ -709,14 +716,14 @@ section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
   .pcard-hero .pphoto{max-height:140px}
 }
 @media(min-width:640px){
-  .section-block{padding-left:16px;padding-right:16px}
-  .hero-grid{padding-left:16px;padding-right:16px;gap:40px}
+  .section-block{padding-left:12px;padding-right:12px}
+  .hero-grid{padding-left:12px;padding-right:12px;gap:40px}
   .pcard-hero{max-width:360px}
   .pcard-hero .pphoto{aspect-ratio:4/3;max-height:none}
   .pcard-hero h2{font-size:1.5rem;margin-top:16px}
   .pcard-hero .pdiv{margin:14px 4px 12px}
   .pcard-hero .pchips span{font-size:.72rem;padding:6px 13px}
-  .footer-block{padding-left:16px;padding-right:16px;padding-bottom:128px;padding-top:48px}
+  .footer-block{padding-left:12px;padding-right:12px;padding-bottom:128px;padding-top:48px}
   .contact-box{padding:20px}
 }
 @media(min-width:768px){
