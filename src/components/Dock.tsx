@@ -30,6 +30,29 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
   const langAnnounce = lang === 'ar' ? 'تم التغيير إلى العربية' : lang === 'fr' ? 'Langue changée en français' : 'Language changed to English';
   const wrapRef = useRef<HTMLDivElement>(null);
   const [tp, setTp] = useState<{ text: string; x: number; y: number } | null>(null);
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    let last = window.scrollY, raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const y = window.scrollY;
+        setHidden((prev) => {
+          if (y > 100 && y > last + 4) return true;
+          if (y < last - 4) return false;
+          return prev;
+        });
+        last = y;
+      });
+    };
+    document.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      document.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
 
   useEffect(() => {
     const el = wrapRef.current;
@@ -50,11 +73,11 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
     <>
       <div aria-live="polite" className="sr-only">{langAnnounce}</div>
       <a href="assets/CV_Ahmed_Ouarrali.pdf" download data-magnetic
-        className="btn btn-sm top-left top-pill fixed left-5 top-5 z-50 md:left-8 tip"
+        className={`btn btn-sm top-left top-pill fixed left-5 top-5 z-50 md:left-8 tip${hidden ? ' top-pills-hidden' : ''}`}
         data-tip={t.dock.resume}>
         {t.dock.resume}
       </a>
-      <div ref={wrapRef} className="top-right fixed right-5 top-5 z-50 flex max-w-[calc(100vw-2.5rem)] flex-wrap items-center justify-end gap-2 md:right-8">
+      <div ref={wrapRef} className={`top-right fixed right-5 top-5 z-50 flex max-w-[calc(100vw-2.5rem)] flex-wrap items-center justify-end gap-2 md:right-8${hidden ? ' top-pills-hidden' : ''}`}>
         <div className="langsw" role="group" aria-label={t.dock.lang}>
           {LANGS.map((l) => (
             <button key={l.code} className={lang === l.code ? 'active' : ''} onClick={() => setLang(l.code)} aria-label={l.aria}
