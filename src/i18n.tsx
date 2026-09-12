@@ -209,7 +209,7 @@ const fr: Dict = {
   hero: {
     badge: 'Ouvert \u00e0 un stage PFE \u2014 backend ou full-stack, Maroc ou distanciel',
     titleA: 'Des ', titleEm: 'produits complets', titleB: ', pas juste des fonctionnalit\u00e9s.',
-    lede1: 'Ahmed Ouarrali, \u00e9l\u00e8ve-ing\u00e9nieur en 5\u1d57\u02e3 ann\u00e9e \u00e0 l\u2019ENSIASD. J\u2019ai construit ',
+    lede1: 'Ahmed Ouarrali, \u00e9l\u00e8ve-ing\u00e9nieur en 5\u1d49 ann\u00e9e \u00e0 l\u2019ENSIASD. J\u2019ai construit ',
     lede2: ' de bout en bout : API Spring Boot, boutique Next.js, app React Native, PostgreSQL + Redis, d\u00e9ploy\u00e9 avec Docker sur Google Cloud.',
     ctaWork: 'Voir mes projets', ctaContact: 'Me contacter',
     cardRole: 'Ing\u00e9nieur Logiciel Full-Stack', cardTech: 'Technologies cl\u00e9s',
