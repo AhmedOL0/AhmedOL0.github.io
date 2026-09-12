@@ -303,8 +303,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 /* Tech logo in tool cards / pillar items */
 .tool-logo{width:18px;height:18px;flex-shrink:0;color:var(--gold);opacity:.8;transition:opacity .25s}
 .tool-card:hover .tool-logo,.pillar-item:hover .tool-logo{opacity:1}
-.pillar-item-logo{width:16px;height:16px;flex-shrink:0;color:var(--gold);opacity:.75;transition:opacity .25s}
-.pillar-item{flex-direction:row;align-items:center;gap:8px}
+.pillar-item-logo{width:16px;height:16px;flex-shrink:0;color:var(--gold);opacity:.75;transition:opacity .25s;margin-top:3px}
 
 /* Core tech chips (hero) */
 .core-chip{font-family:var(--mono);font-size:.73rem;color:var(--gold-hi);background:rgba(201,168,118,.08);
@@ -387,9 +386,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .pillar-icon{width:28px;height:28px;flex-shrink:0;color:var(--gold);margin-top:2px}
 .pillar-title{font-family:var(--mono);font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:4px;overflow-wrap:break-word;word-break:break-word}
 .pillar-subtitle{font-size:.78rem;color:var(--muted);line-height:1.4}
-.pillar-items{display:flex;flex-direction:column;gap:10px}
-.pillar-item{display:flex;flex-direction:column;gap:2px}
-.pillar-item-name{font-family:var(--mono);font-size:.76rem;font-weight:600;color:var(--gold-hi)}
+.pillar-items{display:flex;flex-direction:column;gap:12px}
+.pillar-item{display:flex;flex-direction:row;align-items:flex-start;gap:10px}
+.pillar-item-text{flex:1;min-width:0}
+.pillar-item-name{font-family:var(--mono);font-size:.76rem;font-weight:600;color:var(--gold-hi);white-space:nowrap}
 .pillar-item-desc{font-size:.76rem;color:var(--muted);line-height:1.45}
 
 /* Contact */

@@ -49,7 +49,7 @@ function PillarCard({ pillar }: { pillar: Pillar }) {
           return (
             <div className="pillar-item" key={item.name}>
               {iconKey && <TechIcon name={iconKey} className="pillar-item-logo" />}
-              <div>
+              <div className="pillar-item-text">
                 <span className="pillar-item-name">{item.name}</span>
                 <span className="pillar-item-desc">{item.desc}</span>
               </div>
