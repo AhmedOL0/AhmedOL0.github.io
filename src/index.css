@@ -223,9 +223,17 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 
 @media(max-width:820px){
   .orb-2,.orb-4{display:none}
+  .btn-sm{padding:10px 20px;font-size:.82rem}
+  .tag-more{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center}
+  .filters button{min-height:44px;padding:10px 18px}
+  .contact-box .field input,.contact-box .field textarea{font-size:16px}
 }
 @media(max-width:420px){
   .hero-stats{grid-template-columns:repeat(2,1fr)}
+  section{padding:64px 0}
+  .pcard{padding:20px}
+  .pcard h2{font-size:1.4rem}
+  .pmono span{font-size:3.6rem}
 }
 :root[data-theme="light"] .orb{opacity:.35}
 :root[data-theme="light"] .hero-orb{opacity:.5}
