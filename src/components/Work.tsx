@@ -90,7 +90,7 @@ function Card({ p, th, i, skipTilt }: { p: { year: string; kind: string; title: 
         </div>
         <div className="flex items-center gap-3 pt-1">
           {p.linkHref ? (
-            <a className="btn btn-ghost btn-sm" href={p.linkHref}>{p.linkLabel}<span className="arr">\u2192</span></a>
+            <a className="btn btn-ghost btn-sm" href={p.linkHref}>{p.linkLabel}<span className="arr">→</span></a>
           ) : (
             <span className="note text-[.78rem] italic" style={{ color: 'var(--faint)' }}>{p.note}</span>
           )}

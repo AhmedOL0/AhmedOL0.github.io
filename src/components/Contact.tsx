@@ -80,7 +80,7 @@ export default function Contact() {
             >
               {sending && <Spinner />}
               {sending ? t.contact.sending : t.contact.send}
-              {!sending && <span className="arr">\u2192</span>}
+              {!sending && <span className="arr">→</span>}
             </button>
           </div>
           {status === 'ok' && (
