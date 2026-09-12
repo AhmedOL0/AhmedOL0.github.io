@@ -645,7 +645,7 @@ div.top-right{animation:drop-in .8s cubic-bezier(.2,.7,.2,1) .22s both;transitio
 .langsw button.active{background:rgba(160,120,60,.22);color:var(--gold)}
 .iconbtn-glass{background:rgba(127,120,100,.1);backdrop-filter:blur(12px) saturate(1.5);
   -webkit-backdrop-filter:blur(12px) saturate(1.5)}
-.top-pills-hidden{opacity:0;pointer-events:none;transform:translateY(-12px);transition:opacity .3s,transform .3s}
+.top-pills-hidden{opacity:0;pointer-events:none;transform:translateY(-12px);transition:opacity .3s,transform .3s;animation:none!important}
 
 /* Reveal */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity 1.2s cubic-bezier(.25,.1,.25,1),transform 1.2s cubic-bezier(.25,.1,.25,1)}
