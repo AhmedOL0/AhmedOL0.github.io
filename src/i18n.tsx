@@ -29,7 +29,7 @@ export type Pillar = { icon: string; title: string; subtitle: string; items: Pil
 export type Dict = {
   dir: 'ltr' | 'rtl';
   nav: { work: string; about: string; experience: string; education: string; tools: string; contact: string; resume: string };
-  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede1: string; lede2: string; ctaWork: string; ctaContact: string; cardRole: string; cardTech: string; statsLabels: [string, string, string, string]; viewAll: string };
+  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede1: string; lede2: string; ctaWork: string; ctaContact: string; cardRole: string; cardTech: string; statsLabels: [string, string, string]; viewAll: string };
   core: string[];
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
   work: { kicker: string; title: string; sub: string; showLess: string; projects: ProjectT[] };
@@ -45,7 +45,6 @@ export type Dict = {
     kicker: string; title: string; sub: string;
     pyramid: { title: string; subtitle: string };
     levels: ToolLevel[];
-    extra: { title: string; items: string[] };
     pillars: Pillar[];
   };
   contact: {
@@ -78,8 +77,8 @@ const en: Dict = {
     lede2: ', an AI-augmented skincare e-commerce platform: Spring Boot API, Next.js storefront and back-office, React Native app, PostgreSQL + Redis, shipped with Docker to Google Cloud.',
     ctaWork: 'Browse production work', ctaContact: 'Get in touch',
     cardRole: 'Full-Stack Software Engineer', cardTech: 'Core technologies',
-    statsLabels: ['Projects shipped', 'Technologies', 'Platforms', 'Internships completed'] as [string, string, string, string],
-    viewAll: 'View all 22 technologies',
+    statsLabels: ['Projects shipped', 'Platforms', 'Internships completed'] as [string, string, string],
+    viewAll: '',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
   filters: { all: 'All', web: 'Web', mobile: 'Mobile', backend: 'Backend', ai: 'AI', iot: 'IoT' },
@@ -176,17 +175,6 @@ const en: Dict = {
         { name: 'axe-core', desc: 'Audits every public route against WCAG 2.2 — catching missing alt text, unlabeled form fields, and broken ARIA landmarks before they reach users. Structured violations fail CI.' },
       ]},
     ],
-    extra: {
-      title: 'Methodologies & Practices',
-      items: [
-        'Page Object Model — OdemLab checkout, product listing, and auth flows are each a single class. When the button text changes from "Pay" to "Place Order", one line updates, not twenty tests.',
-        'CI-gated regression — Playwright runs on every OdemLab PR. If the smoke suite fails, the merge is blocked. No exceptions.',
-        'Visual regression — screenshot baselines detect when a CSS change accidentally breaks the product grid, shifts the hero, or changes the brand accent color.',
-        'Accessibility-first — axe-core structural rules (missing labels, broken landmarks, no skip-link) are hard CI gates on every OdemLab public route.',
-        'Contract testing — OpenAPI schemas are validated against the live Spring Boot backend, so the frontend team never consumes an endpoint that does not exist.',
-        'Load testing — k6 scripts measure how many concurrent users OdemLab API handles before response time degrades, informing Cloud Run scaling settings.',
-      ],
-    },
     pillars: [
       { icon: 'M4 6h16M4 12h16m-7 6h7', title: 'DevOps & Infrastructure', subtitle: 'Ship fast, ship safe, watch it run.', items: [
         { name: 'Docker', desc: 'Multi-stage builds package OdemLab backend and frontend into minimal production images — no dev dependencies, no source code, smaller attack surface. Docker Compose replicates the full stack locally for testing.' },
@@ -195,22 +183,6 @@ const en: Dict = {
         { name: 'Grafana + Prometheus', desc: 'Real-time dashboards show OdemLab API response times, error rates, and throughput. Alerts fire when p95 latency exceeds thresholds — we know before users complain.' },
         { name: 'Flyway', desc: 'OdemLab database schema is managed as 93 versioned SQL migrations — replayable from zero. Any fresh database gets the correct schema in seconds, no manual SQL patches.' },
         { name: 'ShedLock', desc: 'Distributed locks ensure OdemLab cron jobs (cart recovery, scan reminders, GDPR cleanup) run exactly once across multiple Cloud Run instances — never duplicated, never skipped.' },
-      ]},
-      { icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z', title: 'Security & Compliance', subtitle: 'Defense in depth, not security by obscurity.', items: [
-        { name: 'JWT + Refresh Rotation', desc: 'OdemLab access tokens expire in minutes. Refresh tokens rotate on every use — if a token leaks, the original is immediately invalidated. Session hijacking window: seconds, not hours.' },
-        { name: 'AES-256-GCM Encryption', desc: 'Customer phone numbers, addresses, and names are encrypted at the database level. Even a full database dump exposes only unreadable ciphertext for personal data.' },
-        { name: 'Rate Limiting', desc: 'OdemLab login gets 10 attempts per IP per minute. Coupon validation gets 5 per minute to prevent brute-force code guessing. Legitimate users never notice; bots get blocked.' },
-        { name: 'GDPR Compliance', desc: 'Automated nightly jobs purge expired data. Right-to-erasure requests delete all customer records with an audit trail. Compliance is not an afterthought — it runs on a schedule.' },
-        { name: 'CORS + CSP', desc: 'Only OdemLab domains can call the API. Scripts load only from trusted sources via nonce-based policies. Prevents data exfiltration and unauthorized script injection.' },
-        { name: 'Turnstile CAPTCHA', desc: 'Guest checkout and login endpoints are protected by Cloudflare Turnstile — invisible to real users, blocking automated bots from creating fake orders or credential-stuffing.' },
-      ]},
-      { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Business & Product', subtitle: 'Code that makes money, not just code that works.', items: [
-        { name: 'Idempotent Orders', desc: 'Every OdemLab checkout carries a unique idempotency key. If the network retries, the customer is charged once — not twice. Revenue protected, trust preserved.' },
-        { name: 'Server-Side Pricing', desc: 'The OdemLab frontend never sends prices to the backend. All calculations happen server-side — discounts, shipping, totals. Client-side price manipulation is impossible.' },
-        { name: 'Stripe + CMI + COD', desc: 'Three payment paths feed into one order lifecycle. Stripe for international cards, CMI for Moroccan payment methods, cash-on-delivery for local trust. Maximum conversion, minimum complexity.' },
-        { name: 'Inventory Integrity', desc: 'SELECT FOR UPDATE locks product rows during checkout — two customers cannot buy the last item simultaneously. Atomic stock decrement prevents overselling.' },
-        { name: 'Guest Checkout', desc: 'Customers buy without creating an account. A one-time access token lets them track their order. Friction removed, conversion increased, no abandoned registrations.' },
-        { name: 'Trilingual + RTL', desc: 'OdemLab supports French, English, and Arabic with real layout mirroring — navigation, forms, and content flip for Arabic readers. Not translated labels, a fully mirrored experience.' },
       ]},
     ],
   },
@@ -238,8 +210,8 @@ const fr: Dict = {
     lede2: ', plateforme e-commerce cosm\u00e9tique augment\u00e9e par l\u2019IA : API Spring Boot, boutique Next.js et back-office, app React Native, PostgreSQL + Redis, livr\u00e9e avec Docker sur Google Cloud.',
     ctaWork: 'Voir mes projets', ctaContact: 'Me contacter',
     cardRole: 'Ing\u00e9nieur Logiciel Full-Stack', cardTech: 'Technologies cl\u00e9s',
-    statsLabels: ['Projets livr\u00e9s', 'Technologies', 'Plateformes', 'Stages compl\u00e9t\u00e9s'] as [string, string, string, string],
-    viewAll: 'Voir les 22 technologies',
+    statsLabels: ['Projets livr\u00e9s', 'Plateformes', 'Stages compl\u00e9t\u00e9s'] as [string, string, string],
+    viewAll: '',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
   filters: { all: 'Tous', web: 'Web', mobile: 'Mobile', backend: 'Backend', ai: 'IA', iot: 'IoT' },
@@ -337,17 +309,6 @@ const fr: Dict = {
         { name: 'axe-core', desc: 'Audite chaque route publique contre WCAG 2.2 — attrape les textes alternatifs manquants, les formulaires non étiquetés et les repères ARIA cassés avant qu\'ils n\'atteignent les utilisateurs.' },
       ]},
     ],
-    extra: {
-      title: 'Méthodes & Pratiques',
-      items: [
-        'Modèle Page Object — le checkout, le catalogue et l\'auth d\'OdemLab sont chacun une classe. Quand le texte du bouton passe de « Payer » à « Valider la commande », une seule ligne se met à jour, pas vingt tests.',
-        'Régression gating CI — Playwright s\'exécute sur chaque PR d\'OdemLab. Si la smoke échoue, le merge est bloqué. Pas d\'exception.',
-        'Régression visuelle — les captures baseline détectent quand un changement CSS casse accidentellement la grille produits, décale le héros ou change la couleur d\'accent de la marque.',
-        'Accessibilité d\'abord — les règles structurales axe-core (labels manquants, repères cassés, pas de skip-link) sont des portes CI strictes sur chaque route publique d\'OdemLab.',
-        'Tests de contrat — les schémas OpenAPI sont validés contre le backend Spring Boot en direct, donc l\'équipe frontend ne consomme jamais un endpoint qui n\'existe pas.',
-        'Tests de charge — les scripts k6 mesurent combien d\'utilisateurs simultanés l\'API OdemLab gère avant la dégradation, informant les paramètres de dimensionnement Cloud Run.',
-      ],
-    },
     pillars: [
       { icon: 'M4 6h16M4 12h16m-7 6h7', title: 'DevOps & Infrastructure', subtitle: 'Livrer vite, livrer sûr, surveiller l\'exécution.', items: [
         { name: 'Docker', desc: 'Les builds multi-étapes empaquetent le backend et frontend OdemLab en images de production minimales — pas de dépendances dev, pas de code source, surface d\'attaque réduite. Docker Compose reproduit la pile complète en local pour les tests.' },
@@ -356,22 +317,6 @@ const fr: Dict = {
         { name: 'Grafana + Prometheus', desc: 'Tableaux de bord en temps réel affichant les temps de réponse, taux d\'erreur et débit de l\'API OdemLab. Alertes quand la latence p95 dépasse les seuils — on sait avant les utilisateurs.' },
         { name: 'Flyway', desc: 'Le schéma de la base OdemLab est géré par 93 migrations SQL versionnées — rejouables depuis zéro. Toute base fraîche obtient le bon schéma en quelques secondes, pas de patches SQL manuels.' },
         { name: 'ShedLock', desc: 'Les verrous distribués garantissent que les tâches cron d\'OdemLab (récupération de panier, rappels, nettoyage RGPD) s\'exécutent une seule fois sur plusieurs instances Cloud Run — jamais dupliquées, jamais oubliées.' },
-      ]},
-      { icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z', title: 'Sécurité & Conformité', subtitle: 'Défense en profondeur, pas l\'obscurité.', items: [
-        { name: 'JWT + Rotation', desc: 'Les jetons d\'accès d\'OdemLab expirent en minutes. Les refresh tokens tournent à chaque utilisation — si un token fuite, l\'original est immédiatement invalidé. Fenêtre de détournement : secondes, pas heures.' },
-        { name: 'Chiffrement AES-256-GCM', desc: 'Les numéros de téléphone, adresses et noms des clients sont chiffrés au niveau de la base. Même un dump complet de la base n\'expose que du texte illisible pour les données personnelles.' },
-        { name: 'Rate Limiting', desc: 'La connexion OdemLab autorise 10 tentatives par IP par minute. La validation de coupon : 5 par minute pour empêcher le force brute. Les utilisateurs légitimes ne remarquent rien ; les bots sont bloqués.' },
-        { name: 'Conformité RGPD', desc: 'Des jobs nocturnes automatiques purgeent les données expirées. Les demandes de droit à l\'effacement suppriment tous les enregistrements clients avec piste d\'audit. La conformité n\'est pas un ajout — c\'est planifié.' },
-        { name: 'CORS + CSP', desc: 'Seuls les domaines OdemLab peuvent appeler l\'API. Les scripts ne se chargent que depuis des sources fiables via des politiques par nonce. Empêche l\'exfiltration de données et l\'injection de scripts non autorisés.' },
-        { name: 'CAPTCHA Turnstile', desc: 'Le checkout invité et les endpoints d\'auth sont protégés par Cloudflare Turnstile — invisible pour les vrais utilisateurs, bloque les bots automatiques qui créent de faux ordres ou testent des mots de passe.' },
-      ]},
-      { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Business & Produit', subtitle: 'Du code qui génère du revenu, pas juste du code qui fonctionne.', items: [
-        { name: 'Commandes Idempotentes', desc: 'Chaque checkout OdemLab porte une clé d\'idempotence unique. Si le réseau réessaie, le client est débité une seule fois — pas deux. Revenu protégé, confiance préservée.' },
-        { name: 'Prix côté Serveur', desc: 'Le frontend OdemLab n\'envoie jamais les prix au backend. Tous les calculs se font côté serveur — réductions, livraison, totaux. La manipulation client-side des prix est impossible.' },
-        { name: 'Stripe + CMI + COD', desc: 'Trois chemins de paiement alimentent un seul cycle de commande. Stripe pour les cartes internationales, CMI pour les moyens de paiement marocains, contre-remboursement pour la confiance locale. Conversion maximale, complexité minimale.' },
-        { name: 'Intégrité Stock', desc: 'SELECT FOR UPDATE verrouille les lignes produits pendant le checkout — deux clients ne peuvent pas acheter le dernier article simultanément. Décrément atomique empêche le surstockage.' },
-        { name: 'Checkout Invité', desc: 'Les clients achètent sans créer de compte. Un jeton à usage unique leur permet de suivre leur commande. Frottement réduit, conversion augmentée, pas d\'abandon d\'inscription.' },
-        { name: 'Trilingue + RTL', desc: 'OdemLab supporte le français, l\'anglais et l\'arabe avec un vrai miroir de mise en page — navigation, formulaires et contenus se retournent pour les lecteurs arabes. Pas des libellés traduits, une expérience entièrement miroir.' },
       ]},
     ],
   },
@@ -399,8 +344,8 @@ const ar: Dict = {
     lede2: '، منصة تجارة إلكترونية للتجميل مدعومة بالذكاء الاصطناعي: API Spring Boot، متجر Next.js ومكتب خلفي، تطبيق React Native، PostgreSQL + Redis، منشورة عبر Docker على Google Cloud.',
     ctaWork: 'استعرض أعمالي', ctaContact: 'تواصل معي',
     cardRole: 'مهندس برمجيات Full-Stack', cardTech: 'التقنيات الأساسية',
-    statsLabels: ['مشاريع منشورة', 'تقنيات', 'منصات', 'تدريبات مكتملة'] as [string, string, string, string],
-    viewAll: 'عرض كل الـ 22 تقنية',
+    statsLabels: ['مشاريع منشورة', 'منصات', 'تدريبات مكتملة'] as [string, string, string],
+    viewAll: '',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
   filters: { all: 'الكل', web: 'ويب', mobile: 'موبايل', backend: 'باك-إند', ai: 'ذكاء اصطناعي', iot: 'إنترنت الأشياء' },
@@ -498,17 +443,6 @@ const ar: Dict = {
         { name: 'axe-core', desc: 'يتدقيق كل مسار عام ضد WCAG 2.2 — يلتقط النصوص البديلة المفقودة، النماذج غير المُسمّاة، ومعالم ARIA المكسورة قبل وصولها للمستخدمين.' },
       ]},
     ],
-    extra: {
-      title: 'المناهج والممارسات',
-      items: [
-        'نموذج Page Object — الدفع، الكتالوج، والمصادقة في OdemLab كل واحد فئة واحدة. عند تغيير نص الزر من « الدفع » إلى « تأكيد الطلب »، سطر واحد يتحدث، ليس عشرين اختباراً.',
-        'استيفاء CI — Playwright يشغّل على كل PR في OdemLab. إذا فشلت المجموعة الأساسية، يُمنع الدمج. لا استثناء.',
-        'تناقص بصري — لقطات baseline تكشف عندما يكسر تغيير CSS بالخطأ شبكة المنتجات أو يزيح البطل أو يغيّر لون العلامة التجارية.',
-        'إمكانية الوصول أولاً — القواعد الهيكلية axe-core (نصوص بديلة مفقودة، معالم مكسورة، لا skip-link) هي بوابات CI صارمة على كل مسار عام في OdemLab.',
-        'اختبارات العقود — مخططات OpenAPI مُتحقق منها ضد الخادم المباشر، لذلك فريق الواجهة لا يستهلك نقطة نهاية غير موجودة أبداً.',
-        'اختبارات الحمل — سكريبتات k6 تقيس عدد المستخدمين المتزامنين الذين يتعامل معهم OdemLab قبل تدهور الاستجابة، مما ي inform إعدادات تحجيم Cloud Run.',
-      ],
-    },
     pillars: [
       { icon: 'M4 6h16M4 12h16m-7 6h7', title: 'DevOps والبنية التحتية', subtitle: 'نشر سريع، نشر آمن، مراقبة التشغيل.', items: [
         { name: 'Docker', desc: 'بناء متعدد المراحل يُعلّب backend وfrontend OdemLab في صور إنتاج مصغرة — لا مكتبات تطوير، لا كود مصدر، سطحة هجوم مصغرة. Docker Compose يُعيد بناء الكامل محلياً للاختبار.' },
@@ -517,22 +451,6 @@ const ar: Dict = {
         { name: 'Grafana + Prometheus', desc: 'لوحات التحكم في الوقت الحقيقي تُظهر أوقات استجابة OdemLab ومعدل الأخطاء وال throughput. تنبيهات عند تجاوز p95 لعتبات — نعرف قبل المستخدمين.' },
         { name: 'Flyway', desc: 'مخطط قاعدة OdemLab مُدير بـ 93 ترحيل SQL مُصدَر — قابل لإعادة التشغيل من الصفر. أي قاعدة جديدة تحصل على المخطط الصحيح في ثوانٍ، لا رقع SQL يدوية.' },
         { name: 'ShedLock', desc: 'أقفال موزعة تضمن أن مهام OdemLab الدورية (استرداد السلة، تذكيرات، تنظيف GDPR) تعمل مرة واحدة فقط عبر نسخ Cloud Run المتعددة — لا تضاعف، لا نسيان.' },
-      ]},
-      { icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z', title: 'الأمان والامتثال', subtitle: 'دفاع متعدد الطبقات، ليس بالإخفاء.', items: [
-        { name: 'JWT + تدوير Refresh', desc: 'رموز الوصول في OdemLab تنتهي خلال دقائق. Refresh tokens تدور مع كل استخدام — إذا تسرب رمز، يتم إبطال الأصلي فوراً. نافذة الاختطاف: ثوانٍ، ليس ساعات.' },
-        { name: 'تشفير AES-256-GCM', desc: 'أرقام الهواتف والعناوين والأسماء مشفرة على مستوى قاعدة البيانات. حتى نسخة كاملة للقاعدة لا تكشف سوى نص مشفر للبيانات الشخصية.' },
-        { name: 'Rate Limiting', desc: 'تسجيل الدخول في OdemLab يسمح بـ 10 محاولات لكل IP في الدقيقة. التحقق من الكوبون: 5 في الدقيقة لمنع القوة الغاشمة. المستخدمون الشرعيون لا يلاحظون؛ البوتات تُمنع.' },
-        { name: 'امتثال GDPR', desc: 'مهام ليلية تلقائية تحذف البيانات المنتهية. طلبات الحق في المحو تحذف كل سجلات العميل مع سجل تدقيق. الامتثال ليس إضافياً — مُجدول.' },
-        { name: 'CORS + CSP', desc: 'مجالات OdemLab فقط يمكنها استدعاء API. النصوص تُحمّل فقط من مصادر موثوقة عبر سياسات nonce. يمنع تسريب البيانات وحقن النصوص غير المصرح بها.' },
-        { name: 'CAPTCHA Turnstile', desc: 'الدفع كضيف والمصادقة محميان بـ Cloudflare Turnstile — غير مرئيين للمستخدمين الحقيقيين، يمنعون البوتات من إنشاء طلبات وهمية أو تجربة كلمات مرور.' },
-      ]},
-      { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: 'الأعمال والمنتج', subtitle: 'كود يحقق إيرادات، ليس مجرد كود يعمل.', items: [
-        { name: 'طلبات غير قابلة للتكرار', desc: 'كل عملية دفع في OdemLab تحمل مفتاح فريد. إذا أعاد الشبكة المحاولة، يُدفع العميل مرة واحدة — ليس مرتين. الإيراد محمي، الثقة محفوظة.' },
-        { name: 'تسعير من الخادم', desc: 'Frontend OdemLab لا يُرسل الأسعار للخادم أبداً. كل الحسابات تتم خادمياً — الخصومات، الشحن، المجموع. التلاعب بالأسعار من الواجهة مستحيل.' },
-        { name: 'Stripe + CMI + COD', desc: 'ثلاثة مسارات دفع تغذّي دورة طلب واحدة. Stripe للبطاقات الدولية، CMI لوسائل الدفع المغربية، الدفع عند الاستلام للثقة المحلية. تحويل أقصى، تعقيد أدنى.' },
-        { name: 'سلامة المخزون', desc: 'SELECT FOR UPDATE يُقفل صفوف المنتجات أثناء الشراء — عميلان لا يمكنهما شراء آخر قطعة في نفس الوقت. خصم ذري يمنع البيع الزائد.' },
-        { name: 'دفع كضيف', desc: 'العملاء يشترون دون إنشاء حساب. رمز للاستخدام الواحد يتيح تتبع الطلب. احتكاك أقل، تحويل أعلى، لا تسجيلات مهجورة.' },
-        { name: 'ثلاث لغات + RTL', desc: 'OdemLab يدعم الفرنسية والإنجليزية والعربية مع انعكاس تخطيط حقيقي — التنقل والنماذج والمحتوى تتقلب للقراء العرب. لا مجرد تسميات مترجمة، تجربة كاملة مُعكوسة.' },
       ]},
     ],
   },

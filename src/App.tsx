@@ -2,7 +2,6 @@ import { Suspense, lazy, useEffect, useState, Component, type ReactNode } from '
 import Dock, { TopPills } from './components/Dock';
 import Preloader from './components/Preloader';
 import Hero from './components/Hero';
-import Marquee from './components/Marquee';
 import Work from './components/Work';
 import About from './components/About';
 import Experience, { Education } from './components/Experience';
@@ -125,7 +124,6 @@ function Site() {
       <div className="relative z-[1] mx-auto max-w-[1120px] px-7" style={{ opacity: ready ? 1 : 0 }}>
         <Hero />
       </div>
-      <Marquee />
       <main id="main" className="relative z-[1] mx-auto max-w-[1120px] px-7">
         <Work />
         <About />

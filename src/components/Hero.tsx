@@ -15,7 +15,6 @@ const core = [
 
 const statValues: { value: number; suffix: string }[] = [
   { value: 6, suffix: '+' },
-  { value: 22, suffix: '' },
   { value: 3, suffix: '' },
   { value: 4, suffix: '' },
 ];
@@ -108,9 +107,6 @@ export default function Hero() {
               </span>
             ))}
           </div>
-          <a href="#tools" className="rise hero-view-all" style={{ animationDelay: '.62s' }}>
-            {t.hero.viewAll} <span className="arr">→</span>
-          </a>
           <a href="#work" className="rise scroll-cue" style={{ animationDelay: '.7s' }} aria-hidden="true" tabIndex={-1}><i /></a>
         </div>
         <div className="rise" style={{ animationDelay: '.3s' }}><ProfileCard /></div>

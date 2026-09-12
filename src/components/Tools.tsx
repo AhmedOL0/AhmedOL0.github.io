@@ -60,14 +60,6 @@ export default function Tools() {
           ))}
         </div>
       </div>
-      <div className="methods-grid mt-10">
-        <h3>{t.tools.extra.title}</h3>
-        <div className="methods-list">
-          {t.tools.extra.items.map((item) => (
-            <div className="method-chip" key={item}>{item}</div>
-          ))}
-        </div>
-      </div>
       <div className="pillars-grid mt-10">
         {t.tools.pillars.map((pillar) => (
           <PillarCard key={pillar.title} pillar={pillar} />
