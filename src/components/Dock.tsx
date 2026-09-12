@@ -14,6 +14,9 @@ function Icon({ d, filled }: { d: string; filled?: boolean }) {
 const P = {
   home: 'M3 10.5 12 3l9 7.5M5 9.5V21h5v-6h4v6h5V9.5',
   work: 'M4 8h16v12H4zM9 8V5h6v3M4 13h16',
+  user: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z',
+  briefcase: 'M4 7h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7zM9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2',
+  code: 'M16 18l6-6-6-6M8 6l-6 6 6 6',
   mail: 'M4 6h16v12H4zM4 7l8 6 8-6',
   sun: 'M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 1v3M12 20v3M1 12h3M20 12h3M4.2 4.2l1.8 1.8M17.3 17.3l1.8 1.8M19.8 4.9l-1.8 1.8M6.3 17.3l-1.8 1.8',
   moon: 'M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z',
@@ -73,6 +76,9 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
   const items = [
     { id: 'top', href: '#top', label: t.dock.home, icon: <Icon d={P.home} /> },
     { id: 'work', href: '#work', label: t.dock.work, icon: <Icon d={P.work} /> },
+    { id: 'about', href: '#about', label: t.nav.about, icon: <Icon d={P.user} /> },
+    { id: 'experience', href: '#experience', label: t.nav.experience, icon: <Icon d={P.briefcase} /> },
+    { id: 'tools', href: '#tools', label: t.nav.tools, icon: <Icon d={P.code} /> },
     { id: 'contact', href: '#contact', label: t.dock.contact, icon: <Icon d={P.mail} /> },
   ];
   const isActive = (id: string) =>
@@ -81,6 +87,7 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
     <div className={`dock${hidden ? ' dock-hidden' : ''}`} role="navigation" aria-label={t.dock.nav}>
       {items.map((it) => (
         <a key={it.id} href={it.href} aria-label={it.label} title={it.label}
+          aria-current={isActive(it.id) ? 'true' : undefined}
           className={isActive(it.id) ? 'active' : ''}>
           {it.icon}
         </a>
@@ -90,10 +97,10 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
         <Icon d={theme === 'dark' ? P.sun : P.moon} />
       </button>
       <span className="dock-sep" />
-      <a href="https://www.linkedin.com/in/ahmed-ouarrali" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+      <a className="dock-social" href="https://www.linkedin.com/in/ahmed-ouarrali" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
         <Icon d={P.linkedin} />
       </a>
-      <a href="https://github.com/AhmedOL0" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <a className="dock-social" href="https://github.com/AhmedOL0" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
         <Icon d={P.github} filled />
       </a>
     </div>

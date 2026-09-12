@@ -4,6 +4,8 @@ import { PROJECT_CATS, PROJECT_TAGS, PROJECT_THUMBS, thumbTitle, useLang } from 
 
 const filterKeys = ['all', 'web', 'mobile', 'backend', 'ai', 'iot'] as const;
 
+const cardIds = ['odemlab', 'medical', 'fittrack', 'campus', 'summarizer', 'iot'];
+
 export default function Work() {
   const { t } = useLang();
   const [f, setF] = useState<string>('all');
@@ -29,7 +31,7 @@ export default function Work() {
           if (f !== 'all' && !PROJECT_CATS[i].includes(f)) return null;
           const th = thumbTitle(p);
           return (
-            <Card key={f + p.title} p={p} th={th} i={i} skipTilt={skipTilt} />
+            <Card key={f + p.title} p={p} th={th} i={i} skipTilt={skipTilt} cardId={cardIds[i]} />
           );
         })}
       </div>
@@ -37,7 +39,7 @@ export default function Work() {
   );
 }
 
-function Card({ p, th, i, skipTilt }: { p: { year: string; kind: string; title: string; description: string; result?: string; note?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; skipTilt: boolean }) {
+function Card({ p, th, i, skipTilt, cardId }: { p: { year: string; kind: string; title: string; description: string; result?: string; note?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; skipTilt: boolean; cardId: string }) {
   const { t } = useLang();
   const ref = useRef<HTMLDivElement>(null);
   const [tagsExpanded, setTagsExpanded] = useState(false);
@@ -59,6 +61,7 @@ function Card({ p, th, i, skipTilt }: { p: { year: string; kind: string; title: 
   return (
     <article
       ref={ref}
+      id={`work-${cardId}`}
       className="card rise" style={{ animationDelay: `${Math.min(i, 5) * 90}ms` }}
       onAnimationEnd={(e) => { e.currentTarget.classList.remove('rise'); }}
       onMouseMove={handleMove}
@@ -78,12 +81,12 @@ function Card({ p, th, i, skipTilt }: { p: { year: string; kind: string; title: 
             <span key={tag}>{tag}</span>
           ))}
           {!tagsExpanded && PROJECT_TAGS[i].length > 6 && (
-            <button className="tag-more" type="button" onClick={() => setTagsExpanded(true)}>
+            <button className="tag-more" type="button" aria-expanded={false} aria-label={`Show ${PROJECT_TAGS[i].length - 6} more tags`} onClick={() => setTagsExpanded(true)}>
               +{PROJECT_TAGS[i].length - 6}
             </button>
           )}
           {tagsExpanded && PROJECT_TAGS[i].length > 6 && (
-            <button className="tag-more" type="button" onClick={() => setTagsExpanded(false)}>
+            <button className="tag-more" type="button" aria-expanded={true} aria-label="Show fewer tags" onClick={() => setTagsExpanded(false)}>
               {t.work.showLess}
             </button>
           )}

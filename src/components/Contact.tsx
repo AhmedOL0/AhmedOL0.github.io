@@ -58,16 +58,16 @@ export default function Contact() {
       <div className="contact-box mt-8 grid grid-cols-1 gap-10 p-7 lg:grid-cols-2 lg:p-[42px]">
         <form onSubmit={handleSubmit} aria-busy={sending}>
           <input type="text" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
-          <label className="field" htmlFor="n">
-            <input id="n" name="name" type="text" placeholder=" " required disabled={sending} />
+          <label className="field" htmlFor="contact-name">
+            <input id="contact-name" name="name" type="text" placeholder=" " required disabled={sending} />
             <span>{t.contact.name}</span>
           </label>
-          <label className="field" htmlFor="e">
-            <input id="e" name="email" type="email" placeholder=" " required disabled={sending} />
+          <label className="field" htmlFor="contact-email">
+            <input id="contact-email" name="email" type="email" placeholder=" " required disabled={sending} />
             <span>{t.contact.email}</span>
           </label>
-          <label className="field" htmlFor="m">
-            <textarea id="m" name="message" rows={5} placeholder=" " required disabled={sending} />
+          <label className="field" htmlFor="contact-message">
+            <textarea id="contact-message" name="message" rows={5} placeholder=" " required disabled={sending} />
             <span>{t.contact.msg}</span>
           </label>
           <div style={{ marginTop: 22 }}>
@@ -84,7 +84,7 @@ export default function Contact() {
             </button>
           </div>
           {status === 'ok' && (
-            <div className="form-success-box">
+            <div className="form-success-box" role="status" aria-live="polite">
               <svg viewBox="0 0 52 52" style={{ width: 48, height: 48 }}>
                 <circle cx="26" cy="26" r="24" fill="none" stroke="#16a34a" strokeWidth="2.5"
                   style={{ strokeDasharray: 151, strokeDashoffset: 151, animation: 'check-circle .5s ease .1s forwards' }} />
@@ -96,9 +96,16 @@ export default function Contact() {
             </div>
           )}
           {status === 'error' && (
-            <p className="form-error">
-              {t.contact.error}
-            </p>
+            <div className="form-error-box" role="alert" aria-live="assertive">
+              <svg viewBox="0 0 52 52" style={{ width: 44, height: 44 }}>
+                <circle cx="26" cy="26" r="24" fill="none" stroke="#ef4444" strokeWidth="2.5"
+                  style={{ strokeDasharray: 151, strokeDashoffset: 151, animation: 'check-circle .5s ease .1s forwards' }} />
+                <path d="M18 18l16 16M34 18l-16 16" fill="none" stroke="#ef4444" strokeWidth="2.5" strokeLinecap="round"
+                  style={{ strokeDasharray: 40, strokeDashoffset: 40, animation: 'check-mark .3s ease .45s forwards' }} />
+              </svg>
+              <p className="form-error-text">{t.contact.error}</p>
+              <p className="form-error-sub"><a href="mailto:ahmedouarrali12@gmail.com">ahmedouarrali12@gmail.com</a></p>
+            </div>
           )}
         </form>
         <div className="direct text-[.95rem]">
