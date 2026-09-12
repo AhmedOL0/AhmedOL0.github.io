@@ -125,9 +125,7 @@ function Site() {
       <div className="relative z-[1] mx-auto max-w-[1120px] px-7" style={{ opacity: ready ? 1 : 0 }}>
         <Hero />
       </div>
-      <div className="relative z-[1] mx-auto max-w-[1120px] px-7 mt-10">
-        <Marquee />
-      </div>
+      <Marquee />
       <main id="main" className="relative z-[1] mx-auto max-w-[1120px] px-7">
         <Work />
         <About />

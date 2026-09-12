@@ -155,7 +155,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 @keyframes terminal-in{from{opacity:0;transform:scale(.96) translateY(10px)}to{opacity:1;transform:none}}
 
 /* Marquee */
-.marquee{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);overflow:hidden;padding:15px 0;background:rgba(127,120,100,.05);position:relative;z-index:1}
+.marquee{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);overflow:hidden;padding:15px 0;margin-top:40px;background:rgba(127,120,100,.05);position:relative;z-index:1}
 .marquee-track{display:flex;width:max-content;animation:mscroll 32s linear infinite;will-change:transform}
 .marquee-inner{display:flex;flex-shrink:0}
 .marquee-item{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);white-space:nowrap;margin-right:54px;transition:color .25s}
