@@ -55,7 +55,7 @@ export default function Contact() {
       <p className="sub">
         {t.contact.sub}<strong style={{ color: 'var(--ink)' }}>{t.contact.subEm}</strong>{t.contact.subEnd}
       </p>
-      <div className="contact-box mt-8 grid grid-cols-1 gap-6 sm:gap-10 p-5 sm:p-7 lg:grid-cols-2 lg:p-[42px]">
+      <div className="contact-box mt-8 grid grid-cols-1 gap-6 sm:gap-10 p-3 sm:p-5 md:p-7 lg:grid-cols-2 lg:p-[42px]">
         <form onSubmit={handleSubmit} aria-busy={sending}>
           <input type="text" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
           <label className="field" htmlFor="contact-name">
