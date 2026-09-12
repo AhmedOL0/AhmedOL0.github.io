@@ -80,7 +80,7 @@ export default function Hero() {
   const y = useScrollY();
   const fade = calm ? {} : { opacity: Math.max(0, 1 - y / 750), transform: `translateY(${y * 0.14}px)` };
   return (
-    <header id="top" ref={ref} className="relative pt-[110px] pb-[50px]">
+    <header id="top" ref={ref} className="relative pt-[70px] pb-[30px] sm:pt-[110px] sm:pb-[50px]">
       <div className="hero-orb" aria-hidden="true" />
       <div className="hero-orb hero-orb-2" aria-hidden="true" />
       <div className="hero-dot-grid" aria-hidden="true" />
