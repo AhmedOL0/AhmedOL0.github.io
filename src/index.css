@@ -238,7 +238,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 :root[data-theme="light"] .orb{opacity:.35}
 :root[data-theme="light"] .hero-orb{opacity:.5}
 :root[data-theme="light"] .hero-orb-2{opacity:.4}
-.stat span{display:block;margin-top:10px;font-size:.8rem;color:var(--muted);line-height:1.5}
+.stat span{display:block;margin-top:6px;font-size:.82rem;color:var(--muted);line-height:1.5}
+.stat .stat-sub{font-size:.72rem;color:var(--faint);margin-top:2px}
 .about-grid h3{font-size:.92rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;font-weight:600}
 .about-grid h3::before{content:"";display:inline-block;width:18px;height:1px;background:var(--gold);margin-right:10px;vertical-align:middle}
 .about-grid ul{list-style:none}

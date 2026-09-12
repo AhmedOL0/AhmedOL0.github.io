@@ -68,12 +68,12 @@ function Card({ p, th, i, skipTilt }: { p: { year: string; kind: string; title: 
         <span className="tag-corner">{p.year}</span>
         <b>{th.pre}<i>{th.em}</i>{th.post}</b>
       </div>
-      <div className="body flex flex-col gap-2 p-[22px_24px_24px] flex-1">
+      <div className="body flex flex-col gap-1.5 p-[20px_22px_22px] flex-1">
         <span className="flag">{p.kind}</span>
         <h3 className="font-serif-d">{p.title}</h3>
-        <p className="text-[.88rem] leading-relaxed" style={{ color: 'var(--muted)' }}>{p.description}</p>
+        <p className="text-[.86rem] leading-[1.7]" style={{ color: 'var(--muted)' }}>{p.description}</p>
         {p.result && <p className="result text-[.82rem] font-medium" style={{ color: 'var(--gold)' }}>{p.result}</p>}
-        <div className="tags flex flex-wrap gap-1.5">
+        <div className="tags flex flex-wrap gap-1.5 mt-1">
           {PROJECT_TAGS[i].slice(0, tagsExpanded ? undefined : 6).map((tag) => (
             <span key={tag}>{tag}</span>
           ))}
@@ -88,9 +88,9 @@ function Card({ p, th, i, skipTilt }: { p: { year: string; kind: string; title: 
             </button>
           )}
         </div>
-        <div className="flex items-center gap-3 pt-0.5">
+        <div className="flex items-center gap-3 pt-1">
           {p.linkHref ? (
-            <a className="btn btn-ghost btn-sm" href={p.linkHref}>{p.linkLabel}<span className="arr">→</span></a>
+            <a className="btn btn-ghost btn-sm" href={p.linkHref}>{p.linkLabel}<span className="arr">\u2192</span></a>
           ) : (
             <span className="note text-[.78rem] italic" style={{ color: 'var(--faint)' }}>{p.note}</span>
           )}

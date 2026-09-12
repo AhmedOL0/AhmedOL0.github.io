@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState, useCallback, type FormEvent } from 'react';
 import Section from './Section';
 import { useLang } from '../i18n';
 
@@ -13,6 +13,11 @@ function Spinner() {
 export default function Contact() {
   const { t } = useLang();
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'error'>('idle');
+
+  const resetStatus = useCallback(() => {
+    const t = setTimeout(() => setStatus('idle'), 5000);
+    return () => clearTimeout(t);
+  }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,12 +34,21 @@ export default function Contact() {
         body: formData,
       });
       const data = await res.json();
-      setStatus(data.success ? 'ok' : 'error');
-      if (data.success) form.reset();
+      if (data.success) {
+        setStatus('ok');
+        form.reset();
+        resetStatus();
+      } else {
+        setStatus('error');
+        resetStatus();
+      }
     } catch {
       setStatus('error');
+      resetStatus();
     }
   };
+
+  const sending = status === 'sending';
 
   return (
     <Section id="contact" num="06" kicker={t.contact.kicker} title={t.contact.title} sub="" variant="right">
@@ -42,18 +56,18 @@ export default function Contact() {
         {t.contact.sub}<strong style={{ color: 'var(--ink)' }}>{t.contact.subEm}</strong>{t.contact.subEnd}
       </p>
       <div className="contact-box mt-8 grid grid-cols-1 gap-10 p-7 lg:grid-cols-2 lg:p-[42px]">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} aria-busy={sending}>
           <input type="text" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
           <label className="field" htmlFor="n">
-            <input id="n" name="name" type="text" placeholder=" " required />
+            <input id="n" name="name" type="text" placeholder=" " required disabled={sending} />
             <span>{t.contact.name}</span>
           </label>
           <label className="field" htmlFor="e">
-            <input id="e" name="email" type="email" placeholder=" " required />
+            <input id="e" name="email" type="email" placeholder=" " required disabled={sending} />
             <span>{t.contact.email}</span>
           </label>
           <label className="field" htmlFor="m">
-            <textarea id="m" name="message" rows={5} placeholder=" " required />
+            <textarea id="m" name="message" rows={5} placeholder=" " required disabled={sending} />
             <span>{t.contact.msg}</span>
           </label>
           <div style={{ marginTop: 22 }}>
@@ -61,11 +75,12 @@ export default function Contact() {
               className="btn btn-gold"
               data-magnetic
               type="submit"
-              disabled={status === 'sending'}
+              disabled={sending}
+              style={{ opacity: sending ? 0.7 : 1, transition: 'opacity .2s' }}
             >
-              {status === 'sending' && <Spinner />}
-              {status === 'sending' ? t.contact.sending : t.contact.send}
-              {status !== 'sending' && <span className="arr">→</span>}
+              {sending && <Spinner />}
+              {sending ? t.contact.sending : t.contact.send}
+              {!sending && <span className="arr">\u2192</span>}
             </button>
           </div>
           {status === 'ok' && (

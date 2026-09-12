@@ -15,7 +15,8 @@ function Stat({ value, label, sub }: { value: number; label: string; sub: string
   return (
     <div ref={ref} className={`stat${flash ? ' flash' : ''}`}>
       <b className="font-serif-d">{v}</b>
-      <span>{label}<br />{sub}</span>
+      <span>{label}</span>
+      <span className="stat-sub">{sub}</span>
     </div>
   );
 }
@@ -24,12 +25,12 @@ export default function About() {
   const { t } = useLang();
   return (
     <Section id="about" num="02" kicker={t.about.kicker} title={t.about.title} sub={t.about.sub} variant="left">
-      <div className="stats mt-9 grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div className="stats mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
         {t.about.stats.map((s, i) => (
           <Stat key={s.label} value={STAT_VALUES[i]} label={s.label} sub={s.sub} />
         ))}
       </div>
-      <div className="about-grid mt-[34px] grid grid-cols-1 gap-11 lg:grid-cols-2">
+      <div className="about-grid mt-[30px] grid grid-cols-1 gap-10 lg:grid-cols-2">
         <div>
           <h3>{t.about.bestTitle}</h3>
           <ul>{t.about.best.map((li) => <li key={li}>{li}</li>)}</ul>
@@ -39,9 +40,9 @@ export default function About() {
           <ul>{t.about.method.map((li) => <li key={li}>{li}</li>)}</ul>
         </div>
       </div>
-      <div className="langs mt-[26px] flex flex-wrap gap-2.5">
+      <div className="langs mt-[22px] flex flex-wrap gap-2">
         {t.about.langs.map((l) => (
-          <span key={l.l}><b>{l.l}</b> — {l.lvl}</span>
+          <span key={l.l}><b>{l.l}</b> \u2014 {l.lvl}</span>
         ))}
       </div>
     </Section>
