@@ -60,7 +60,7 @@ export type Dict = {
 };
 
 const tags = {
-  odemlab: ['Spring Boot 3.5', 'Java 21', 'Next.js 16', 'React Native', 'Expo SDK 54', 'PostgreSQL 18', 'Redis 7', 'Tailwind CSS', 'Framer Motion', 'Docker', 'GitHub Actions', 'GHCR', 'Google Cloud Run', 'Stripe', 'Gemini AI', 'Flyway', 'Caffeine', 'Resilience4j', 'ShedLock', 'Grafana', 'Prometheus', 'Playwright'],
+  odemlab: ['Spring Boot 3.5', 'Java 21', 'Next.js 16', 'React Native', 'Expo SDK 54', 'PostgreSQL 18', 'Redis 7', 'Tailwind CSS', 'Framer Motion', 'Docker', 'Terraform', 'GitHub Actions', 'GHCR', 'Google Cloud Run', 'Stripe', 'Gemini AI', 'Flyway', 'Caffeine', 'Resilience4j', 'ShedLock', 'Grafana', 'Prometheus', 'Playwright'],
   med: ['PHP', 'Laravel', 'MySQL', 'JavaScript', 'Bootstrap', 'Chart.js', 'BCrypt'],
   fit: ['Spring Boot', 'Java 17', 'Next.js', 'TypeScript', 'Tailwind CSS', 'MySQL', 'Docker', 'JWT', 'BCrypt'],
   campus: ['Flutter', 'Dart', 'Riverpod', 'Go Router', 'Firebase Auth', 'Cloud Firestore', 'ARCore', 'ARKit', 'QR Scanner'],
@@ -89,7 +89,7 @@ const en: Dict = {
     showLess: 'show less',
     projects: [
       { title: 'OdemLab — AI skincare e-commerce', year: 'Flagship', kind: 'Team of 4 · Private repo', heading: 'OdemLab', lead: 'd',
-        description: 'A full e-commerce platform with a Spring Boot API, Next.js storefront and back-office, and a React Native mobile app. Customers pay through Stripe, Moroccan CMI, or cash-on-delivery, all routed through one order lifecycle. AI skin analysis via Gemini degrades gracefully behind circuit breakers. Trilingual FR/EN/AR with real Arabic RTL layout. Deploys to Cloud Run with zero-traffic promotion and auto-rollback on health-check failure.',
+        description: 'A full e-commerce platform with a Spring Boot API, Next.js storefront and back-office, and a React Native mobile app. Customers pay through Stripe, Moroccan CMI, or cash-on-delivery, all routed through one order lifecycle. AI skin analysis via Gemini degrades gracefully behind circuit breakers. Trilingual FR/EN/AR with real Arabic RTL layout. Infrastructure managed with Terraform, deploys to Cloud Run with zero-traffic promotion and auto-rollback on health-check failure.',
         result: '3 payment methods, 3 languages, zero-downtime deploys. Live on Google Cloud.',
         note: 'Private repository — live demo and code walkthrough on request.' },
       { title: 'Medical appointment platform', year: '2025', kind: 'Internship · Full-stack', heading: 'Medical', lead: 'e',
@@ -249,7 +249,7 @@ const fr: Dict = {
     showLess: 'voir moins',
     projects: [
       { title: 'OdemLab — e-commerce cosmétique IA', year: 'Vitrine', kind: 'Équipe de 4 · Dépôt privé', heading: 'OdemLab', lead: 'd',
-        description: 'Plateforme e-commerce complète avec API Spring Boot, boutique Next.js et back-office, et application React Native. Les clients paient par Stripe, CMI marocaine ou contre-remboursement, tout passe par un seul cycle de commande. L\'analyse IA de la peau par Gemini dégrade gracieusement derrière des coupe-circuits. Trilingue FR/EN/AR avec vrai disposition RTL arabe. Déploiement Cloud Run sans trafic et retour arrière automatique.',
+        description: 'Plateforme e-commerce complète avec API Spring Boot, boutique Next.js et back-office, et application React Native. Les clients paient par Stripe, CMI marocaine ou contre-remboursement, tout passe par un seul cycle de commande. L\'analyse IA de la peau par Gemini dégrade gracieusement derrière des coupe-circuits. Trilingue FR/EN/AR avec vrai disposition RTL arabe. Infrastructure gérée avec Terraform, déploiement Cloud Run sans trafic et retour arrière automatique.',
         result: '3 modes de paiement, 3 langues, zéro interruption. En production sur Google Cloud.',
         note: 'Dépôt privé — démo en direct et revue de code sur demande.' },
       { title: 'Plateforme de rendez-vous médicaux', year: '2025', kind: 'Stage · Full-stack', heading: 'Médical', lead: 'e',
@@ -410,7 +410,7 @@ const ar: Dict = {
     showLess: 'عرض أقل',
     projects: [
       { title: 'OdemLab — تجارة التجميل بالذكاء الاصطناعي', year: 'الأبرز', kind: 'فريق من 4 · مستودع خاص', heading: 'OdemLab', lead: 'd',
-        description: 'منصة تجارة إلكترونية كاملة مع API Spring Boot، متجر Next.js ومكتب خلفي، وتطبيق React Native. العملاء يدفعون عبر Stripe أو CMI المغربية أو الدفع عند الاستلام، الكل يمر بدورة طلب واحدة. تحليل البشرة بالذكاء الاصطناعي من Gemini يتدهور بأمان خلف القواطع. ثلاث لغات FR/EN/AR مع تخطيط RTL عربي حقيقي. نشر على Cloud Run بدون توقف مع رجوع تلقائي.',
+        description: 'منصة تجارة إلكترونية كاملة مع API Spring Boot، متجر Next.js ومكتب خلفي، وتطبيق React Native. العملاء يدفعون عبر Stripe أو CMI المغربية أو الدفع عند الاستلام، الكل يمر بدورة طلب واحدة. تحليل البشرة بالذكاء الاصطناعي من Gemini يتدهور بأمان خلف القواطع. ثلاث لغات FR/EN/AR مع تخطيط RTL عربي حقيقي. البنية التحتية مُدارة بـ Terraform، نشر على Cloud Run بدون توقف مع رجوع تلقائي.',
         result: '3 طرق دفع، 3 لغات، نشر بدون توقف. يعمل على Google Cloud.',
         note: 'مستودع خاص — عرض حي ومراجعة الكود عند الطلب.' },
       { title: 'منصة المواعيد الطبية', year: '2025', kind: 'تدريب · Full-stack', heading: 'طبي', lead: 'ب',
