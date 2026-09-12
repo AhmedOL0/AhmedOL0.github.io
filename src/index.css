@@ -651,7 +651,8 @@ section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
 
 /* Layout classes — unlayered so they're the authority (Tailwind v4 utilities can't override unlayered CSS) */
 .section-block{position:relative;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:12px;padding-right:12px}
-.hero-grid{display:grid;grid-template-columns:1fr;align-items:center;gap:24px;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:12px;padding-right:12px}
+.hero-grid{display:grid;grid-template-columns:1fr;align-items:center;gap:24px;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:12px;padding-right:12px;overflow:hidden}
+.hero-grid>*{min-width:0}
 .hero-block{overflow:hidden;padding-top:56px;padding-bottom:20px}
 .footer-block{position:relative;z-index:1;margin-top:44px;padding-left:12px;padding-right:12px;padding-bottom:80px;padding-top:40px}
 
@@ -692,6 +693,8 @@ section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
 .pcard-hero h2{font-size:1.3rem;margin-top:14px}
 .pcard-hero .pdiv{margin:12px 4px 10px}
 .pcard-hero .pchips span{font-size:.68rem;padding:5px 11px}
+.hero-grid .lede{max-width:48ch}
+.hero-grid .cta{flex-wrap:wrap}
 
 /* Layout responsive overrides — MUST come after base rules so they win */
 @media(max-width:420px){
