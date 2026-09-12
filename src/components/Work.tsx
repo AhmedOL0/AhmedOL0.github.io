@@ -52,10 +52,14 @@ function Card({ p, th, i, skipTilt, cardId }: { p: { year: string; kind: string;
     const dx = (e.clientX - r.left) / r.width - 0.5;
     const dy = (e.clientY - r.top) / r.height - 0.5;
     el.style.transform = `perspective(950px) rotateX(${(-dy * 5).toFixed(2)}deg) rotateY(${(dx * 6).toFixed(2)}deg) translateY(-5px)`;
+    const thumb = el.querySelector('.thumb') as HTMLElement | null;
+    if (thumb) thumb.style.transform = 'scale(1.02)';
   }, [skipTilt]);
 
   const handleLeave = useCallback(() => {
     if (ref.current) ref.current.style.transform = '';
+    const thumb = ref.current?.querySelector('.thumb') as HTMLElement | null;
+    if (thumb) thumb.style.transform = '';
   }, []);
 
   return (

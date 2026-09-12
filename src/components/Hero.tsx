@@ -2,8 +2,12 @@ import { useState } from 'react';
 import { useLang } from '../i18n';
 import { useReveal, useScrollY, useCountUp, useInView } from '../hooks';
 import TechIcon from './TechIcon';
+import Typewriter from './Typewriter';
+import CharReveal from './CharReveal';
 
 const calm = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const typewriterWords = ['Full-Stack Engineer', 'Spring Boot · Next.js', 'React Native · Expo', 'PostgreSQL · Redis', 'Docker · Cloud Run'];
 
 const core = [
   { name: 'Java 21 · Spring Boot 3.5', tip: 'Backend APIs, security, caching, scheduling', icon: 'springboot' },
@@ -15,9 +19,9 @@ const core = [
 ];
 
 const statValues: { value: number; suffix: string }[] = [
-  { value: 6, suffix: '+' },
+  { value: 93, suffix: '' },
+  { value: 810, suffix: '' },
   { value: 3, suffix: '' },
-  { value: 4, suffix: '' },
 ];
 
 function StatItem({ target, suffix, label, inView }: { target: number; suffix: string; label: string; inView: boolean }) {
@@ -86,11 +90,14 @@ export default function Hero() {
             <span className="beacon" /> {t.hero.badge}
           </span>
           <h1 className="rise h-display text-[clamp(2.6rem,6vw,4.5rem)] max-w-[18ch]" style={{ animationDelay: '.15s' }}>
-            {t.hero.titleA}<em className="grad-text">{t.hero.titleEm}</em>{t.hero.titleB}
+            <CharReveal text={t.hero.titleA} delay={200} /><em className="grad-text"><CharReveal text={t.hero.titleEm} delay={200 + t.hero.titleA.length * 50} /></em><CharReveal text={t.hero.titleB} delay={200 + (t.hero.titleA.length + t.hero.titleEm.length) * 50} />
           </h1>
           <p className="rise lede mt-5 max-w-[56ch] text-[1.02rem]" style={{ color: 'var(--muted)', animationDelay: '.28s' }}>
             {t.hero.lede1}<strong style={{ color: 'var(--ink)' }}>OdemLab</strong>{t.hero.lede2}
           </p>
+          <div className="rise mt-4" style={{ animationDelay: '.35s' }}>
+            <Typewriter words={typewriterWords} />
+          </div>
           <div className="rise cta mt-7 flex flex-wrap gap-3" style={{ animationDelay: '.4s' }}>
             <a className="btn btn-gold tip" data-tip={t.hero.ctaWork} data-magnetic href="#work">{t.hero.ctaWork}<span className="arr">→</span></a>
             <a className="btn btn-ghost tip" data-tip={t.hero.ctaContact} data-magnetic href="#contact">{t.hero.ctaContact}<span className="arr">→</span></a>

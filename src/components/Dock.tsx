@@ -26,8 +26,10 @@ const P = {
 
 export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => void }) {
   const { lang, setLang, t } = useLang();
+  const langAnnounce = lang === 'ar' ? 'تم التغيير إلى العربية' : lang === 'fr' ? 'Langue changée en français' : 'Language changed to English';
   return (
     <>
+      <div aria-live="polite" className="sr-only">{langAnnounce}</div>
       <a href="assets/CV_Ahmed_Ouarrali.pdf" download data-magnetic
         className="btn btn-sm top-left top-pill fixed left-5 top-5 z-50 md:left-8 tip"
         data-tip={t.dock.resume}>
