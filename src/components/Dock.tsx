@@ -72,7 +72,8 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
         <span role="tooltip" style={{
           position: 'fixed', left: tp.x, top: tp.y, transform: 'translateX(-50%)',
           background: 'var(--ink)', color: 'var(--bg)', fontFamily: 'var(--sans)',
-          fontSize: '.72rem', padding: '6px 12px', borderRadius: 8, whiteSpace: 'nowrap',
+          fontSize: '.72rem', padding: '6px 12px', borderRadius: 8,
+          maxWidth: 220, textAlign: 'center',
           pointerEvents: 'none', zIndex: 9999, border: '1px solid var(--line)',
           boxShadow: '0 4px 16px rgba(0,0,0,.2)',
         }}>{tp.text}</span>,
