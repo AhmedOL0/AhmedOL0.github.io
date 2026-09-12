@@ -66,15 +66,15 @@ test.describe('Navigation & Interaction', () => {
     await page.locator('a[href="#contact"]').first().click();
     await page.waitForTimeout(600);
 
-    const nameInput = page.locator('#n');
+    const nameInput = page.locator('#contact-name');
     await nameInput.fill('Test User');
     await expect(nameInput).toHaveValue('Test User');
 
-    const emailInput = page.locator('#e');
+    const emailInput = page.locator('#contact-email');
     await emailInput.fill('test@example.com');
     await expect(emailInput).toHaveValue('test@example.com');
 
-    const msgInput = page.locator('#m');
+    const msgInput = page.locator('#contact-message');
     await msgInput.fill('Hello from Playwright');
     await expect(msgInput).toHaveValue('Hello from Playwright');
   });
@@ -96,7 +96,8 @@ test.describe('Navigation & Interaction', () => {
   });
 
   test('CV download link works', async ({ page }) => {
-    const cvLink = page.locator('a[href*="CV"][download]');
+    // Two matches (top pill + footer button): assert on the first.
+    const cvLink = page.locator('a[href*="CV"][download]').first();
     await expect(cvLink).toBeAttached();
     const href = await cvLink.getAttribute('href');
     expect(href).toContain('CV');

@@ -29,7 +29,7 @@ export type Pillar = { icon: string; title: string; subtitle: string; items: Pil
 export type Dict = {
   dir: 'ltr' | 'rtl';
   nav: { work: string; about: string; experience: string; education: string; tools: string; contact: string; resume: string };
-  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede1: string; lede2: string; ctaWork: string; ctaContact: string; cardRole: string; cardTech: string; statsLabels: [string, string, string]; viewAll: string };
+  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede1: string; lede2: string; ctaWork: string; ctaContact: string; cardRole: string; cardTech: string; statsLabels: [string, string, string]; tw: string[]; viewAll: string };
   core: string[];
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
   work: { kicker: string; title: string; sub: string; showLess: string; projects: ProjectT[] };
@@ -78,6 +78,7 @@ const en: Dict = {
     ctaWork: 'Browse production work', ctaContact: 'Get in touch',
     cardRole: 'Full-Stack Software Engineer', cardTech: 'Core technologies',
     statsLabels: ['Projects shipped', 'Platforms', 'Internships completed'] as [string, string, string],
+    tw: ['Full-Stack Engineer', 'Spring Boot · Next.js', 'React Native · Expo', 'PostgreSQL · Redis', 'Docker · Cloud Run'],
     viewAll: '',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
@@ -214,6 +215,7 @@ const fr: Dict = {
     ctaWork: 'Voir mes projets', ctaContact: 'Me contacter',
     cardRole: 'Ing\u00e9nieur Logiciel Full-Stack', cardTech: 'Technologies cl\u00e9s',
     statsLabels: ['Projets livr\u00e9s', 'Plateformes', 'Stages compl\u00e9t\u00e9s'] as [string, string, string],
+    tw: ['Ing\u00e9nieur Full-Stack', 'Spring Boot · Next.js', 'React Native · Expo', 'PostgreSQL · Redis', 'Docker · Cloud Run'],
     viewAll: '',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
@@ -351,6 +353,7 @@ const ar: Dict = {
     ctaWork: 'استعرض أعمالي', ctaContact: 'تواصل معي',
     cardRole: 'مهندس برمجيات Full-Stack', cardTech: 'التقنيات الأساسية',
     statsLabels: ['مشاريع منشورة', 'منصات', 'تدريبات مكتملة'] as [string, string, string],
+    tw: ['مهندس Full-Stack', 'Spring Boot · Next.js', 'React Native · Expo', 'PostgreSQL · Redis', 'Docker · Cloud Run'],
     viewAll: '',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],

@@ -27,9 +27,28 @@ jobs:
       - run: npx tsc --noEmit
       - run: npm run lint
       - run: npm run build
+        env:
+          VITE_WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+        env:
+          VITE_WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
+      # Visual Regression excluded: screenshot baselines are environment-specific
+      # (fonts/GPU). Generate them once on ubuntu-latest and commit before enabling.
+      - run: npx playwright test --project=chromium --grep-invert "Visual Regression"
 
   deploy:
     needs: build

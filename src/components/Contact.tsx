@@ -24,7 +24,15 @@ export default function Contact() {
     setStatus('sending');
     const form = e.currentTarget;
     const formData = new FormData(form);
-    formData.append('access_key', import.meta.env.VITE_WEB3FORMS_KEY);
+    const accessKey = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined;
+    if (!accessKey) {
+      // Key not configured (e.g. preview build): don't fake a network call,
+      // fall through to the error state which points at the direct email.
+      setStatus('error');
+      resetStatus();
+      return;
+    }
+    formData.append('access_key', accessKey);
     formData.append('subject', 'New message from portfolio');
     formData.append('from_name', 'Portfolio Contact');
 
@@ -57,7 +65,7 @@ export default function Contact() {
       </p>
       <div className="contact-box mt-8">
         <form onSubmit={handleSubmit} aria-busy={sending}>
-          <input type="text" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+          <input type="text" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" aria-label="Leave this field empty" />
           <label className="field" htmlFor="contact-name">
             <input id="contact-name" name="name" type="text" placeholder=" " required disabled={sending} />
             <span>{t.contact.name}</span>

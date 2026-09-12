@@ -6,8 +6,6 @@ import Typewriter from './Typewriter';
 
 const calm = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const typewriterWords = ['Full-Stack Engineer', 'Spring Boot · Next.js', 'React Native · Expo', 'PostgreSQL · Redis', 'Docker · Cloud Run'];
-
 const core = [
   { name: 'Java 21 · Spring Boot 3.5', tip: 'Backend APIs, security, caching, scheduling', icon: 'springboot' },
   { name: 'TypeScript · Next.js 16', tip: 'SSR/ISR storefront, App Router, Tailwind', icon: 'nextjs' },
@@ -96,7 +94,7 @@ export default function Hero() {
             {t.hero.lede1}<strong style={{ color: 'var(--ink)' }}>OdemLab</strong>{t.hero.lede2}
           </p>
           <div className="rise mt-3 sm:mt-4" style={{ animationDelay: '.35s' }}>
-            <Typewriter words={typewriterWords} />
+            <Typewriter words={t.hero.tw} />
           </div>
           <div className="rise cta mt-5 sm:mt-7 flex flex-row flex-wrap gap-2.5 sm:gap-3" style={{ animationDelay: '.4s' }}>
             <a className="btn btn-gold" data-magnetic href="#work">{t.hero.ctaWork}<span className="arr">→</span></a>

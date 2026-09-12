@@ -32,9 +32,12 @@ export default function Typewriter({ words, speed = 80, pause = 2200 }: { words:
   }, [tick, isDeleting, speed, words]);
 
   return (
-    <span className="typewriter">
-      {text}
-      <span className="typewriter-cursor" aria-hidden="true" />
-    </span>
+    <>
+      <span className="typewriter" aria-hidden="true">
+        {text}
+        <span className="typewriter-cursor" aria-hidden="true" />
+      </span>
+      <span className="sr-only">{words.join(', ')}</span>
+    </>
   );
 }

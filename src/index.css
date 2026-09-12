@@ -675,7 +675,10 @@ div.top-right{animation:drop-in .8s cubic-bezier(.2,.7,.2,1) .22s both;transitio
 section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
 
 /* Layout classes — unlayered so they're the authority (Tailwind v4 utilities can't override unlayered CSS) */
-.section-block{position:relative;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:8px;padding-right:8px}
+.section-block{position:relative;overflow-x:clip;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:8px;padding-right:8px}
+/* Contain the pre-reveal horizontal offsets (reveal-left/right) so they never
+   widen the page scrollWidth on viewports where the section starts off-screen */
+main{overflow-x:clip}
 .hero-grid{display:grid;grid-template-columns:1fr;align-items:start;gap:24px;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:8px;padding-right:8px}
 .hero-grid>*{min-width:0}
 .hero-block{overflow:clip;padding-top:72px;padding-bottom:28px}
