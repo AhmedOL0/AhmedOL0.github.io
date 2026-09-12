@@ -30,7 +30,7 @@ export function useReveal<T extends HTMLElement>() {
           io.unobserve(e.target);
         }
       }),
-      { threshold: 0.1 },
+      { threshold: 0.05, rootMargin: '0px 0px -40px 0px' },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -55,7 +55,7 @@ export function useStaggerReveal<T extends HTMLElement>(selector = ':scope > *')
           io.unobserve(e.target);
         }
       }),
-      { threshold: 0.1 },
+      { threshold: 0.05, rootMargin: '0px 0px -40px 0px' },
     );
     io.observe(el);
     return () => io.disconnect();

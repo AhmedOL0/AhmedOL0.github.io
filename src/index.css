@@ -587,8 +587,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .ghost{position:absolute;top:-14px;right:0;font-family:var(--serif);font-size:clamp(5rem,12vw,8.5rem);
   font-weight:700;line-height:1;color:rgba(201,168,118,0.04);-webkit-text-stroke:1.5px rgba(201,168,118,0.1);
   pointer-events:none;user-select:none;z-index:0}
+@media(max-width:639px){
+  .ghost{font-size:4rem;top:-8px;opacity:.3}
+}
 [dir="rtl"] .ghost{right:auto;left:0}
 .sec-head,.kicker,h2,.sub{position:relative;z-index:1}
+.section-block h2{max-width:100%}
 
 /* Scroll cue */
 .scroll-cue{display:inline-flex;flex-direction:column;align-items:center;gap:10px;margin-top:44px;
@@ -642,17 +646,17 @@ div.top-right{animation:drop-in .8s cubic-bezier(.2,.7,.2,1) .22s both}
   -webkit-backdrop-filter:blur(12px) saturate(1.5)}
 
 /* Reveal */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.6,.2,1),transform .8s cubic-bezier(.2,.6,.2,1)}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 1.2s cubic-bezier(.25,.1,.25,1),transform 1.2s cubic-bezier(.25,.1,.25,1)}
 .reveal.in{opacity:1;transform:none}
 
 /* Stagger children reveal */
-.stagger-item{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.2,.6,.2,1),transform .6s cubic-bezier(.2,.6,.2,1)}
+.stagger-item{opacity:0;transform:translateY(12px);transition:opacity .9s cubic-bezier(.25,.1,.25,1),transform .9s cubic-bezier(.25,.1,.25,1)}
 .stagger-in .stagger-item{opacity:1;transform:none}
 
 /* Section direction variants */
-.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .8s cubic-bezier(.2,.6,.2,1),transform .8s cubic-bezier(.2,.6,.2,1)}
-.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .8s cubic-bezier(.2,.6,.2,1),transform .8s cubic-bezier(.2,.6,.2,1)}
-.reveal-scale{opacity:0;transform:scale(.92);transition:opacity .8s cubic-bezier(.2,.6,.2,1),transform .8s cubic-bezier(.2,.6,.2,1)}
+.reveal-left{opacity:0;transform:translateX(-24px);transition:opacity 1.2s cubic-bezier(.25,.1,.25,1),transform 1.2s cubic-bezier(.25,.1,.25,1)}
+.reveal-right{opacity:0;transform:translateX(24px);transition:opacity 1.2s cubic-bezier(.25,.1,.25,1),transform 1.2s cubic-bezier(.25,.1,.25,1)}
+.reveal-scale{opacity:0;transform:scale(.96);transition:opacity 1.2s cubic-bezier(.25,.1,.25,1),transform 1.2s cubic-bezier(.25,.1,.25,1)}
 .reveal-left.in,.reveal-right.in,.reveal-scale.in{opacity:1;transform:none}
 section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
 
@@ -696,7 +700,7 @@ section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
 
 /* Profile card responsive — mobile-first, progressive enhancement */
 .pcard-hero{width:100%;max-width:280px;margin-left:auto;margin-right:auto}
-.pcard-hero .pphoto{aspect-ratio:16/9;max-height:130px}
+.pcard-hero .pphoto{aspect-ratio:3/4;max-height:200px}
 .pcard-hero h2{font-size:1.3rem;margin-top:14px}
 .pcard-hero .pdiv{margin:12px 4px 10px}
 .pcard-hero .pchips span{font-size:.68rem;padding:5px 11px}
@@ -706,14 +710,17 @@ section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
 /* Layout responsive overrides — MUST come after base rules so they win */
 @media(max-width:420px){
   .hero-grid{gap:16px}
-  .pcard-hero{max-width:260px}
-  .pcard-hero .pphoto{max-height:110px}
+  .pcard-hero{max-width:240px}
+  .pcard-hero .pphoto{max-height:180px}
   .pcard-hero .pchips{gap:5px}
   .pcard-hero .pchips span{font-size:.64rem;padding:4px 9px}
+  .ghost{display:none}
+  .section-block h2{font-size:clamp(1.6rem,6vw,2.2rem)}
+  .marquee{padding:12px 4px}
 }
 @media(min-width:421px) and (max-width:639px){
-  .pcard-hero{max-width:300px}
-  .pcard-hero .pphoto{max-height:140px}
+  .pcard-hero{max-width:280px}
+  .pcard-hero .pphoto{max-height:200px}
 }
 @media(min-width:640px){
   .section-block{padding-left:12px;padding-right:12px}
