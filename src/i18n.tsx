@@ -514,4 +514,4 @@ export const PROJECT_CATS: string[][] = [
   ['web', 'mobile', 'backend'], ['web', 'backend'], ['web', 'backend'], ['mobile'], ['ai'], ['iot'],
 ];
 export const PROJECT_THUMBS = ['thumb-odem', 'thumb-med', 'thumb-fit', 'thumb-campus', 'thumb-sum', 'thumb-iot'];
-export const STAT_VALUES = [6, 3, 5, 93];
+export const STAT_VALUES = [5, 3, 12, 93];
