@@ -1,5 +1,30 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { LANGS, useLang } from '../i18n';
+
+function Tip({ children, text }: { children: ReactNode; text: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [show, setShow] = useState(false);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const onEnter = () => {
+    setShow(true);
+    if (!ref.current) return;
+    const r = ref.current.getBoundingClientRect();
+    setPos({ x: r.left + r.width / 2, y: r.bottom + 8 });
+  };
+  return (
+    <div ref={ref} onMouseEnter={onEnter} onMouseLeave={() => setShow(false)}
+      style={{ display: 'inline-flex' }}>
+      {children}
+      {show && <span role="tooltip" style={{
+        position: 'fixed', left: pos.x, top: pos.y, transform: 'translateX(-50%)',
+        background: 'var(--ink)', color: 'var(--bg)', fontFamily: 'var(--sans)',
+        fontSize: '.72rem', padding: '6px 12px', borderRadius: 8, whiteSpace: 'nowrap',
+        pointerEvents: 'none', zIndex: 9999, border: '1px solid var(--line)',
+        boxShadow: '0 4px 16px rgba(0,0,0,.2)',
+      }}>{text}</span>}
+    </div>
+  );
+}
 
 function Icon({ d, filled }: { d: string; filled?: boolean }) {
   return (
@@ -38,15 +63,17 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
       <div className="top-right fixed right-5 top-5 z-50 flex max-w-[calc(100vw-2.5rem)] flex-wrap items-center justify-end gap-2 md:right-8">
         <div className="langsw" role="group" aria-label={t.dock.lang}>
           {LANGS.map((l) => (
-            <button key={l.code} className={`${lang === l.code ? 'active' : ''} tip-bottom`} data-tip={l.aria} onClick={() => setLang(l.code)} aria-label={l.aria}>
+            <button key={l.code} className={lang === l.code ? 'active' : ''} onClick={() => setLang(l.code)} aria-label={l.aria} title={l.aria}>
               {l.label}
             </button>
           ))}
         </div>
-        <button onClick={onToggle} aria-label={t.dock.toggle} data-tip={t.dock.toggle}
-          className="iconbtn iconbtn-glass tip-bottom" style={{ border: '1px solid var(--line)', color: 'var(--muted)' }}>
-          <Icon d={theme === 'dark' ? P.sun : P.moon} />
-        </button>
+        <Tip text={t.dock.toggle}>
+          <button onClick={onToggle} aria-label={t.dock.toggle}
+            className="iconbtn iconbtn-glass" style={{ border: '1px solid var(--line)', color: 'var(--muted)' }}>
+            <Icon d={theme === 'dark' ? P.sun : P.moon} />
+          </button>
+        </Tip>
       </div>
     </>
   );
