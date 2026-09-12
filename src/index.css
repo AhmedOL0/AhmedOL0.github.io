@@ -161,7 +161,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .marquee-inner{display:flex;flex-shrink:0}
 .marquee-item{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);white-space:nowrap;margin-right:54px;transition:color .25s}
 .marquee-item i{color:var(--gold-deep);font-style:normal;margin-right:54px}
-.marquee:hover .marquee-item{animation-play-state:paused}
+.marquee:hover .marquee-track,.marquee:active .marquee-track{animation-play-state:paused}
 .marquee-item:hover{color:var(--gold)}
 @keyframes mscroll{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
