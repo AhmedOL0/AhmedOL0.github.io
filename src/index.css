@@ -393,11 +393,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .edu-school{font-size:.88rem;color:var(--muted);margin-top:4px}
 .edu-desc{font-size:.84rem;color:var(--faint);margin-top:8px;line-height:1.55}
 /* Hero orbs */
-.hero-orb{position:absolute;top:-120px;left:10%;width:500px;height:500px;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,168,118,.18),rgba(180,85,45,.10) 55%,transparent 70%);
-  filter:blur(100px);pointer-events:none;z-index:0;animation:orbDrift1 18s ease-in-out infinite alternate}
-.hero-orb-2{top:60px;left:auto;right:-60px;width:400px;height:400px;
-  background:radial-gradient(circle,rgba(180,85,45,.14),rgba(201,168,118,.08) 55%,transparent 70%);
+.hero-orb{position:absolute;top:-180px;left:10%;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,168,118,.14),rgba(180,85,45,.08) 55%,transparent 70%);
+  filter:blur(100px);pointer-events:none;z-index:0;animation:orbDrift1 18s ease-in-out infinite alternate;overflow:hidden}
+.hero-orb-2{top:20px;left:auto;right:-60px;width:400px;height:400px;
+  background:radial-gradient(circle,rgba(180,85,45,.10),rgba(201,168,118,.06) 55%,transparent 70%);
   animation:orbDrift2 22s ease-in-out infinite alternate}
 @keyframes orbDrift1{from{transform:translate(0,0)}to{transform:translate(40px,30px)}}
 @keyframes orbDrift2{from{transform:translate(0,0)}to{transform:translate(-30px,-20px)}}

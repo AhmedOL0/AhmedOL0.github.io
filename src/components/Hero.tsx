@@ -20,7 +20,7 @@ const core = [
 const statValues: { value: number; suffix: string }[] = [
   { value: 6, suffix: '+' },
   { value: 3, suffix: '' },
-  { value: 2, suffix: '' },
+  { value: 4, suffix: '' },
 ];
 
 function StatItem({ target, suffix, label, inView }: { target: number; suffix: string; label: string; inView: boolean }) {
