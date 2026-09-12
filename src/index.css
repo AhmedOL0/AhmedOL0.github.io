@@ -166,8 +166,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 @media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
 
 /* Language switcher */
-.langsw{display:flex;border:1px solid var(--line);border-radius:999px;position:relative}
-.langsw button{background:transparent;border:none;color:var(--muted);font-family:var(--mono);font-size:.72rem;padding:7px 11px;cursor:pointer;letter-spacing:.06em;transition:all .2s}
+.langsw{display:flex;border:1px solid var(--line);border-radius:999px;position:relative;gap:2px;padding:3px}
+.langsw button{background:transparent;border:none;color:var(--muted);font-family:var(--mono);font-size:.72rem;padding:6px 12px;cursor:pointer;letter-spacing:.06em;transition:all .2s;border-radius:999px}
 .langsw button.active{background:var(--gold);color:#fff;font-weight:600}
 :root[data-theme="dark"] .langsw button.active{color:#171310}
 
@@ -293,8 +293,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .job .when{margin-bottom:4px}
   .about-grid li{padding:8px 0 8px 22px}
   .contact-box .direct{margin-top:20px}
-  .langsw{gap:0}
-  .langsw button{padding:7px 10px;font-size:.7rem}
+  .langsw{gap:2px;padding:3px}
+  .langsw button{padding:6px 10px;font-size:.7rem}
   .hero-block{padding-top:72px;padding-bottom:28px}
   .footer-block{padding-bottom:100px;padding-top:44px}
 }
