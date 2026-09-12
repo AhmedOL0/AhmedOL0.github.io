@@ -29,7 +29,7 @@ export type Pillar = { icon: string; title: string; subtitle: string; items: Pil
 export type Dict = {
   dir: 'ltr' | 'rtl';
   nav: { work: string; about: string; experience: string; education: string; tools: string; contact: string; resume: string };
-  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede1: string; lede2: string; ctaWork: string; ctaContact: string; cardRole: string; cardTech: string; statsLabels: [string, string, string, string]; statsSub: [string, string, string, string]; viewAll: string };
+  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede1: string; lede2: string; ctaWork: string; ctaContact: string; cardRole: string; cardTech: string; statsLabels: [string, string, string]; viewAll: string };
   core: string[];
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
   work: { kicker: string; title: string; sub: string; showLess: string; projects: ProjectT[] };
@@ -77,8 +77,7 @@ const en: Dict = {
     lede2: ' end-to-end: Spring Boot API, Next.js storefront, React Native app, PostgreSQL + Redis, deployed with Docker to Google Cloud.',
     ctaWork: 'Browse production work', ctaContact: 'Get in touch',
     cardRole: 'Full-Stack Software Engineer', cardTech: 'Core technologies',
-    statsLabels: ['Projects shipped', 'Languages online', 'E2E test suites', 'Flyway migrations'] as [string, string, string, string],
-    statsSub: ['web \u00b7 mobile \u00b7 API \u00b7 QA \u00b7 IoT', 'FR \u00b7 EN \u00b7 AR + RTL', 'Playwright \u00b7 Selenium', 'Re-runnable from zero'] as [string, string, string, string],
+    statsLabels: ['Projects shipped', 'Platforms', 'Internships completed'] as [string, string, string],
     viewAll: '',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
@@ -214,8 +213,7 @@ const fr: Dict = {
     lede2: ' de bout en bout : API Spring Boot, boutique Next.js, app React Native, PostgreSQL + Redis, d\u00e9ploy\u00e9 avec Docker sur Google Cloud.',
     ctaWork: 'Voir mes projets', ctaContact: 'Me contacter',
     cardRole: 'Ing\u00e9nieur Logiciel Full-Stack', cardTech: 'Technologies cl\u00e9s',
-    statsLabels: ['Domaines livr\u00e9s', 'Langues en ligne', 'Suites de tests E2E', 'Migrations Flyway'] as [string, string, string, string],
-    statsSub: ['web \u00b7 mobile \u00b7 API \u00b7 QA \u00b7 IoT', 'FR \u00b7 EN \u00b7 AR + RTL', 'Playwright \u00b7 Selenium', 'Rejouables depuis z\u00e9ro'] as [string, string, string, string],
+    statsLabels: ['Projets livr\u00e9s', 'Plateformes', 'Stages compl\u00e9t\u00e9s'] as [string, string, string],
     viewAll: '',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
@@ -352,8 +350,7 @@ const ar: Dict = {
     lede2: ' من البداية للنهاية: API Spring Boot، متجر Next.js، تطبيق React Native، PostgreSQL + Redis، منشور عبر Docker على Google Cloud.',
     ctaWork: 'استعرض أعمالي', ctaContact: 'تواصل معي',
     cardRole: 'مهندس برمجيات Full-Stack', cardTech: 'التقنيات الأساسية',
-    statsLabels: ['مشاريع منشورة', 'لغات مدمجة', 'مجموعات اختبار E2E', 'استيرادات Flyway'] as [string, string, string, string],
-    statsSub: ['web \u00b7 mobile \u00b7 API \u00b7 QA \u00b7 IoT', 'FR \u00b7 EN \u00b7 AR + RTL', 'Playwright \u00b7 Selenium', 'تُعاد من الصفر'] as [string, string, string, string],
+    statsLabels: ['مشاريع منشورة', 'منصات', 'تدريبات مكتملة'] as [string, string, string],
     viewAll: '',
   },
   core: ['Java 21 / Spring Boot', 'TypeScript / Next.js', 'React Native / Flutter', 'PostgreSQL', 'Docker', 'Playwright / Selenium'],
