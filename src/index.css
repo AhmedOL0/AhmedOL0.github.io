@@ -649,6 +649,12 @@ div.top-right{animation:drop-in .8s cubic-bezier(.2,.7,.2,1) .22s both}
 .reveal-left.in,.reveal-right.in,.reveal-scale.in{opacity:1;transform:none}
 section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
 
+/* Layout classes — unlayered so they're the authority (Tailwind v4 utilities can't override unlayered CSS) */
+.section-block{position:relative;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:12px;padding-right:12px}
+.hero-grid{display:grid;grid-template-columns:1fr;align-items:center;gap:24px;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:12px;padding-right:12px}
+.pcard-hero{width:100%;margin-left:auto;margin-right:auto}
+.footer-block{position:relative;z-index:1;margin-top:44px;padding-left:12px;padding-right:12px;padding-bottom:80px;padding-top:40px}
+
 /* Enhanced cursor effects */
 .cursor-ring.cursor-hot{
   border-color:var(--gold);
@@ -678,4 +684,21 @@ section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
   body{background:#fff;color:#111}
   .reveal{opacity:1;transform:none}
   .card{break-inside:avoid;box-shadow:none}
+}
+
+/* Layout responsive overrides — MUST come after base rules so they win */
+@media(min-width:640px){
+  .section-block{padding-left:20px;padding-right:20px}
+  .hero-grid{padding-left:20px;padding-right:20px;gap:40px}
+  .pcard-hero{max-width:380px}
+  .footer-block{padding-left:20px;padding-right:20px;padding-bottom:128px;padding-top:48px}
+}
+@media(min-width:768px){
+  .section-block{padding-left:28px;padding-right:28px}
+  .hero-grid{padding-left:28px;padding-right:28px}
+  .footer-block{padding-left:28px;padding-right:28px}
+}
+@media(min-width:1024px){
+  .hero-grid{grid-template-columns:1.45fr .95fr}
+  .pcard-hero{margin-left:auto;margin-right:0}
 }

@@ -29,7 +29,7 @@ function Footer() {
     { head: t.footer.elsewhere, links: [{ label: 'GitHub', href: 'https://github.com/AhmedOL0' }, { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ahmed-ouarrali' }, { label: 'Email', href: 'mailto:ahmedouarrali12@gmail.com' }] },
   ];
   return (
-    <footer className="relative z-[1] mt-11 border-t px-3 sm:px-5 md:px-7 pb-20 sm:pb-32 pt-10 sm:pt-12 text-[.85rem]"
+    <footer className="relative z-[1] footer-block border-t text-[.85rem]"
       style={{ borderColor: 'var(--line-soft)', color: 'var(--faint)', overflow: 'hidden' }}>
       <div className="foot-mark mx-auto max-w-[1120px]" aria-hidden="true">AO</div>
       <nav className="mx-auto grid max-w-[1120px] grid-cols-2 gap-6 sm:gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]" aria-label="Footer">

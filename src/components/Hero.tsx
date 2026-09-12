@@ -42,7 +42,7 @@ function ProfileCard() {
   const [imgOk, setImgOk] = useState(true);
   const [loaded, setLoaded] = useState(false);
   return (
-    <aside className="pcard mx-auto sm:ml-auto w-full sm:max-w-[380px]">
+    <aside className="pcard pcard-hero">
       <div className="pphoto">
         {imgOk ? (
           <img
@@ -84,7 +84,7 @@ export default function Hero() {
       <div className="hero-orb" aria-hidden="true" />
       <div className="hero-orb hero-orb-2" aria-hidden="true" />
       <div className="hero-dot-grid" aria-hidden="true" />
-      <div className="mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-6 sm:gap-10 px-3 sm:px-5 md:px-7 lg:grid-cols-[1.45fr_.95fr]" style={fade}>
+      <div className="hero-grid" style={fade}>
         <div>
           <span className="rise mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-[6px] sm:px-4 sm:py-[7px] text-[.72rem] sm:text-[.79rem] tracking-[.03em]"
             style={{ color: 'var(--muted)', borderColor: 'var(--line)', background: 'rgba(127,120,100,.08)', animationDelay: '.05s' }}>
