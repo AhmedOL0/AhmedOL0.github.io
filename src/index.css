@@ -155,7 +155,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 @keyframes terminal-in{from{opacity:0;transform:scale(.96) translateY(10px)}to{opacity:1;transform:none}}
 
 /* Language switcher */
-.langsw{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.langsw{display:flex;border:1px solid var(--line);border-radius:999px;position:relative}
 .langsw button{background:transparent;border:none;color:var(--muted);font-family:var(--mono);font-size:.72rem;padding:7px 11px;cursor:pointer;letter-spacing:.06em;transition:all .2s}
 .langsw button.active{background:var(--gold);color:#fff;font-weight:600}
 :root[data-theme="dark"] .langsw button.active{color:#171310}
@@ -315,7 +315,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .tip::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);
   background:var(--ink);color:var(--bg);font-family:var(--sans);font-size:.72rem;letter-spacing:0;
   padding:6px 12px;border-radius:8px;white-space:nowrap;pointer-events:none;opacity:0;
-  transition:opacity .2s,transform .2s;border:1px solid var(--line);z-index:20;
+  transition:opacity .2s,transform .2s;border:1px solid var(--line);z-index:9999;
   box-shadow:0 4px 16px rgba(0,0,0,.2)}
 .tip:hover::after{opacity:1;transform:translateX(-50%) translateY(0)}
 .tip-bottom::after{bottom:auto;top:calc(100% + 8px);transform:translateX(-50%) translateY(-4px)}
