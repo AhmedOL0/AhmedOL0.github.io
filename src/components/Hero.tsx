@@ -21,9 +21,10 @@ const statValues: { value: number; suffix: string }[] = [
   { value: 6, suffix: '+' },
   { value: 3, suffix: '' },
   { value: 4, suffix: '' },
+  { value: 93, suffix: '' },
 ];
 
-function StatItem({ target, suffix, label, inView }: { target: number; suffix: string; label: string; inView: boolean }) {
+function StatItem({ target, suffix, label, sub, inView }: { target: number; suffix: string; label: string; sub: string; inView: boolean }) {
   const [pop, setPop] = useState(false);
   const val = useCountUp(target, inView, 1400, () => { setPop(true); setTimeout(() => setPop(false), 400); });
   const show = calm || inView;
@@ -31,6 +32,7 @@ function StatItem({ target, suffix, label, inView }: { target: number; suffix: s
     <div className="hero-stat">
       <span className={`hero-stat-val font-serif-d${pop ? ' pop' : ''}`} style={{ opacity: show ? 1 : 0, transition: 'opacity .3s' }}>{val}{suffix}</span>
       <span className="hero-stat-label">{label}</span>
+      {sub && <span className="hero-stat-sub">{sub}</span>}
     </div>
   );
 }
@@ -101,9 +103,9 @@ export default function Hero() {
             <a className="btn btn-gold tip" data-tip={t.hero.ctaWork} data-magnetic href="#work">{t.hero.ctaWork}<span className="arr">→</span></a>
             <a className="btn btn-ghost tip" data-tip={t.hero.ctaContact} data-magnetic href="#contact">{t.hero.ctaContact}<span className="arr">→</span></a>
           </div>
-          <div className="rise hero-stats mt-8 grid grid-cols-3 gap-4" ref={statsRef.ref} style={{ animationDelay: '.48s' }}>
+          <div className="rise hero-stats mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4" ref={statsRef.ref} style={{ animationDelay: '.48s' }}>
             {statValues.map((s, i) => (
-              <StatItem key={i} target={s.value} suffix={s.suffix} label={t.hero.statsLabels[i]} inView={statsRef.inView} />
+              <StatItem key={i} target={s.value} suffix={s.suffix} label={t.hero.statsLabels[i]} sub={t.hero.statsSub[i]} inView={statsRef.inView} />
             ))}
           </div>
           <div className="rise core mt-6 flex flex-wrap gap-2" style={{ animationDelay: '.56s' }}>

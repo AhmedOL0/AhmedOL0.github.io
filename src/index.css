@@ -288,6 +288,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   transition:text-shadow .4s,transform .4s}
 .hero-stat-val.pop{text-shadow:0 0 22px rgba(201,168,118,.7);transform:scale(1.08)}
 .hero-stat-label{display:block;font-size:.72rem;color:var(--muted);margin-top:4px;letter-spacing:.02em}
+.hero-stat-sub{display:block;font-size:.62rem;color:var(--faint);margin-top:1px}
 
 /* Screen reader only */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -577,7 +578,7 @@ section{padding:92px 0}
   html{scroll-behavior:auto}
   .orb,.hero-orb,.hero-orb-2,.dot,.beacon,.scroll-cue i::after{animation:none}
   .loader,.loader-terminal,.terminal-line,.terminal-cursor,.dock{animation:none}
-  .core-chip,.hero-stat-val,.hero-stat-label,.btn,.card,.tag,.tags span,.method-chip,.pillar-card,.tool-card,.pyramid-bar,.edu-card,.direct a,.footer a{transition:none}
+  .core-chip,.hero-stat-val,.hero-stat-label,.hero-stat-sub,.btn,.card,.tag,.tags span,.method-chip,.pillar-card,.tool-card,.pyramid-bar,.edu-card,.direct a,.footer a{transition:none}
   .core-chip::after{transition:none}
   #spot{display:none}
 }
