@@ -26,11 +26,13 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
     }
 
     const timers: ReturnType<typeof setTimeout>[] = [];
+    // Touch devices: first paint matters more than the full animation — play it at 2x speed
+    const k = window.matchMedia('(pointer:coarse)').matches ? 0.45 : 1;
     lines.forEach((line, i) => {
-      timers.push(setTimeout(() => setVisibleLines(i + 1), line.delay));
+      timers.push(setTimeout(() => setVisibleLines(i + 1), line.delay * k));
     });
-    timers.push(setTimeout(() => setDone(true), 2800));
-    timers.push(setTimeout(onDone, 3400));
+    timers.push(setTimeout(() => setDone(true), 2800 * k));
+    timers.push(setTimeout(onDone, 3400 * k));
     const cursorInterval = setInterval(() => setCursorVisible((v) => !v), 530);
     return () => {
       timers.forEach(clearTimeout);

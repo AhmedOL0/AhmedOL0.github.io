@@ -49,6 +49,7 @@ function ProfileCard() {
             width={537}
             height={537}
             fetchPriority="high"
+            decoding="async"
             onLoad={() => setLoaded(true)}
             onError={() => setImgOk(false)}
             style={{ opacity: loaded ? 1 : 0, transition: 'opacity .9s ease, filter .4s' }}
