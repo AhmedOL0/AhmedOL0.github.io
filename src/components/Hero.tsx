@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { useLang } from '../i18n';
 import { useReveal, useScrollY, useCountUp, useInView } from '../hooks';
+import TechIcon from './TechIcon';
 
 const calm = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const core = [
-  { name: 'Java 21 · Spring Boot 3.5', tip: 'Backend APIs, security, caching, scheduling', icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6H7v-2h2V7c0-1.66 1.34-3 3-3h2v2h-2c-.55 0-1 .45-1 1v3h3l-1 6z' },
-  { name: 'TypeScript · Next.js 16', tip: 'SSR/ISR storefront, App Router, Tailwind', icon: 'M3 3h18v18H3V3zm2.5 5v8h2.2v-3.1H12V13h2.3V8h-2.3V6.1H9.5V8H7.2zm8.5 0v2.2h3.3v2.6h-3.3V15H18V8h-2.3z' },
-  { name: 'React Native · Expo', tip: 'Cross-platform mobile (iOS + Android)', icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7v-2z' },
-  { name: 'PostgreSQL 18 · Redis 7', tip: 'Relational DB + distributed cache & rate limits', icon: 'M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4zm0 2c3.87 0 6 1.5 6 2s-2.13 2-6 2-6-1.5-6-2 2.13-2 6-2zM6 9c0 .5 2.13 2 6 2s6-1.5 6-2v2c0 .5-2.13 2-6 2s-6-1.5-6-2V9zm0 4c0 .5 2.13 2 6 2s6-1.5 6-2v2c0 .5-2.13 2-6 2s-6-1.5-6-2v-2z' },
-  { name: 'Docker · GitHub Actions', tip: 'CI/CD pipeline, GHCR images, Cloud Run deploys', icon: 'M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm10 16H4V8h16v12z' },
-  { name: 'Google Cloud Run', tip: 'Serverless containers, zero-traffic deploys', icon: 'M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z' },
+  { name: 'Java 21 · Spring Boot 3.5', tip: 'Backend APIs, security, caching, scheduling', icon: 'springboot' },
+  { name: 'TypeScript · Next.js 16', tip: 'SSR/ISR storefront, App Router, Tailwind', icon: 'nextjs' },
+  { name: 'React Native · Expo', tip: 'Cross-platform mobile (iOS + Android)', icon: 'expo' },
+  { name: 'PostgreSQL 18 · Redis 7', tip: 'Relational DB + distributed cache & rate limits', icon: 'postgresql' },
+  { name: 'Docker · GitHub Actions', tip: 'CI/CD pipeline, GHCR images, Cloud Run deploys', icon: 'docker' },
+  { name: 'Google Cloud Run', tip: 'Serverless containers, zero-traffic deploys', icon: 'googlecloud' },
 ];
 
 const statValues: { value: number; suffix: string }[] = [
@@ -91,8 +92,8 @@ export default function Hero() {
             {t.hero.lede1}<strong style={{ color: 'var(--ink)' }}>OdemLab</strong>{t.hero.lede2}
           </p>
           <div className="rise cta mt-7 flex flex-wrap gap-3" style={{ animationDelay: '.4s' }}>
-            <a className="btn btn-gold" data-magnetic href="#work">{t.hero.ctaWork}<span className="arr">→</span></a>
-            <a className="btn btn-ghost" data-magnetic href="#contact">{t.hero.ctaContact}<span className="arr">→</span></a>
+            <a className="btn btn-gold tip" data-tip={t.hero.ctaWork} data-magnetic href="#work">{t.hero.ctaWork}<span className="arr">→</span></a>
+            <a className="btn btn-ghost tip" data-tip={t.hero.ctaContact} data-magnetic href="#contact">{t.hero.ctaContact}<span className="arr">→</span></a>
           </div>
           <div className="rise hero-stats mt-8 grid grid-cols-3 gap-4" ref={statsRef.ref} style={{ animationDelay: '.48s' }}>
             {statValues.map((s, i) => (
@@ -101,8 +102,8 @@ export default function Hero() {
           </div>
           <div className="rise core mt-6 flex flex-wrap gap-2" style={{ animationDelay: '.56s' }}>
             {core.map((c) => (
-              <span key={c.name} className="core-chip" title={c.tip}>
-                <svg className="core-chip-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={c.icon} /></svg>
+              <span key={c.name} className="core-chip tip" data-tip={c.tip}>
+                <TechIcon name={c.icon} className="core-chip-icon" />
                 {c.name}
               </span>
             ))}

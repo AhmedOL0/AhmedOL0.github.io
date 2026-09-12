@@ -29,7 +29,8 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
   return (
     <>
       <a href="assets/CV_Ahmed_Ouarrali.pdf" download data-magnetic
-        className="btn btn-sm top-left top-pill fixed left-5 top-5 z-50 md:left-8">
+        className="btn btn-sm top-left top-pill fixed left-5 top-5 z-50 md:left-8 tip"
+        data-tip={t.dock.resume}>
         {t.dock.resume}
       </a>
       <div className="top-right fixed right-5 top-5 z-50 flex max-w-[calc(100vw-2.5rem)] flex-wrap items-center justify-end gap-2 md:right-8">
@@ -40,8 +41,8 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
             </button>
           ))}
         </div>
-        <button onClick={onToggle} aria-label={t.dock.toggle} title={t.dock.toggle}
-          className="iconbtn iconbtn-glass" style={{ border: '1px solid var(--line)', color: 'var(--muted)' }}>
+        <button onClick={onToggle} aria-label={t.dock.toggle} data-tip={t.dock.toggle}
+          className="iconbtn iconbtn-glass tip" style={{ border: '1px solid var(--line)', color: 'var(--muted)' }}>
           <Icon d={theme === 'dark' ? P.sun : P.moon} />
         </button>
       </div>
@@ -86,21 +87,22 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
   return (
     <div className={`dock${hidden ? ' dock-hidden' : ''}`} role="navigation" aria-label={t.dock.nav}>
       {items.map((it) => (
-        <a key={it.id} href={it.href} aria-label={it.label} title={it.label}
+        <a key={it.id} href={it.href} aria-label={it.label}
+          data-tip={it.label}
           aria-current={isActive(it.id) ? 'true' : undefined}
-          className={isActive(it.id) ? 'active' : ''}>
+          className={`tip${isActive(it.id) ? ' active' : ''}`}>
           {it.icon}
         </a>
       ))}
       <span className="dock-sep" />
-      <button onClick={onToggle} aria-label={t.dock.toggle} title={t.dock.toggle}>
+      <button onClick={onToggle} aria-label={t.dock.toggle} data-tip={t.dock.toggle} className="tip">
         <Icon d={theme === 'dark' ? P.sun : P.moon} />
       </button>
       <span className="dock-sep" />
-      <a className="dock-social" href="https://www.linkedin.com/in/ahmed-ouarrali" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+      <a className="dock-social tip" href="https://www.linkedin.com/in/ahmed-ouarrali" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-tip="LinkedIn">
         <Icon d={P.linkedin} />
       </a>
-      <a className="dock-social" href="https://github.com/AhmedOL0" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <a className="dock-social tip" href="https://github.com/AhmedOL0" target="_blank" rel="noopener noreferrer" aria-label="GitHub" data-tip="GitHub">
         <Icon d={P.github} filled />
       </a>
     </div>

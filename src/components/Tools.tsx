@@ -1,5 +1,15 @@
 import Section from './Section';
 import { useLang, type ToolLevel, type Pillar } from '../i18n';
+import TechIcon from './TechIcon';
+
+const pillarIconMap: Record<string, string> = {
+  'CI/CD': 'githubactions',
+  Docker: 'docker',
+  'Google Cloud Run': 'googlecloud',
+  Monitoring: 'grafana',
+  Redis: 'redis',
+  'Rate Limiting': 'prometheus',
+};
 
 function PyramidLevel({ level, index }: { level: ToolLevel; index: number }) {
   const width = [42, 62, 88][index] ?? 88;
@@ -34,12 +44,18 @@ function PillarCard({ pillar }: { pillar: Pillar }) {
         </div>
       </div>
       <div className="pillar-items">
-        {pillar.items.map((item) => (
-          <div className="pillar-item" key={item.name}>
-            <span className="pillar-item-name">{item.name}</span>
-            <span className="pillar-item-desc">{item.desc}</span>
-          </div>
-        ))}
+        {pillar.items.map((item) => {
+          const iconKey = pillarIconMap[item.name];
+          return (
+            <div className="pillar-item" key={item.name}>
+              {iconKey && <TechIcon name={iconKey} className="pillar-item-logo" />}
+              <div>
+                <span className="pillar-item-name">{item.name}</span>
+                <span className="pillar-item-desc">{item.desc}</span>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
