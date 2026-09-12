@@ -78,7 +78,7 @@ export default function Hero() {
   const ref = useReveal<HTMLElement>();
   const statsRef = useInView<HTMLDivElement>(0.3);
   const y = useScrollY();
-  const fade = calm ? {} : { opacity: Math.max(0, 1 - y / 750), transform: `translateY(${y * 0.14}px)` };
+  const fade = calm ? {} : { opacity: Math.max(0, 1 - y / 2400), transform: `translateY(${y * 0.06}px)` };
   return (
     <header id="top" ref={ref} className="hero-block relative">
       <div className="hero-orb" aria-hidden="true" />
