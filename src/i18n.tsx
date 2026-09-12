@@ -114,8 +114,8 @@ const en: Dict = {
     stats: [
       { label: 'Domains shipped', sub: 'web · mobile · API · QA · IoT' },
       { label: 'Languages live', sub: 'FR · EN · AR + RTL' },
-      { label: 'E2E test suites', sub: 'Playwright · Selenium' },
-      { label: 'Flyway migrations', sub: 'replayable from zero' },
+      { label: 'E2E test suites', sub: 'Playwright · 7 specs on this site' },
+      { label: 'Flyway migrations', sub: 'OdemLab · replayable from zero' },
     ],
     bestTitle: 'What I do best',
     best: [
@@ -250,8 +250,8 @@ const fr: Dict = {
     stats: [
       { label: 'Domaines livrés', sub: 'web · mobile · API · QA · IoT' },
       { label: 'Langues en ligne', sub: 'FR · EN · AR + RTL' },
-      { label: 'Suites de tests E2E', sub: 'Playwright · Selenium' },
-      { label: 'Migrations Flyway', sub: 'rejouables depuis zéro' },
+      { label: 'Suites de tests E2E', sub: 'Playwright · 7 specs, ce site' },
+      { label: 'Migrations Flyway', sub: 'OdemLab · rejouables depuis zéro' },
     ],
     bestTitle: 'Mes points forts',
     best: [
@@ -387,8 +387,8 @@ const ar: Dict = {
     stats: [
       { label: 'مجالات منشورة', sub: 'ويب · موبايل · API · QA · IoT' },
       { label: 'لغات حيّة', sub: 'FR · EN · AR + RTL' },
-      { label: 'حزم اختبار E2E', sub: 'Playwright · Selenium' },
-      { label: 'ترحيلات Flyway', sub: 'قابلة لإعادة التشغيل من الصفر' },
+      { label: 'حزم اختبار E2E', sub: 'Playwright · 7 specs على هذا الموقع' },
+      { label: 'ترحيلات Flyway', sub: 'OdemLab · قابلة لإعادة التشغيل من الصفر' },
     ],
     bestTitle: 'أفضل ما أفعله',
     best: [
@@ -514,4 +514,4 @@ export const PROJECT_CATS: string[][] = [
   ['web', 'mobile', 'backend'], ['web', 'backend'], ['web', 'backend'], ['mobile'], ['ai'], ['iot'],
 ];
 export const PROJECT_THUMBS = ['thumb-odem', 'thumb-med', 'thumb-fit', 'thumb-campus', 'thumb-sum', 'thumb-iot'];
-export const STAT_VALUES = [6, 3, 4, 93];
+export const STAT_VALUES = [5, 3, 7, 93];
