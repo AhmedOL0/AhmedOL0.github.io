@@ -94,7 +94,7 @@ export default function Hero() {
             <a className="btn btn-gold" data-magnetic href="#work">{t.hero.ctaWork}<span className="arr">→</span></a>
             <a className="btn btn-ghost" data-magnetic href="#contact">{t.hero.ctaContact}<span className="arr">→</span></a>
           </div>
-          <div className="rise hero-stats mt-10 grid grid-cols-4 gap-4" ref={statsRef.ref} style={{ animationDelay: '.48s' }}>
+          <div className="rise hero-stats mt-10 grid grid-cols-3 gap-4" ref={statsRef.ref} style={{ animationDelay: '.48s' }}>
             {statValues.map((s, i) => (
               <StatItem key={i} target={s.value} suffix={s.suffix} label={t.hero.statsLabels[i]} inView={statsRef.inView} />
             ))}
