@@ -478,7 +478,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .pyramid-bar:hover{transform:translateX(4px);box-shadow:0 4px 18px rgba(160,120,60,.25)}
 .pyramid-label{font-family:var(--mono);font-size:.78rem;font-weight:700;color:#fff;letter-spacing:.06em;white-space:nowrap}
 .pyramid-sub{font-size:.76rem;color:rgba(255,255,255,.8);white-space:nowrap}
-.pyramid-tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.pyramid-tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr));gap:8px}
 .tool-card{background:rgba(127,120,100,.06);border:1px solid var(--line);border-radius:10px;padding:12px 14px;transition:border-color .25s,transform .2s}
 .tool-card:hover{border-color:var(--gold-deep);transform:translateY(-2px)}
 .tool-name{display:block;font-family:var(--mono);font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:3px}
@@ -699,8 +699,8 @@ section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
 }
 
 /* Profile card responsive — mobile-first, progressive enhancement */
-.pcard-hero{width:100%;max-width:280px;margin-left:auto;margin-right:auto}
-.pcard-hero .pphoto{aspect-ratio:3/4;max-height:200px}
+.pcard-hero{width:100%;max-width:100%;margin-left:auto;margin-right:auto}
+.pcard-hero .pphoto{aspect-ratio:3/4;max-height:260px}
 .pcard-hero h2{font-size:1.3rem;margin-top:14px}
 .pcard-hero .pdiv{margin:12px 4px 10px}
 .pcard-hero .pchips span{font-size:.68rem;padding:5px 11px}
@@ -711,8 +711,7 @@ section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
 /* Layout responsive overrides — MUST come after base rules so they win */
 @media(max-width:420px){
   .hero-grid{gap:16px}
-  .pcard-hero{max-width:240px}
-  .pcard-hero .pphoto{max-height:180px}
+  .pcard-hero .pphoto{max-height:220px}
   .pcard-hero .pchips{gap:5px}
   .pcard-hero .pchips span{font-size:.64rem;padding:4px 9px}
   .ghost{display:none}
@@ -720,13 +719,12 @@ section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
   .marquee{padding:12px 4px}
 }
 @media(min-width:421px) and (max-width:639px){
-  .pcard-hero{max-width:280px}
-  .pcard-hero .pphoto{max-height:200px}
+  .pcard-hero .pphoto{max-height:260px}
 }
 @media(min-width:640px){
   .section-block{padding-left:12px;padding-right:12px}
   .hero-grid{padding-left:12px;padding-right:12px;gap:40px}
-  .pcard-hero{max-width:360px}
+  .pcard-hero{max-width:380px}
   .pcard-hero .pphoto{aspect-ratio:4/3;max-height:none}
   .pcard-hero h2{font-size:1.5rem;margin-top:16px}
   .pcard-hero .pdiv{margin:14px 4px 12px}
