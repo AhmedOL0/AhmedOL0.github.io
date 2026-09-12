@@ -652,8 +652,6 @@ section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
 /* Layout classes — unlayered so they're the authority (Tailwind v4 utilities can't override unlayered CSS) */
 .section-block{position:relative;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:12px;padding-right:12px}
 .hero-grid{display:grid;grid-template-columns:1fr;align-items:center;gap:24px;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:12px;padding-right:12px}
-.pcard-hero{width:100%;max-width:320px;margin-left:auto;margin-right:auto}
-.pcard-hero .pphoto{aspect-ratio:4/3;max-height:260px}
 .hero-block{overflow:hidden;padding-top:56px;padding-bottom:20px}
 .footer-block{position:relative;z-index:1;margin-top:44px;padding-left:12px;padding-right:12px;padding-bottom:80px;padding-top:40px}
 
@@ -688,28 +686,49 @@ section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
   .card{break-inside:avoid;box-shadow:none}
 }
 
+/* Profile card responsive — mobile-first, progressive enhancement */
+.pcard-hero{width:100%;max-width:280px;margin-left:auto;margin-right:auto}
+.pcard-hero .pphoto{aspect-ratio:16/9;max-height:130px}
+.pcard-hero h2{font-size:1.3rem;margin-top:14px}
+.pcard-hero .pdiv{margin:12px 4px 10px}
+.pcard-hero .pchips span{font-size:.68rem;padding:5px 11px}
+
 /* Layout responsive overrides — MUST come after base rules so they win */
+@media(max-width:420px){
+  .hero-grid{gap:16px}
+  .pcard-hero{max-width:260px}
+  .pcard-hero .pphoto{max-height:110px}
+  .pcard-hero .pchips{gap:5px}
+  .pcard-hero .pchips span{font-size:.64rem;padding:4px 9px}
+}
+@media(min-width:421px) and (max-width:639px){
+  .pcard-hero{max-width:300px}
+  .pcard-hero .pphoto{max-height:140px}
+}
 @media(min-width:640px){
   .section-block{padding-left:20px;padding-right:20px}
   .hero-grid{padding-left:20px;padding-right:20px;gap:40px}
-  .pcard-hero{max-width:380px}
-  .pcard-hero .pphoto{aspect-ratio:1/1;max-height:none}
+  .pcard-hero{max-width:360px}
+  .pcard-hero .pphoto{aspect-ratio:4/3;max-height:none}
+  .pcard-hero h2{font-size:1.5rem;margin-top:16px}
+  .pcard-hero .pdiv{margin:14px 4px 12px}
+  .pcard-hero .pchips span{font-size:.72rem;padding:6px 13px}
   .footer-block{padding-left:20px;padding-right:20px;padding-bottom:128px;padding-top:48px}
+  .contact-box{padding:20px}
 }
 @media(min-width:768px){
   .section-block{padding-left:28px;padding-right:28px}
   .hero-grid{padding-left:28px;padding-right:28px}
   .footer-block{padding-left:28px;padding-right:28px}
+  .contact-box{padding:28px}
 }
 @media(min-width:1024px){
   .hero-grid{grid-template-columns:1.45fr .95fr}
-  .pcard-hero{margin-left:auto;margin-right:0}
+  .pcard-hero{max-width:380px;margin-left:auto;margin-right:0}
+  .pcard-hero .pphoto{aspect-ratio:1/1;max-height:none}
+  .pcard-hero h2{font-size:1.65rem;margin-top:18px}
+  .pcard-hero .pdiv{margin:16px 4px 14px}
+  .pcard-hero .pchips span{font-size:.72rem;padding:6px 13px}
   .hero-block{padding-top:110px;padding-bottom:50px}
   .contact-box{grid-template-columns:1fr 1fr;gap:40px;padding:42px}
-}
-@media(min-width:640px){
-  .contact-box{padding:20px}
-}
-@media(min-width:768px){
-  .contact-box{padding:28px}
 }
