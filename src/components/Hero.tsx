@@ -98,8 +98,8 @@ export default function Hero() {
             <Typewriter words={typewriterWords} />
           </div>
           <div className="rise cta mt-5 sm:mt-7 flex flex-row flex-wrap gap-2.5 sm:gap-3" style={{ animationDelay: '.4s' }}>
-            <a className="btn btn-gold tip" data-tip={t.hero.ctaWork} data-magnetic href="#work">{t.hero.ctaWork}<span className="arr">→</span></a>
-            <a className="btn btn-ghost tip" data-tip={t.hero.ctaContact} data-magnetic href="#contact">{t.hero.ctaContact}<span className="arr">→</span></a>
+            <a className="btn btn-gold" data-magnetic href="#work">{t.hero.ctaWork}<span className="arr">→</span></a>
+            <a className="btn btn-ghost" data-magnetic href="#contact">{t.hero.ctaContact}<span className="arr">→</span></a>
           </div>
           <div className="rise hero-stats mt-6 sm:mt-8 grid grid-cols-3 gap-3 sm:gap-4" ref={statsRef.ref} style={{ animationDelay: '.48s' }}>
             {statValues.map((s, i) => (

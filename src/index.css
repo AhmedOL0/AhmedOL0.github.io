@@ -23,7 +23,8 @@
   --orb1:rgba(201,168,118,.44); --orb2:rgba(180,85,45,.26); --orb3:rgba(201,168,118,.30); --orb4:rgba(150,90,40,.24);
   --spot:rgba(160,120,60,.16); --thumb-ink:rgba(250,246,236,.95);
 }
-html{scroll-behavior:smooth;overflow-x:hidden}
+html{scroll-behavior:smooth;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+a,button{touch-action:manipulation;-webkit-tap-highlight-color:rgba(201,168,118,.25)}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;transition:background .35s,color .35s}
 ::selection{background:var(--gold);color:#fff}
 :root[data-theme="dark"] ::selection{color:#141414}
@@ -255,7 +256,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .marquee-item i{margin-right:28px}
   .core-chip{font-size:.66rem;padding:5px 10px;gap:4px;border-radius:8px}
   .core-chip-icon{width:12px;height:12px}
-  .core{flex-wrap:nowrap !important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:6px !important;padding-bottom:4px;max-width:100%}
+  .core{flex-wrap:nowrap !important;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:6px !important;padding-bottom:4px;max-width:100%}
   .core::-webkit-scrollbar{display:none}
   .core .core-chip{scroll-snap-align:start;flex-shrink:0;white-space:nowrap}
   .pcard{padding:20px}
@@ -273,7 +274,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .pyramid{gap:16px;margin-top:20px}
   .pyramid-level{gap:8px}
   .pillar-card{padding:18px}
-  .pillar-item-name{white-space:normal}
   .thumb{height:140px}
   .thumb b{font-size:2.4rem;left:16px;bottom:8px}
   .tag-corner{font-size:.68rem;padding:4px 10px;top:10px;right:12px}
@@ -284,7 +284,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .edu-card{padding:20px 18px}
   .field>span{font-size:.92rem}
   .iconbtn{width:40px;height:40px}
-  .direct a{padding:6px 0;display:inline-block}
+  .direct a{padding:10px 0;display:inline-block}
   .timeline{gap:36px}
   .job h3{font-size:1.05rem;margin:6px 0 3px}
   .job .where{margin-bottom:12px}
@@ -317,7 +317,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .core-chip{font-size:.62rem;padding:4px 8px;gap:2px}
   .core-chip-icon{width:11px;height:11px}
   .cta .btn{padding:12px 16px;font-size:.8rem;min-height:44px}
-  #toTop{width:44px;height:44px}
+  #toTop{width:44px;height:44px;bottom:calc(88px + env(safe-area-inset-bottom,0px));right:12px}
   .marquee{margin-top:20px}
   .marquee-item{font-size:.65rem;margin-right:20px;letter-spacing:.08em}
   .marquee-item i{margin-right:20px}
@@ -446,6 +446,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .tip:hover::after{opacity:1;transform:translateX(-50%) translateY(0)}
 .tip-bottom::after{bottom:auto;top:calc(100% + 8px);transform:translateX(-50%) translateY(-4px)}
 .tip-bottom:hover::after{transform:translateX(-50%) translateY(0)}
+/* Touch screens: hover tooltips stick on tap — disable them, tap targets navigate directly */
+@media(pointer:coarse){.tip::after{display:none !important}}
 
 /* Tech logo in tool cards / pillar items */
 .tool-logo{width:18px;height:18px;flex-shrink:0;color:var(--gold);opacity:.8;transition:opacity .25s}
@@ -461,12 +463,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .core-chip:hover .core-chip-icon{opacity:1}
 .core-chip:hover{background:rgba(201,168,118,.15);border-color:var(--gold);transform:translateY(-1px);
   box-shadow:0 4px 12px rgba(160,120,60,.2)}
-.core-chip::after{content:attr(title);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);
-  background:var(--ink);color:var(--bg);font-family:var(--sans);font-size:.72rem;letter-spacing:0;
-  padding:6px 12px;border-radius:8px;white-space:nowrap;pointer-events:none;opacity:0;
-  transition:opacity .2s,transform .2s;border:1px solid var(--line);z-index:20;
-  box-shadow:0 4px 16px rgba(0,0,0,.2)}
-.core-chip:hover::after{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* View all technologies link */
 .hero-view-all{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-family:var(--mono);
@@ -536,8 +532,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .pillar-items{display:flex;flex-direction:column;gap:12px}
 .pillar-item{display:flex;flex-direction:row;align-items:flex-start;gap:10px}
 .pillar-item-text{flex:1;min-width:0}
-.pillar-item-name{font-family:var(--mono);font-size:.76rem;font-weight:600;color:var(--gold-hi);white-space:nowrap}
-.pillar-item-desc{font-size:.76rem;color:var(--muted);line-height:1.45}
+.pillar-item-name{font-family:var(--mono);font-size:.76rem;font-weight:600;color:var(--gold-hi);display:block;margin-bottom:2px}
+.pillar-item-desc{font-size:.76rem;color:var(--muted);line-height:1.45;display:block}
 
 /* Contact */
 .contact-box{background:linear-gradient(180deg,rgba(160,120,60,.07),transparent 40%),var(--card);border:1px solid var(--line);border-radius:22px;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr;gap:24px;padding:12px}
@@ -572,7 +568,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 @keyframes fade-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
 /* Floating dock + top pills (replaces header nav) */
-.dock{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(80px);z-index:61;
+.dock{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(80px);z-index:61;
   display:flex;align-items:center;gap:4px;padding:9px 12px;border-radius:999px;
   border:1px solid transparent;
   background:linear-gradient(var(--navbg),var(--navbg)) padding-box,
@@ -715,10 +711,9 @@ section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
   .reveal,.reveal-left,.reveal-right,.reveal-scale,.stagger-item{opacity:1;transform:none}
   .rise{opacity:1;animation:none}
   html{scroll-behavior:auto}
-  .orb,.hero-orb,.hero-orb-2,.dot,.beacon,.scroll-cue i::after{animation:none}
+  .orb,.hero-orb,.hero-orb-2,.dot,.beacon,.scroll-cue i::after,.shimmer{animation:none}
   .loader,.loader-terminal,.terminal-line,.terminal-cursor,.dock{animation:none}
   .core-chip,.hero-stat-val,.hero-stat-label,.hero-stat-sub,.btn,.card,.tag,.tags span,.method-chip,.pillar-card,.tool-card,.pyramid-bar,.edu-card,.direct a,.footer a{transition:none}
-  .core-chip::after{transition:none}
   #spot{display:none}
 }
   @media print{
@@ -750,6 +745,12 @@ section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
 }
 @media(min-width:421px) and (max-width:639px){
   .pcard-hero .pphoto{max-height:240px;max-width:280px}
+}
+/* Very small phones (iPhone SE 1st gen, Galaxy Fold): shrink dock so all icons fit */
+@media(max-width:360px){
+  .dock{gap:2px;padding:7px 8px;max-width:calc(100vw - 16px)}
+  .dock a,.dock button{width:35px;height:35px}
+  .dock-sep{margin:0 3px}
 }
 @media(min-width:640px){
   .section-block{padding-left:16px;padding-right:16px}
