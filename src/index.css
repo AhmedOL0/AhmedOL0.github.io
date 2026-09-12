@@ -425,7 +425,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 /* Shimmer text effect */
 .shimmer{background:linear-gradient(110deg,var(--gold) 0%,var(--gold-hi) 20%,var(--ink) 40%,var(--gold-hi) 60%,var(--gold) 80%,var(--gold-hi) 100%);
   background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:shimmer 4s ease-in-out infinite}
+  animation:shimmer 7s ease-in-out infinite}
 @keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
 
 /* Typewriter */
@@ -500,7 +500,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .tool-card{background:rgba(127,120,100,.06);border:1px solid var(--line);border-radius:10px;padding:12px 14px;transition:border-color .25s,transform .2s}
 .tool-card:hover{border-color:var(--gold-deep);transform:translateY(-2px)}
 .tool-name{display:block;font-family:var(--mono);font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:3px}
-.tool-desc{display:block;font-size:.76rem;color:var(--muted);line-height:1.45}
+.tool-desc{display:block;font-size:.78rem;color:var(--muted);line-height:1.5}
 .methods-grid h3{font-size:.92rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:14px}
 .methods-grid h3::before{content:"";display:inline-block;width:18px;height:1px;background:var(--gold);margin-right:10px;vertical-align:middle}
 .methods-list{display:flex;flex-wrap:wrap;gap:8px}
@@ -528,7 +528,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .pillar-item{display:flex;flex-direction:row;align-items:flex-start;gap:10px}
 .pillar-item-text{flex:1;min-width:0}
 .pillar-item-name{font-family:var(--mono);font-size:.76rem;font-weight:600;color:var(--gold-hi);display:block;margin-bottom:2px}
-.pillar-item-desc{font-size:.76rem;color:var(--muted);line-height:1.45;display:block}
+.pillar-item-desc{font-size:.8rem;color:var(--muted);line-height:1.55;display:block}
 
 /* Contact */
 .contact-box{background:linear-gradient(180deg,rgba(160,120,60,.07),transparent 40%),var(--card);border:1px solid var(--line);border-radius:22px;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr;gap:24px;padding:12px}

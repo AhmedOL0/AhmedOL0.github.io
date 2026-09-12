@@ -71,7 +71,7 @@ const en: Dict = {
   dir: 'ltr',
   nav: { work: 'Work', about: 'About', experience: 'Experience', education: 'Education', tools: 'Engineering', contact: 'Contact', resume: 'Résumé' },
   hero: {
-    badge: 'Open to PFE internship \u2014 backend or full-stack, Morocco or remote',
+    badge: 'Open to a final-year internship (PFE) \u2014 backend or full-stack, Morocco or remote',
     titleA: 'Building ', titleEm: 'complete products', titleB: ', not just features.',
     lede1: 'Ahmed Ouarrali, 5th-year Software Engineering student at ENSIASD. Built ',
     lede2: ' end-to-end: Spring Boot API, Next.js storefront, React Native app, PostgreSQL + Redis, deployed with Docker to Google Cloud.',
@@ -89,7 +89,7 @@ const en: Dict = {
     showLess: 'show less',
     projects: [
       { title: 'OdemLab — AI skincare e-commerce', year: 'Flagship', kind: 'Team of 4 · Private repo', heading: 'OdemLab', lead: 'd',
-        description: 'A full e-commerce platform with a Spring Boot API, Next.js storefront and back-office, and a React Native mobile app. Customers pay through Stripe, Moroccan CMI, or cash-on-delivery, all routed through one order lifecycle. AI skin analysis via Gemini degrades gracefully behind circuit breakers. Trilingual FR/EN/AR with real Arabic RTL layout. Infrastructure managed with Terraform, deploys to Cloud Run with zero-traffic promotion and auto-rollback on health-check failure.',
+        description: 'A complete online skincare store — website, mobile app and back-office — where customers pay through Stripe, Moroccan CMI, or cash-on-delivery, all routed through one order lifecycle. AI skin analysis via Gemini degrades gracefully behind circuit breakers. Trilingual FR/EN/AR with real Arabic RTL layout. Infrastructure managed with Terraform, deploys to Cloud Run with zero-traffic promotion and auto-rollback on health-check failure.',
         result: '810 automated tests, 93 schema migrations, 3 payment integrations (Stripe, CMI, COD). Deployed to Cloud Run with zero-downtime promotion and auto-rollback.',
         note: 'Private repository — live demo and code walkthrough on request.' },
       { title: 'Medical appointment platform', year: '2025', kind: 'Internship · Full-stack', heading: 'Medical', lead: 'e',
@@ -111,7 +111,7 @@ const en: Dict = {
   },
   about: {
     kicker: 'Background', title: 'Backend-leaning, product-minded — from sensor to storefront.',
-    sub: 'From ESP8266 firmware to Cloud Run deploys: I care about the places where a bug costs real money, and I prefer executable guarantees over conventions.',
+    sub: 'From ESP8266 firmware to Cloud Run deploys: I care about the places where a bug costs real money, and I prefer executable guarantees over conventions. In short: I build software that works in production, not just in demos.',
     stats: [
       { label: 'Domains shipped', sub: 'web · mobile · API · QA · IoT' },
       { label: 'Languages live', sub: 'FR · EN · AR + RTL' },
@@ -124,6 +124,7 @@ const en: Dict = {
       'Transactional Integrity, idempotent orders, optimistic locking on products, and SELECT FOR UPDATE on stock. Money paths that never double-charge or oversell',
       'E2E Testing, Playwright suites across Chromium/Firefox/WebKit with axe-core accessibility gates. Catches regressions before users do',
       'Trilingual Interfaces, FR/EN/AR with real Arabic RTL layout mirroring. Not just translated labels, but mirrored navigation, forms, and content',
+      'AI Features in Production, Gemini skin analysis and CamemBERT/Groq lecture summarization, each with fallbacks so a model outage never breaks the product',
     ],
     methodTitle: 'How I work',
     method: [
@@ -208,7 +209,7 @@ const fr: Dict = {
   dir: 'ltr',
   nav: { work: 'Projets', about: 'Profil', experience: 'Parcours', education: 'Formation', tools: 'Ingénierie', contact: 'Contact', resume: 'CV' },
   hero: {
-    badge: 'Ouvert \u00e0 un stage PFE \u2014 backend ou full-stack, Maroc ou distanciel',
+    badge: 'Ouvert \u00e0 un stage de fin d\u2019\u00e9tudes (PFE) \u2014 backend ou full-stack, Maroc ou distanciel',
     titleA: 'Des ', titleEm: 'produits complets', titleB: ', pas juste des fonctionnalit\u00e9s.',
     lede1: 'Ahmed Ouarrali, \u00e9l\u00e8ve-ing\u00e9nieur en 5\u1d49 ann\u00e9e \u00e0 l\u2019ENSIASD. J\u2019ai construit ',
     lede2: ' de bout en bout : API Spring Boot, boutique Next.js, app React Native, PostgreSQL + Redis, d\u00e9ploy\u00e9 avec Docker sur Google Cloud.',
@@ -226,7 +227,7 @@ const fr: Dict = {
     showLess: 'voir moins',
     projects: [
       { title: 'OdemLab — e-commerce cosmétique IA', year: 'Vitrine', kind: 'Équipe de 4 · Dépôt privé', heading: 'OdemLab', lead: 'd',
-        description: 'Plateforme e-commerce complète avec API Spring Boot, boutique Next.js et back-office, et application React Native. Les clients paient par Stripe, CMI marocaine ou contre-remboursement, tout passe par un seul cycle de commande. L\'analyse IA de la peau par Gemini dégrade gracieusement derrière des coupe-circuits. Trilingue FR/EN/AR avec vrai disposition RTL arabe. Infrastructure gérée avec Terraform, déploiement Cloud Run sans trafic et retour arrière automatique.',
+        description: 'Une boutique cosmétique en ligne complète — site web, application mobile et back-office — où les clients paient par Stripe, CMI marocaine ou contre-remboursement, le tout dans un seul cycle de commande. L\'analyse IA de la peau par Gemini dégrade gracieusement derrière des coupe-circuits. Trilingue FR/EN/AR avec vrai disposition RTL arabe. Infrastructure gérée avec Terraform, déploiement Cloud Run sans trafic et retour arrière automatique.',
         result: '810 tests automatisés, 93 migrations schema, 3 intégrations paiement (Stripe, CMI, COD). Déployé sur Cloud Run avec promotion sans interruption et rollback automatique.',
         note: 'Dépôt privé — démo en direct et revue de code sur demande.' },
       { title: 'Plateforme de rendez-vous médicaux', year: '2025', kind: 'Stage · Full-stack', heading: 'Médical', lead: 'e',
@@ -248,7 +249,7 @@ const fr: Dict = {
   },
   about: {
     kicker: 'Profil', title: 'Backend d\'abord, produit toujours — du capteur à la vitrine.',
-    sub: 'Du firmware ESP8266 aux déploiements Cloud Run : je m\'intéresse aux endroits où un bug coûte de l\'argent, et je préfère les garanties exécutables aux conventions.',
+    sub: 'Du firmware ESP8266 aux déploiements Cloud Run : je m\'intéresse aux endroits où un bug coûte de l\'argent, et je préfère les garanties exécutables aux conventions. En bref : un logiciel qui marche en production, pas seulement en démo.',
     stats: [
       { label: 'Domaines livrés', sub: 'web · mobile · API · QA · IoT' },
       { label: 'Langues en ligne', sub: 'FR · EN · AR + RTL' },
@@ -261,6 +262,7 @@ const fr: Dict = {
       'Intégrité Transactionnelle, commandes idempotentes, verrouillage optimiste sur les produits, SELECT FOR UPDATE sur le stock. Les chemins argent ne double-facturent jamais',
       'Tests E2E, suites Playwright sur Chromium/Firefox/WebKit avec portes d\'accessibilité axe-core. Attrapent les régressions avant les utilisateurs',
       'Interfaces Trilingues, FR/EN/AR avec vrai disposition RTL arabe. Pas des libellés traduits, mais une navigation, formulaires et contenus miroirs',
+      'IA en Production, analyse de peau Gemini et résumés CamemBERT/Groq, chacun avec repli — une panne de modèle ne casse jamais le produit',
     ],
     methodTitle: 'Ma méthode',
     method: [
@@ -346,7 +348,7 @@ const ar: Dict = {
   dir: 'rtl',
   nav: { work: 'أعمالي', about: 'نبذة', experience: 'المسار', education: 'التكوين', tools: 'الهندسة', contact: 'اتصل بي', resume: 'السيرة الذاتية' },
   hero: {
-    badge: 'متاح لتدريب PFE \u2014 باك-إند أو full-stack، المغرب أو عن بعد',
+    badge: 'متاح لتدريب نهاية الدراسة (PFE) \u2014 باك-إند أو full-stack، المغرب أو عن بعد',
     titleA: 'أبني ', titleEm: 'منتجات كاملة', titleB: '، لا مجرد ميزات.',
     lede1: 'أحمد ورالي، طالب مهندس في السنة الخامسة بـ ENSIASD. بنيت ',
     lede2: ' من البداية للنهاية: API Spring Boot، متجر Next.js، تطبيق React Native، PostgreSQL + Redis، منشور عبر Docker على Google Cloud.',
@@ -364,7 +366,7 @@ const ar: Dict = {
     showLess: 'عرض أقل',
     projects: [
       { title: 'OdemLab — تجارة التجميل بالذكاء الاصطناعي', year: 'الأبرز', kind: 'فريق من 4 · مستودع خاص', heading: 'OdemLab', lead: 'd',
-        description: 'منصة تجارة إلكترونية كاملة مع API Spring Boot، متجر Next.js ومكتب خلفي، وتطبيق React Native. العملاء يدفعون عبر Stripe أو CMI المغربية أو الدفع عند الاستلام، الكل يمر بدورة طلب واحدة. تحليل البشرة بالذكاء الاصطناعي من Gemini يتدهور بأمان خلف القواطع. ثلاث لغات FR/EN/AR مع تخطيط RTL عربي حقيقي. البنية التحتية مُدارة بـ Terraform، نشر على Cloud Run بدون توقف مع رجوع تلقائي.',
+        description: 'متجر تجميل إلكتروني متكامل — موقع وتطبيق موبايل ومكتب خلفي — يدفع فيه العملاء عبر Stripe أو CMI المغربية أو الدفع عند الاستلام، الكل ضمن دورة طلب واحدة. تحليل البشرة بالذكاء الاصطناعي من Gemini يتدهور بأمان خلف القواطع. ثلاث لغات FR/EN/AR مع تخطيط RTL عربي حقيقي. البنية التحتية مُدارة بـ Terraform، نشر على Cloud Run بدون توقف مع رجوع تلقائي.',
         result: '810 اختبار مؤتمت، 93 هجرة schema، 3 تكاملات دفع (Stripe، CMI، COD). منشور على Cloud Run مع ترقية بدون توقف ورجوع تلقائي.',
         note: 'مستودع خاص — عرض حي ومراجعة الكود عند الطلب.' },
       { title: 'منصة المواعيد الطبية', year: '2025', kind: 'تدريب · Full-stack', heading: 'طبي', lead: 'ب',
@@ -386,7 +388,7 @@ const ar: Dict = {
   },
   about: {
     kicker: 'نبذة', title: 'ميل للباك-إند، عقلية منتج — من الحساس إلى المتجر.',
-    sub: 'من firmware الـ ESP8266 إلى نشر Cloud Run: أهتم بالأماكن التي يكلّف فيها الخطأ مالاً حقيقياً، وأفضّل الضمانات المنفَّذة على الأعراف.',
+    sub: 'من firmware الـ ESP8266 إلى نشر Cloud Run: أهتم بالأماكن التي يكلّف فيها الخطأ مالاً حقيقياً، وأفضّل الضمانات المنفَّذة على الأعراف. باختصار: برمجيات تعمل في الإنتاج، لا في العروض فقط.',
     stats: [
       { label: 'مجالات منشورة', sub: 'ويب · موبايل · API · QA · IoT' },
       { label: 'لغات حيّة', sub: 'FR · EN · AR + RTL' },
@@ -399,6 +401,7 @@ const ar: Dict = {
       'سلامة المعاملات, طلبات غير قابلة للتكرار، أقفال متفائلة على المنتجات، SELECT FOR UPDATE على المخزون. مسارات المال لا تُدفع مرتين أبداً',
       'اختبار E2E, حزم Playwright على Chromium/Firefox/WebKit مع بوابات وصول axe-core. تلتقط الانحدارات قبل المستخدمين',
       'واجهات ثلاثية اللغات, FR/EN/AR مع تخطيط RTL عربي حقيقي. لا مجرد تسميات مترجمة، بل تنقل ونماذج ومحتوى معكوسة',
+      'ذكاء اصطناعي في الإنتاج، تحليل البشرة بـ Gemini وتلخيص المحاضرات بـ CamemBERT/Groq، كلها ببدائل — تعطّل النموذج لا يكسر المنتج أبداً',
     ],
     methodTitle: 'كيف أعمل',
     method: [

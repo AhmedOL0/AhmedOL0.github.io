@@ -67,11 +67,11 @@ export default function Contact() {
         <form onSubmit={handleSubmit} aria-busy={sending}>
           <input type="text" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" aria-label="Leave this field empty" />
           <label className="field" htmlFor="contact-name">
-            <input id="contact-name" name="name" type="text" placeholder=" " required disabled={sending} />
+            <input id="contact-name" name="name" type="text" placeholder=" " required disabled={sending} autoComplete="name" />
             <span>{t.contact.name}</span>
           </label>
           <label className="field" htmlFor="contact-email">
-            <input id="contact-email" name="email" type="email" placeholder=" " required disabled={sending} />
+            <input id="contact-email" name="email" type="email" placeholder=" " required disabled={sending} autoComplete="email" inputMode="email" />
             <span>{t.contact.email}</span>
           </label>
           <label className="field" htmlFor="contact-message">
