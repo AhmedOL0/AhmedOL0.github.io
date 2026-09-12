@@ -242,13 +242,17 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .dock a,.dock button{width:36px;height:36px}
   .dock .dock-social{display:none}
   section{padding:56px 0}
-  .hero-stat-val{font-size:1.6rem}
-  .hero-stat-label{font-size:.65rem}
-  .hero-stat-sub{font-size:.58rem}
-  .marquee-item{font-size:.65rem;margin-right:32px;letter-spacing:.16em}
-  .marquee-item i{margin-right:32px}
-  .core-chip{font-size:.65rem;padding:5px 10px;gap:4px}
-  .core-chip-icon{width:12px;height:12px}
+  .hero-stat-val{font-size:1.5rem}
+  .hero-stat-label{font-size:.63rem}
+  .hero-stat-sub{font-size:.56rem}
+  .hero-stats{gap:8px}
+  .marquee-item{font-size:.62rem;margin-right:28px;letter-spacing:.14em}
+  .marquee-item i{margin-right:28px}
+  .core-chip{font-size:.6rem;padding:4px 8px;gap:3px;border-radius:8px}
+  .core-chip-icon{width:11px;height:11px}
+  .core{flex-wrap:nowrap !important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:6px !important;padding-bottom:4px}
+  .core::-webkit-scrollbar{display:none}
+  .core .core-chip{scroll-snap-align:start;flex-shrink:0;white-space:nowrap}
   .pcard{padding:20px}
   .pcard h2{font-size:1.4rem}
   .pmono span{font-size:3.6rem}
@@ -268,20 +272,26 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .tag-corner{font-size:.6rem;padding:4px 10px;top:10px;right:12px}
   .top-left{left:12px !important;top:12px !important}
   [dir="rtl"] .top-left{left:auto !important;right:12px !important}
+  .cta{gap:8px}
+  .cta .btn{flex:1;text-align:center;padding-left:14px;padding-right:14px}
 }
 @media(max-width:420px){
   .hero-stats{grid-template-columns:repeat(2,1fr)}
-  section{padding:44px 0}
+  section{padding:40px 0}
   .pcard{padding:16px}
   .pcard h2{font-size:1.3rem}
   .pmono span{font-size:3.2rem}
-  .hero-stat-val{font-size:1.4rem}
+  .hero-stat-val{font-size:1.3rem}
   .langsw button{padding:5px 8px;font-size:.65rem}
   .top-right{right:12px;top:12px}
   [dir="rtl"] .top-right{left:12px}
-  .btn{padding:10px 20px;font-size:.82rem}
+  .btn{padding:9px 16px;font-size:.78rem}
   .filters{gap:6px !important}
   .filters button{padding:8px 14px;font-size:.78rem}
+  .typewriter{font-size:.78rem}
+  .core-chip{font-size:.56rem;padding:3px 7px;gap:2px}
+  .core-chip-icon{width:10px;height:10px}
+  .cta .btn{padding-left:12px;padding-right:12px;font-size:.76rem}
 }
 :root[data-theme="light"] .orb{opacity:.35}
 :root[data-theme="light"] .hero-orb{opacity:.5}

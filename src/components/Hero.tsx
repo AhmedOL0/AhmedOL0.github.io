@@ -80,35 +80,35 @@ export default function Hero() {
   const y = useScrollY();
   const fade = calm ? {} : { opacity: Math.max(0, 1 - y / 750), transform: `translateY(${y * 0.14}px)` };
   return (
-    <header id="top" ref={ref} className="relative pt-[70px] pb-[30px] sm:pt-[110px] sm:pb-[50px]">
+    <header id="top" ref={ref} className="relative pt-[56px] pb-[20px] sm:pt-[110px] sm:pb-[50px]">
       <div className="hero-orb" aria-hidden="true" />
       <div className="hero-orb hero-orb-2" aria-hidden="true" />
       <div className="hero-dot-grid" aria-hidden="true" />
-      <div className="mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-10 px-7 lg:grid-cols-[1.45fr_.95fr]" style={fade}>
+      <div className="mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-6 sm:gap-10 px-5 sm:px-7 lg:grid-cols-[1.45fr_.95fr]" style={fade}>
         <div>
-          <span className="rise mb-5 inline-flex items-center gap-2 rounded-full border px-4 py-[7px] text-[.79rem] tracking-[.03em]"
+          <span className="rise mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-[6px] sm:px-4 sm:py-[7px] text-[.72rem] sm:text-[.79rem] tracking-[.03em]"
             style={{ color: 'var(--muted)', borderColor: 'var(--line)', background: 'rgba(127,120,100,.08)', animationDelay: '.05s' }}>
             <span className="beacon" /> {t.hero.badge}
           </span>
-          <h1 className="rise h-display text-[clamp(2.6rem,6vw,4.5rem)] max-w-[18ch]" style={{ animationDelay: '.15s' }}>
+          <h1 className="rise h-display text-[clamp(1.8rem,5.5vw,4.5rem)] max-w-[16ch] sm:max-w-[18ch]" style={{ animationDelay: '.15s' }}>
             {t.hero.titleA}<em className="grad-text">{t.hero.titleEm}</em>{t.hero.titleB}
           </h1>
-          <p className="rise lede mt-5 max-w-[56ch] text-[1.02rem]" style={{ color: 'var(--muted)', animationDelay: '.28s' }}>
+          <p className="rise lede mt-4 sm:mt-5 max-w-[56ch] text-[.88rem] sm:text-[1.02rem]" style={{ color: 'var(--muted)', animationDelay: '.28s' }}>
             {t.hero.lede1}<strong style={{ color: 'var(--ink)' }}>OdemLab</strong>{t.hero.lede2}
           </p>
-          <div className="rise mt-4" style={{ animationDelay: '.35s' }}>
+          <div className="rise mt-3 sm:mt-4" style={{ animationDelay: '.35s' }}>
             <Typewriter words={typewriterWords} />
           </div>
-          <div className="rise cta mt-7 flex flex-wrap gap-3" style={{ animationDelay: '.4s' }}>
+          <div className="rise cta mt-5 sm:mt-7 flex flex-row flex-wrap gap-2.5 sm:gap-3" style={{ animationDelay: '.4s' }}>
             <a className="btn btn-gold tip" data-tip={t.hero.ctaWork} data-magnetic href="#work">{t.hero.ctaWork}<span className="arr">→</span></a>
             <a className="btn btn-ghost tip" data-tip={t.hero.ctaContact} data-magnetic href="#contact">{t.hero.ctaContact}<span className="arr">→</span></a>
           </div>
-          <div className="rise hero-stats mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4" ref={statsRef.ref} style={{ animationDelay: '.48s' }}>
+          <div className="rise hero-stats mt-6 sm:mt-8 grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4" ref={statsRef.ref} style={{ animationDelay: '.48s' }}>
             {statValues.map((s, i) => (
               <StatItem key={i} target={s.value} suffix={s.suffix} label={t.hero.statsLabels[i]} sub={t.hero.statsSub[i]} inView={statsRef.inView} />
             ))}
           </div>
-          <div className="rise core mt-6 flex flex-wrap gap-2" style={{ animationDelay: '.56s' }}>
+          <div className="rise core mt-5 sm:mt-6 flex flex-wrap gap-1.5 sm:gap-2" style={{ animationDelay: '.56s' }}>
             {core.map((c) => (
               <span key={c.name} className="core-chip tip" data-tip={c.tip}>
                 <TechIcon name={c.icon} className="core-chip-icon" />
