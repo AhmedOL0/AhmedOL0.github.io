@@ -122,11 +122,11 @@ function Site() {
       <div className="grain" />
       <TopPills theme={theme} onToggle={toggle} />
       <Dock active={active} theme={theme} onToggle={toggle} />
-      <div className="relative z-[1] mx-auto max-w-[1120px] px-7" style={{ opacity: ready ? 1 : 0 }}>
+      <div className="relative z-[1] mx-auto max-w-[1120px] px-5 sm:px-7" style={{ opacity: ready ? 1 : 0 }}>
         <Hero />
       </div>
       <Marquee />
-      <main id="main" className="relative z-[1] mx-auto max-w-[1120px] px-7">
+      <main id="main" className="relative z-[1] mx-auto max-w-[1120px] px-5 sm:px-7">
         <Work />
         <About />
         <Experience />
