@@ -250,7 +250,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .marquee-item i{margin-right:28px}
   .core-chip{font-size:.64rem;padding:4px 9px;gap:3px;border-radius:8px}
   .core-chip-icon{width:12px;height:12px}
-  .core{flex-wrap:nowrap !important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:6px !important;padding-bottom:4px}
+  .core{flex-wrap:nowrap !important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:6px !important;padding-bottom:4px;max-width:100%}
   .core::-webkit-scrollbar{display:none}
   .core .core-chip{scroll-snap-align:start;flex-shrink:0;white-space:nowrap}
   .pcard{padding:20px}
@@ -492,6 +492,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .pyramid-bar{flex-direction:column;align-items:flex-start;gap:4px}
   .pyramid-tools{grid-template-columns:1fr}
   .pillars-grid{grid-template-columns:1fr}
+  .pyramid-bar{width:100% !important}
 }
 @media(min-width:641px) and (max-width:960px){
   .pillars-grid{grid-template-columns:1fr 1fr}
@@ -699,8 +700,8 @@ section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
 }
 
 /* Profile card responsive — mobile-first, progressive enhancement */
-.pcard-hero{width:100%;max-width:100%;margin-left:auto;margin-right:auto}
-.pcard-hero .pphoto{aspect-ratio:3/4;max-height:260px}
+.pcard-hero{width:100%;max-width:100%;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;align-items:center}
+.pcard-hero .pphoto{aspect-ratio:3/4;max-height:260px;width:100%}
 .pcard-hero h2{font-size:1.3rem;margin-top:14px}
 .pcard-hero .pdiv{margin:12px 4px 10px}
 .pcard-hero .pchips span{font-size:.68rem;padding:5px 11px}
