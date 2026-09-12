@@ -352,7 +352,7 @@ const ar: Dict = {
     lede2: ' من البداية للنهاية: API Spring Boot، متجر Next.js، تطبيق React Native، PostgreSQL + Redis، منشور عبر Docker على Google Cloud.',
     ctaWork: 'استعرض أعمالي', ctaContact: 'تواصل معي',
     cardRole: 'مهندس برمجيات Full-Stack', cardTech: 'التقنيات الأساسية',
-    statsLabels: ['مشاريع منشورة', 'لغات مدمجة', 'مجموعات اختبار E2E', 't\u00e9d\u00e9 Flyway'] as [string, string, string, string],
+    statsLabels: ['مشاريع منشورة', 'لغات مدمجة', 'مجموعات اختبار E2E', 'استيرادات Flyway'] as [string, string, string, string],
     statsSub: ['web \u00b7 mobile \u00b7 API \u00b7 QA \u00b7 IoT', 'FR \u00b7 EN \u00b7 AR + RTL', 'Playwright \u00b7 Selenium', 'تُعاد من الصفر'] as [string, string, string, string],
     viewAll: '',
   },
@@ -517,4 +517,4 @@ export const PROJECT_CATS: string[][] = [
   ['web', 'mobile', 'backend'], ['web', 'backend'], ['web', 'backend'], ['mobile'], ['ai'], ['iot'],
 ];
 export const PROJECT_THUMBS = ['thumb-odem', 'thumb-med', 'thumb-fit', 'thumb-campus', 'thumb-sum', 'thumb-iot'];
-export const STAT_VALUES = [6, 3, 4];
+export const STAT_VALUES = [6, 3, 4, 93];
