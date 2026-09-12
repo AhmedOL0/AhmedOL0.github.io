@@ -78,7 +78,7 @@ function Card({ p, th, i, skipTilt, cardId }: { p: { year: string; kind: string;
       <div className="body flex flex-col gap-1.5 p-4 sm:p-[20px_22px_22px] flex-1">
         <span className="flag">{p.kind}</span>
         <h3 className="font-serif-d">{p.title}</h3>
-        <p className="text-[.86rem] leading-[1.7]" style={{ color: 'var(--muted)' }}>{p.description}</p>
+        <p className="text-[.86rem] leading-[1.6]" style={{ color: 'var(--muted)' }}>{p.description}</p>
         {p.result && <p className="result text-[.82rem] font-medium" style={{ color: 'var(--gold)' }}>{p.result}</p>}
         <div className="tags flex flex-wrap gap-1.5 mt-1">
           {PROJECT_TAGS[i].slice(0, tagsExpanded ? undefined : 6).map((tag) => (
