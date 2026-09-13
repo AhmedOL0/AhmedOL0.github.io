@@ -1,6 +1,7 @@
 import { useState, useMemo, useCallback, useRef } from 'react';
 import Section from './Section';
-import { PROJECT_CATS, PROJECT_TAGS, PROJECT_THUMBS, thumbTitle, useLang } from '../i18n';
+import { useLang } from '../i18n-data';
+import { PROJECT_CATS, PROJECT_TAGS, PROJECT_THUMBS, thumbTitle } from '../i18n-data';
 
 const filterKeys = ['all', 'web', 'mobile', 'backend', 'ai', 'iot'] as const;
 

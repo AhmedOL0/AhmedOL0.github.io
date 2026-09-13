@@ -1,6 +1,6 @@
 import { useState, useCallback, type FormEvent } from 'react';
 import Section from './Section';
-import { useLang } from '../i18n';
+import { useLang } from '../i18n-data';
 
 function Spinner() {
   return (

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { LANGS, useLang } from '../i18n';
+import { LANGS, useLang } from '../i18n-data';
 
 function Icon({ d, filled }: { d: string; filled?: boolean }) {
   return (

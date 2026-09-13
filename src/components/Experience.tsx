@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import Section from './Section';
-import { useLang, type JobT } from '../i18n';
+import { useLang } from '../i18n-data';
+import type { JobT } from '../i18n-data';
 
 export function Timeline({ items }: { items: JobT[] }) {
   const wrapRef = useRef<HTMLDivElement | null>(null);

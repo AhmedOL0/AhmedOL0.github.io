@@ -1,5 +1,6 @@
 import Section from './Section';
-import { useLang, type ToolLevel, type Pillar } from '../i18n';
+import { useLang } from '../i18n-data';
+import type { Pillar, ToolLevel } from '../i18n-data';
 import TechIcon from './TechIcon';
 
 const pillarIconMap: Record<string, string> = {

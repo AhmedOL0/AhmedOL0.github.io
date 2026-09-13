@@ -8,7 +8,8 @@ import About from './components/About';
 import Experience, { Education } from './components/Experience';
 import Tools from './components/Tools';
 import Contact from './components/Contact';
-import { LangProvider, useLang } from './i18n';
+import { LangProvider } from './i18n';
+import { useLang } from './i18n-data';
 import { useActiveSection, useBackToTop, useMagnetic, useProgress, useSpotlight, useTheme } from './hooks';
 
 const Stars = lazy(() => import('./components/Stars'));
@@ -67,11 +68,13 @@ function Footer() {
   );
 }
 
+const STICKY_SECTIONS = ['work', 'about', 'experience', 'education', 'tools', 'contact'];
+
 function Site() {
   const { theme, toggle } = useTheme();
   const progress = useProgress();
   const showTop = useBackToTop();
-  const active = useActiveSection(['work', 'about', 'experience', 'education', 'tools', 'contact']);
+  const active = useActiveSection(STICKY_SECTIONS);
   const [ready, setReady] = useState(false);
   const [loading, setLoading] = useState(() => {
     try {

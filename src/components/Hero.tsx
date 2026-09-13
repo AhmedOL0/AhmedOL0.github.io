@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLang } from '../i18n';
+import { useLang } from '../i18n-data';
 import { useReveal, useScrollY, useCountUp, useInView } from '../hooks';
 import TechIcon from './TechIcon';
 import Typewriter from './Typewriter';
@@ -71,9 +71,9 @@ function ProfileCard() {
 }
 
 export default function Hero() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const ref = useReveal<HTMLElement>();
-  const statsRef = useInView<HTMLDivElement>(0.3);
+  const { ref: statsRef, inView: statsInView } = useInView<HTMLDivElement>(0.3);
   const y = useScrollY();
   const fade = calm ? {} : { opacity: Math.max(0, 1 - y / 2400), transform: `translateY(${y * 0.06}px)` };
   return (
@@ -94,15 +94,15 @@ export default function Hero() {
             {t.hero.lede1}<strong style={{ color: 'var(--ink)' }}>OdemLab</strong>{t.hero.lede2}
           </p>
           <div className="rise mt-3 sm:mt-4" style={{ animationDelay: '.35s' }}>
-            <Typewriter words={t.hero.tw} />
+            <Typewriter key={lang} words={t.hero.tw} />
           </div>
           <div className="rise cta mt-5 sm:mt-7 flex flex-row flex-wrap gap-2.5 sm:gap-3" style={{ animationDelay: '.4s' }}>
             <a className="btn btn-gold" data-magnetic href="#work">{t.hero.ctaWork}<span className="arr">→</span></a>
             <a className="btn btn-ghost" data-magnetic href="#contact">{t.hero.ctaContact}<span className="arr">→</span></a>
           </div>
-          <div className="rise hero-stats mt-6 sm:mt-8 grid grid-cols-3 gap-3 sm:gap-4" ref={statsRef.ref} style={{ animationDelay: '.48s' }}>
+          <div className="rise hero-stats mt-6 sm:mt-8 grid grid-cols-3 gap-3 sm:gap-4" ref={statsRef} style={{ animationDelay: '.48s' }}>
             {statValues.map((s, i) => (
-              <StatItem key={i} target={s.value} suffix={s.suffix} label={t.hero.statsLabels[i]} inView={statsRef.inView} />
+              <StatItem key={i} target={s.value} suffix={s.suffix} label={t.hero.statsLabels[i]} inView={statsInView} />
             ))}
           </div>
           <div className="rise core mt-5 sm:mt-6 flex flex-wrap gap-1.5 sm:gap-2" style={{ animationDelay: '.56s' }}>

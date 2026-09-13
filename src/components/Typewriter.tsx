@@ -4,7 +4,7 @@ const calm = typeof window !== 'undefined' && window.matchMedia('(prefers-reduce
 
 export default function Typewriter({ words, speed = 80, pause = 2200 }: { words: string[]; speed?: number; pause?: number }) {
   const [index, setIndex] = useState(0);
-  const [text, setText] = useState('');
+  const [text, setText] = useState(() => (calm ? words[0] : ''));
   const [isDeleting, setIsDeleting] = useState(false);
 
   const tick = useCallback(() => {
@@ -26,7 +26,7 @@ export default function Typewriter({ words, speed = 80, pause = 2200 }: { words:
   }, [text, isDeleting, index, words, pause]);
 
   useEffect(() => {
-    if (calm) { setText(words[0]); return; }
+    if (calm) return;
     const id = setTimeout(tick, isDeleting ? speed / 2 : speed);
     return () => clearTimeout(id);
   }, [tick, isDeleting, speed, words]);

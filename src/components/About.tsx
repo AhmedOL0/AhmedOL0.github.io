@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Section from './Section';
-import { STAT_VALUES, useLang } from '../i18n';
+import { useLang } from '../i18n-data';
+import { STAT_VALUES } from '../i18n-data';
 import { useCountUp, useInView } from '../hooks';
 
 function Stat({ value, label, sub }: { value: number; label: string; sub: string }) {
@@ -42,7 +43,7 @@ export default function About() {
       </div>
       <div className="langs mt-[22px] flex flex-wrap gap-2">
         {t.about.langs.map((l) => (
-          <span key={l.l}><b>{l.l}</b> — {l.lvl}</span>
+          <span key={l.l}><b>{l.l}</b>: {l.lvl}</span>
         ))}
       </div>
     </Section>

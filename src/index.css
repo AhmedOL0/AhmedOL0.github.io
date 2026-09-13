@@ -449,7 +449,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .tip:hover::after{opacity:1;transform:translateX(-50%) translateY(0)}
 .tip-bottom::after{bottom:auto;top:calc(100% + 8px);transform:translateX(-50%) translateY(-4px)}
 .tip-bottom:hover::after{transform:translateX(-50%) translateY(0)}
-/* Touch screens: hover tooltips stick on tap — disable them, tap targets navigate directly */
+/* Touch screens: hover tooltips stick on tap - disable them, tap targets navigate directly */
 @media(pointer:coarse){.tip::after{display:none !important}}
 
 /* Tech logo in tool cards / pillar items */
@@ -472,7 +472,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   box-shadow:0 0 8px rgba(22,163,74,.6);animation:beaconPulse 2s ease-in-out infinite}
 @keyframes beaconPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
 
-/* Enhanced card hover — JS tilt owns transform, CSS only does border/shadow */
+/* Enhanced card hover - JS tilt owns transform, CSS only does border/shadow */
 .card:hover{border-color:rgba(201,168,118,.25);
   box-shadow:0 18px 44px rgba(0,0,0,.25),0 0 0 1px rgba(201,168,118,.15)}
 
@@ -674,7 +674,7 @@ div.top-right{animation:drop-in .8s cubic-bezier(.2,.7,.2,1) .22s both;transitio
 .reveal-left.in,.reveal-right.in,.reveal-scale.in{opacity:1;transform:none}
 section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
 
-/* Layout classes — unlayered so they're the authority (Tailwind v4 utilities can't override unlayered CSS) */
+/* Layout classes - unlayered so they're the authority (Tailwind v4 utilities can't override unlayered CSS) */
 .section-block{position:relative;overflow-x:clip;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:8px;padding-right:8px}
 /* Contain the pre-reveal horizontal offsets (reveal-left/right) so they never
    widen the page scrollWidth on viewports where the section starts off-screen */
@@ -714,7 +714,7 @@ main{overflow-x:clip}
   .card{break-inside:avoid;box-shadow:none}
 }
 
-/* Profile card responsive — mobile-first, progressive enhancement */
+/* Profile card responsive - mobile-first, progressive enhancement */
 .pcard-hero{width:100%;max-width:100%;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;align-items:center}
 .pcard-hero .pphoto{aspect-ratio:1/1;max-height:240px;width:100%;max-width:280px}
 .pcard-hero h2{font-size:1.3rem;margin-top:14px}
@@ -724,7 +724,7 @@ main{overflow-x:clip}
 .hero-grid .cta{flex-wrap:wrap}
 .hero-grid h1{max-width:100%}
 
-/* Layout responsive overrides — MUST come after base rules so they win */
+/* Layout responsive overrides - MUST come after base rules so they win */
 @media(max-width:420px){
   .hero-grid{gap:16px}
   .pcard-hero .pphoto{max-height:200px;max-width:240px}
@@ -771,7 +771,7 @@ main{overflow-x:clip}
   .contact-box{grid-template-columns:1fr 1fr;gap:40px;padding:42px}
   .direct{flex-direction:column}
 }
-/* Landscape phones: vertical space is the constraint — compress everything */
+/* Landscape phones: vertical space is the constraint - compress everything */
 @media(max-height:500px) and (orientation:landscape){
   .hero-block{padding-top:52px;padding-bottom:16px}
   .pcard-hero .pphoto{max-height:120px;max-width:170px}

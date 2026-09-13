@@ -64,19 +64,17 @@ export function useStaggerReveal<T extends HTMLElement>(selector = ':scope > *')
 }
 
 export function useCountUp(target: number, start: boolean, duration = 1500, onDone?: () => void) {
-  const [value, setValue] = useState(0);
+  const [calm] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const [value, setValue] = useState(() => (calm ? target : 0));
   const doneRef = useRef(false);
-  const calmRef = useRef(false);
-  if (!calmRef.current && typeof window !== 'undefined') {
-    calmRef.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  }
   // Stable ref: a fresh inline callback must NOT restart the loop every render.
   const onDoneRef = useRef(onDone);
-  onDoneRef.current = onDone;
+  useEffect(() => {
+    onDoneRef.current = onDone;
+  });
   useEffect(() => {
     if (!start || doneRef.current) return;
-    if (calmRef.current) {
-      setValue(target);
+    if (calm) {
       doneRef.current = true;
       onDoneRef.current?.();
       return;
@@ -96,7 +94,7 @@ export function useCountUp(target: number, start: boolean, duration = 1500, onDo
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [start, target, duration]);
+  }, [start, target, duration, calm]);
   return value;
 }
 
@@ -177,7 +175,7 @@ export function useProgress() {
   return width;
 }
 
-export function useActiveSection(ids: string[]) {
+export function useActiveSection(ids: readonly string[]) {
   const [active, setActive] = useState('');
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -191,7 +189,7 @@ export function useActiveSection(ids: string[]) {
       if (el) io.observe(el);
     });
     return () => io.disconnect();
-  }, [ids.join('|')]);
+  }, [ids]);
   return active;
 }
 
