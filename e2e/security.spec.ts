@@ -28,7 +28,7 @@ test.describe('Security Headers & Best Practices', () => {
     const inlineScripts = await page.evaluate(() => {
       return document.querySelectorAll('script:not([src])').length;
     });
-    expect(inlineScripts, 'Only JSON-LD + theme/lang init scripts are inline').toBeLessThanOrEqual(2);
+    expect(inlineScripts, 'Inline scripts: pre-paint theme/lang init + JSON-LD').toBeLessThanOrEqual(2);
   });
 
   test('fonts load from trusted origins only', async ({ page }) => {

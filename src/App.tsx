@@ -19,7 +19,21 @@ const CursorTrail = lazy(() => import('./components/CursorTrail'));
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
   state = { hasError: false };
   static getDerivedStateFromError() { return { hasError: true }; }
-  render() { return this.state.hasError ? null : this.props.children; }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ padding: '3rem 1.5rem', textAlign: 'center', color: 'var(--muted)' }}>
+          <p style={{ fontSize: '1.2rem', color: 'var(--ink)', marginBottom: '.5rem' }}>Something went wrong.</p>
+          <p style={{ fontSize: '.9rem', marginBottom: '1.5rem' }}>Try refreshing the page.</p>
+          <button onClick={() => window.location.reload()}
+            style={{ background: 'var(--gold)', color: '#0b0b0e', border: 'none', padding: '.5rem 1.2rem', borderRadius: 999, cursor: 'pointer', fontSize: '.85rem' }}>
+            Refresh
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
 }
 
 function Footer() {

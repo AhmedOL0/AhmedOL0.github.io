@@ -697,11 +697,21 @@ main{overflow-x:clip}
   #spot{display:none}
 }
   @media print{
-    nav,.dock,.top-left,.top-right,#spot,#progress,#toTop,.filters,.grain,.orb,.grid-bg,.hero-dot-grid{display:none}
-  body{background:#fff;color:#111}
-  .reveal{opacity:1;transform:none}
-  .card{break-inside:avoid;box-shadow:none}
-}
+    nav,.dock,.top-left,.top-right,#spot,#progress,#toTop,.filters,.grain,.orb,.grid-bg,.hero-dot-grid,.skip-link,.marquee,.send-spinner,.contact-box form,.ghost,.bg-blur{display:none}
+    body{background:#fff;color:#111;font-size:11pt}
+    .reveal{opacity:1;transform:none}
+    .card,.edu-card,.pillar-card,.tool-card{break-inside:avoid;box-shadow:none;border:1px solid #ddd}
+    a{color:#111;text-decoration:underline}
+    a[href]::after{content:" (" attr(href) ")";font-size:.8em;color:#666}
+    a[href^="#"]::after,a[href^="mailto"]::after{content:""}
+    .section-block{padding:12pt 0;page-break-inside:avoid}
+    .hero-block{padding-top:0}
+    h1,h2,h3{page-break-after:avoid}
+    img{max-width:100%!important;height:auto!important}
+    .font-serif-d{font-family:Georgia,serif}
+    .font-mono-d{font-family:'Courier New',monospace}
+    .loader{display:none!important}
+  }
 
 /* Profile card responsive - mobile-first, progressive enhancement */
 .pcard-hero{width:100%;max-width:100%;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;align-items:center}
