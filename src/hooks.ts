@@ -252,10 +252,25 @@ export function useScrollY() {
 export function useBackToTop(threshold = 700) {
   const [show, setShow] = useState(false);
   useEffect(() => {
-    const onScroll = () => setShow(document.documentElement.scrollTop > threshold);
+    let last = window.scrollY;
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const y = window.scrollY;
+        // Show only when past the threshold AND not scrolling down,
+        // so the button never sits on content the visitor is reading.
+        setShow(y > threshold && y <= last);
+        last = y;
+      });
+    };
     onScroll();
     document.addEventListener('scroll', onScroll, { passive: true });
-    return () => document.removeEventListener('scroll', onScroll);
+    return () => {
+      document.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, [threshold]);
   return show;
 }

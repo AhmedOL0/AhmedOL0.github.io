@@ -88,11 +88,17 @@ test.describe('Navigation & Interaction', () => {
     const initialClass = await toTopBtn.getAttribute('class');
     expect(initialClass, 'no show class at top').not.toContain('show');
 
-    // After scroll: .show class added
+    // After scrolling down: hidden, so it never sits on content being read
     await page.evaluate(() => window.scrollTo(0, 1000));
     await page.waitForTimeout(400);
     const scrolledClass = await toTopBtn.getAttribute('class');
-    expect(scrolledClass, 'show class after scroll').toContain('show');
+    expect(scrolledClass, 'hidden while scrolling down').not.toContain('show');
+
+    // After scrolling up: visible again
+    await page.evaluate(() => window.scrollTo(0, 990));
+    await page.waitForTimeout(400);
+    const upClass = await toTopBtn.getAttribute('class');
+    expect(upClass, 'show class after scrolling up').toContain('show');
   });
 
   test('CV download link works', async ({ page }) => {

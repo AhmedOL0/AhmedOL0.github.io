@@ -64,6 +64,22 @@ for (const vp of VIEWPORTS) {
       expect(overflowed, `${vp.name}: no text overflow`).toBeNull();
     });
 
+    test('no text is clipped inside its container', async ({ page }) => {
+      const clipped = await page.evaluate(() => {
+        const els = document.querySelectorAll('.pyramid-bar, .card, .pillar-card, .stat, .edu-card, p, h1, h2, h3, li');
+        for (const el of Array.from(els)) {
+          const h = el as HTMLElement;
+          if (h.closest('.core,.marquee')) continue; // intentional scroll strips
+          if (!getComputedStyle(h).display.includes('inline') && h.clientWidth > 0 && h.scrollWidth > h.clientWidth + 2) {
+            const cls = typeof h.className === 'string' ? h.className.split(' ')[0] : '';
+            return `${h.tagName}.${cls}: ${(h.innerText || '').slice(0, 50)}`;
+          }
+        }
+        return null;
+      });
+      expect(clipped, `${vp.name}: clipped text`).toBeNull();
+    });
+
     test('touch targets are at least 44×44px on mobile', async ({ page }) => {
       if (vp.width >= 768) return; // skip desktop
 
@@ -99,3 +115,23 @@ for (const vp of VIEWPORTS) {
     });
   });
 }
+
+test.describe('Trilingual overflow (FR/AR)', () => {
+  test.use({ viewport: { width: 390, height: 844 } });
+
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+  });
+
+  for (const lang of ['FR', 'عر']) {
+    test(`no horizontal overflow in ${lang}`, async ({ page }) => {
+      await page.locator('.langsw button', { hasText: lang }).click();
+      await page.waitForTimeout(400);
+      const hasOverflow = await page.evaluate(() => {
+        return document.documentElement.scrollWidth > document.documentElement.clientWidth;
+      });
+      expect(hasOverflow, `${lang}: no horizontal scroll`).toBe(false);
+    });
+  }
+});
