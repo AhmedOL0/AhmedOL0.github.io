@@ -249,6 +249,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .dock a::before,.dock button::before{content:"";position:absolute;inset:-2px}
   .dock .dock-social{display:none}
   .dock .dock-social:last-child{display:inline-flex}
+  .cta .arr{display:none}
   section{padding-top:64px;padding-bottom:64px}
   .hero-stat-val{font-size:1.6rem}
   .hero-stat-label{font-size:.75rem}
@@ -281,7 +282,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .top-left{left:12px !important;top:12px !important}
   [dir="rtl"] .top-left{left:auto !important;right:12px !important}
   .cta{gap:8px}
-  .cta .btn{flex:1;text-align:center;padding:10px 14px;font-size:.82rem}
+  .cta .btn{flex:1;text-align:center;padding:10px 14px;font-size:.82rem;white-space:nowrap}
+  .cta .arr{display:none}
   .edu-card{padding:20px 18px}
   .field>span{font-size:.92rem}
   .iconbtn{width:44px;height:44px}
