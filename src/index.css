@@ -108,7 +108,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
                    radial-gradient(1px 1px at 8% 78%,rgba(255,255,255,.3),transparent 100%),
                    radial-gradient(120px 120px at 110% -10%,rgba(120,170,255,.14),transparent 70%)}
 .pphoto{position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.09);aspect-ratio:1/1;background:var(--bg2)}
-.pphoto img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;filter:saturate(.94) contrast(1.03);transition:filter .4s}
+.pphoto img{width:100%;height:100%;object-fit:cover;object-position:32% 22%;display:block;filter:saturate(.94) contrast(1.03);transition:filter .4s}
 .pcard:hover .pphoto img{filter:none}
 .pmono{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(155deg,#241d12,var(--bg2) 70%)}
 .pmono span{font-family:var(--serif);font-size:4.6rem;color:var(--gold)}
