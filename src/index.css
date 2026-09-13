@@ -581,14 +581,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   animation:dock-in .8s cubic-bezier(.2,.7,.2,1) .35s forwards}
 @keyframes dock-in{to{transform:translateX(-50%) translateY(0)}}
 .dock a,.dock button{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;
-  color:var(--muted);background:transparent;border:none;cursor:pointer;text-decoration:none;
+  color:var(--muted);background:transparent;border:none;cursor:pointer;text-decoration:none;position:relative;z-index:1;
   transition:all .25s cubic-bezier(.2,.7,.2,1)}
-.dock a:hover,.dock button:hover{color:var(--gold-hi);background:rgba(160,120,60,.16);transform:translateY(-3px);box-shadow:0 6px 16px rgba(160,120,60,.25)}
+.dock a:hover,.dock button:hover{color:var(--gold-hi);transform:translateY(-3px)}
 .dock a:active,.dock button:active{transform:translateY(0) scale(.94)}
 .dock a.active{color:var(--gold)}
 .dock-sep{width:1px;height:22px;background:var(--line);margin:0 5px}
 .dock{transition:transform .38s cubic-bezier(.2,.7,.2,1),translate .38s cubic-bezier(.2,.7,.2,1)}
-.dock-indicator{position:absolute;top:50%;left:0;width:42px;height:42px;border-radius:50%;background:rgba(160,120,60,.18);transform:translate(-50%,-50%);transition:left .35s cubic-bezier(.32,.72,0,1),width .35s cubic-bezier(.32,.72,0,1),opacity .25s;pointer-events:none;z-index:-1}
+.dock-indicator{position:absolute;top:50%;left:50%;width:42px;height:42px;border-radius:50%;background:rgba(160,120,60,.18);transform:translate(-50%,-50%);transition:left .4s cubic-bezier(.32,.72,0,1),width .35s cubic-bezier(.32,.72,0,1),opacity .3s;pointer-events:none;z-index:0}
 .dock-hidden{translate:0 110px}
 
 /* Nav bits */
