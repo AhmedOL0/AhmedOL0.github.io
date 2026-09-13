@@ -144,7 +144,7 @@ function Site() {
         <Hero />
       </div>
       <Marquee />
-      <main id="main" className="relative z-[1]">
+      <main id="main" tabIndex={-1} className="relative z-[1]">
         <Work />
         <About />
         <Experience />

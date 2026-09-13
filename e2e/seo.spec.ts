@@ -43,10 +43,11 @@ test.describe('SEO & Meta', () => {
     await expect(jsonLd).toBeAttached();
     const content = await jsonLd.innerText();
     const data = JSON.parse(content);
-    expect(data['@type']).toBe('Person');
-    expect(data.name).toContain('Ahmed');
-    expect(data.jobTitle).toBeTruthy();
-    expect(data.knowsAbout.length).toBeGreaterThan(0);
+    expect(data['@type']).toBe('ProfilePage');
+    expect(data.mainEntity['@type']).toBe('Person');
+    expect(data.mainEntity.name).toContain('Ahmed');
+    expect(data.mainEntity.jobTitle).toBeTruthy();
+    expect(data.mainEntity.knowsAbout.length).toBeGreaterThan(0);
   });
 
   test('robots meta allows indexing', async ({ page }) => {

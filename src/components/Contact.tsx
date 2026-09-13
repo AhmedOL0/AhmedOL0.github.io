@@ -19,6 +19,8 @@ export default function Contact() {
     return () => clearTimeout(t);
   }, []);
 
+  const retry = useCallback(() => setStatus('idle'), []);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('sending');
@@ -111,6 +113,10 @@ export default function Contact() {
               </svg>
               <p className="form-error-text">{t.contact.error}</p>
               <p className="form-error-sub"><a href="mailto:ahmedouarrali12@gmail.com">ahmedouarrali12@gmail.com</a></p>
+              <button type="button" onClick={retry}
+                style={{ marginTop: 12, background: 'transparent', border: '1px solid var(--line)', color: 'var(--ink)', padding: '6px 18px', borderRadius: 999, cursor: 'pointer', fontSize: '.82rem', transition: 'border-color .2s, color .2s' }}>
+                Try again
+              </button>
             </div>
           )}
         </form>
