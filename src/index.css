@@ -281,7 +281,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .top-left{left:12px !important;top:12px !important}
   [dir="rtl"] .top-left{left:auto !important;right:12px !important}
   .cta{gap:8px}
-  .cta .btn{flex:1;text-align:center;padding-left:14px;padding-right:14px}
+  .cta .btn{flex:1;text-align:center;padding:10px 14px;font-size:.82rem}
   .edu-card{padding:20px 18px}
   .field>span{font-size:.92rem}
   .iconbtn{width:44px;height:44px}
@@ -321,6 +321,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .core-chip{font-size:.62rem;padding:4px 8px;gap:2px}
   .core-chip-icon{width:11px;height:11px}
   .cta .btn{padding:12px 16px;font-size:.8rem;min-height:44px}
+  .cta .arr{display:none}
   #toTop{width:44px;height:44px;bottom:calc(88px + env(safe-area-inset-bottom,0px));right:12px}
   .marquee{margin-top:20px}
   .marquee-item{font-size:.65rem;margin-right:20px;letter-spacing:.08em}
@@ -724,7 +725,7 @@ main{overflow-x:clip}
 .pcard-hero .pdiv{margin:12px 4px 10px}
 .pcard-hero .pchips span{font-size:.68rem;padding:5px 11px}
 .hero-grid .lede{max-width:100%}
-.hero-grid .cta{flex-wrap:wrap}
+.hero-grid .cta{flex-wrap:nowrap}
 .hero-grid h1{max-width:100%}
 
 /* Layout responsive overrides - MUST come after base rules so they win */
