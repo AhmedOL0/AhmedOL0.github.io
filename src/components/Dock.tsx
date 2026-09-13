@@ -109,6 +109,8 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
 export default function Dock({ active, theme, onToggle }: { active: string; theme: string; onToggle: () => void }) {
   const { t } = useLang();
   const [hidden, setHidden] = useState(false);
+  const dockRef = useRef<HTMLDivElement>(null);
+  const indicatorRef = useRef<HTMLSpanElement>(null);
   useEffect(() => {
     let last = window.scrollY, raf = 0;
     const onScroll = () => {
@@ -130,6 +132,17 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
       cancelAnimationFrame(raf);
     };
   }, []);
+  useEffect(() => {
+    const dock = dockRef.current, ind = indicatorRef.current;
+    if (!dock || !ind) return;
+    const btn = dock.querySelector('.dock-item.active') as HTMLElement | null;
+    if (!btn) { ind.style.opacity = '0'; return; }
+    const dr = dock.getBoundingClientRect();
+    const br = btn.getBoundingClientRect();
+    ind.style.opacity = '1';
+    ind.style.left = `${br.left - dr.left + br.width / 2}px`;
+    ind.style.width = `${br.width + 8}px`;
+  }, [active]);
   const items = [
     { id: 'top', href: '#top', label: t.dock.home, icon: <Icon d={P.home} /> },
     { id: 'work', href: '#work', label: t.dock.work, icon: <Icon d={P.work} /> },
@@ -141,12 +154,13 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
   const isActive = (id: string) =>
     id === 'top' ? active === '' : active === id;
   return (
-    <div className={`dock${hidden ? ' dock-hidden' : ''}`} role="navigation" aria-label={t.dock.nav}>
+    <div ref={dockRef} className={`dock${hidden ? ' dock-hidden' : ''}`} role="navigation" aria-label={t.dock.nav}>
+      <span ref={indicatorRef} className="dock-indicator" />
       {items.map((it) => (
         <a key={it.id} href={it.href} aria-label={it.label}
           data-tip={it.label}
           aria-current={isActive(it.id) ? 'true' : undefined}
-          className={`tip${isActive(it.id) ? ' active' : ''}`}>
+          className={`dock-item tip${isActive(it.id) ? ' active' : ''}`}>
           {it.icon}
         </a>
       ))}
