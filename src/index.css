@@ -572,7 +572,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 
 /* Floating dock + top pills (replaces header nav) */
 .dock{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(80px);z-index:61;
-  display:flex;align-items:center;gap:4px;padding:9px 12px;border-radius:999px;
+  display:flex;align-items:center;gap:4px;padding:9px 12px;border-radius:999px;max-width:calc(100vw - 16px);
   border:1px solid transparent;
   background:linear-gradient(var(--navbg),var(--navbg)) padding-box,
     linear-gradient(140deg,rgba(236,211,168,.55),rgba(255,255,255,.07) 30%,rgba(255,255,255,.02) 60%,rgba(180,85,45,.45)) border-box;
