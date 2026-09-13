@@ -102,11 +102,26 @@ test.describe('Navigation & Interaction', () => {
   });
 
   test('CV download link works', async ({ page }) => {
+
     // Two matches (top pill + footer button): assert on the first.
     const cvLink = page.locator('a[href*="CV"][download]').first();
     await expect(cvLink).toBeAttached();
     const href = await cvLink.getAttribute('href');
     expect(href).toContain('CV');
     expect(href).toContain('.pdf');
+  });
+
+  test('pre-paint init respects saved theme and language', async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem('ao-theme', 'light');
+      localStorage.setItem('ao-lang', 'ar');
+    });
+    await page.goto('/');
+    const html = page.locator('html');
+    await expect(html).toHaveAttribute('data-theme', 'light');
+    await expect(html).toHaveAttribute('lang', 'ar');
+    await expect(html).toHaveAttribute('dir', 'rtl');
+    // React agrees with the pre-paint values: no theme/language snap.
+    await expect(page.locator('.langsw button.active')).toHaveText('عر');
   });
 });
