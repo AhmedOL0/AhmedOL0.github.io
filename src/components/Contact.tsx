@@ -26,8 +26,6 @@ export default function Contact() {
     const formData = new FormData(form);
     const accessKey = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined;
     if (!accessKey) {
-      // Key not configured (e.g. preview build): don't fake a network call,
-      // fall through to the error state which points at the direct email.
       setStatus('error');
       resetStatus();
       return;

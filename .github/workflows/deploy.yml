@@ -26,6 +26,19 @@ jobs:
       - run: npm ci
       - run: npx tsc --noEmit
       - run: npm run lint
+      - name: Verify secrets available
+        run: |
+          if [ -n "$VITE_WEB3FORMS_KEY" ]; then
+            echo "✅ WEB3FORMS_KEY is set (length: ${#VITE_WEB3FORMS_KEY})"
+          else
+            echo "❌ WEB3FORMS_KEY is EMPTY or not set"
+            echo "   Go to: Settings → Secrets and variables → Actions → Secrets"
+            echo "   Add secret named exactly: WEB3FORMS_KEY"
+            echo "   NOT as a Variable — must be a Secret."
+            exit 1
+          fi
+        env:
+          VITE_WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
       - run: npm run build
         env:
           VITE_WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
