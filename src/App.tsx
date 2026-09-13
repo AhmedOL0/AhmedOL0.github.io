@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useState, Component, type ReactNode } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useState, Component, type ReactNode } from 'react';
 import Dock, { TopPills } from './components/Dock';
 import Preloader from './components/Preloader';
 import Hero from './components/Hero';
@@ -85,6 +85,14 @@ function Site() {
   });
   useSpotlight();
   useMagnetic();
+  // Stable identity: Preloader's timers must survive parent re-renders
+  // (scroll/progress), otherwise its effect cleanup reschedules them forever.
+  const handlePreloaderDone = useCallback(() => {
+    try {
+      sessionStorage.setItem('ao-seen', '1');
+    } catch { /* ignore */ }
+    setLoading(false);
+  }, []);
   useEffect(() => {
     if (loading) return;
     const t = setTimeout(() => setReady(true), 30);
@@ -94,14 +102,7 @@ function Site() {
   return (
     <>
       {loading && (
-        <Preloader
-          onDone={() => {
-            try {
-              sessionStorage.setItem('ao-seen', '1');
-            } catch { /* ignore */ }
-            setLoading(false);
-          }}
-        />
+        <Preloader onDone={handlePreloaderDone} />
       )}
       <ErrorBoundary>
         <Suspense fallback={null}>
