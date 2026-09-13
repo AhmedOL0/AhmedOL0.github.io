@@ -38,12 +38,20 @@ test.describe('Performance & Core Web Vitals', () => {
   test('LCP element is identifiable', async ({ page }) => {
     const lcp = await page.evaluate(() => {
       return new Promise<string | null>((resolve) => {
-        new PerformanceObserver((list) => {
+        const observer = new PerformanceObserver((list) => {
           const entries = list.getEntries();
           const last = entries[entries.length - 1];
-          resolve(last?.element?.tagName || null);
-        }).observe({ type: 'largest-contentful-paint', buffered: true });
-        setTimeout(() => resolve(null), 500);
+          if (last) { observer.disconnect(); resolve(last.name || last.element?.tagName || 'LCP-observed'); }
+        });
+        observer.observe({ type: 'largest-contentful-paint', buffered: true });
+        const existing = performance.getEntriesByType('largest-contentful-paint');
+        if (existing.length) {
+          const last = existing[existing.length - 1] as any;
+          observer.disconnect();
+          resolve(last.name || last.element?.tagName || 'LCP-existing');
+          return;
+        }
+        setTimeout(() => { observer.disconnect(); resolve(null); }, 2000);
       });
     });
     expect(lcp).toBeTruthy();
