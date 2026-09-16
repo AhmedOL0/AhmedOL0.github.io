@@ -648,6 +648,16 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   text-align:right;margin-bottom:-10px}
 [dir="rtl"] .foot-mark{text-align:left}
 
+/* Footer social icons */
+.footer-socials{display:flex;gap:12px}
+.footer-social-icon{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(127,120,100,.1);border:1px solid var(--line-soft);color:var(--muted);transition:all .25s ease}
+.footer-social-icon:hover{background:rgba(201,168,118,.15);border-color:var(--gold);color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 18px rgba(201,168,118,.2)}
+:root[data-theme="light"] .footer-social-icon:hover{box-shadow:0 6px 18px rgba(160,120,60,.15)}
+
+/* Hero personality line */
+.personality{opacity:.85;transition:opacity .3s}
+.personality:hover{opacity:1}
+
 /* Numbers stay aligned while counting */
 .stat b{font-variant-numeric:tabular-nums}
 

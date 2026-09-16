@@ -90,6 +90,9 @@ export default function Hero() {
           <h1 className="rise h-display text-[clamp(1.8rem,5.5vw,4.5rem)] max-w-[16ch] sm:max-w-[18ch]" style={{ animationDelay: '.15s' }}>
             {t.hero.titleA}<em className="grad-text">{t.hero.titleEm}</em>{t.hero.titleB}
           </h1>
+          <p className="rise personality mt-3 sm:mt-4 max-w-[32ch] text-[.82rem] sm:text-[.92rem] font-mono-d tracking-wide" style={{ color: 'var(--gold-deep)', animationDelay: '.22s' }}>
+            {t.hero.personalityA} <span style={{ color: 'var(--muted)' }}>/</span> {t.hero.personalityB}
+          </p>
           <p className="rise lede mt-4 sm:mt-5 max-w-[56ch] text-[.88rem] sm:text-[1.02rem]" style={{ color: 'var(--muted)', animationDelay: '.28s' }}>
             {t.hero.lede1}<strong style={{ color: 'var(--ink)' }}>OdemLab</strong>{t.hero.lede2}
           </p>
