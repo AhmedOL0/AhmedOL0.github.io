@@ -3,7 +3,8 @@ import { useLang } from '../i18n-data';
 export default function Hero() {
   const { t } = useLang();
   return (
-    <section id="top" className="hero-block hero-block--top hero-dot-grid">
+    <section id="top" className="hero-block hero-block--top">
+      <div className="hero-dot-grid" aria-hidden="true" />
       <div className="hero-inner">
         <div className="hero-content">
           <div className="hero-eyebrow"><span className="hero-eyebrow-dot" aria-hidden="true" />{t.hero.avail}</div>
