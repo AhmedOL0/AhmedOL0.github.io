@@ -87,7 +87,7 @@ export default function Hero() {
             style={{ color: 'var(--muted)', borderColor: 'var(--line)', background: 'rgba(127,120,100,.08)', animationDelay: '.05s' }}>
             <span className="beacon" /> {t.hero.badge}
           </span>
-          <h1 className="rise h-display text-[clamp(1.6rem,5.5vw,4.5rem)] max-w-[16ch] sm:max-w-[18ch]" style={{ animationDelay: '.15s' }}>
+          <h1 className="rise h-display text-[clamp(1.6rem,5.5vw,4.5rem)] max-w-full sm:max-w-[18ch]" style={{ animationDelay: '.15s' }}>
             {t.hero.titleA}<em className="grad-text">{t.hero.titleEm}</em>{t.hero.titleB}
           </h1>
           <p className="rise personality mt-2 sm:mt-4 max-w-[32ch] text-[.78rem] sm:text-[.92rem] font-mono-d tracking-wide" style={{ color: 'var(--gold-deep)', animationDelay: '.22s' }}>
