@@ -2,11 +2,12 @@ import { Suspense, lazy, useCallback, useEffect, useState, Component, type React
 import Dock, { TopPills } from './components/Dock';
 import Preloader from './components/Preloader';
 import Hero from './components/Hero';
-import Marquee from './components/Marquee';
+import WhatIDo from './components/WhatIDo';
+import HowIWork from './components/HowIWork';
 import Work from './components/Work';
-import About from './components/About';
 import Experience, { Education } from './components/Experience';
-import Tools from './components/Tools';
+import BehindTheWork from './components/BehindTheWork';
+import AboutMe from './components/AboutMe';
 import Contact from './components/Contact';
 import { LangProvider } from './i18n';
 import { useLang } from './i18n-data';
@@ -40,7 +41,7 @@ function Footer() {
   const { t } = useLang();
   const cols: { head: string; links: { label: string; href: string }[] }[] = [
     { head: t.nav.work, links: [{ label: 'OdemLab', href: '#work-odemlab' }, { label: 'FitTrack', href: '#work-fittrack' }, { label: 'Smart Campus', href: '#work-campus' }] },
-    { head: t.nav.about, links: [{ label: t.nav.experience, href: '#experience' }, { label: t.nav.education, href: '#education' }, { label: t.nav.tools, href: '#tools' }] },
+    { head: t.nav.whatIDo, links: [{ label: t.nav.experience, href: '#experience' }, { label: t.nav.behind, href: '#behind' }, { label: t.nav.contact, href: '#contact' }] },
     { head: t.footer.elsewhere, links: [{ label: 'GitHub', href: 'https://github.com/AhmedOL0' }, { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ahmed-ouarrali' }, { label: 'Email', href: 'mailto:ahmedouarrali12@gmail.com' }] },
   ];
   return (
@@ -93,7 +94,7 @@ function Footer() {
   );
 }
 
-const STICKY_SECTIONS = ['work', 'about', 'experience', 'education', 'tools', 'contact'];
+const STICKY_SECTIONS = ['what-i-do', 'how-i-work', 'work', 'experience', 'behind', 'about', 'contact'];
 
 function Site() {
   const { theme, toggle } = useTheme();
@@ -154,13 +155,14 @@ function Site() {
       <div className="relative z-[1]" style={{ opacity: ready ? 1 : 0 }}>
         <Hero />
       </div>
-      <Marquee />
       <main id="main" tabIndex={-1} className="relative z-[1]">
+        <WhatIDo />
+        <HowIWork />
         <Work />
-        <About />
         <Experience />
         <Education />
-        <Tools />
+        <BehindTheWork />
+        <AboutMe />
         <Contact />
       </main>
       <button

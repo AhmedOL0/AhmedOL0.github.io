@@ -143,10 +143,10 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
   }, [active]);
   const items = [
     { id: 'top', href: '#top', label: t.dock.home, icon: <Icon d={P.home} /> },
+    { id: 'what-i-do', href: '#what-i-do', label: t.nav.whatIDo, icon: <Icon d={P.user} /> },
     { id: 'work', href: '#work', label: t.dock.work, icon: <Icon d={P.work} /> },
-    { id: 'about', href: '#about', label: t.nav.about, icon: <Icon d={P.user} /> },
     { id: 'experience', href: '#experience', label: t.nav.experience, icon: <Icon d={P.briefcase} /> },
-    { id: 'tools', href: '#tools', label: t.nav.tools, icon: <Icon d={P.code} /> },
+    { id: 'behind', href: '#behind', label: t.nav.behind, icon: <Icon d={P.code} /> },
     { id: 'contact', href: '#contact', label: t.dock.contact, icon: <Icon d={P.mail} /> },
   ];
   const isActive = (id: string) =>

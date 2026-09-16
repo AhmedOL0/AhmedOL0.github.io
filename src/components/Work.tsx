@@ -19,7 +19,7 @@ export default function Work() {
   const skipTilt = isCoarse || prefersReduced;
 
   return (
-    <Section id="work" num="01" kicker={t.work.kicker} title={t.work.title} sub={t.work.sub} variant="default">
+    <Section id="work" num="03" kicker={t.work.kicker} title={t.work.title} sub={t.work.sub} variant="default">
       <div className="filters mt-5 sm:mt-8 mb-3 sm:mb-[26px] flex flex-wrap gap-1.5 sm:gap-2.5">
         {filterKeys.map((k) => (
           <button key={k} className={`tip${f === k ? ' active' : ''}`} data-tip={labels[k]} aria-pressed={f === k} onClick={() => setF(k)}>

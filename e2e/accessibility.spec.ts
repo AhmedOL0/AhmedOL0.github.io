@@ -72,11 +72,6 @@ test.describe('Accessibility (WCAG 2.2)', () => {
     }
   });
 
-  test('marquee is hidden from screen readers', async ({ page }) => {
-    const marquee = page.locator('.marquee');
-    await expect(marquee).toHaveAttribute('aria-hidden', 'true');
-  });
-
   test('decorative elements are hidden from assistive tech', async ({ page }) => {
     const decorative = page.locator('[aria-hidden="true"]');
     const count = await decorative.count();

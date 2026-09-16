@@ -823,3 +823,37 @@ main{overflow-x:clip}
   .marquee{margin-top:16px}
   .footer-block{padding-top:28px;padding-bottom:96px}
 }
+
+/* ── What I Do: capability cards ── */
+.cap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.cap-card{border:1px solid var(--line-soft);border-radius:14px;padding:28px 24px;background:var(--surface);transition:border-color .25s,box-shadow .25s}
+.cap-card:hover{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.cap-title{margin:0 0 8px;font-size:1.12rem;color:var(--ink)}
+.cap-desc{margin:0;color:var(--muted);font-size:.88rem;line-height:1.6}
+.cap-toggle{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:6px 14px;border:1px solid var(--line-soft);border-radius:999px;background:transparent;color:var(--muted);font-size:.78rem;cursor:pointer;transition:all .2s}
+.cap-toggle:hover{border-color:var(--gold);color:var(--gold)}
+.cap-arrow{font-size:.9rem}
+.cap-details{margin-top:12px;color:var(--faint);font-size:.82rem;line-height:1.6;border-top:1px solid var(--line-soft);padding-top:12px}
+
+/* ── How I Work: process flow ── */
+.process-flow{display:flex;flex-direction:column;gap:0;position:relative}
+.process-step{display:grid;grid-template-columns:44px 1fr;gap:16px;position:relative;padding-bottom:28px}
+.process-step:last-child{padding-bottom:0}
+.process-num{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:600;color:var(--gold);background:var(--surface);border:1px solid var(--line-soft);flex-shrink:0;position:relative;z-index:1}
+.process-content{padding-top:8px}
+.process-label{margin:0 0 4px;font-size:1.05rem;color:var(--ink)}
+.process-desc{margin:0;color:var(--muted);font-size:.88rem;line-height:1.55}
+.process-line{position:absolute;left:22px;top:44px;width:1px;height:calc(100% - 44px);background:var(--line-soft)}
+
+/* ── Behind the Work: tech grid ── */
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px}
+.tech-cat{display:flex;flex-direction:column;gap:10px}
+.tech-cat-name{margin:0;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--gold)}
+.tech-items{display:flex;flex-wrap:wrap;gap:6px}
+.tech-item{padding:5px 12px;border-radius:999px;font-size:.78rem;background:var(--surface);color:var(--muted);border:1px solid var(--line-soft);transition:border-color .2s}
+.tech-item:hover{border-color:var(--gold)}
+
+/* ── About Me ── */
+.about-body{max-width:60ch}
+.lang-chip{display:inline-flex;padding:6px 14px;border-radius:999px;font-size:.82rem;background:var(--surface);color:var(--muted);border:1px solid var(--line-soft)}
+.lang-chip b{color:var(--ink);font-weight:600}

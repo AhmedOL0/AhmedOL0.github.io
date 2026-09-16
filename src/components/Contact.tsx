@@ -125,7 +125,6 @@ export default function Contact() {
           <div><strong>{t.contact.phone}</strong><br /><a href="tel:+212645372099">+212 645 372 099</a></div>
           <div><strong>{t.contact.linkedin}</strong><br /><a href="https://www.linkedin.com/in/ahmed-ouarrali" target="_blank" rel="noopener noreferrer">linkedin.com/in/ahmed-ouarrali</a></div>
           <div><strong>{t.contact.github}</strong><br /><a href="https://github.com/AhmedOL0" target="_blank" rel="noopener noreferrer">github.com/AhmedOL0</a></div>
-          <div><strong>{t.contact.tz}</strong><br />{t.contact.timezone}</div>
         </div>
       </div>
     </Section>
