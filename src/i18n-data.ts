@@ -28,7 +28,7 @@ export type TechCategory = { name: string; items: string[] };
 export type Dict = {
   dir: 'ltr' | 'rtl';
   nav: { home: string; whatIDo: string; work: string; experience: string; behind: string; contact: string; resume: string };
-  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede: string; ctaWork: string; ctaContact: string; statsLabels: [string, string, string]; personalityA: string; personalityB: string };
+  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede: string; ctaWork: string; ctaContact: string; statsLabels: [string, string, string]; personalityA: string; personalityB: string; avail: string };
   whatIDo: { kicker: string; title: string; sub: string; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
@@ -61,12 +61,12 @@ const en: Dict = {
   dir: 'ltr',
   nav: { home: 'Home', whatIDo: 'What I Do', work: 'Work', experience: 'Experience', behind: 'Tech Stack', contact: 'Contact', resume: 'Résumé' },
   hero: {
-    badge: 'Open to a final-year internship (PFE), backend or full-stack, Morocco or remote',
-    titleA: 'Building ', titleEm: 'complete products', titleB: ', not just features.',
-    lede: 'I\'m a software engineer who builds end-to-end digital products — from the first line of code to a running application people actually use.',
+    badge: 'Open to PFE internship', titleA: 'Building ', titleEm: 'complete products', titleB: ', not just features.',
+    lede: 'I\'m a software engineer who builds end-to-end digital products, from the first line of code to a running application people actually use.',
     ctaWork: 'Browse production work', ctaContact: 'Get in touch',
     statsLabels: ['Projects shipped', 'Platforms', 'Internships completed'],
     personalityA: 'A student', personalityB: 'Who ships production code between lectures.',
+    avail: 'Available for PFE \u00b7 Morocco or remote',
   },
   whatIDo: {
     kicker: 'What I do', title: 'I turn complex ideas into simple, working products.',
@@ -172,12 +172,12 @@ const fr: Dict = {
   dir: 'ltr',
   nav: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', experience: 'Parcours', behind: 'Technologies', contact: 'Contact', resume: 'CV' },
   hero: {
-    badge: 'Ouvert \u00e0 un stage de fin d\u2019\u00e9tudes (PFE), backend ou full-stack, Maroc ou distanciel',
-    titleA: 'Des ', titleEm: 'produits complets', titleB: ', pas juste des fonctionnalit\u00e9s.',
-    lede: 'Je suis ing\u00e9nieur logiciel et je construis des produits num\u00e9riques complets \u2014 de la premi\u00e8re ligne de code \u00e0 une application qui tourne vraiment.',
+    badge: 'Disponible pour un PFE', titleA: 'Des ', titleEm: 'produits complets', titleB: ', pas juste des fonctionnalit\u00e9s.',
+    lede: 'Je suis ing\u00e9nieur logiciel et je construis des produits num\u00e9riques complets, de la premi\u00e8re ligne de code \u00e0 une application qui tourne vraiment.',
     ctaWork: 'Voir mes projets', ctaContact: 'Me contacter',
     statsLabels: ['Projets livr\u00e9s', 'Plateformes', 'Stages compl\u00e9t\u00e9s'],
     personalityA: '\u00c9tudiant', personalityB: 'Qui livre du code en production entre les cours.',
+    avail: 'Disponible pour PFE \u00b7 Maroc ou distanciel',
   },
   whatIDo: {
     kicker: 'Ce que je fais', title: 'Je transforme des id\u00e9es complexes en produits simples et fonctionnels.',
@@ -283,12 +283,12 @@ const ar: Dict = {
   dir: 'rtl',
   nav: { home: 'الرئيسية', whatIDo: 'ما أفعله', work: 'أعمالي', experience: 'المسار', behind: 'التقنيات', contact: 'اتصل بي', resume: 'السيرة الذاتية' },
   hero: {
-    badge: 'متاح لتدريب نهاية الدراسة (PFE)، باك-إند أو full-stack، المغرب أو عن بعد',
-    titleA: 'أبني ', titleEm: 'منتجات كاملة', titleB: '، لا مجرد ميزات.',
-    lede: 'أنا مهندس برمجيات أبني منتجات رقمية متكاملة — من أول سطر كود إلى تطبيق يعمل فعلاً ويستخدمه ناس.',
-    ctaWork: 'استعرض أعمالي', ctaContact: 'تواصل معي',
-    statsLabels: ['مشاريع منشورة', 'منصات', 'تدريبات مكتملة'],
-    personalityA: 'طالب', personalityB: 'ينشر كوداً إنتاجياً بين المحاضرات.',
+    badge: 'متاح لتدريب PFE', titleA: '\u0623\u0628\u0646\u064a ', titleEm: '\u0645\u0646\u062a\u062c\u0627\u062a \u0643\u0627\u0645\u0644\u0629', titleB: '، \u0644\u0627 \u0628\u063a\u0631 \u0645\u064a\u0632\u0627\u062a.',
+    lede: '\u0623\u0646\u0627 \u0645\u0647\u0646\u062f\u0633 \u0628\u0631\u0645\u062c\u064a\u0627\u062a \u0623\u0628\u0646\u064a \u0645\u0646\u062a\u062c\u0627\u062a \u0631\u0642\u0645\u064a\u0629 \u0645\u062a\u0643\u0627\u0645\u0644\u0629, \u0645\u0646 \u0623\u0648\u0644 \u0633\u0637\u0631 \u0643\u0648\u062f \u0625\u0644\u0649 \u062a\u0637\u0628\u064a\u0642 \u064a\u0639\u0645\u0644 \u0641\u0639\u0644\u0627\u064b.',
+    ctaWork: '\u0627\u0633\u062a\u0639\u0631\u0636 \u0623\u0639\u0645\u0627\u0644\u064a', ctaContact: '\u062a\u0648\u0627\u0635\u0644 \u0645\u0639\u064a',
+    statsLabels: ['\u0645\u0634\u0627\u0631\u064a\u0639 \u0645\u0646\u0634\u0648\u0631\u0629', '\u0645\u0646\u0635\u0627\u062a', '\u062a\u062f\u0631\u0628\u0627\u062a \u0645\u0643\u062a\u0645\u0644\u0629'],
+    personalityA: '\u0637\u0627\u0644\u0628', personalityB: '\u064a\u0646\u0634\u0631 \u0643\u0648\u062f\u0627\u064b \u0625\u0646\u062a\u0627\u062c\u064a\u064b\u0627 \u0628\u064a\u0646 \u0627\u0644\u0645\u062d\u0627\u0636\u0631\u0627\u062a.',
+    avail: '\u0645\u062a\u0627\u062d \u0644\u062a\u062f\u0631\u0628 PFE \u00b7 \u0627\u0644\u0645\u063a\u0631\u0628 \u0623\u0648 \u0639\u0646 \u0628\u0639\u062f',
   },
   whatIDo: {
     kicker: 'ما أفعله', title: 'أحوّل الأفكار المعقدة إلى منتجات بسيطة وتعمل.',

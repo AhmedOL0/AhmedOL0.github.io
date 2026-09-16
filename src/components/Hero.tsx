@@ -4,16 +4,61 @@ export default function Hero() {
   const { t } = useLang();
   return (
     <section id="top" className="hero-block hero-block--top hero-dot-grid">
-      <div className="hero-eyebrow"><span className="hero-eyebrow-dot" aria-hidden="true" />{t.hero.badge}</div>
-      <h1 className="hero-title font-serif-d text-[clamp(2.1rem,5.5vw,3.45rem)] leading-[1.08] tracking-[-.02em] m-0">
-        <span className="hero-title-a">{t.hero.titleA}</span>
-        <em className="hero-title-em">{t.hero.titleEm}</em>
-        <span className="hero-title-b">{t.hero.titleB}</span>
-      </h1>
-      <p className="hero-lede">{t.hero.lede}</p>
-      <div className="hero-actions">
-        <a className="btn btn-gold" href="#work">{t.hero.ctaWork}</a>
-        <a className="btn ghost" href="#contact">{t.hero.ctaContact}</a>
+      <div className="hero-inner">
+        <div className="hero-content">
+          <div className="hero-eyebrow"><span className="hero-eyebrow-dot" aria-hidden="true" />{t.hero.avail}</div>
+          <h1 className="hero-title font-serif-d">
+            <span className="hero-title-a">{t.hero.titleA}</span>
+            <em className="hero-title-em">{t.hero.titleEm}</em>
+            <span className="hero-title-b">{t.hero.titleB}</span>
+          </h1>
+          <p className="hero-lede">{t.hero.lede}</p>
+          <div className="hero-actions">
+            <a className="btn btn-gold" href="#work">{t.hero.ctaWork}<span className="arr">\u2192</span></a>
+            <a className="btn btn-ghost" href="#contact">{t.hero.ctaContact}</a>
+          </div>
+        </div>
+        <div className="hero-visual" aria-hidden="true">
+          <div className="hero-code-block">
+            <div className="hero-code-bar">
+              <span className="hero-code-dot" style={{ background: '#ff5f57' }} />
+              <span className="hero-code-dot" style={{ background: '#febc2e' }} />
+              <span className="hero-code-dot" style={{ background: '#28c840' }} />
+              <span className="hero-code-title">odemlab</span>
+            </div>
+            <pre className="hero-code"><code>{`// Spring Boot 3.5 + Java 21
+@RestController
+@RequestMapping("/api/v1")
+public class ProductController {
+
+  @GetMapping("/products")
+  public Page<ProductDTO> list(
+    @RequestParam String city
+  ) {
+    return service
+      .enrichWithPricing(city);
+  }
+}`}</code></pre>
+          </div>
+          <div className="hero-float-card">
+            <div className="hero-float-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div className="hero-float-text">
+              <span className="hero-float-label">810 tests</span>
+              <span className="hero-float-sub">all passing</span>
+            </div>
+          </div>
+          <div className="hero-float-card hero-float-card-2">
+            <div className="hero-float-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div className="hero-float-text">
+              <span className="hero-float-label">3 languages</span>
+              <span className="hero-float-sub">FR / EN / AR</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

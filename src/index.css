@@ -680,6 +680,38 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:#16a34a;box-shadow:0 0 8px rgba(22,163,74,.6);animation:beaconPulse 2s ease-in-out infinite}
 .hero-title-em{font-style:italic;background:linear-gradient(120deg,var(--gold-hi) 10%,var(--gold) 45%,var(--rust) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
 
+/* Hero inner layout */
+.hero-inner{display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
+.hero-content{position:relative;z-index:2}
+.hero-title{font-family:var(--serif);font-weight:600;line-height:1.06;letter-spacing:-.02em;margin:0;font-size:clamp(2.2rem,5.5vw,3.6rem)}
+
+/* Hero visual - code block */
+.hero-visual{position:relative;display:none}
+.hero-code-block{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.35);transform:rotate(1.5deg);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.hero-code-block:hover{transform:rotate(0deg) translateY(-4px)}
+.hero-code-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:rgba(255,255,255,.03);border-bottom:1px solid var(--line)}
+.hero-code-dot{width:10px;height:10px;border-radius:50%;opacity:.8}
+.hero-code-title{margin-left:auto;font-family:var(--mono);font-size:.68rem;color:var(--faint);letter-spacing:.06em}
+.hero-code{margin:0;padding:18px 20px;font-family:var(--mono);font-size:.74rem;line-height:1.7;color:var(--muted);overflow-x:auto;white-space:pre}
+.hero-code::selection{background:var(--gold);color:#fff}
+
+/* Hero float cards */
+.hero-float-card{position:absolute;display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;background:linear-gradient(135deg,rgba(160,120,60,.1),rgba(201,168,118,.05));border:1px solid rgba(201,168,118,.15);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 8px 24px rgba(0,0,0,.2);animation:floatCard 4s ease-in-out infinite alternate}
+.hero-float-card{bottom:-20px;left:-30px}
+.hero-float-card-2{bottom:auto;top:-10px;left:auto;right:-20px;animation-delay:1.5s}
+.hero-float-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(201,168,118,.12);color:var(--gold);flex-shrink:0}
+.hero-float-text{display:flex;flex-direction:column;gap:1px}
+.hero-float-label{font-family:var(--mono);font-size:.78rem;font-weight:600;color:var(--ink)}
+.hero-float-sub{font-size:.68rem;color:var(--faint)}
+@keyframes floatCard{from{transform:translateY(0)}to{transform:translateY(-6px)}}
+
+/* Hero on desktop: two-column */
+@media(min-width:960px){
+  .hero-inner{grid-template-columns:1.1fr .9fr;gap:48px}
+  .hero-visual{display:block}
+  .hero-block{padding-top:48px;padding-bottom:60px}
+}
+
 /* Numbers stay aligned while counting */
 .stat b{font-variant-numeric:tabular-nums}
 
@@ -782,6 +814,8 @@ main{overflow-x:clip}
   .ghost{display:none}
   .section-block h2{font-size:clamp(1.6rem,6vw,2.2rem);max-width:100%}
   .marquee{padding:12px 4px}
+  .hero-title{font-size:clamp(1.8rem,8vw,2.4rem)}
+  .hero-block{padding-top:24px;padding-bottom:60px}
 }
 @media(min-width:421px) and (max-width:639px){
   .pcard-hero .pphoto{max-height:200px;max-width:240px}
@@ -816,7 +850,7 @@ main{overflow-x:clip}
   .pcard-hero h2{font-size:1.65rem;margin-top:18px}
   .pcard-hero .pdiv{margin:16px 4px 14px}
   .pcard-hero .pchips span{font-size:.72rem;padding:6px 13px}
-  .hero-block{padding-top:100px;padding-bottom:50px}
+  .hero-block{padding-top:48px;padding-bottom:60px}
   .contact-box{grid-template-columns:1fr 1fr;gap:40px;padding:42px}
   .direct{flex-direction:column}
 }
