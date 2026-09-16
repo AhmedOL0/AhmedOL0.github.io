@@ -10,7 +10,7 @@ export default function AboutMe() {
           {t.aboutMe.body}
         </p>
         <div className="about-langs">
-          <h4 className="about-langs-title">Languages</h4>
+          <h3 className="about-langs-title">Languages</h3>
           <div className="langs flex flex-wrap gap-2">
             {t.aboutMe.langs.map((l) => (
               <span key={l.l} className="lang-chip">
