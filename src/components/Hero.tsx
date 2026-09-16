@@ -12,7 +12,7 @@ export default function Hero() {
       </h1>
       <p className="hero-lede">{t.hero.lede}</p>
       <div className="hero-actions">
-        <a className="btn primary" href="#work">{t.hero.ctaWork}</a>
+        <a className="btn btn-gold" href="#work">{t.hero.ctaWork}</a>
         <a className="btn ghost" href="#contact">{t.hero.ctaContact}</a>
       </div>
     </section>
