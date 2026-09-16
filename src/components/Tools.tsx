@@ -66,7 +66,7 @@ export default function Tools() {
   const { t } = useLang();
   return (
     <Section id="tools" num="05" kicker={t.tools.kicker} title={t.tools.title} sub={t.tools.sub} variant="left">
-      <div className="pyramid-wrap mt-9">
+      <div className="pyramid-wrap mt-7 sm:mt-9">
         <div className="pyramid-header">
           <h3>{t.tools.pyramid.title}</h3>
           <p className="pyramid-header-sub">{t.tools.pyramid.subtitle}</p>
@@ -77,7 +77,7 @@ export default function Tools() {
           ))}
         </div>
       </div>
-      <div className="pillars-grid mt-10">
+      <div className="pillars-grid mt-8 sm:mt-10">
         {t.tools.pillars.map((pillar) => (
           <PillarCard key={pillar.title} pillar={pillar} />
         ))}

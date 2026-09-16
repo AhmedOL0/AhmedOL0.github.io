@@ -26,7 +26,7 @@ export default function About() {
   const { t } = useLang();
   return (
     <Section id="about" num="02" kicker={t.about.kicker} title={t.about.title} sub={t.about.sub} variant="left">
-      <div className="stats mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className="stats mt-6 sm:mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
         {t.about.stats.map((s, i) => (
           <Stat key={s.label} value={STAT_VALUES[i]} label={s.label} sub={s.sub} />
         ))}

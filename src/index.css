@@ -265,7 +265,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .marquee-item i{margin-right:28px}
   .core-chip{font-size:.66rem;padding:5px 10px;gap:4px;border-radius:8px}
   .core-chip-icon{width:12px;height:12px}
-  .core{flex-wrap:nowrap !important;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:6px !important;padding-bottom:4px;max-width:100%}
+  .core{flex-wrap:nowrap !important;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:6px !important;padding-bottom:6px;max-width:100%;mask-image:linear-gradient(to right,transparent 0,#000 8px,#000 calc(100% - 8px),transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0,#000 8px,#000 calc(100% - 8px),transparent 100%)}
   .core::-webkit-scrollbar{display:none}
   .core .core-chip{scroll-snap-align:start;flex-shrink:0;white-space:nowrap}
   .pcard{padding:20px}
@@ -275,10 +275,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .stat b{font-size:2rem}
   .stat span{font-size:.78rem}
   .stat .stat-sub{font-size:.66rem}
-  .contact-box{padding:20px !important}
+  .contact-box{padding:18px !important}
   .contact-box .field{margin-top:18px}
   .direct{gap:16px}
-  .direct div{margin-bottom:10px}
+  .direct div{margin-bottom:12px}
   .pyramid-wrap{padding:20px 16px}
   .pyramid{gap:16px;margin-top:20px}
   .pyramid-level{gap:8px}
@@ -305,8 +305,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .contact-box .direct{margin-top:20px}
   .langsw{gap:2px;padding:3px}
   .langsw button{padding:6px 10px;font-size:.7rem}
-  .hero-block{padding-top:72px;padding-bottom:28px}
-  .footer-block{padding-bottom:100px;padding-top:44px}
+  .hero-block{padding-top:68px;padding-bottom:24px}
+  .hero-grid{gap:28px}
+  .footer-block{padding-bottom:100px;padding-top:40px}
   /* Mobile GPU relief: cheaper blurs, dimmer static orbs */
   .orb{filter:blur(70px);opacity:.4}
   .hero-orb{filter:blur(70px)}
@@ -314,7 +315,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 }
 @media(max-width:420px){
   .hero-stats{grid-template-columns:repeat(3,1fr);gap:8px}
-  section{padding-top:40px;padding-bottom:40px}
+  section{padding-top:36px;padding-bottom:36px}
   .pcard{padding:18px;border-radius:18px}
   .pcard h2{font-size:1.3rem}
   .pmono span{font-size:3.2rem}
@@ -363,18 +364,24 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .card{border-radius:14px}
   .card .thumb{height:110px}
   .card .thumb b{font-size:2rem;left:12px;bottom:8px}
+  .card .body{padding:14px !important}
   .stat{padding:18px 12px;border-radius:14px}
   .stat b{font-size:1.9rem}
   .sub{max-width:100%}
   .sec-head{gap:10px}
-  .hero-block{padding-top:60px;padding-bottom:20px}
-  .hero-grid{gap:20px}
+  .hero-block{padding-top:56px;padding-bottom:16px}
+  .hero-grid{gap:16px}
+  .hero-grid .lede{margin-top:12px}
+  .hero-grid .cta{margin-top:16px}
+  .hero-stats{margin-top:20px}
+  .core{margin-top:16px}
   .direct div{margin-bottom:12px}
   .contact-box .direct{margin-top:24px}
-  .footer-block{padding-bottom:110px;padding-top:40px}
-  .pcard-hero .pphoto{max-height:180px;max-width:220px}
+  .footer-block{padding-bottom:110px;padding-top:36px}
+  .pcard-hero .pphoto{max-height:170px;max-width:200px}
   .pcard-hero .pchips{gap:4px}
   .pcard-hero .pchips span{font-size:.62rem;padding:4px 8px}
+  .personality{font-size:.78rem;margin-top:10px}
 }
 :root[data-theme="light"] .orb{opacity:.35}
 :root[data-theme="light"] .hero-orb{opacity:.5}
@@ -649,10 +656,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 [dir="rtl"] .foot-mark{text-align:left}
 
 /* Footer social icons */
-.footer-socials{display:flex;gap:12px}
+.footer-socials{display:flex;gap:10px}
 .footer-social-icon{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(127,120,100,.1);border:1px solid var(--line-soft);color:var(--muted);transition:all .25s ease}
 .footer-social-icon:hover{background:rgba(201,168,118,.15);border-color:var(--gold);color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 18px rgba(201,168,118,.2)}
 :root[data-theme="light"] .footer-social-icon:hover{box-shadow:0 6px 18px rgba(160,120,60,.15)}
+@media(max-width:640px){
+  footer nav{grid-template-columns:1fr !important;gap:24px !important}
+  footer nav > div:first-child{margin-bottom:8px}
+  .footer-socials{margin-top:14px}
+}
 
 /* Hero personality line */
 .personality{opacity:.85;transition:opacity .3s}
@@ -743,7 +755,7 @@ main{overflow-x:clip}
 
 /* Profile card responsive - mobile-first, progressive enhancement */
 .pcard-hero{width:100%;max-width:100%;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;align-items:center}
-.pcard-hero .pphoto{aspect-ratio:1/1;max-height:240px;width:100%;max-width:280px}
+.pcard-hero .pphoto{aspect-ratio:1/1;max-height:220px;width:100%;max-width:260px;border-radius:18px;overflow:hidden}
 .pcard-hero h2{font-size:1.3rem;margin-top:14px}
 .pcard-hero .pdiv{margin:12px 4px 10px}
 .pcard-hero .pchips span{font-size:.68rem;padding:5px 11px}
@@ -758,11 +770,11 @@ main{overflow-x:clip}
   .pcard-hero .pchips{gap:5px}
   .pcard-hero .pchips span{font-size:.64rem;padding:4px 9px}
   .ghost{display:none}
-  .section-block h2{font-size:clamp(1.6rem,6vw,2.2rem)}
+  .section-block h2{font-size:clamp(1.6rem,6vw,2.2rem);max-width:100%}
   .marquee{padding:12px 4px}
 }
 @media(min-width:421px) and (max-width:639px){
-  .pcard-hero .pphoto{max-height:240px;max-width:280px}
+  .pcard-hero .pphoto{max-height:200px;max-width:240px}
 }
 /* Very small phones (iPhone SE 1st gen, Galaxy Fold): shrink dock so all icons fit */
 @media(max-width:360px){

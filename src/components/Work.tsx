@@ -20,14 +20,14 @@ export default function Work() {
 
   return (
     <Section id="work" num="01" kicker={t.work.kicker} title={t.work.title} sub={t.work.sub} variant="default">
-      <div className="filters mt-6 sm:mt-8 mb-4 sm:mb-[26px] flex flex-wrap gap-1.5 sm:gap-2.5">
+      <div className="filters mt-5 sm:mt-8 mb-3 sm:mb-[26px] flex flex-wrap gap-1.5 sm:gap-2.5">
         {filterKeys.map((k) => (
           <button key={k} className={`tip${f === k ? ' active' : ''}`} data-tip={labels[k]} aria-pressed={f === k} onClick={() => setF(k)}>
             {labels[k]}
           </button>
         ))}
       </div>
-      <div className="grid grid-cols-1 gap-[22px] lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:gap-[22px] lg:grid-cols-2">
         {t.work.projects.map((p, i) => {
           if (f !== 'all' && !PROJECT_CATS[i].includes(f)) return null;
           const th = thumbTitle(p);
@@ -76,7 +76,7 @@ function Card({ p, th, i, skipTilt, cardId }: { p: { year: string; kind: string;
         <span className="tag-corner">{p.year}</span>
         <b>{th.pre}<i>{th.em}</i>{th.post}</b>
       </div>
-      <div className="body flex flex-col gap-1.5 p-4 sm:p-[20px_22px_22px] flex-1">
+      <div className="body flex flex-col gap-1.5 p-3.5 sm:p-[20px_22px_22px] flex-1">
         <span className="flag">{p.kind}</span>
         <h3 className="font-serif-d">{p.title}</h3>
         <p className="text-[.86rem] leading-[1.6]" style={{ color: 'var(--muted)' }}>{p.description}</p>

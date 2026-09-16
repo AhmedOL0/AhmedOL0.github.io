@@ -83,32 +83,32 @@ export default function Hero() {
       <div className="hero-dot-grid" aria-hidden="true" />
       <div className="hero-grid" style={fade}>
         <div>
-          <span className="rise mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-[6px] sm:px-4 sm:py-[7px] text-[.72rem] sm:text-[.79rem] tracking-[.03em]"
+          <span className="rise mb-3 sm:mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-[6px] sm:px-4 sm:py-[7px] text-[.72rem] sm:text-[.79rem] tracking-[.03em]"
             style={{ color: 'var(--muted)', borderColor: 'var(--line)', background: 'rgba(127,120,100,.08)', animationDelay: '.05s' }}>
             <span className="beacon" /> {t.hero.badge}
           </span>
-          <h1 className="rise h-display text-[clamp(1.8rem,5.5vw,4.5rem)] max-w-[16ch] sm:max-w-[18ch]" style={{ animationDelay: '.15s' }}>
+          <h1 className="rise h-display text-[clamp(1.6rem,5.5vw,4.5rem)] max-w-[16ch] sm:max-w-[18ch]" style={{ animationDelay: '.15s' }}>
             {t.hero.titleA}<em className="grad-text">{t.hero.titleEm}</em>{t.hero.titleB}
           </h1>
-          <p className="rise personality mt-3 sm:mt-4 max-w-[32ch] text-[.82rem] sm:text-[.92rem] font-mono-d tracking-wide" style={{ color: 'var(--gold-deep)', animationDelay: '.22s' }}>
+          <p className="rise personality mt-2 sm:mt-4 max-w-[32ch] text-[.78rem] sm:text-[.92rem] font-mono-d tracking-wide" style={{ color: 'var(--gold-deep)', animationDelay: '.22s' }}>
             {t.hero.personalityA} <span style={{ color: 'var(--muted)' }}>/</span> {t.hero.personalityB}
           </p>
-          <p className="rise lede mt-4 sm:mt-5 max-w-[56ch] text-[.88rem] sm:text-[1.02rem]" style={{ color: 'var(--muted)', animationDelay: '.28s' }}>
+          <p className="rise lede mt-3 sm:mt-5 max-w-[56ch] text-[.85rem] sm:text-[1.02rem] leading-relaxed" style={{ color: 'var(--muted)', animationDelay: '.28s' }}>
             {t.hero.lede1}<strong style={{ color: 'var(--ink)' }}>OdemLab</strong>{t.hero.lede2}
           </p>
-          <div className="rise mt-3 sm:mt-4" style={{ animationDelay: '.35s' }}>
+          <div className="rise mt-2 sm:mt-4" style={{ animationDelay: '.35s' }}>
             <Typewriter key={lang} words={t.hero.tw} />
           </div>
-          <div className="rise cta mt-5 sm:mt-7 flex flex-row flex-wrap gap-2.5 sm:gap-3" style={{ animationDelay: '.4s' }}>
+          <div className="rise cta mt-4 sm:mt-7 flex flex-row flex-wrap gap-2 sm:gap-3" style={{ animationDelay: '.4s' }}>
             <a className="btn btn-gold" data-magnetic href="#work">{t.hero.ctaWork}<span className="arr">→</span></a>
             <a className="btn btn-ghost" data-magnetic href="#contact">{t.hero.ctaContact}<span className="arr">→</span></a>
           </div>
-          <div className="rise hero-stats mt-6 sm:mt-8 grid grid-cols-3 gap-3 sm:gap-4" ref={statsRef} style={{ animationDelay: '.48s' }}>
+          <div className="rise hero-stats mt-5 sm:mt-8 grid grid-cols-3 gap-3 sm:gap-4" ref={statsRef} style={{ animationDelay: '.48s' }}>
             {statValues.map((s, i) => (
               <StatItem key={i} target={s.value} suffix={s.suffix} label={t.hero.statsLabels[i]} inView={statsInView} />
             ))}
           </div>
-          <div className="rise core mt-5 sm:mt-6 flex flex-wrap gap-1.5 sm:gap-2" style={{ animationDelay: '.56s' }}>
+          <div className="rise core mt-4 sm:mt-6 flex flex-wrap gap-1.5 sm:gap-2" style={{ animationDelay: '.56s' }}>
             {core.map((c) => (
               <span key={c.name} className="core-chip tip" data-tip={c.tip}>
                 <TechIcon name={c.icon} className="core-chip-icon" />
