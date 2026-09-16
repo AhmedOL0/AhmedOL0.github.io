@@ -14,7 +14,7 @@ export default function Hero() {
           </h1>
           <p className="hero-lede">{t.hero.lede}</p>
           <div className="hero-actions">
-            <a className="btn btn-gold" href="#work">{t.hero.ctaWork}<span className="arr">\u2192</span></a>
+            <a className="btn btn-gold" href="#work">{t.hero.ctaWork}<span className="arr">&rarr;</span></a>
             <a className="btn btn-ghost" href="#contact">{t.hero.ctaContact}</a>
           </div>
         </div>
@@ -26,19 +26,7 @@ export default function Hero() {
               <span className="hero-code-dot" style={{ background: '#28c840' }} />
               <span className="hero-code-title">odemlab</span>
             </div>
-            <pre className="hero-code"><code>{`// Spring Boot 3.5 + Java 21
-@RestController
-@RequestMapping("/api/v1")
-public class ProductController {
-
-  @GetMapping("/products")
-  public Page<ProductDTO> list(
-    @RequestParam String city
-  ) {
-    return service
-      .enrichWithPricing(city);
-  }
-}`}</code></pre>
+            <pre className="hero-code"><code><span className="cmt">{'// Spring Boot 3.5 + Java 21'}</span>{'\n'}<span className="ann">{'@RestController'}</span>{'\n'}<span className="ann">{'@RequestMapping("/api/v1")'}</span>{'\n'}<span className="kw">public class</span> <span className="type">ProductController</span> {'{'}{'\n'}{'\n'}  <span className="ann">{'@GetMapping("/products")'}</span>{'\n'}  <span className="kw">public</span> <span className="type">Page&lt;ProductDTO&gt;</span> <span className="fn">list</span>({'\n'}    <span className="ann">{'@RequestParam'}</span> <span className="type">String</span> city{'\n'}  ) {'{'}{'\n'}    <span className="kw">return</span> service{'\n'}      .enrichWithPricing(city);{'\n'}  {'}'}{'}'}{'}'}</code></pre>
           </div>
           <div className="hero-float-card">
             <div className="hero-float-icon">
