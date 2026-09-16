@@ -28,7 +28,7 @@ export default function Hero() {
             </div>
             <pre className="hero-code"><code><span className="cmt">{'// Spring Boot 3.5 + Java 21'}</span>{'\n'}<span className="ann">{'@RestController'}</span>{'\n'}<span className="ann">{'@RequestMapping("/api/v1")'}</span>{'\n'}<span className="kw">public class</span> <span className="type">ProductController</span> {'{'}{'\n'}{'\n'}  <span className="ann">{'@GetMapping("/products")'}</span>{'\n'}  <span className="kw">public</span> <span className="type">Page&lt;ProductDTO&gt;</span> <span className="fn">list</span>({'\n'}    <span className="ann">{'@RequestParam'}</span> <span className="type">String</span> city{'\n'}  ) {'{'}{'\n'}    <span className="kw">return</span> service{'\n'}      .enrichWithPricing(city);{'\n'}  {'}'}{'}'}{'}'}</code></pre>
           </div>
-          <div className="hero-float-card">
+          <div className="hero-float-card hero-float-card-1">
             <div className="hero-float-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
             </div>
