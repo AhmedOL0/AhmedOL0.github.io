@@ -51,8 +51,8 @@ test.describe('Error Handling', () => {
   test('profile image has fallback mechanism', async ({ page }) => {
     await page.goto('/');
     // Profile image exists or text fallback (AO initials) is shown
-    const hasImg = await page.locator('.hero-photo img, img[alt*="Ahmed"], img[alt*="Ahmed Ouarrali"]').count();
-    const hasFallback = await page.locator('.hero-photo').count();
+    const hasImg = await page.locator('.hero-photo-lg img, img[alt*="Ahmed"], img[alt*="Ahmed Ouarrali"]').count();
+    const hasFallback = await page.locator('.hero-photo-lg').count();
     expect(hasImg + hasFallback).toBeGreaterThan(0);
   });
 

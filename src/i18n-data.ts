@@ -27,7 +27,7 @@ export type TechCategory = { name: string; items: string[] };
 export type Dict = {
   dir: 'ltr' | 'rtl';
   nav: { home: string; whatIDo: string; work: string; experience: string; behind: string; contact: string; resume: string };
-  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede: string; ctaWork: string; ctaContact: string; statsLabels: [string, string, string]; personalityA: string; personalityB: string; avail: string };
+  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede: string; ctaWork: string; ctaContact: string; statsLabels: [string, string, string]; personalityA: string; personalityB: string; avail: string; floatDev: string; floatProblem: string; floatTeam: string; floatImpact: string };
   whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
@@ -66,6 +66,7 @@ const en: Dict = {
     statsLabels: ['Projects shipped', 'Platforms', 'Internships completed'],
     personalityA: 'A student', personalityB: 'Who ships production code between lectures.',
     avail: 'Available for PFE \u00b7 Morocco or remote',
+    floatDev: 'Full-Stack Developer', floatProblem: 'Problem Solving', floatTeam: 'Team Player', floatImpact: 'Impact-Driven',
   },
   whatIDo: {
     kicker: 'What I do', title: 'I turn complex ideas into simple, working products.',
@@ -179,6 +180,7 @@ const fr: Dict = {
     statsLabels: ['Projets livr\u00e9s', 'Plateformes', 'Stages compl\u00e9t\u00e9s'],
     personalityA: '\u00c9tudiant', personalityB: 'Qui livre du code en production entre les cours.',
     avail: 'Disponible pour PFE \u00b7 Maroc ou distanciel',
+    floatDev: 'D\u00e9veloppeur Full-Stack', floatProblem: 'R\u00e9solution de probl\u00e8mes', floatTeam: 'Travail en \u00e9quipe', floatImpact: 'Produits \u00e0 impact',
   },
   whatIDo: {
     kicker: 'Ce que je fais', title: 'Je transforme des id\u00e9es complexes en produits simples et fonctionnels.',
