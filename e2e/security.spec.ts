@@ -52,7 +52,7 @@ test.describe('Error Handling', () => {
     await page.goto('/');
     // Profile image exists or text fallback (AO initials) is shown
     const hasImg = await page.locator('.hero-photo img, img[alt*="Ahmed"], img[alt*="Ahmed Ouarrali"]').count();
-    const hasFallback = await page.locator('.hero-code-block').count();
+    const hasFallback = await page.locator('.hero-photo').count();
     expect(hasImg + hasFallback).toBeGreaterThan(0);
   });
 
