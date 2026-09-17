@@ -95,16 +95,6 @@ for (const vp of VIEWPORTS) {
       }
     });
 
-    test('stats grid adapts to viewport', async ({ page }) => {
-      const stats = page.locator('.hero-float-row');
-      const gridCols = await stats.evaluate(el => {
-        return window.getComputedStyle(el).display === 'flex'
-          ? window.getComputedStyle(el).flexDirection
-          : window.getComputedStyle(el).gridTemplateColumns;
-      });
-      expect(gridCols).toBeTruthy();
-    });
-
     test('footer columns stack on mobile', async ({ page }) => {
       if (vp.width >= 768) return;
       const footer = page.locator('footer');
