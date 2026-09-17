@@ -847,8 +847,10 @@ main{overflow-x:clip}
 .tech-cat-name{margin:0;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);display:flex;align-items:center;gap:8px}
 .tech-cat-name::before{content:"";display:block;width:16px;height:1px;background:var(--gold-deep)}
 .tech-items{display:flex;flex-wrap:wrap;gap:6px}
-.tech-item{padding:5px 12px;border-radius:999px;font-size:.78rem;background:var(--card);color:var(--muted);border:1px solid var(--line-soft);transition:all .25s cubic-bezier(.2,.7,.2,1)}
+.tech-item{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:999px;font-size:.78rem;background:var(--card);color:var(--muted);border:1px solid var(--line-soft);transition:all .25s cubic-bezier(.2,.7,.2,1)}
 .tech-item:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-1px);box-shadow:0 4px 12px rgba(160,120,60,.15)}
+.tech-item-icon{flex-shrink:0;opacity:.7;transition:opacity .25s}
+.tech-item:hover .tech-item-icon{opacity:1}
 
 /* ── About Me ── */
 .about-layout{display:flex;flex-direction:column;gap:24px}

@@ -1,5 +1,6 @@
 import Section from './Section';
 import { useLang } from '../i18n-data';
+import techIcons from '../lib/techIcons';
 
 const CAT_ICONS: Record<string, React.ReactNode> = {
   'Frontend': <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>,
@@ -11,6 +12,16 @@ const CAT_ICONS: Record<string, React.ReactNode> = {
   'Données': <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>,
   'IA/ML': <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v2c0 1.1.9 2 2 2h2v2a4 4 0 0 0 8 0v-2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-2V6a4 4 0 0 0-4-4z"/></svg>,
 };
+
+function techKey(name: string): string {
+  return name.toLowerCase().replace(/[\s.]/g, '').replace('googlecloud', 'googlecloud');
+}
+
+function TechIcon({ name }: { name: string }) {
+  const d = techIcons[techKey(name)];
+  if (!d) return null;
+  return <svg className="tech-item-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d={d}/></svg>;
+}
 
 export default function BehindTheWork() {
   const { t } = useLang();
@@ -25,7 +36,7 @@ export default function BehindTheWork() {
             </h3>
             <div className="tech-items">
               {cat.items.map((item) => (
-                <span key={item} className="tech-item">{item}</span>
+                <span key={item} className="tech-item"><TechIcon name={item}/>{item}</span>
               ))}
             </div>
           </div>
