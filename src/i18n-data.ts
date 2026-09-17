@@ -1,10 +1,9 @@
 import { createContext, useContext } from 'react';
 
-export type Lang = 'en' | 'fr' | 'ar';
+export type Lang = 'en' | 'fr';
 export const LANGS: { code: Lang; label: string; aria: string }[] = [
   { code: 'en', label: 'EN', aria: 'English' },
   { code: 'fr', label: 'FR', aria: 'Français' },
-  { code: 'ar', label: 'عر', aria: 'العربية' },
 ];
 
 export type ProjectT = {
@@ -29,14 +28,14 @@ export type Dict = {
   dir: 'ltr' | 'rtl';
   nav: { home: string; whatIDo: string; work: string; experience: string; behind: string; contact: string; resume: string };
   hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede: string; ctaWork: string; ctaContact: string; statsLabels: [string, string, string]; personalityA: string; personalityB: string; avail: string };
-  whatIDo: { kicker: string; title: string; sub: string; capabilities: Capability[] };
+  whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
   work: { kicker: string; title: string; sub: string; showLess: string; projects: ProjectT[] };
   exp: { kicker: string; title: string; jobs: JobT[] };
   edu: { kicker: string; title: string; sub: string; entries: EduT[] };
   behind: { kicker: string; title: string; sub: string; categories: TechCategory[] };
-  aboutMe: { kicker: string; title: string; sub: string; body: string; langs: { l: string; lvl: string }[] };
+  aboutMe: { kicker: string; title: string; sub: string; body: string; langsTitle: string; langs: { l: string; lvl: string }[] };
   contact: {
     kicker: string; title: string; sub: string; subEm: string; subEnd: string;
     name: string; namePh: string; email: string; emailPh: string; msg: string; msgPh: string;
@@ -71,6 +70,7 @@ const en: Dict = {
   whatIDo: {
     kicker: 'What I do', title: 'I turn complex ideas into simple, working products.',
     sub: 'From concept to deployment — I handle the full journey so you don\'t have to.',
+    showDetails: 'Details', showLess: 'Less',
     capabilities: [
       { title: 'Build complete products', desc: 'I take an idea from concept to a running application — frontend, backend, database, and deployment. Everything connected, everything working.', details: 'Full-stack development with Spring Boot, Next.js, React Native. REST APIs, real-time sync, payment integrations, authentication, and database design.' },
       { title: 'Design intuitive interfaces', desc: 'I create web and mobile experiences that feel simple, even when the technology behind them is complex.', details: 'Responsive design, trilingual support (FR/EN/AR with real RTL), accessibility (WCAG 2.2), animations, and progressive disclosure.' },
@@ -153,6 +153,7 @@ const en: Dict = {
     kicker: 'About me', title: 'The person behind the code.',
     sub: 'A bit about how I think and what drives me.',
     body: 'I enjoy building things that work end-to-end — not just the parts that show on screen, but the systems behind them. I\'m driven by the gap between a good idea and a working product, and I like being the person who bridges it. Currently focused on full-stack development and looking for a PFE internship where I can ship production code.',
+    langsTitle: 'Languages',
     langs: [{ l: 'Arabic', lvl: 'native' }, { l: 'French', lvl: 'professional' }, { l: 'English', lvl: 'professional' }],
   },
   contact: {
@@ -182,6 +183,7 @@ const fr: Dict = {
   whatIDo: {
     kicker: 'Ce que je fais', title: 'Je transforme des id\u00e9es complexes en produits simples et fonctionnels.',
     sub: 'Du concept au d\u00e9ploiement \u2014 je g\u00e8re tout le parcours.',
+    showDetails: 'D\u00e9tails', showLess: 'Moins',
     capabilities: [
       { title: 'Construire des produits complets', desc: 'Je prends une id\u00e9e et la transforme en application fonctionnelle \u2014 frontend, backend, base de donn\u00e9es et d\u00e9ploiement. Tout connect\u00e9, tout qui marche.', details: 'D\u00e9veloppement full-stack avec Spring Boot, Next.js, React Native. APIs REST, synchronisation en temps r\u00e9el, int\u00e9grations de paiement, authentification et conception de bases de donn\u00e9es.' },
       { title: 'Concevoir des interfaces intuitives', desc: 'Je cr\u00e9e des exp\u00e9riences web et mobile qui semblent simples, m\u00eame quand la technologie derri\u00e8re est complexe.', details: 'Design responsive, support trilingue (FR/EN/AR avec vrai RTL), accessibilit\u00e9 (WCAG 2.2), animations et divulgation progressive.' },
@@ -264,6 +266,7 @@ const fr: Dict = {
     kicker: 'Profil', title: 'La personne derri\u00e8re le code.',
     sub: 'Un peu sur ma fa\u00e7on de penser et ce qui me motive.',
     body: 'J\u2019aime construire des choses qui marchent de bout en bout \u2014 pas seulement les \u00e9l\u00e9ments visibles \u00e0 l\u2019\u00e9cran, mais aussi les syst\u00e8mes derri\u00e8re. Je suis motiv\u00e9 par l\u2019\u00e9cart entre une bonne id\u00e9e et un produit fonctionnel, et j\u2019aime \u00eatre la personne qui le comble. Actuellement concentr\u00e9 sur le d\u00e9veloppement full-stack et \u00e0 la recherche d\u2019un stage PFE o\u00f9 je peux livrer du code en production.',
+    langsTitle: 'Langues',
     langs: [{ l: 'Arabe', lvl: 'maternelle' }, { l: 'Fran\u00e7ais', lvl: 'professionnel' }, { l: 'Anglais', lvl: 'professionnel' }],
   },
   contact: {
@@ -279,118 +282,7 @@ const fr: Dict = {
   dock: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', contact: 'Contact', lang: 'Langue', nav: 'Navigation rapide', toggle: 'Basculer mode clair / sombre', resume: 'CV' },
 };
 
-const ar: Dict = {
-  dir: 'rtl',
-  nav: { home: 'الرئيسية', whatIDo: 'ما أفعله', work: 'أعمالي', experience: 'المسار', behind: 'التقنيات', contact: 'اتصل بي', resume: 'السيرة الذاتية' },
-  hero: {
-    badge: 'متاح لتدريب PFE', titleA: '\u0623\u0628\u0646\u064a ', titleEm: '\u0645\u0646\u062a\u062c\u0627\u062a \u0643\u0627\u0645\u0644\u0629', titleB: '، \u0644\u0627 \u0628\u063a\u0631 \u0645\u064a\u0632\u0627\u062a.',
-    lede: '\u0623\u0646\u0627 \u0645\u0647\u0646\u062f\u0633 \u0628\u0631\u0645\u062c\u064a\u0627\u062a \u0623\u0628\u0646\u064a \u0645\u0646\u062a\u062c\u0627\u062a \u0631\u0642\u0645\u064a\u0629 \u0645\u062a\u0643\u0627\u0645\u0644\u0629, \u0645\u0646 \u0623\u0648\u0644 \u0633\u0637\u0631 \u0643\u0648\u062f \u0625\u0644\u0649 \u062a\u0637\u0628\u064a\u0642 \u064a\u0639\u0645\u0644 \u0641\u0639\u0644\u0627\u064b.',
-    ctaWork: '\u0627\u0633\u062a\u0639\u0631\u0636 \u0623\u0639\u0645\u0627\u0644\u064a', ctaContact: '\u062a\u0648\u0627\u0635\u0644 \u0645\u0639\u064a',
-    statsLabels: ['\u0645\u0634\u0627\u0631\u064a\u0639 \u0645\u0646\u0634\u0648\u0631\u0629', '\u0645\u0646\u0635\u0627\u062a', '\u062a\u062f\u0631\u0628\u0627\u062a \u0645\u0643\u062a\u0645\u0644\u0629'],
-    personalityA: '\u0637\u0627\u0644\u0628', personalityB: '\u064a\u0646\u0634\u0631 \u0643\u0648\u062f\u0627\u064b \u0625\u0646\u062a\u0627\u062c\u064a\u064b\u0627 \u0628\u064a\u0646 \u0627\u0644\u0645\u062d\u0627\u0636\u0631\u0627\u062a.',
-    avail: '\u0645\u062a\u0627\u062d \u0644\u062a\u062f\u0631\u0628 PFE \u00b7 \u0627\u0644\u0645\u063a\u0631\u0628 \u0623\u0648 \u0639\u0646 \u0628\u0639\u062f',
-  },
-  whatIDo: {
-    kicker: 'ما أفعله', title: 'أحوّل الأفكار المعقدة إلى منتجات بسيطة وتعمل.',
-    sub: 'من الفكرة إلى النشر — أتولى整个الرحلة حتى لا تضطر أنت.',
-    capabilities: [
-      { title: 'بناء منتجات كاملة', desc: 'آخذ فكرة وأحوّلها إلى تطبيق يعمل — واجهة أمامية، خادم، قاعدة بيانات، ونشر. كل شيء متصل ويعمل.', details: 'تطوير full-stack بـ Spring Boot و Next.js و React Native. واجهات API، مزامنة لحظية، تكاملات دفع، مصادقة وتصميم قواعد بيانات.' },
-      { title: 'تصميم واجهات بديهية', desc: 'أنشئ تجارب ويب وموبايل تبدو بسيطة، حتى تكون التقنية وراءها معقدة.', details: 'تصميم متجاوب، دعم ثلاث لغات (FR/EN/AR مع RTL حقيقي)، إمكانية الوصول (WCAG 2.2)، حركات وإفصاح تدريجي.' },
-      { title: 'بناء أنظمة موثوقة', desc: 'أصمم الأجزاء غير المرئية — سلامة البيانات، الأمان، الأداء، والأشياء التي لا تتكسر عندما يعتمد عليها المستخدمون.', details: 'سلامة المعاملات، أقفال متفائلة، PII مشفر، تحديد المعدل، قواطع، اختبارات مؤتمتة (وحدة ← تكامل ← E2E) ونشر بدون توقف.' },
-      { title: 'العمل بلغات متعددة', desc: 'أبني بالفرنسية والإنجليزية والعربية — مع دعم RTL حقيقي للمتحدثين بالعربية.', details: 'i18n كامل مع توجيه اللغة، عكس تخطيط RTL ومحتوى مكيف ثقلياً في ثلاث لغات.' },
-    ],
-  },
-  howIWork: {
-    kicker: 'كيف أعمل', title: 'من الفكرة إلى الإنتاج، خطوة بخطوة.',
-    sub: 'لا أكتب كوداً فحسب. أتبع عملية تحوّل الأفكار إلى منتجات موثوقة.',
-    steps: [
-      { label: 'أفهم', desc: 'أبدأ بفهم المشكلة والمستخدمين وما يعنيه النجاح.' },
-      { label: 'أصمم', desc: 'أخطط للمعمارية وتدفق البيانات قبل كتابة سطر كود واحد.' },
-      { label: 'أبني', desc: 'أكتب كوداً نظيفاً ومفحوصاً في تكرارات مركزة.' },
-      { label: 'أتحقق', desc: 'كل ميزة مفحوصة — من اختبارات الوحدة إلى مسارات المتصفح الحقيقية.' },
-      { label: 'أنشر', desc: 'أنشر للإنتاج مع نشر بدون توقف وفحص صحة.' },
-      { label: 'أحسّن', desc: 'أقيس وأراقب وأكرر بناءً على الاستخدام الفعلي.' },
-    ],
-  },
-  filters: { all: 'الكل', web: 'ويب', mobile: 'موبايل', backend: 'باك-إند', ai: 'ذكاء اصطناعي', iot: 'إنترنت الأشياء' },
-  work: {
-    kicker: 'أعمال مختارة', title: 'أنظمة تعمل في الإنتاج، لا عروض تعمل مرة واحدة.',
-    sub: 'ستة مشاريع عبر الويب والموبايل والباك-إند والذكاء الاصطناعي وإنترنت الأشياء. كلها منشورة أو مستعملة.',
-    showLess: 'عرض أقل',
-    projects: [
-      { title: 'OdemLab: تجارة التجميل بالذكاء الاصطناعي', year: 'الأبرز', kind: 'فريق من 4 · مستودع خاص', heading: 'OdemLab', lead: 'd',
-        description: 'متجر تجميل إلكتروني بتحليل ذكاء اصطناعي للبشرة، ثلاث طرق دفع (Stripe، CMI، الدفع عند الاستلام) ودعم ثلاث لغات.',
-        result: '810 اختبار مؤتمت، 93 هجرة، 3 تكاملات دفع. منشور على Cloud Run.',
-        note: 'مستودع خاص: عرض حي ومراجعة الكود عند الطلب.' },
-      { title: 'منصة المواعيد الطبية', year: '2025', kind: 'تدريب · Full-stack', heading: 'طبي', lead: 'ب',
-        description: 'منصة إدارة عيادة يحجز فيها المرضى مواعيد عبر الإنترنت ويدير الأطباء جداولهم ويولّدون تقارير PDF.',
-        result: 'تقليل الحجز من 15 دقيقة مكالمة إلى 2 دقيقة حجز إلكتروني.' },
-      { title: 'FitTrack: منصة رياضية', year: '2025', kind: 'فريق من 2 · Full-stack', heading: 'FitTrack', lead: 'i',
-        description: 'تطبيق ويب رياضي لإنشاء برامج تمارين وتتبع الحصص لحظياً وعرض إحصائيات مؤشر كتلة الجسم والسعر اليومي.',
-        result: 'خط أنابيب إشراف كامل عبر 38 تمريناً مع عروض فيديو.' },
-      { title: 'رفيق الحرم الذكي', year: '2026', kind: 'فريق من 4 · Flutter', heading: 'Campus', lead: 'a',
-        description: 'تطبيق Flutter لإدارة الحرم يمسح الطلاب رموز QR للحصول على معلومات القاعة فوراً مع تصور واقع معزز.',
-        result: 'معلومات القاعة بمسحة QR. مزامنة لحظية عبر 7 مجموعات.' },
-      { title: 'SmartSummarizer', year: '2025', kind: 'فريق من 4 · معالجة لغة', heading: 'ملخص', lead: 'خ',
-        description: 'منصة ذكاء اصطناعي تحول ملفات PDF إلى أدوات مراجعة — ملخصات، صوت، اختبارات وخرائط ذهنية.',
-        result: '9.9 ثانية معالجة متوسطة. درجة 8.4/10 من 30 طالب.' },
-      { title: 'نظام عد القصب', year: '2024 · مشروع التخرج', kind: 'مدمج · مشروع النهاية', heading: 'IoT', lead: 'T',
-        description: 'نظام عد مبني على ESP8266 بحساس ليزر لعدّ القصب على خط الإنتاج مع عرض OLED ولوحة ويب Wi-Fi.',
-        result: 'دقة 98%+. غلاف مطبوع ثلاثي الأبعاد.' },
-    ],
-  },
-  exp: {
-    kicker: 'المسار', title: 'الخبرة والتكوين.',
-    jobs: [
-      { when: 'يونيو 2026 – سبتمبر 2026 · أكادير، حضوري', title: 'مشروع نهاية السنة (PFA): مطور Full-Stack', org: 'Zorium، تكنوبارك أكادير', where: 'منصة OdemLab · فريق من أربعة',
-        points: ['وحدات الباك-إند: الطلبات، المنتجات، المدفوعات، المصادقة، GDPR', 'تحصين مسارات المال: تسعير من الخادم، دفع غير قابل للتكرار، دورة طلبات مدققة', 'النشر على Cloud Run: نشر بدون توقف، فحص صحة، ترقية الميزات، رجوع تلقائي عند الفشل'] },
-      { when: 'يوليوز 2025 – سبتمبر 2025 · عن بعد', title: 'متدرب مطور Full-Stack', org: 'MOUSSA SOFT، أكادير', where: 'Laravel · MySQL · Bootstrap',
-        points: ['MediCare: حجز المرضى-الأطباء، جدولة المواعيد، تقارير PDF، لوحات Chart.js'] },
-      { when: 'يونيو 2023 – أغسطس 2023', title: 'متدرب أتمتة QA', org: 'حزم الانحدار الويب', where: 'Python · Selenium WebDriver · Page Objects',
-        points: ['استبدال حملة يدوية بحزم انحدار آلية، نقطة تغيير واحدة لكل شاشة'] },
-      { when: 'يونيو 2024 – يونيو 2024 · أكادير، حضوري', title: 'مشروع نهاية الدراسات (DUT): مطور مدمج', org: 'MOUSSA SOFT، أكادير', where: 'ESP8266 · VL53L0X · PHP · MySQL',
-        points: ['نظام عد قصب بـ ESP8266 + حساس ليزر، شاشة OLED، Wi-Fi إلى لوحة PHP/MySQL', 'أغلفة 3D مطبوعة مصممة في SolidWorks، محضرة بـ Creality CR-10 Max'] },
-    ],
-  },
-  edu: {
-    kicker: 'التكوين', title: 'مدارس، لا وظائف.', sub: 'التكوينان وراء هذا العمل.',
-    entries: [
-      { years: '2024 – الآن', title: 'سلك المهندسين، هندسة البرمجيات', school: 'ENSIASD · جامعة ابن زهر، تارودانت', desc: 'ذكاء اصطناعي، علم البيانات، معمارية البرمجيات.' },
-      { years: '2022 – 2024 · بميزة', title: 'DUT، المعلوميات المدمجة', school: 'EST وجدة، المدرسة العليا للتكنولوجيا', desc: 'أنظمة مدمجة، إنترنت الأشياء، firmware: ESP32/ESP8266، Arduino، Raspberry Pi.' },
-    ],
-  },
-  behind: {
-    kicker: 'التقنيات', title: 'وراء المشاريع.',
-    sub: 'التقنيات التي أستخدمها، منظمة حسب الوظيفة.',
-    categories: [
-      { name: 'الواجهة الأمامية', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Flutter', 'React Native'] },
-      { name: 'الخادم', items: ['Java', 'Spring Boot', 'Node.js', 'Python', 'Flask', 'Laravel'] },
-      { name: 'البيانات', items: ['PostgreSQL', 'Redis', 'MySQL', 'Firebase Firestore'] },
-      { name: 'السحابة والبنية التحتية', items: ['Docker', 'GitHub Actions', 'Google Cloud Run', 'Terraform', 'Flyway'] },
-      { name: 'الاختبار', items: ['Playwright', 'JUnit 5', 'Vitest', 'Jest', 'Testcontainers', 'axe-core'] },
-      { name: 'الذكاء الاصطناعي', items: ['Gemini AI', 'CamemBERT', 'spaCy', 'Groq', 'PyTorch'] },
-    ],
-  },
-  aboutMe: {
-    kicker: 'نبذة', title: 'الشخص وراء الكود.',
-    sub: ' קצת על דרך تفكيري وما الذي يحركني.',
-    body: 'أحب بناء الأشياء التي تعمل من البداية للنهاية — ليس فقط الأجزاء المرئية على الشاشة، بل الأنظمة التي وراءها. أنا متحفز بالفجوة بين فكرة جيدة ومنتج يعمل، وأحب أن أكون الشخص الذي يسدّها. أركز حالياً على تطوير full-stack وأبحث عن تدريب PFE حيث يمكنني نشر كود إنتاجي.',
-    langs: [{ l: 'العربية', lvl: 'الأم' }, { l: 'الفرنسية', lvl: 'مهنية' }, { l: 'الإنجليزية', lvl: 'مهنية' }],
-  },
-  contact: {
-    kicker: 'اتصل بي', title: 'لنبنِ شيئاً متيناً.',
-    sub: 'أبحث عن ', subEm: 'تدريب PFE', subEnd: '، باك-إند أو full-stack، المغرب أو عن بعد. أرد بسرعة.',
-    name: 'اسمك', namePh: 'اسمك الكامل', email: 'البريد الإلكتروني', emailPh: 'you@company.com',
-    msg: 'تفاصيل المشروع', msgPh: 'ماذا تبني، ومتى؟', send: 'أرسل', sending: '...',
-    success: '✓ تم إرسال الرسالة. سأرد عليك قريباً.', error: '✗ حدث خطأ. أرسل لي بريداً إلكترونياً مباشرة.',
-    respondTime: 'أرد عادةً خلال 24 ساعة',
-    direct: 'بريد مباشر', phone: 'الهاتف', linkedin: 'LinkedIn', github: 'GitHub',
-  },
-  footer: { built: '', top: 'الأعلى', elsewhere: 'منصات أخرى' },
-  dock: { home: 'الرئيسية', whatIDo: 'ما أفعله', work: 'أعمالي', contact: 'اتصل بي', lang: 'اللغة', nav: 'تنقل سريع', toggle: 'تبديل الوضع الفاتح / الداكن', resume: 'السيرة الذاتية' },
-};
-
-export const DICTS: Record<Lang, Dict> = { en, fr, ar };
+export const DICTS: Record<Lang, Dict> = { en, fr };
 
 export const PROJECT_TAGS: string[][] = [
   tags.odemlab, tags.med, tags.fit, tags.campus, tags.sum, tags.iot,

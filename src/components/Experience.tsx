@@ -50,7 +50,7 @@ export function Timeline({ items }: { items: JobT[] }) {
 export default function Experience() {
   const { t } = useLang();
   return (
-    <Section id="experience" num="03" kicker={t.exp.kicker} title={t.exp.title} variant="right">
+    <Section id="experience" num="04" kicker={t.exp.kicker} title={t.exp.title} variant="right">
       <Timeline items={t.exp.jobs} />
     </Section>
   );
@@ -59,7 +59,7 @@ export default function Experience() {
 export function Education() {
   const { t } = useLang();
   return (
-    <Section id="education" num="04" kicker={t.edu.kicker} title={t.edu.title} sub={t.edu.sub} variant="scale">
+    <Section id="education" num="05" kicker={t.edu.kicker} title={t.edu.title} sub={t.edu.sub} variant="scale">
       <div className="edu-grid mt-8 grid grid-cols-1 gap-5 lg:grid-cols-2">
         {t.edu.entries.map((e) => (
           <article className="edu-card" key={e.title}>

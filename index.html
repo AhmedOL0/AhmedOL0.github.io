@@ -6,7 +6,7 @@
     <script>
       /* Pre-paint theme + language: mirrors the React initializers so first-time
          light-mode / FR / AR visitors never see a flash of the wrong theme. */
-      try{(function(){var d=document.documentElement;var t=null;try{t=localStorage.getItem('ao-theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark'}d.setAttribute('data-theme',t);var l=null;try{l=localStorage.getItem('ao-lang')}catch(e){}if(l!=='fr'&&l!=='ar'&&l!=='en'){var n=(navigator.language||'en').toLowerCase();l=n.indexOf('ar')===0?'ar':(n.indexOf('fr')===0?'fr':'en')}d.setAttribute('lang',l);d.setAttribute('dir',l==='ar'?'rtl':'ltr')})()}catch(e){}
+      try{(function(){var d=document.documentElement;var t=null;try{t=localStorage.getItem('ao-theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark'}d.setAttribute('data-theme',t);var l=null;try{l=localStorage.getItem('ao-lang')}catch(e){}if(l!=='fr'&&l!=='en'){var n=(navigator.language||'en').toLowerCase();l=n.indexOf('fr')===0?'fr':'en'}d.setAttribute('lang',l);d.setAttribute('dir','ltr')})()}catch(e){}
     </script>
     <title>Ahmed Ouarrali, Full-Stack Software Engineer | PFE Internship</title>
     <meta name="description" content="Ahmed Ouarrali, Full-Stack Software Engineer seeking a PFE internship (Spring Boot, Next.js, React Native, Flutter). Builder of OdemLab, medical booking platforms, AR campus apps and IoT systems." />

@@ -114,14 +114,14 @@ test.describe('Navigation & Interaction', () => {
   test('pre-paint init respects saved theme and language', async ({ page }) => {
     await page.addInitScript(() => {
       localStorage.setItem('ao-theme', 'light');
-      localStorage.setItem('ao-lang', 'ar');
+      localStorage.setItem('ao-lang', 'fr');
     });
     await page.goto('/');
     const html = page.locator('html');
     await expect(html).toHaveAttribute('data-theme', 'light');
-    await expect(html).toHaveAttribute('lang', 'ar');
-    await expect(html).toHaveAttribute('dir', 'rtl');
+    await expect(html).toHaveAttribute('lang', 'fr');
+    await expect(html).toHaveAttribute('dir', 'ltr');
     // React agrees with the pre-paint values: no theme/language snap.
-    await expect(page.locator('.langsw button.active')).toHaveText('عر');
+    await expect(page.locator('.langsw button.active')).toHaveText('FR');
   });
 });

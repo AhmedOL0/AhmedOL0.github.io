@@ -63,62 +63,6 @@ export function useStaggerReveal<T extends HTMLElement>(selector = ':scope > *')
   return ref;
 }
 
-export function useCountUp(target: number, start: boolean, duration = 1500, onDone?: () => void) {
-  const [calm] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  const [value, setValue] = useState(() => (calm ? target : 0));
-  const doneRef = useRef(false);
-  // Stable ref: a fresh inline callback must NOT restart the loop every render.
-  const onDoneRef = useRef(onDone);
-  useEffect(() => {
-    onDoneRef.current = onDone;
-  });
-  useEffect(() => {
-    if (!start || doneRef.current) return;
-    if (calm) {
-      doneRef.current = true;
-      onDoneRef.current?.();
-      return;
-    }
-    let raf = 0;
-    const t0 = performance.now();
-    const step = (t: number) => {
-      const p = Math.min((t - t0) / duration, 1);
-      const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
-      setValue(Math.round(target * eased));
-      if (p < 1) {
-        raf = requestAnimationFrame(step);
-      } else {
-        doneRef.current = true;
-        onDoneRef.current?.();
-      }
-    };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, [start, target, duration, calm]);
-  return value;
-}
-
-export function useInView<T extends HTMLElement>(threshold = 0.6) {
-  const ref = useRef<T | null>(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => {
-        if (e.isIntersecting) {
-          setInView(true);
-          io.disconnect();
-        }
-      }),
-      { threshold },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [threshold]);
-  return { ref, inView };
-}
-
 export function useSpotlight() {
   useEffect(() => {
     if (!window.matchMedia('(pointer:fine)').matches) return;
@@ -222,31 +166,6 @@ export function useMagnetic() {
     });
     return () => cleanups.forEach((fn) => fn());
   }, []);
-}
-
-export function useScrollY() {
-  const [y, setY] = useState(0);
-  useEffect(() => {
-    let raf = 0;
-    let last = -1;
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const v = window.scrollY;
-        if (v !== last) {
-          last = v;
-          setY(v);
-        }
-      });
-    };
-    onScroll();
-    document.addEventListener('scroll', onScroll, { passive: true });
-    return () => {
-      document.removeEventListener('scroll', onScroll);
-      cancelAnimationFrame(raf);
-    };
-  }, []);
-  return y;
 }
 
 export function useBackToTop(threshold = 700) {

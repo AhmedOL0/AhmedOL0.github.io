@@ -27,7 +27,7 @@ const P = {
 
 export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => void }) {
   const { lang, setLang, t } = useLang();
-  const langAnnounce = lang === 'ar' ? 'تم التغيير إلى العربية' : lang === 'fr' ? 'Langue changée en français' : 'Language changed to English';
+  const langAnnounce = lang === 'fr' ? 'Langue changée en français' : 'Language changed to English';
   const wrapRef = useRef<HTMLDivElement>(null);
   const [tp, setTp] = useState<{ text: string; x: number; y: number } | null>(null);
   const [hidden, setHidden] = useState(false);

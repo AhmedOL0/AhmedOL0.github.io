@@ -23,6 +23,7 @@ export default function WhatIDo() {
 }
 
 function CapabilityCard({ cap, icon }: { cap: { title: string; desc: string; details: string }; icon: React.ReactNode }) {
+  const { t } = useLang();
   const [open, setOpen] = useState(false);
   return (
     <div className="cap-card">
@@ -30,7 +31,7 @@ function CapabilityCard({ cap, icon }: { cap: { title: string; desc: string; det
       <h3 className="cap-title">{cap.title}</h3>
       <p className="cap-desc">{cap.desc}</p>
       <button className="cap-toggle" onClick={() => setOpen(!open)} aria-expanded={open}>
-        {open ? 'Less' : 'Details'}
+        {open ? t.whatIDo.showLess : t.whatIDo.showDetails}
         <span className={`cap-arrow${open ? ' open' : ''}`}>+</span>
       </button>
       {open && <p className="cap-details">{cap.details}</p>}

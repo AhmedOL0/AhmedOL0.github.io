@@ -91,7 +91,7 @@ test.describe('Accessibility (WCAG 2.2)', () => {
   test('lang attribute is set on html element', async ({ page }) => {
     const lang = await page.locator('html').getAttribute('lang');
     expect(lang).toBeTruthy();
-    expect(['en', 'fr', 'ar']).toContain(lang);
+    expect(['en', 'fr']).toContain(lang);
   });
 
   test('color scheme meta tag is present', async ({ page }) => {

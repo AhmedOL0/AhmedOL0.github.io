@@ -6,9 +6,8 @@ export function LangProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>(() => {
     try {
       const s = localStorage.getItem('ao-lang');
-      if (s === 'fr' || s === 'ar' || s === 'en') return s;
+      if (s === 'fr' || s === 'en') return s;
       const nav = (navigator.language || 'en').toLowerCase();
-      if (nav.startsWith('ar')) return 'ar';
       if (nav.startsWith('fr')) return 'fr';
     } catch { /* ignore */ }
     return 'en';
