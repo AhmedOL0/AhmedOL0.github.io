@@ -642,6 +642,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 @media(min-width:960px){
   .hero-inner{grid-template-columns:1fr 1fr;gap:48px}
   .hero-block{padding-top:48px;padding-bottom:60px}
+  .hero-visual{display:block}
 }
 
 /* Hero visual - photo + orbit + floating cards */
