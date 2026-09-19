@@ -406,10 +406,16 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 
 /* Education */
 .edu-card{background:linear-gradient(180deg,rgba(160,120,60,.07),transparent 45%),var(--card);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:6px 18px 18px 6px;padding:28px 30px;transition:transform .25s,border-color .25s,box-shadow .25s}
+.edu-card--sage{border-left-color:var(--sage)}
 :root[data-theme="light"] .edu-card{background:linear-gradient(180deg,rgba(160,120,60,.06),transparent 50%),var(--card);box-shadow:0 2px 12px rgba(140,100,40,.08)}
 :root[data-theme="light"] .edu-card:hover{box-shadow:0 8px 28px rgba(140,100,40,.14)}
 .edu-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.edu-years{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;color:var(--gold);margin-bottom:10px}
+.edu-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.edu-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:all .3s ease}
+.edu-card--amber .edu-icon{background:rgba(193,127,74,.1)}
+.edu-card--sage .edu-icon{background:rgba(107,138,94,.1)}
+.edu-card:hover .edu-icon{box-shadow:0 0 10px rgba(201,168,118,.12);transform:scale(1.05)}
+.edu-years{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;color:var(--gold);background:rgba(201,168,118,.08);border:1px solid rgba(201,168,118,.12);padding:4px 12px;border-radius:999px;display:inline-block}
 .edu-card h3{font-family:var(--serif);font-size:1.45rem;font-weight:600;line-height:1.25}
 .edu-school{font-size:.88rem;color:var(--muted);margin-top:4px}
 .edu-desc{font-size:.84rem;color:var(--faint);margin-top:8px;line-height:1.55}
