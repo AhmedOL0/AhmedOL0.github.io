@@ -94,9 +94,9 @@ export default function Contact() {
           {status === 'ok' && (
             <div className="form-success-box" role="status" aria-live="polite">
               <svg viewBox="0 0 52 52" style={{ width: 48, height: 48 }}>
-                <circle cx="26" cy="26" r="24" fill="none" stroke="#16a34a" strokeWidth="2.5"
+                <circle cx="26" cy="26" r="24" fill="none" stroke="var(--sage)" strokeWidth="2.5"
                   style={{ strokeDasharray: 151, strokeDashoffset: 151, animation: 'check-circle .5s ease .1s forwards' }} />
-                <path d="M15 27l7 7 15-15" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                <path d="M15 27l7 7 15-15" fill="none" stroke="var(--sage)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
                   style={{ strokeDasharray: 40, strokeDashoffset: 40, animation: 'check-mark .3s ease .45s forwards' }} />
               </svg>
               <p className="form-success-text">{t.contact.success}</p>
