@@ -2,14 +2,6 @@ import { useEffect, useRef } from 'react';
 import { useLang } from '../i18n-data';
 import HeroTyping from './HeroTyping';
 
-function splitToChars(text: string, baseDelay: number) {
-  return [...text].map((ch, i) => (
-    <span key={i} className="hero-char" style={{ '--d': baseDelay + i * 35 } as React.CSSProperties}>
-      {ch === ' ' ? '\u00A0' : ch}
-    </span>
-  ));
-}
-
 export default function Hero() {
   const { t } = useLang();
   const visualRef = useRef<HTMLDivElement>(null);
@@ -27,12 +19,12 @@ export default function Hero() {
     let tx = 0, ty = 0, cx = 0, cy = 0;
     const onMove = (e: MouseEvent) => {
       const r = el.getBoundingClientRect();
-      tx = ((e.clientX - r.left) / r.width - 0.5) * 18;
-      ty = ((e.clientY - r.top) / r.height - 0.5) * 18;
+      tx = ((e.clientX - r.left) / r.width - 0.5) * 12;
+      ty = ((e.clientY - r.top) / r.height - 0.5) * 12;
     };
     const follow = () => {
-      cx += (tx - cx) * 0.06;
-      cy += (ty - cy) * 0.06;
+      cx += (tx - cx) * 0.05;
+      cy += (ty - cy) * 0.05;
       ring.style.translate = `${cx}px ${cy}px`;
       raf = requestAnimationFrame(follow);
     };
@@ -55,9 +47,9 @@ export default function Hero() {
             {t.hero.avail}
           </div>
           <h1 className="hero-title font-serif-d">
-            <span className="hero-title-a">{splitToChars(t.hero.titleA, 200)}</span>
-            <em className="hero-title-em">{splitToChars(t.hero.titleEm, 500)}</em>
-            <span className="hero-title-b">{splitToChars(t.hero.titleB, 800)}</span>
+            {t.hero.titleA}
+            <em className="hero-title-em">{t.hero.titleEm}</em>
+            {t.hero.titleB}
           </h1>
           <p className="hero-lede">{t.hero.lede}</p>
           <HeroTyping />
@@ -75,27 +67,15 @@ export default function Hero() {
           <div className="hero-photo-lg">
             <img src="/assets/photo.jpg" alt="Ahmed Ouarrali portrait" width="260" height="260" loading="eager" fetchPriority="high" />
           </div>
-          <div className="hero-float hero-float--tl">
+          <div className="hero-float hero-float--tr">
             <span className="hero-float-ic">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             </span>
             <span className="hero-float-tx">{t.hero.floatDev}</span>
           </div>
-          <div className="hero-float hero-float--tr">
-            <span className="hero-float-ic">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>
-            </span>
-            <span className="hero-float-tx">{t.hero.floatProblem}</span>
-          </div>
           <div className="hero-float hero-float--bl">
             <span className="hero-float-ic">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </span>
-            <span className="hero-float-tx">{t.hero.floatTeam}</span>
-          </div>
-          <div className="hero-float hero-float--br">
-            <span className="hero-float-ic">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
             </span>
             <span className="hero-float-tx">{t.hero.floatImpact}</span>
           </div>
