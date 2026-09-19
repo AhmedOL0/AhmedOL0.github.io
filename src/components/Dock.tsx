@@ -157,7 +157,7 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
       {items.map((it) => (
         <a key={it.id} href={it.href} aria-label={it.label}
           data-tip={it.label}
-          aria-current={isActive(it.id) ? 'true' : undefined}
+          aria-current={isActive(it.id) ? 'page' : undefined}
           className={`dock-item tip${isActive(it.id) ? ' active' : ''}`}>
           {it.icon}
         </a>

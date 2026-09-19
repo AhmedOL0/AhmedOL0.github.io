@@ -40,10 +40,10 @@ export type Dict = {
     kicker: string; title: string; sub: string; subEm: string; subEnd: string;
     name: string; namePh: string; email: string; emailPh: string; msg: string; msgPh: string;
     send: string; sending: string; success: string; error: string;
-    respondTime: string;
+    respondTime: string; retry: string;
     direct: string; phone: string; linkedin: string; github: string;
   };
-  footer: { built: string; top: string; elsewhere: string };
+  footer: { top: string; elsewhere: string };
   dock: { home: string; whatIDo: string; work: string; contact: string; lang: string; nav: string; toggle: string; resume: string };
 };
 
@@ -164,9 +164,10 @@ const en: Dict = {
     msg: 'Project details', msgPh: 'What are you building, and when?', send: 'Send message', sending: '...',
     success: '\u2713 Message sent. I\'ll get back to you soon.', error: '\u2717 Something went wrong. Try emailing me directly.',
     respondTime: 'Typically respond within 24 hours',
+    retry: 'Try again',
     direct: 'Direct email', phone: 'Phone', linkedin: 'LinkedIn', github: 'GitHub',
   },
-  footer: { built: '', top: 'Top', elsewhere: 'Elsewhere' },
+  footer: { top: 'Top', elsewhere: 'Elsewhere' },
   dock: { home: 'Home', whatIDo: 'What I Do', work: 'Work', contact: 'Contact', lang: 'Language', nav: 'Quick navigation', toggle: 'Toggle light / dark mode', resume: 'Résumé' },
 };
 
@@ -278,9 +279,10 @@ const fr: Dict = {
     msg: 'D\u00e9tails du projet', msgPh: 'Que construisez-vous, et pour quand ?', send: 'Envoyer', sending: '...',
     success: '\u2713 Message envoy\u00e9. Je vous r\u00e9ponds vite.', error: '\u2717 Une erreur s\u2019est produite. \u00c9crivez-moi directement.',
     respondTime: 'Je r\u00e9ponds g\u00e9n\u00e9ralement sous 24 heures',
+    retry: 'R\u00e9essayer',
     direct: 'E-mail direct', phone: 'T\u00e9l\u00e9phone', linkedin: 'LinkedIn', github: 'GitHub',
   },
-  footer: { built: '', top: 'Haut', elsewhere: 'Ailleurs' },
+  footer: { top: 'Haut', elsewhere: 'Ailleurs' },
   dock: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', contact: 'Contact', lang: 'Langue', nav: 'Navigation rapide', toggle: 'Basculer mode clair / sombre', resume: 'CV' },
 };
 

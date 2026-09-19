@@ -114,8 +114,8 @@ export default function Contact() {
               <p className="form-error-text">{t.contact.error}</p>
               <p className="form-error-sub"><a href="mailto:ahmedouarrali12@gmail.com">ahmedouarrali12@gmail.com</a></p>
               <button type="button" onClick={retry}
-                style={{ marginTop: 12, background: 'transparent', border: '1px solid var(--line)', color: 'var(--ink)', padding: '6px 18px', borderRadius: 999, cursor: 'pointer', fontSize: '.82rem', transition: 'border-color .2s, color .2s' }}>
-                Try again
+                className="btn btn-ghost btn-sm" style={{ marginTop: 12 }}>
+                {t.contact.retry ?? 'Try again'}
               </button>
             </div>
           )}
