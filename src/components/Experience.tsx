@@ -33,14 +33,19 @@ export function Timeline({ items }: { items: JobT[] }) {
       <div className="timeline-fill" ref={fillRef} aria-hidden="true" />
       {items.map((j) => (
         <div className="job" key={j.title}>
-          <div className="when font-mono-d">{j.when}</div>
-          <h3>{j.title} <span>· {j.org}</span></h3>
-          <div className="where">{j.where}</div>
-          <ul>
-            {j.points.map((p) => (
-              <li key={p}>{p}</li>
-            ))}
-          </ul>
+          <div className="job-marker" aria-hidden="true">
+            <span className="job-marker-dot" />
+          </div>
+          <div className="job-card">
+            <div className="when font-mono-d">{j.when}</div>
+            <h3>{j.title} <span>· {j.org}</span></h3>
+            <div className="where">{j.where}</div>
+            <ul>
+              {j.points.map((p) => (
+                <li key={p}>{p}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       ))}
     </div>
