@@ -560,10 +560,17 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .contact-box input,.contact-box textarea{width:100%;background:var(--inputbg);border:1px solid var(--line);border-radius:12px;color:var(--ink);padding:13px 16px;font-family:var(--sans);font-size:.92rem;resize:vertical;transition:border-color .25s,box-shadow .25s;box-shadow:inset 0 2px 6px rgba(0,0,0,.06)}
 .contact-box input:focus,.contact-box textarea:focus{outline:none;border-color:var(--amber);box-shadow:inset 0 2px 6px rgba(0,0,0,.05),0 0 0 4px rgba(193,127,74,.16)}
 .contact-box input::placeholder,.contact-box textarea::placeholder{color:var(--faint)}
-.direct{display:flex;flex-direction:column;gap:14px}
-.direct strong{color:var(--ink);font-weight:600}
-.direct a{color:var(--gold);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s,transform .2s;overflow-wrap:break-word;word-break:break-word}
-.direct a:hover{border-color:var(--gold);transform:translateY(-1px)}
+.direct{display:flex;flex-direction:column;gap:8px}
+.direct-item{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:12px;text-decoration:none;transition:all .25s cubic-bezier(.2,.7,.2,1);border:1px solid transparent}
+.direct-item:hover{background:rgba(160,120,60,.04);border-color:rgba(160,120,60,.08);transform:translateX(4px)}
+.direct-icon{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:rgba(201,168,118,.08);color:var(--gold);flex-shrink:0;transition:all .25s}
+.direct-icon svg{width:18px;height:18px}
+.direct-item:hover .direct-icon{background:rgba(201,168,118,.15);box-shadow:0 0 12px rgba(201,168,118,.15)}
+.direct-text{display:flex;flex-direction:column;gap:1px;min-width:0}
+.direct-text strong{color:var(--ink);font-weight:600;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;font-family:var(--mono)}
+.direct-link{color:var(--gold);font-size:.88rem;overflow-wrap:break-word;word-break:break-word}
+.direct-location{display:flex;align-items:center;gap:8px;padding:10px 16px;margin-top:4px;font-size:.82rem;color:var(--muted);font-family:var(--mono);letter-spacing:.04em}
+.direct-loc-dot{width:8px;height:8px;border-radius:50%;background:var(--sage);box-shadow:0 0 0 3px rgba(22,163,74,.15);animation:beaconPulse 2s ease-in-out infinite}
 
 /* Form feedback */
 .form-success-box{margin-top:16px;display:flex;flex-direction:column;align-items:center;gap:8px;
