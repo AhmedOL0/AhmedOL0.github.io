@@ -15,18 +15,19 @@ export default function WhatIDo() {
     <Section id="what-i-do" num="01" kicker={t.whatIDo.kicker} title={t.whatIDo.title} sub={t.whatIDo.sub} variant="left">
       <div className="cap-grid mt-6 sm:mt-8">
         {t.whatIDo.capabilities.map((cap, i) => (
-          <CapabilityCard key={cap.title} cap={cap} icon={ICONS[i]} />
+          <CapabilityCard key={cap.title} cap={cap} icon={ICONS[i]} num={i + 1} />
         ))}
       </div>
     </Section>
   );
 }
 
-function CapabilityCard({ cap, icon }: { cap: { title: string; desc: string; details: string }; icon: React.ReactNode }) {
+function CapabilityCard({ cap, icon, num }: { cap: { title: string; desc: string; details: string }; icon: React.ReactNode; num: number }) {
   const { t } = useLang();
   const [open, setOpen] = useState(false);
   return (
     <div className="cap-card">
+      <span className="cap-num" aria-hidden="true">{String(num).padStart(2, '0')}</span>
       <div className="cap-icon">{icon}</div>
       <h3 className="cap-title">{cap.title}</h3>
       <p className="cap-desc">{cap.desc}</p>

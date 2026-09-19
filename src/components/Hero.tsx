@@ -39,7 +39,6 @@ export default function Hero() {
 
   return (
     <section id="top" className="hero-block hero-block--top">
-      <div className="hero-dot-grid" aria-hidden="true" />
       <div className="hero-inner">
         <div className="hero-content">
           <div className="hero-eyebrow">

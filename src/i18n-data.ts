@@ -35,7 +35,7 @@ export type Dict = {
   exp: { kicker: string; title: string; jobs: JobT[] };
   edu: { kicker: string; title: string; sub: string; entries: EduT[] };
   behind: { kicker: string; title: string; sub: string; categories: TechCategory[] };
-  aboutMe: { kicker: string; title: string; sub: string; body: string; langsTitle: string; langs: { l: string; lvl: string }[] };
+  aboutMe: { kicker: string; title: string; sub: string; body: string; interests: string[]; langsTitle: string; langs: { l: string; lvl: string }[] };
   contact: {
     kicker: string; title: string; sub: string; subEm: string; subEnd: string;
     name: string; namePh: string; email: string; emailPh: string; msg: string; msgPh: string;
@@ -154,6 +154,7 @@ const en: Dict = {
     kicker: 'About me', title: 'The person behind the code.',
     sub: 'A bit about how I think and what drives me.',
     body: 'I enjoy building things that work end-to-end. Not just the parts that show on screen, but the systems behind them. I\'m driven by the gap between a good idea and a working product, and I like being the person who bridges it. Currently focused on full-stack development and looking for a PFE internship where I can ship production code.',
+    interests: ['Open source', 'System design', 'Hiking', 'Film photography'],
     langsTitle: 'Languages',
     langs: [{ l: 'Arabic', lvl: 'native' }, { l: 'French', lvl: 'professional' }, { l: 'English', lvl: 'professional' }],
   },
@@ -269,6 +270,7 @@ const fr: Dict = {
     kicker: 'Profil', title: 'La personne derri\u00e8re le code.',
     sub: 'Un peu sur ma fa\u00e7on de penser et ce qui me motive.',
     body: 'J\u2019aime construire des choses qui marchent de bout en bout. Pas seulement les \u00e9l\u00e9ments visibles \u00e0 l\u2019\u00e9cran, mais aussi les syst\u00e8mes derri\u00e8re. Je suis motiv\u00e9 par l\u2019\u00e9cart entre une bonne id\u00e9e et un produit fonctionnel, et j\u2019aime \u00eatre la personne qui le comble. Actuellement concentr\u00e9 sur le d\u00e9veloppement full-stack et \u00e0 la recherche d\u2019un stage PFE o\u00f9 je peux livrer du code en production.',
+    interests: ['Open source', 'Conception de syst\u00e8mes', 'Randonn\u00e9e', 'Photo analogique'],
     langsTitle: 'Langues',
     langs: [{ l: 'Arabe', lvl: 'maternelle' }, { l: 'Fran\u00e7ais', lvl: 'professionnel' }, { l: 'Anglais', lvl: 'professionnel' }],
   },

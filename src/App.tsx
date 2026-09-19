@@ -83,7 +83,12 @@ function Footer() {
           </div>
         ))}
       </nav>
-      <div className="mx-auto mt-10 flex max-w-[1120px] flex-wrap items-center justify-between gap-4 border-t pt-6"
+      <div className="mx-auto max-w-[1120px] mt-8 text-center">
+        <p className="text-[.72rem] font-mono-d tracking-[.06em]" style={{ color: 'var(--faint)' }}>
+          Built with React, Tailwind CSS &middot; Deployed on GitHub Pages
+        </p>
+      </div>
+      <div className="mx-auto mt-6 flex max-w-[1120px] flex-wrap items-center justify-between gap-4 border-t pt-6"
         style={{ borderColor: 'var(--line-soft)' }}>
         <a href="assets/CV_Ahmed_Ouarrali.pdf" download className="btn btn-sm btn-ghost">
           {t.dock.resume} ↓
