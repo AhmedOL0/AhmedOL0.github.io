@@ -66,7 +66,7 @@ const en: Dict = {
     statsLabels: ['Projects shipped', 'Platforms', 'Internships completed'],
     personalityA: 'A student', personalityB: 'Who ships production code between lectures.',
     avail: 'Available for PFE \u00b7 Morocco or remote',
-    floatDev: 'Full-Stack + QA', floatProblem: 'Problem Solving', floatTeam: 'Team Player', floatImpact: 'Impact-Driven',
+    floatDev: 'Full-stack shipping', floatProblem: 'Problem Solving', floatTeam: 'Team Player', floatImpact: 'End-to-end testing',
   },
   whatIDo: {
     kicker: 'What I do', title: 'I turn complex ideas into simple, working products.',
@@ -182,7 +182,7 @@ const fr: Dict = {
     statsLabels: ['Projets livr\u00e9s', 'Plateformes', 'Stages compl\u00e9t\u00e9s'],
     personalityA: '\u00c9tudiant', personalityB: 'Qui livre du code en production entre les cours.',
     avail: 'Disponible pour PFE \u00b7 Maroc ou distanciel',
-    floatDev: 'Full-Stack + QA', floatProblem: 'R\u00e9solution de probl\u00e8mes', floatTeam: 'Travail en \u00e9quipe', floatImpact: 'Produits \u00e0 impact',
+    floatDev: 'Full-stack shipping', floatProblem: 'R\u00e9solution de probl\u00e8mes', floatTeam: 'Travail en \u00e9quipe', floatImpact: 'Test de bout en bout',
   },
   whatIDo: {
     kicker: 'Ce que je fais', title: 'Je transforme des id\u00e9es complexes en produits simples et fonctionnels.',
