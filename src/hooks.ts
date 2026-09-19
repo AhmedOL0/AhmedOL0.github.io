@@ -197,9 +197,7 @@ export function useBackToTop(threshold = 700) {
 }
 
 export function useTypingCycle(words: string[], typingMs = 70, deletingMs = 40, pauseMs = 2000) {
-  const [index, setIndex] = useState(0);
-  const [text, setText] = useState('');
-  const [phase, setPhase] = useState<'typing' | 'pause' | 'deleting'>('typing');
+  const [{ index, text, phase }, setState] = useState({ index: 0, text: '', phase: 'typing' as 'typing' | 'pause' | 'deleting' });
 
   useEffect(() => {
     if (words.length === 0) return;
@@ -208,18 +206,17 @@ export function useTypingCycle(words: string[], typingMs = 70, deletingMs = 40, 
 
     if (phase === 'typing') {
       if (text.length < word.length) {
-        timer = setTimeout(() => setText(word.slice(0, text.length + 1)), typingMs);
+        timer = setTimeout(() => setState(s => ({ ...s, text: word.slice(0, s.text.length + 1) })), typingMs);
       } else {
-        timer = setTimeout(() => setPhase('pause'), pauseMs);
+        timer = setTimeout(() => setState(s => ({ ...s, phase: 'pause' })), pauseMs);
       }
     } else if (phase === 'pause') {
-      timer = setTimeout(() => setPhase('deleting'), pauseMs);
+      timer = setTimeout(() => setState(s => ({ ...s, phase: 'deleting' })), pauseMs);
     } else {
       if (text.length > 0) {
-        timer = setTimeout(() => setText(text.slice(0, -1)), deletingMs);
+        timer = setTimeout(() => setState(s => ({ ...s, text: s.text.slice(0, -1) })), deletingMs);
       } else {
-        setIndex((i) => (i + 1) % words.length);
-        setPhase('typing');
+        setState(s => ({ ...s, index: (s.index + 1) % words.length, phase: 'typing' }));
       }
     }
     return () => clearTimeout(timer);
