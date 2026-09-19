@@ -18,6 +18,7 @@ const TECH_ALIASES: Record<string, string> = {
   'firebase firestore': 'firebase', 'node.js': 'nodejs', 'react native': 'reactnative',
   'spring boot': 'springboot', 'tailwind css': 'tailwindcss', 'github actions': 'githubactions',
   'junit 5': 'junit5', 'testcontainers': 'testcontainers', 'axe-core': 'axecore', 'camembert': 'camembert',
+  'c++': 'cpp',
 };
 function techKey(name: string): string {
   const lower = name.toLowerCase();

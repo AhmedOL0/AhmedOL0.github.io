@@ -143,7 +143,7 @@ const en: Dict = {
     sub: 'The technologies I use, organized by what they do.',
     categories: [
       { name: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Flutter', 'React Native'] },
-      { name: 'Backend', items: ['Java', 'Spring Boot', 'Node.js', 'Python', 'Flask', 'Laravel'] },
+      { name: 'Backend', items: ['Java', 'Spring Boot', 'Node.js', 'Python', 'Flask', 'Laravel', 'C++', 'Qt'] },
       { name: 'Data', items: ['PostgreSQL', 'Redis', 'MySQL', 'Firebase Firestore'] },
       { name: 'Cloud & DevOps', items: ['Docker', 'GitHub Actions', 'Google Cloud Run', 'Terraform', 'Flyway', 'Prometheus', 'Grafana'] },
       { name: 'Testing', items: ['Playwright', 'JUnit 5', 'Vitest', 'Jest', 'Testcontainers', 'axe-core', 'Selenium'] },
@@ -260,7 +260,7 @@ const fr: Dict = {
     sub: 'Les technologies que j\u2019utilise, organis\u00e9es par fonction.',
     categories: [
       { name: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Flutter', 'React Native'] },
-      { name: 'Backend', items: ['Java', 'Spring Boot', 'Node.js', 'Python', 'Flask', 'Laravel'] },
+      { name: 'Backend', items: ['Java', 'Spring Boot', 'Node.js', 'Python', 'Flask', 'Laravel', 'C++', 'Qt'] },
       { name: 'Donn\u00e9es', items: ['PostgreSQL', 'Redis', 'MySQL', 'Firebase Firestore'] },
       { name: 'Cloud & DevOps', items: ['Docker', 'GitHub Actions', 'Google Cloud Run', 'Terraform', 'Flyway', 'Prometheus', 'Grafana'] },
       { name: 'Testing', items: ['Playwright', 'JUnit 5', 'Vitest', 'Jest', 'Testcontainers', 'axe-core', 'Selenium'] },
