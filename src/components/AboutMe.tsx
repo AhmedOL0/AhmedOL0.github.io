@@ -13,7 +13,7 @@ export default function AboutMe() {
             </div>
             <div className="about-identity">
               <h3 className="about-name">Ahmed Ouarrali</h3>
-              <p className="about-role">Full-stack developer & QA engineer</p>
+              <p className="about-role">{t.aboutMe.role}</p>
             </div>
           </div>
           <p className="about-body text-[.92rem] sm:text-[1rem] leading-relaxed" style={{ color: 'var(--muted)' }}>

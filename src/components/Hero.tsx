@@ -64,7 +64,7 @@ export default function Hero() {
         <div className="hero-visual" ref={visualRef} aria-hidden="true">
           <div className="hero-orbit" />
           <div className="hero-photo-lg">
-            <img src="/assets/photo.jpg" alt="Ahmed Ouarrali portrait" width="260" height="260" loading="eager" fetchPriority="high" />
+            <img src="/assets/photo.jpg" alt="Ahmed Ouarrali portrait" width="240" height="240" loading="eager" fetchPriority="high" />
           </div>
           <div className="hero-float hero-float--tr">
             <span className="hero-float-ic">

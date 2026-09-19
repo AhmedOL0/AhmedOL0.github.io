@@ -26,7 +26,7 @@ export type TechCategory = { name: string; items: string[] };
 
 export type Dict = {
   dir: 'ltr' | 'rtl';
-  nav: { home: string; whatIDo: string; work: string; experience: string; behind: string; contact: string; resume: string };
+  nav: { home: string; whatIDo: string; work: string; experience: string; behind: string; contact: string; resume: string; skipToContent: string };
   hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede: string; ctaWork: string; ctaContact: string; statsLabels: [string, string, string]; personalityA: string; personalityB: string; avail: string; floatDev: string; floatProblem: string; floatTeam: string; floatImpact: string };
   whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
@@ -35,7 +35,7 @@ export type Dict = {
   exp: { kicker: string; title: string; jobs: JobT[] };
   edu: { kicker: string; title: string; sub: string; entries: EduT[] };
   behind: { kicker: string; title: string; sub: string; categories: TechCategory[] };
-  aboutMe: { kicker: string; title: string; sub: string; body: string; interests: string[]; langsTitle: string; langs: { l: string; lvl: string }[] };
+  aboutMe: { kicker: string; title: string; sub: string; role: string; body: string; interests: string[]; langsTitle: string; langs: { l: string; lvl: string }[] };
   contact: {
     kicker: string; title: string; sub: string; subEm: string; subEnd: string;
     name: string; namePh: string; email: string; emailPh: string; msg: string; msgPh: string;
@@ -43,7 +43,7 @@ export type Dict = {
     respondTime: string; retry: string;
     direct: string; phone: string; linkedin: string; github: string;
   };
-  footer: { top: string; elsewhere: string };
+  footer: { top: string; elsewhere: string; pageTitle: string };
   dock: { home: string; whatIDo: string; work: string; contact: string; lang: string; nav: string; toggle: string; resume: string };
 };
 
@@ -58,7 +58,7 @@ const tags = {
 
 const en: Dict = {
   dir: 'ltr',
-  nav: { home: 'Home', whatIDo: 'What I Do', work: 'Work', experience: 'Experience', behind: 'Tech Stack', contact: 'Contact', resume: 'Résumé' },
+  nav: { home: 'Home', whatIDo: 'What I Do', work: 'Work', experience: 'Experience', behind: 'Tech Stack', contact: 'Contact', resume: 'Résumé', skipToContent: 'Skip to content' },
   hero: {
     badge: 'Open to PFE internship', titleA: 'Building ', titleEm: 'complete products', titleB: ', not just features.',
     lede: 'I\'m a full-stack software engineer who builds and tests end-to-end digital products, from the first line of code to a running application people actually use.',
@@ -145,14 +145,15 @@ const en: Dict = {
       { name: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Flutter', 'React Native'] },
       { name: 'Backend', items: ['Java', 'Spring Boot', 'Node.js', 'Python', 'Flask', 'Laravel'] },
       { name: 'Data', items: ['PostgreSQL', 'Redis', 'MySQL', 'Firebase Firestore'] },
-      { name: 'Cloud & DevOps', items: ['Docker', 'GitHub Actions', 'Google Cloud Run', 'Terraform', 'Flyway'] },
-      { name: 'Testing', items: ['Playwright', 'JUnit 5', 'Vitest', 'Jest', 'Testcontainers', 'axe-core'] },
+      { name: 'Cloud & DevOps', items: ['Docker', 'GitHub Actions', 'Google Cloud Run', 'Terraform', 'Flyway', 'Prometheus', 'Grafana'] },
+      { name: 'Testing', items: ['Playwright', 'JUnit 5', 'Vitest', 'Jest', 'Testcontainers', 'axe-core', 'Selenium'] },
       { name: 'AI/ML', items: ['Gemini AI', 'CamemBERT', 'spaCy', 'Groq', 'PyTorch'] },
     ],
   },
   aboutMe: {
     kicker: 'About me', title: 'The person behind the code.',
     sub: 'A bit about how I think and what drives me.',
+    role: 'Full-stack developer & QA engineer',
     body: 'I enjoy building things that work end-to-end. Not just the parts that show on screen, but the systems behind them. I\'m driven by the gap between a good idea and a working product, and I like being the person who bridges it. Currently focused on full-stack development and looking for a PFE internship where I can ship production code.',
     interests: ['Open source', 'System design', 'Chess', 'Martial arts'],
     langsTitle: 'Languages',
@@ -168,13 +169,13 @@ const en: Dict = {
     retry: 'Try again',
     direct: 'Direct email', phone: 'Phone', linkedin: 'LinkedIn', github: 'GitHub',
   },
-  footer: { top: 'Top', elsewhere: 'Elsewhere' },
+  footer: { top: 'Top', elsewhere: 'Elsewhere', pageTitle: 'Ahmed Ouarrali, Full-Stack Software Engineer | PFE Internship' },
   dock: { home: 'Home', whatIDo: 'What I Do', work: 'Work', contact: 'Contact', lang: 'Language', nav: 'Quick navigation', toggle: 'Toggle light / dark mode', resume: 'Résumé' },
 };
 
 const fr: Dict = {
   dir: 'ltr',
-  nav: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', experience: 'Parcours', behind: 'Technologies', contact: 'Contact', resume: 'CV' },
+  nav: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', experience: 'Parcours', behind: 'Technologies', contact: 'Contact', resume: 'CV', skipToContent: 'Aller au contenu' },
   hero: {
     badge: 'Disponible pour un PFE', titleA: 'Des ', titleEm: 'produits complets', titleB: ', pas juste des fonctionnalit\u00e9s.',
     lede: 'Je suis ing\u00e9nieur logiciel full-stack qui construis et teste des produits num\u00e9riques complets, de la premi\u00e8re ligne de code \u00e0 une application qui tourne vraiment.',
@@ -182,7 +183,7 @@ const fr: Dict = {
     statsLabels: ['Projets livr\u00e9s', 'Plateformes', 'Stages compl\u00e9t\u00e9s'],
     personalityA: '\u00c9tudiant', personalityB: 'Qui livre du code en production entre les cours.',
     avail: 'Disponible pour PFE \u00b7 Maroc ou distanciel',
-    floatDev: 'Full-stack shipping', floatProblem: 'R\u00e9solution de probl\u00e8mes', floatTeam: 'Travail en \u00e9quipe', floatImpact: 'Test de bout en bout',
+    floatDev: 'Full-stack', floatProblem: 'R\u00e9solution de probl\u00e8mes', floatTeam: 'Travail en \u00e9quipe', floatImpact: 'Test de bout en bout',
   },
   whatIDo: {
     kicker: 'Ce que je fais', title: 'Je transforme des id\u00e9es complexes en produits simples et fonctionnels.',
@@ -261,16 +262,17 @@ const fr: Dict = {
       { name: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Flutter', 'React Native'] },
       { name: 'Backend', items: ['Java', 'Spring Boot', 'Node.js', 'Python', 'Flask', 'Laravel'] },
       { name: 'Donn\u00e9es', items: ['PostgreSQL', 'Redis', 'MySQL', 'Firebase Firestore'] },
-      { name: 'Cloud & DevOps', items: ['Docker', 'GitHub Actions', 'Google Cloud Run', 'Terraform', 'Flyway'] },
-      { name: 'Testing', items: ['Playwright', 'JUnit 5', 'Vitest', 'Jest', 'Testcontainers', 'axe-core'] },
+      { name: 'Cloud & DevOps', items: ['Docker', 'GitHub Actions', 'Google Cloud Run', 'Terraform', 'Flyway', 'Prometheus', 'Grafana'] },
+      { name: 'Testing', items: ['Playwright', 'JUnit 5', 'Vitest', 'Jest', 'Testcontainers', 'axe-core', 'Selenium'] },
       { name: 'IA/ML', items: ['Gemini AI', 'CamemBERT', 'spaCy', 'Groq', 'PyTorch'] },
     ],
   },
   aboutMe: {
     kicker: 'Profil', title: 'La personne derri\u00e8re le code.',
     sub: 'Un peu sur ma fa\u00e7on de penser et ce qui me motive.',
+    role: 'D\u00e9veloppeur full-stack & QA',
     body: 'J\u2019aime construire des choses qui marchent de bout en bout. Pas seulement les \u00e9l\u00e9ments visibles \u00e0 l\u2019\u00e9cran, mais aussi les syst\u00e8mes derri\u00e8re. Je suis motiv\u00e9 par l\u2019\u00e9cart entre une bonne id\u00e9e et un produit fonctionnel, et j\u2019aime \u00eatre la personne qui le comble. Actuellement concentr\u00e9 sur le d\u00e9veloppement full-stack et \u00e0 la recherche d\u2019un stage PFE o\u00f9 je peux livrer du code en production.',
-    interests: ['Open source', 'Conception de syst\u00e8mes', 'Échecs', 'Arts martiaux'],
+    interests: ['Open source', 'Conception de syst\u00e8mes', '\u00c9checs', 'Arts martiaux'],
     langsTitle: 'Langues',
     langs: [{ l: 'Arabe', lvl: 'maternelle' }, { l: 'Fran\u00e7ais', lvl: 'professionnel' }, { l: 'Anglais', lvl: 'professionnel' }],
   },
@@ -284,7 +286,7 @@ const fr: Dict = {
     retry: 'R\u00e9essayer',
     direct: 'E-mail direct', phone: 'T\u00e9l\u00e9phone', linkedin: 'LinkedIn', github: 'GitHub',
   },
-  footer: { top: 'Haut', elsewhere: 'Ailleurs' },
+  footer: { top: 'Haut', elsewhere: 'Ailleurs', pageTitle: 'Ahmed Ouarrali, D\u00e9veloppeur Full-Stage | Stage PFE' },
   dock: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', contact: 'Contact', lang: 'Langue', nav: 'Navigation rapide', toggle: 'Basculer mode clair / sombre', resume: 'CV' },
 };
 

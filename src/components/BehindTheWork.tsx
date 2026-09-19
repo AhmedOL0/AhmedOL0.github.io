@@ -32,18 +32,15 @@ function TechIcon({ name }: { name: string }) {
 
 const WIDE_CATS = new Set(['Frontend', 'Backend']);
 
-const CAT_ACCENTS: Record<string, string> = {
-  'Frontend': 'amber', 'Backend': 'sage', 'Data': 'gold',
-  'Cloud & DevOps': 'rust', 'Testing': 'sage', 'AI/ML': 'amber',
-};
+const CAT_ACCENTS = ['amber', 'sage', 'gold', 'rust', 'sage', 'amber'];
 
 export default function BehindTheWork() {
   const { t } = useLang();
   return (
     <Section id="behind" num="06" kicker={t.behind.kicker} title={t.behind.title} sub={t.behind.sub} variant="left">
       <div className="tech-grid mt-6 sm:mt-8">
-        {t.behind.categories.map((cat) => (
-          <div className={`tech-cat tech-cat--${CAT_ACCENTS[cat.name] || 'gold'}`} key={cat.name} data-wide={WIDE_CATS.has(cat.name) || undefined}>
+        {t.behind.categories.map((cat, i) => (
+          <div className={`tech-cat tech-cat--${CAT_ACCENTS[i] || 'gold'}`} key={cat.name} data-wide={WIDE_CATS.has(cat.name) || undefined}>
             <div className="tech-cat-watermark" aria-hidden="true">{CAT_ICONS[cat.name] || null}</div>
             <div className="tech-cat-head">
               <h3 className="tech-cat-name">
