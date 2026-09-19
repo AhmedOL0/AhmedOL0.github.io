@@ -852,8 +852,8 @@ main{overflow-x:clip}
 }
 
 /* ── What I Do: capability cards ── */
-.cap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-.cap-card{border:1px solid var(--line-soft);border-radius:16px;padding:28px 24px;background:linear-gradient(180deg,rgba(160,120,60,.04),transparent 40%),var(--card);transition:border-color .3s,box-shadow .3s,transform .3s cubic-bezier(.2,.7,.2,1);position:relative;overflow:hidden}
+.cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.cap-card{border:1px solid var(--line-soft);border-radius:16px;padding:32px 28px;background:linear-gradient(180deg,rgba(160,120,60,.04),transparent 40%),var(--card);transition:border-color .3s,box-shadow .3s,transform .3s cubic-bezier(.2,.7,.2,1);position:relative;overflow:hidden}
 .cap-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity .3s}
 .cap-card--amber::before{background:linear-gradient(90deg,var(--gold-deep),var(--amber),var(--gold-hi))}
 .cap-card--gold::before{background:linear-gradient(90deg,var(--gold-deep),var(--gold),var(--gold-hi))}
@@ -869,13 +869,13 @@ main{overflow-x:clip}
 .cap-card--gold .cap-icon{background:linear-gradient(135deg,rgba(201,168,118,.12),rgba(201,168,118,.04))}
 .cap-card--sage .cap-icon{background:linear-gradient(135deg,rgba(107,138,94,.12),rgba(107,138,94,.04))}
 .cap-card--rust .cap-icon{background:linear-gradient(135deg,rgba(180,85,45,.12),rgba(180,85,45,.04))}
-.cap-card:hover .cap-icon{box-shadow:0 0 12px rgba(201,168,118,.12)}
-.cap-metric{display:flex;align-items:baseline;gap:5px;margin-bottom:10px}
-.cap-metric-val{font-family:var(--mono);font-size:.82rem;font-weight:700;letter-spacing:.02em}
-.cap-card--amber .cap-metric-val{color:var(--amber)}
-.cap-card--gold .cap-metric-val{color:var(--gold)}
-.cap-card--sage .cap-metric-val{color:var(--sage)}
-.cap-card--rust .cap-metric-val{color:var(--rust)}
+.cap-card:hover .cap-icon{box-shadow:0 0 12px rgba(201,168,118,.12);transform:scale(1.05)}
+.cap-metric{display:flex;align-items:center;gap:6px;margin-bottom:10px}
+.cap-metric-val{font-family:var(--mono);font-size:.8rem;font-weight:700;letter-spacing:.02em;padding:3px 10px;border-radius:999px}
+.cap-card--amber .cap-metric-val{color:var(--amber);background:rgba(193,127,74,.12)}
+.cap-card--gold .cap-metric-val{color:var(--gold);background:rgba(201,168,118,.12)}
+.cap-card--sage .cap-metric-val{color:var(--sage);background:rgba(107,138,94,.12)}
+.cap-card--rust .cap-metric-val{color:var(--rust);background:rgba(180,85,45,.12)}
 .cap-metric-label{font-family:var(--mono);font-size:.68rem;color:var(--faint);letter-spacing:.04em}
 .cap-title{margin:0 0 8px;font-size:1.12rem;color:var(--ink);font-weight:600}
 .cap-desc{margin:0;color:var(--muted);font-size:.88rem;line-height:1.6}
@@ -894,6 +894,8 @@ main{overflow-x:clip}
 :root[data-theme="light"] .cap-card--gold .cap-icon{background:linear-gradient(135deg,rgba(122,94,52,.1),rgba(122,94,52,.03))}
 :root[data-theme="light"] .cap-card--sage .cap-icon{background:linear-gradient(135deg,rgba(90,122,78,.1),rgba(90,122,78,.03))}
 :root[data-theme="light"] .cap-card--rust .cap-icon{background:linear-gradient(135deg,rgba(180,85,45,.1),rgba(180,85,45,.03))}
+
+@media (max-width:640px){.cap-grid{grid-template-columns:1fr}}
 
 
 /* ── How I Work: process flow ── */
