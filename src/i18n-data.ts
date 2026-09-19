@@ -60,13 +60,13 @@ const en: Dict = {
   dir: 'ltr',
   nav: { home: 'Home', whatIDo: 'What I Do', work: 'Work', experience: 'Experience', behind: 'Tech Stack', contact: 'Contact', resume: 'Résumé' },
   hero: {
-    badge: 'Open to PFE internship', titleA: 'Building ', titleEm: 'complete products', titleB: ' not just features.',
-    lede: 'I\'m a software engineer who builds end-to-end digital products, from the first line of code to a running application people actually use.',
+    badge: 'Open to PFE internship', titleA: 'Building ', titleEm: 'complete products', titleB: ', not just features.',
+    lede: 'I\'m a full-stack software engineer who builds and tests end-to-end digital products, from the first line of code to a running application people actually use.',
     ctaWork: 'Browse production work', ctaContact: 'Get in touch',
     statsLabels: ['Projects shipped', 'Platforms', 'Internships completed'],
     personalityA: 'A student', personalityB: 'Who ships production code between lectures.',
     avail: 'Available for PFE \u00b7 Morocco or remote',
-    floatDev: 'Full-Stack Developer', floatProblem: 'Problem Solving', floatTeam: 'Team Player', floatImpact: 'Impact-Driven',
+    floatDev: 'Full-Stack + QA', floatProblem: 'Problem Solving', floatTeam: 'Team Player', floatImpact: 'Impact-Driven',
   },
   whatIDo: {
     kicker: 'What I do', title: 'I turn complex ideas into simple, working products.',
@@ -175,13 +175,13 @@ const fr: Dict = {
   dir: 'ltr',
   nav: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', experience: 'Parcours', behind: 'Technologies', contact: 'Contact', resume: 'CV' },
   hero: {
-    badge: 'Disponible pour un PFE', titleA: 'Des ', titleEm: 'produits complets', titleB: ' pas juste des fonctionnalit\u00e9s.',
-    lede: 'Je suis ing\u00e9nieur logiciel et je construis des produits num\u00e9riques complets, de la premi\u00e8re ligne de code \u00e0 une application qui tourne vraiment.',
+    badge: 'Disponible pour un PFE', titleA: 'Des ', titleEm: 'produits complets', titleB: ', pas juste des fonctionnalit\u00e9s.',
+    lede: 'Je suis ing\u00e9nieur logiciel full-stack qui construis et teste des produits num\u00e9riques complets, de la premi\u00e8re ligne de code \u00e0 une application qui tourne vraiment.',
     ctaWork: 'Voir mes projets', ctaContact: 'Me contacter',
     statsLabels: ['Projets livr\u00e9s', 'Plateformes', 'Stages compl\u00e9t\u00e9s'],
     personalityA: '\u00c9tudiant', personalityB: 'Qui livre du code en production entre les cours.',
     avail: 'Disponible pour PFE \u00b7 Maroc ou distanciel',
-    floatDev: 'D\u00e9veloppeur Full-Stack', floatProblem: 'R\u00e9solution de probl\u00e8mes', floatTeam: 'Travail en \u00e9quipe', floatImpact: 'Produits \u00e0 impact',
+    floatDev: 'Full-Stack + QA', floatProblem: 'R\u00e9solution de probl\u00e8mes', floatTeam: 'Travail en \u00e9quipe', floatImpact: 'Produits \u00e0 impact',
   },
   whatIDo: {
     kicker: 'Ce que je fais', title: 'Je transforme des id\u00e9es complexes en produits simples et fonctionnels.',
