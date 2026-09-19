@@ -911,7 +911,7 @@ main{overflow-x:clip}
 .process-step--rust .process-num{color:var(--rust);background:rgba(180,85,45,.08)}
 .process-step:hover .process-num{border-color:var(--gold);box-shadow:0 0 10px rgba(160,120,60,.15)}
 .process-line{width:1px;flex:1;min-height:8px;background:linear-gradient(var(--line-soft),transparent);margin-top:6px}
-.process-card{border:1px solid var(--line-soft);border-radius:14px;padding:20px 20px;background:var(--card);transition:border-color .3s,box-shadow .3s,transform .3s cubic-bezier(.2,.7,.2,1)}
+.process-card{border:1px solid var(--line-soft);border-radius:14px;padding:20px;background:var(--card);transition:border-color .3s,box-shadow .3s,transform .3s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;height:100%}
 .process-step:hover .process-card{border-color:rgba(160,120,60,.15);box-shadow:0 6px 24px rgba(160,120,60,.08);transform:translateY(-2px)}
 .process-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:12px;transition:all .3s ease}
 .process-step--amber .process-icon{background:rgba(193,127,74,.12)}
@@ -922,7 +922,7 @@ main{overflow-x:clip}
 .process-label{margin:0 0 6px;font-size:1.04rem;color:var(--ink);font-weight:600}
 .process-desc{margin:0;color:var(--muted);font-size:.84rem;line-height:1.55}
 @media(min-width:640px){
-  .process-flow{flex-direction:row;gap:0;padding-top:0}
+  .process-flow{flex-direction:row;gap:0;padding-top:0;align-items:stretch}
   .process-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding-bottom:0;padding-right:0;grid-template-columns:none;gap:0}
   .process-step:hover{transform:translateY(-4px)}
   .process-step:not(:last-child)::after{content:"";position:absolute;top:18px;left:calc(50% + 26px);right:calc(-50% + 26px);height:1px;background:linear-gradient(90deg,var(--gold-deep),var(--line-soft));z-index:1}
