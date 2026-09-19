@@ -269,7 +269,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .contact-box .direct{margin-top:20px}
   .langsw{gap:2px;padding:3px}
   .langsw button{padding:6px 10px;font-size:.7rem}
-  .hero-block{padding-top:56px;padding-bottom:100px}
+  .hero-block{padding-top:56px;padding-bottom:100px;padding-left:16px;padding-right:16px}
   .hero-grid{gap:28px}
   .footer-block{padding-bottom:100px;padding-top:40px}
   /* Mobile GPU relief: cheaper blurs, dimmer static orbs */
@@ -327,7 +327,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .stat b{font-size:1.9rem}
   .sub{max-width:100%}
   .sec-head{gap:10px}
-  .hero-block{padding-top:44px;padding-bottom:100px}
+  .hero-block{padding-top:44px;padding-bottom:100px;padding-left:16px;padding-right:16px}
   .hero-grid{gap:16px}
   .hero-grid .lede{margin-top:12px}
   .hero-grid .cta{margin-top:16px}
@@ -341,14 +341,23 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 :root[data-theme="light"] .orb{opacity:.35}
 :root[data-theme="light"] .hero-orb{opacity:.5}
 :root[data-theme="light"] .hero-orb-2{opacity:.4}
+:root[data-theme="light"] .hero-photo-lg{border-color:var(--gold-deep);box-shadow:0 0 50px rgba(160,120,60,.2),0 0 100px rgba(160,120,60,.08)}
+:root[data-theme="light"] .hero-orbit{border-color:rgba(160,120,60,.2)}
+:root[data-theme="light"] .hero-orbit::before{background:var(--gold-deep);box-shadow:0 0 12px rgba(160,120,60,.5)}
 /* Hero: light mode text */
 :root[data-theme="light"] .hero-title{color:var(--ink)}
-:root[data-theme="light"] .hero-lede{color:var(--muted)}
-/* Floating cards: light glass */
-:root[data-theme="light"] .hero-float{background:rgba(250,246,236,.82);border-color:rgba(160,120,60,.15);box-shadow:0 8px 24px rgba(90,70,40,.1)}
-:root[data-theme="light"] .hero-float-tx{color:rgba(29,24,18,.85)}
-:root[data-theme="light"] .hero-float:hover{background:rgba(250,246,236,.95);border-color:rgba(160,120,60,.3);box-shadow:0 12px 36px rgba(90,70,40,.12),0 0 24px rgba(160,120,60,.08)}
+:root[data-theme="light"] .hero-lede{color:#3d362c}
+:root[data-theme="light"] .hero-eyebrow{background:rgba(160,120,60,.08);border-color:rgba(160,120,60,.2)}
+/* Floating cards: light glass with visible borders */
+:root[data-theme="light"] .hero-float{background:rgba(255,255,255,.88);border-color:rgba(160,120,60,.25);box-shadow:0 8px 32px rgba(90,70,40,.12),0 0 0 1px rgba(160,120,60,.08)}
+:root[data-theme="light"] .hero-float-tx{color:#3d362c}
+:root[data-theme="light"] .hero-float-ic{background:rgba(160,120,60,.12)}
+:root[data-theme="light"] .hero-float:hover{background:rgba(255,255,255,.96);border-color:rgba(160,120,60,.4);box-shadow:0 12px 40px rgba(90,70,40,.15),0 0 24px rgba(160,120,60,.1)}
 :root[data-theme="light"] .hero-float:hover .hero-float-tx{color:var(--ink)}
+:root[data-theme="light"] .hero-float:hover .hero-float-ic{background:rgba(160,120,60,.2)}
+/* Hero typing */
+:root[data-theme="light"] .hero-typing{color:var(--gold-deep)}
+:root[data-theme="light"] .hero-typing-cursor{background:var(--gold-deep)}
 /* Tag corner: softer overlay */
 :root[data-theme="light"] .tag-corner{background:rgba(250,246,236,.7);border-color:rgba(160,120,60,.3)}
 /* Card hover shadow: lighter */
@@ -405,6 +414,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   background-image:radial-gradient(circle,var(--line-soft) 1px,transparent 1px);
   background-size:32px 32px;opacity:.22;
   mask-image:linear-gradient(to bottom,transparent 0%,black 12%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 12%)}
+:root[data-theme="light"] .hero-dot-grid{background-image:radial-gradient(circle,rgba(120,100,70,.22) 1px,transparent 1px)}
 
 /* Hero stats */
 .hero-stats{border-top:1px solid var(--line-soft);padding-top:24px}
@@ -703,14 +713,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 @keyframes floatIn{from{opacity:0;transform:translateY(16px) scale(.9)}to{opacity:1;transform:translateY(0) scale(1)}}
 
 /* Hero inner layout */
-.hero-inner{display:grid;grid-template-columns:1fr;gap:40px;align-items:center;position:relative;z-index:1}
+.hero-inner{display:grid;grid-template-columns:1fr;gap:40px;align-items:center;position:relative;z-index:1;max-width:1120px;margin-left:auto;margin-right:auto}
 .hero-content{position:relative;z-index:2;min-width:0}
 .hero-title{font-family:var(--serif);font-weight:600;line-height:1.06;letter-spacing:-.02em;margin:0;font-size:clamp(2.2rem,5.5vw,3.6rem);color:#f5f0e8}
 
 /* Hero on desktop: two-column */
 @media(min-width:960px){
   .hero-inner{grid-template-columns:1fr 1fr;gap:48px}
-  .hero-block{padding-top:48px;padding-bottom:60px}
+  .hero-block{padding-top:48px;padding-bottom:60px;padding-left:32px;padding-right:32px}
   .hero-visual{display:block}
 }
 
@@ -760,7 +770,7 @@ section{scroll-margin-top:84px;padding-top:92px;padding-bottom:92px}
 main{overflow-x:clip}
 .hero-grid{display:grid;grid-template-columns:1fr;align-items:start;gap:24px;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:8px;padding-right:8px}
 .hero-grid>*{min-width:0}
-.hero-block{padding-top:32px;padding-bottom:100px;position:relative}
+.hero-block{padding-top:32px;padding-bottom:100px;padding-left:24px;padding-right:24px;position:relative}
 .footer-block{position:relative;z-index:1;margin-top:44px;padding-left:8px;padding-right:8px;padding-bottom:100px;padding-top:40px}
 
 /* Enhanced cursor effects */
@@ -813,7 +823,7 @@ main{overflow-x:clip}
   .ghost{display:none}
   .section-block h2{font-size:clamp(1.6rem,6vw,2.2rem);max-width:100%}
   .hero-title{font-size:clamp(1.8rem,8vw,2.4rem)}
-  .hero-block{padding-top:24px;padding-bottom:60px}
+  .hero-block{padding-top:24px;padding-bottom:60px;padding-left:16px;padding-right:16px}
 }
 /* Very small phones (iPhone SE 1st gen, Galaxy Fold): shrink dock so all icons fit */
 @media(max-width:360px){
@@ -835,7 +845,7 @@ main{overflow-x:clip}
 }
 @media(min-width:960px){
   .hero-grid{grid-template-columns:1.45fr .95fr}
-  .hero-block{padding-top:48px;padding-bottom:60px}
+  .hero-block{padding-top:48px;padding-bottom:60px;padding-left:32px;padding-right:32px}
   .contact-box{grid-template-columns:1fr 1fr;gap:40px;padding:42px}
   .direct{flex-direction:column}
 }
