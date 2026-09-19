@@ -671,9 +671,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 
 /* Footer social icons */
 .footer-socials{display:flex;gap:10px}
-.footer-social-icon{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(127,120,100,.1);border:1px solid var(--line-soft);color:var(--muted);transition:all .25s ease}
-.footer-social-icon:hover{background:rgba(201,168,118,.15);border-color:var(--gold);color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 18px rgba(201,168,118,.2)}
-:root[data-theme="light"] .footer-social-icon:hover{box-shadow:0 6px 18px rgba(160,120,60,.15)}
+.footer-social-icon{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:rgba(127,120,100,.08);border:1px solid var(--line-soft);color:var(--muted);transition:all .25s ease}
+.footer-social-icon:hover{background:rgba(201,168,118,.12);border-color:var(--gold);color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 18px rgba(201,168,118,.18)}
+:root[data-theme="light"] .footer-social-icon:hover{box-shadow:0 6px 18px rgba(160,120,60,.12)}
+.back-to-top{transition:color .2s}
+.back-to-top:hover{color:var(--gold)}
+.footer-link{transition:color .2s,transform .2s;display:inline-block}
+.footer-link:hover{color:var(--gold) !important;transform:translateX(3px)}
 @media(max-width:640px){
   footer nav{grid-template-columns:1fr !important;gap:24px !important}
   footer nav > div:first-child{margin-bottom:8px}
