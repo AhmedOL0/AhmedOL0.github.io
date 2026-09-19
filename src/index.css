@@ -895,32 +895,39 @@ main{overflow-x:clip}
 :root[data-theme="light"] .cap-card--sage .cap-icon{background:linear-gradient(135deg,rgba(90,122,78,.1),rgba(90,122,78,.03))}
 :root[data-theme="light"] .cap-card--rust .cap-icon{background:linear-gradient(135deg,rgba(180,85,45,.1),rgba(180,85,45,.03))}
 
+/* Light mode process card icon overrides */
+:root[data-theme="light"] .process-card--amber .process-card-icon{background:linear-gradient(135deg,rgba(154,101,53,.1),rgba(154,101,53,.03))}
+:root[data-theme="light"] .process-card--gold .process-card-icon{background:linear-gradient(135deg,rgba(122,94,52,.1),rgba(122,94,52,.03))}
+:root[data-theme="light"] .process-card--sage .process-card-icon{background:linear-gradient(135deg,rgba(90,122,78,.1),rgba(90,122,78,.03))}
+:root[data-theme="light"] .process-card--rust .process-card-icon{background:linear-gradient(135deg,rgba(180,85,45,.1),rgba(180,85,45,.03))}
+
 @media (max-width:640px){.cap-grid{grid-template-columns:1fr}}
 
 
-/* ── How I Work: process flow ── */
-.process-flow{display:flex;flex-direction:column;gap:0;position:relative}
-.process-step{display:grid;grid-template-columns:56px 1fr;gap:16px;position:relative;padding-bottom:36px;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
-.process-step:hover{transform:translateX(4px)}
-.process-step:last-child{padding-bottom:0}
-.process-num{width:56px;height:56px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:linear-gradient(135deg,rgba(201,168,118,.08),rgba(180,85,45,.04));border:1px solid rgba(201,168,118,.15);flex-shrink:0;position:relative;z-index:1;transition:all .25s}
-.process-step:hover .process-num{background:linear-gradient(135deg,rgba(201,168,118,.15),rgba(180,85,45,.1));border-color:var(--gold);box-shadow:0 0 16px rgba(160,120,60,.2)}
-.process-num-label{font-family:var(--mono);font-size:.62rem;font-weight:700;color:var(--gold-deep);opacity:.6;letter-spacing:.1em;line-height:1}
-.process-icon{color:var(--gold);display:flex;align-items:center;justify-content:center;line-height:1}
-.process-step:hover .process-num-label{opacity:1}
-.process-label{margin:0 0 6px;font-size:1.08rem;color:var(--ink);font-weight:600}
-.process-desc{margin:0;color:var(--muted);font-size:.88rem;line-height:1.55}
-.process-line{position:absolute;left:28px;top:56px;width:1px;height:calc(100% - 56px);background:linear-gradient(var(--line-soft),transparent)}
-@media(min-width:640px){
-  .process-flow{flex-direction:row;gap:0;padding-top:0}
-  .process-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding-bottom:0;padding-right:0;grid-template-columns:none;gap:0}
-  .process-step:hover{transform:translateY(-4px)}
-  .process-step:not(:last-child)::after{content:"";position:absolute;top:28px;left:calc(50% + 32px);right:calc(-50% + 32px);height:1px;background:linear-gradient(90deg,var(--gold-deep),var(--line-soft))}
-  .process-num{margin-bottom:14px}
-  .process-label{font-size:1rem}
-  .process-desc{font-size:.84rem;max-width:200px}
-  .process-line{display:none}
-}
+/* ── How I Work: bento grid ── */
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.process-card{border:1px solid var(--line-soft);border-radius:14px;padding:24px 20px;background:linear-gradient(180deg,rgba(160,120,60,.04),transparent 40%),var(--card);position:relative;overflow:hidden;transition:border-color .3s,box-shadow .3s,transform .3s cubic-bezier(.2,.7,.2,1)}
+.process-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity .3s}
+.process-card--amber::before{background:linear-gradient(90deg,var(--gold-deep),var(--amber),var(--gold-hi))}
+.process-card--gold::before{background:linear-gradient(90deg,var(--gold-deep),var(--gold),var(--gold-hi))}
+.process-card--sage::before{background:linear-gradient(90deg,#4a6a3e,var(--sage),#8aaa7e)}
+.process-card--rust::before{background:linear-gradient(90deg,var(--gold-deep),var(--rust),#d4704a)}
+.process-card:hover{border-color:var(--gold-deep);box-shadow:0 6px 24px rgba(160,120,60,.12);transform:translateY(-2px)}
+.process-card:hover::before{opacity:1}
+.process-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.process-card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0;transition:all .3s ease}
+.process-card--amber .process-card-icon{background:linear-gradient(135deg,rgba(193,127,74,.12),rgba(193,127,74,.04))}
+.process-card--gold .process-card-icon{background:linear-gradient(135deg,rgba(201,168,118,.12),rgba(201,168,118,.04))}
+.process-card--sage .process-card-icon{background:linear-gradient(135deg,rgba(107,138,94,.12),rgba(107,138,94,.04))}
+.process-card--rust .process-card-icon{background:linear-gradient(135deg,rgba(180,85,45,.12),rgba(180,85,45,.04))}
+.process-card:hover .process-card-icon{box-shadow:0 0 10px rgba(201,168,118,.12);transform:scale(1.05)}
+.process-card-num{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--gold-deep);opacity:.4;transition:opacity .3s}
+.process-card:hover .process-card-num{opacity:.8}
+.process-card-label{margin:0 0 6px;font-size:1.04rem;color:var(--ink);font-weight:600}
+.process-card-desc{margin:0;color:var(--muted);font-size:.84rem;line-height:1.55}
+.process-card-arrow{display:none}
+@media (max-width:900px){.process-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.process-grid{grid-template-columns:1fr}}
 
 /* ── Behind the Work: bento tech grid ── */
 .tech-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
