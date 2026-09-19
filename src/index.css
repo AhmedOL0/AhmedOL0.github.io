@@ -854,20 +854,47 @@ main{overflow-x:clip}
 /* ── What I Do: capability cards ── */
 .cap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
 .cap-card{border:1px solid var(--line-soft);border-radius:16px;padding:28px 24px;background:linear-gradient(180deg,rgba(160,120,60,.04),transparent 40%),var(--card);transition:border-color .3s,box-shadow .3s,transform .3s cubic-bezier(.2,.7,.2,1);position:relative;overflow:hidden}
-.cap-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold-deep),var(--amber),var(--gold-hi));opacity:0;transition:opacity .3s}
+.cap-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity .3s}
+.cap-card--amber::before{background:linear-gradient(90deg,var(--gold-deep),var(--amber),var(--gold-hi))}
+.cap-card--gold::before{background:linear-gradient(90deg,var(--gold-deep),var(--gold),var(--gold-hi))}
+.cap-card--sage::before{background:linear-gradient(90deg,#4a6a3e,var(--sage),#8aaa7e)}
+.cap-card--rust::before{background:linear-gradient(90deg,var(--gold-deep),var(--rust),#d4704a)}
 .cap-card:hover{border-color:var(--gold-deep);box-shadow:0 8px 32px rgba(160,120,60,.15),0 0 0 1px rgba(160,120,60,.1);transform:translateY(-3px)}
 .cap-card:hover::before{opacity:1}
-.cap-num{position:absolute;top:20px;right:22px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--gold-deep);opacity:.5;transition:opacity .3s}
-.cap-card:hover .cap-num{opacity:.9}
-.cap-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(201,168,118,.12),rgba(180,85,45,.08));border:1px solid rgba(201,168,118,.15);margin-bottom:16px;color:var(--gold);flex-shrink:0}
+.cap-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cap-num{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--gold-deep);opacity:.4;transition:opacity .3s}
+.cap-card:hover .cap-num{opacity:.8}
+.cap-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(201,168,118,.15);color:var(--gold);flex-shrink:0;transition:all .3s ease}
+.cap-card--amber .cap-icon{background:linear-gradient(135deg,rgba(193,127,74,.12),rgba(193,127,74,.04))}
+.cap-card--gold .cap-icon{background:linear-gradient(135deg,rgba(201,168,118,.12),rgba(201,168,118,.04))}
+.cap-card--sage .cap-icon{background:linear-gradient(135deg,rgba(107,138,94,.12),rgba(107,138,94,.04))}
+.cap-card--rust .cap-icon{background:linear-gradient(135deg,rgba(180,85,45,.12),rgba(180,85,45,.04))}
+.cap-card:hover .cap-icon{box-shadow:0 0 12px rgba(201,168,118,.12)}
+.cap-metric{display:flex;align-items:baseline;gap:5px;margin-bottom:10px}
+.cap-metric-val{font-family:var(--mono);font-size:.82rem;font-weight:700;letter-spacing:.02em}
+.cap-card--amber .cap-metric-val{color:var(--amber)}
+.cap-card--gold .cap-metric-val{color:var(--gold)}
+.cap-card--sage .cap-metric-val{color:var(--sage)}
+.cap-card--rust .cap-metric-val{color:var(--rust)}
+.cap-metric-label{font-family:var(--mono);font-size:.68rem;color:var(--faint);letter-spacing:.04em}
 .cap-title{margin:0 0 8px;font-size:1.12rem;color:var(--ink);font-weight:600}
 .cap-desc{margin:0;color:var(--muted);font-size:.88rem;line-height:1.6}
-.cap-toggle{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:6px 14px;border:1px solid var(--line-soft);border-radius:999px;background:transparent;color:var(--faint);font-size:.76rem;cursor:pointer;transition:all .25s cubic-bezier(.2,.7,.2,1);font-family:var(--mono);letter-spacing:.04em}
+.cap-toggle{display:inline-flex;align-items:center;gap:5px;margin-top:14px;padding:6px 14px;border:1px solid var(--line-soft);border-radius:999px;background:transparent;color:var(--faint);font-size:.76rem;cursor:pointer;transition:all .25s cubic-bezier(.2,.7,.2,1);font-family:var(--mono);letter-spacing:.04em}
 .cap-toggle:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,118,.06)}
-.cap-arrow{font-size:.85rem;transition:transform .25s}
-.cap-arrow.open{transform:rotate(45deg)}
-.cap-details{margin-top:14px;color:var(--muted);font-size:.84rem;line-height:1.65;border-top:1px solid var(--line-soft);padding-top:14px;animation:capExpand .3s cubic-bezier(.2,.7,.2,1) both}
-@keyframes capExpand{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.cap-toggle-text{transition:color .2s}
+.cap-chevron{transition:transform .3s cubic-bezier(.2,.7,.2,1);flex-shrink:0}
+.cap-chevron.open{transform:rotate(180deg)}
+.cap-details-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s cubic-bezier(.2,.7,.2,1)}
+.cap-details-wrap.open{grid-template-rows:1fr}
+.cap-details{margin:0;overflow:hidden;color:var(--muted);font-size:.84rem;line-height:1.65;border-top:1px solid var(--line-soft);padding-top:0;transition:padding-top .3s cubic-bezier(.2,.7,.2,1)}
+.cap-details-wrap.open .cap-details{padding-top:14px}
+
+/* Light mode accent overrides */
+:root[data-theme="light"] .cap-card--amber .cap-icon{background:linear-gradient(135deg,rgba(154,101,53,.1),rgba(154,101,53,.03))}
+:root[data-theme="light"] .cap-card--gold .cap-icon{background:linear-gradient(135deg,rgba(122,94,52,.1),rgba(122,94,52,.03))}
+:root[data-theme="light"] .cap-card--sage .cap-icon{background:linear-gradient(135deg,rgba(90,122,78,.1),rgba(90,122,78,.03))}
+:root[data-theme="light"] .cap-card--rust .cap-icon{background:linear-gradient(135deg,rgba(180,85,45,.1),rgba(180,85,45,.03))}
+
 
 /* ── How I Work: process flow ── */
 .process-flow{display:flex;flex-direction:column;gap:0;position:relative}
