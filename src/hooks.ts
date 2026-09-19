@@ -193,3 +193,35 @@ export function useBackToTop(threshold = 700) {
   }, [threshold]);
   return show;
 }
+
+export function useTypingCycle(words: string[], typingMs = 70, deletingMs = 40, pauseMs = 2000) {
+  const [index, setIndex] = useState(0);
+  const [text, setText] = useState('');
+  const [phase, setPhase] = useState<'typing' | 'pause' | 'deleting'>('typing');
+
+  useEffect(() => {
+    if (words.length === 0) return;
+    const word = words[index];
+    let timer: ReturnType<typeof setTimeout>;
+
+    if (phase === 'typing') {
+      if (text.length < word.length) {
+        timer = setTimeout(() => setText(word.slice(0, text.length + 1)), typingMs);
+      } else {
+        timer = setTimeout(() => setPhase('pause'), pauseMs);
+      }
+    } else if (phase === 'pause') {
+      timer = setTimeout(() => setPhase('deleting'), pauseMs);
+    } else {
+      if (text.length > 0) {
+        timer = setTimeout(() => setText(text.slice(0, -1)), deletingMs);
+      } else {
+        setIndex((i) => (i + 1) % words.length);
+        setPhase('typing');
+      }
+    }
+    return () => clearTimeout(timer);
+  }, [text, phase, index, words, typingMs, deletingMs, pauseMs]);
+
+  return text;
+}

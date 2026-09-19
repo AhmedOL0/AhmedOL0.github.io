@@ -1,25 +1,76 @@
+import { useEffect, useRef } from 'react';
 import { useLang } from '../i18n-data';
+import HeroTyping from './HeroTyping';
+
+function splitToChars(text: string, baseDelay: number) {
+  return [...text].map((ch, i) => (
+    <span key={i} className="hero-char" style={{ '--d': baseDelay + i * 35 } as React.CSSProperties}>
+      {ch === ' ' ? '\u00A0' : ch}
+    </span>
+  ));
+}
 
 export default function Hero() {
   const { t } = useLang();
+  const visualRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (
+      window.matchMedia('(pointer:coarse)').matches ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) return;
+    const el = visualRef.current;
+    if (!el) return;
+    const ring = el.querySelector<HTMLElement>('.hero-orbit');
+    if (!ring) return;
+    let raf = 0;
+    let tx = 0, ty = 0, cx = 0, cy = 0;
+    const onMove = (e: MouseEvent) => {
+      const r = el.getBoundingClientRect();
+      tx = ((e.clientX - r.left) / r.width - 0.5) * 18;
+      ty = ((e.clientY - r.top) / r.height - 0.5) * 18;
+    };
+    const follow = () => {
+      cx += (tx - cx) * 0.06;
+      cy += (ty - cy) * 0.06;
+      ring.style.translate = `${cx}px ${cy}px`;
+      raf = requestAnimationFrame(follow);
+    };
+    el.addEventListener('mousemove', onMove);
+    el.addEventListener('mouseleave', () => { tx = 0; ty = 0; });
+    raf = requestAnimationFrame(follow);
+    return () => {
+      el.removeEventListener('mousemove', onMove);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
   return (
     <section id="top" className="hero-block hero-block--top">
       <div className="hero-dot-grid" aria-hidden="true" />
       <div className="hero-inner">
         <div className="hero-content">
-          <div className="hero-eyebrow"><span className="hero-eyebrow-dot" aria-hidden="true" />{t.hero.avail}</div>
+          <div className="hero-eyebrow">
+            <span className="hero-eyebrow-dot" aria-hidden="true" />
+            {t.hero.avail}
+          </div>
           <h1 className="hero-title font-serif-d">
-            <span className="hero-title-a">{t.hero.titleA}</span>
-            <em className="hero-title-em">{t.hero.titleEm}</em>
-            <span className="hero-title-b">{t.hero.titleB}</span>
+            <span className="hero-title-a">{splitToChars(t.hero.titleA, 200)}</span>
+            <em className="hero-title-em">{splitToChars(t.hero.titleEm, 500)}</em>
+            <span className="hero-title-b">{splitToChars(t.hero.titleB, 800)}</span>
           </h1>
           <p className="hero-lede">{t.hero.lede}</p>
+          <HeroTyping />
           <div className="hero-actions">
-            <a className="btn btn-gold" href="#work">{t.hero.ctaWork}<span className="arr">&rarr;</span></a>
-            <a className="btn btn-ghost" href="#contact">{t.hero.ctaContact}</a>
+            <a className="btn btn-gold" href="#work" data-magnetic>
+              {t.hero.ctaWork}<span className="arr">&rarr;</span>
+            </a>
+            <a className="btn btn-ghost" href="#contact" data-magnetic>
+              {t.hero.ctaContact}
+            </a>
           </div>
         </div>
-        <div className="hero-visual" aria-hidden="true">
+        <div className="hero-visual" ref={visualRef} aria-hidden="true">
           <div className="hero-orbit" />
           <div className="hero-photo-lg">
             <img src="/assets/photo.jpg" alt="Ahmed Ouarrali portrait" width="260" height="260" loading="eager" fetchPriority="high" />
