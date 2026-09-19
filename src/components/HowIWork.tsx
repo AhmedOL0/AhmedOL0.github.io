@@ -1,13 +1,25 @@
 import Section from './Section';
 import { useLang } from '../i18n-data';
 
-const STEP_ICONS = [
-  <svg key="understand" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>,
-  <svg key="design" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>,
-  <svg key="build" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>,
-  <svg key="test" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg>,
-  <svg key="deploy" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>,
-  <svg key="improve" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/><polyline points="22 2 22 8 16 8"/></svg>,
+const STEPS = [
+  { /* magnifying glass + user silhouette */
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/><circle cx="11" cy="8" r="1.5" fill="currentColor" stroke="none"/><path d="M8 14c0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2"/></svg>,
+  },
+  { /* compass / blueprint */
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v18"/><circle cx="15" cy="15" r="1.5" fill="currentColor" stroke="none"/></svg>,
+  },
+  { /* code brackets + cursor */
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M8 6L4 12l4 6"/><path d="M16 6l4 6-4 6"/><path d="M14 4l-4 16"/></svg>,
+  },
+  { /* beaker / test tube */
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 3h6"/><path d="M10 3v6.5L5 18a2 2 0 002 2h10a2 2 0 002-2l-5-8.5V3"/><path d="M7 16h10"/></svg>,
+  },
+  {/* rocket */
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2c-2 4-3 8-3 12h6c0-4-1-8-3-12z"/><path d="M9 14l-2 6h2"/><path d="M15 14l2 6h-2"/><circle cx="12" cy="10" r="1" fill="currentColor" stroke="none"/></svg>,
+  },
+  {/* trending up / chart */
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg>,
+  },
 ];
 
 export default function HowIWork() {
@@ -17,7 +29,10 @@ export default function HowIWork() {
       <div className="process-flow mt-6 sm:mt-8">
         {t.howIWork.steps.map((step, i) => (
           <div className="process-step" key={step.label}>
-            <div className="process-num">{STEP_ICONS[i]}</div>
+            <div className="process-num">
+              <span className="process-num-label">{String(i + 1).padStart(2, '0')}</span>
+              <div className="process-icon">{STEPS[i].icon}</div>
+            </div>
             <div className="process-content">
               <h3 className="process-label">{step.label}</h3>
               <p className="process-desc">{step.desc}</p>
