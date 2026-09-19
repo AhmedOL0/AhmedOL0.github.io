@@ -898,32 +898,37 @@ main{overflow-x:clip}
 @media (max-width:640px){.cap-grid{grid-template-columns:1fr}}
 
 
-/* ── How I Work: accent timeline ── */
+/* ── How I Work: timeline + cards ── */
 .process-flow{display:flex;flex-direction:column;gap:0;position:relative}
-.process-step{display:grid;grid-template-columns:56px 1fr;gap:16px;position:relative;padding-bottom:32px;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+.process-step{display:grid;grid-template-columns:48px 1fr;gap:14px;position:relative;padding-bottom:8px;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
 .process-step:hover{transform:translateX(4px)}
 .process-step:last-child{padding-bottom:0}
 .process-marker{display:flex;flex-direction:column;align-items:center;position:relative;z-index:1}
-.process-num{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.1em;flex-shrink:0;transition:all .25s;border:1px solid rgba(201,168,118,.15);margin-bottom:8px}
-.process-step--amber .process-num{color:var(--amber);background:linear-gradient(135deg,rgba(193,127,74,.1),rgba(193,127,74,.03))}
-.process-step--gold .process-num{color:var(--gold);background:linear-gradient(135deg,rgba(201,168,118,.1),rgba(201,168,118,.03))}
-.process-step--sage .process-num{color:var(--sage);background:linear-gradient(135deg,rgba(107,138,94,.1),rgba(107,138,94,.03))}
-.process-step--rust .process-num{color:var(--rust);background:linear-gradient(135deg,rgba(180,85,45,.1),rgba(180,85,45,.03))}
-.process-step:hover .process-num{border-color:var(--gold);box-shadow:0 0 12px rgba(160,120,60,.2)}
-.process-icon{color:var(--gold);display:flex;align-items:center;justify-content:center;line-height:1}
-.process-line{width:1px;flex:1;min-height:16px;background:linear-gradient(var(--line-soft),transparent);margin-top:8px}
-.process-content{padding-top:6px}
-.process-label{margin:0 0 6px;font-size:1.08rem;color:var(--ink);font-weight:600}
-.process-desc{margin:0;color:var(--muted);font-size:.88rem;line-height:1.55}
+.process-num{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.1em;flex-shrink:0;transition:all .25s;border:1px solid rgba(201,168,118,.12)}
+.process-step--amber .process-num{color:var(--amber);background:rgba(193,127,74,.08)}
+.process-step--gold .process-num{color:var(--gold);background:rgba(201,168,118,.08)}
+.process-step--sage .process-num{color:var(--sage);background:rgba(107,138,94,.08)}
+.process-step--rust .process-num{color:var(--rust);background:rgba(180,85,45,.08)}
+.process-step:hover .process-num{border-color:var(--gold);box-shadow:0 0 10px rgba(160,120,60,.15)}
+.process-line{width:1px;flex:1;min-height:8px;background:linear-gradient(var(--line-soft),transparent);margin-top:6px}
+.process-card{border:1px solid var(--line-soft);border-radius:12px;padding:16px 18px;background:var(--card);transition:border-color .3s,box-shadow .3s}
+.process-step:hover .process-card{border-color:rgba(160,120,60,.15);box-shadow:0 4px 20px rgba(160,120,60,.06)}
+.process-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:8px;transition:all .3s ease}
+.process-step--amber .process-icon{background:rgba(193,127,74,.1)}
+.process-step--gold .process-icon{background:rgba(201,168,118,.1)}
+.process-step--sage .process-icon{background:rgba(107,138,94,.1)}
+.process-step--rust .process-icon{background:rgba(180,85,45,.1)}
+.process-label{margin:0 0 4px;font-size:1rem;color:var(--ink);font-weight:600}
+.process-desc{margin:0;color:var(--muted);font-size:.84rem;line-height:1.5}
 @media(min-width:640px){
   .process-flow{flex-direction:row;gap:0;padding-top:0}
   .process-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding-bottom:0;padding-right:0;grid-template-columns:none;gap:0}
   .process-step:hover{transform:translateY(-4px)}
-  .process-step:not(:last-child)::after{content:"";position:absolute;top:28px;left:calc(50% + 32px);right:calc(-50% + 32px);height:1px;background:linear-gradient(90deg,var(--gold-deep),var(--line-soft))}
+  .process-step:not(:last-child)::after{content:"";position:absolute;top:18px;left:calc(50% + 30px);right:calc(-50% + 30px);height:1px;background:linear-gradient(90deg,var(--gold-deep),var(--line-soft))}
   .process-marker{align-items:center}
   .process-line{display:none}
-  .process-label{font-size:1rem}
-  .process-desc{font-size:.84rem;max-width:200px}
+  .process-card{max-width:180px}
+  .process-desc{font-size:.8rem}
 }
 
 /* ── Behind the Work: bento tech grid ── */

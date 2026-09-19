@@ -36,11 +36,11 @@ export default function HowIWork() {
         {t.howIWork.steps.map((step, i) => (
           <div className={`process-step process-step--${STEPS[i].accent}`} key={step.label}>
             <div className="process-marker">
-              <span className="process-num">{String(i + 1).padStart(2, '0')}</span>
-              <div className="process-icon">{STEPS[i].icon}</div>
+              <div className="process-num">{String(i + 1).padStart(2, '0')}</div>
               {i < t.howIWork.steps.length - 1 && <div className="process-line" aria-hidden="true" />}
             </div>
-            <div className="process-content">
+            <div className="process-card">
+              <div className="process-icon">{STEPS[i].icon}</div>
               <h3 className="process-label">{step.label}</h3>
               <p className="process-desc">{step.desc}</p>
             </div>
