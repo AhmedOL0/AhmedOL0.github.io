@@ -13,6 +13,8 @@ export function useTheme() {
     try {
       localStorage.setItem('ao-theme', theme);
     } catch { /* ignore */ }
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#0b0b0e' : '#f3efe4');
   }, [theme]);
   return { theme, toggle: () => setTheme((t) => (t === 'light' ? 'dark' : 'light')) };
 }

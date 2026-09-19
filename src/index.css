@@ -160,7 +160,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 [dir="rtl"] .about-grid li,[dir="rtl"] .job li{padding-left:0;padding-right:20px}
 [dir="rtl"] .about-grid li::before{left:auto;right:2px}
 [dir="rtl"] .job li::before{left:auto;right:2px}
-[dir="rtl"] .edu-card{border-left:1px solid var(--line);border-right:3px solid var(--gold);border-radius:18px 6px 6px 18px}
 [dir="rtl"] .about-grid h4::before{margin-right:0;margin-left:10px}
 @media(max-width:420px){
   [dir="rtl"] .timeline{padding-right:20px}
@@ -676,7 +675,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .hero-photo-lg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:240px;height:240px;border-radius:50%;overflow:hidden;border:2px solid rgba(201,168,118,.3);box-shadow:0 0 0 8px rgba(201,168,118,.05),0 0 50px rgba(201,168,118,.12);z-index:2;transition:box-shadow .4s ease,border-color .4s ease}
 .hero-photo-lg img{width:100%;height:100%;object-fit:cover;display:block}
 .hero-orbit{position:absolute;top:50%;left:50%;width:340px;height:340px;border:1px solid rgba(201,168,118,.06);border-radius:50%;transform:translate(-50%,-50%)}
-@keyframes orbitSpin{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
 
 /* Floating cards — refined, only 2 */
 .hero-float{position:absolute;display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:10px;background:rgba(20,20,28,.6);border:1px solid rgba(255,255,255,.05);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 4px 16px rgba(0,0,0,.18);z-index:3;white-space:nowrap;cursor:default;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease,border-color .35s ease,background .3s ease}
@@ -780,8 +778,8 @@ main{overflow-x:clip}
   .reveal,.reveal-left,.reveal-right,.reveal-scale,.stagger-item{opacity:1;transform:none}
   .rise{opacity:1;animation:none}
   html{scroll-behavior:auto}
-  .orb,.hero-orb,.hero-orb-2,.beacon,.shimmer{animation:none}
-  .loader,.loader-terminal,.terminal-line,.terminal-cursor,.dock{animation:none}
+  .orb,.hero-orb,.hero-orb-2,.beacon,.shimmer,.hero-float--tr,.hero-float--bl{animation:none;opacity:1}
+  .loader,.loader-terminal,.terminal-line,.terminal-cursor,.dock,.top-left,.top-right{animation:none}
   .core-chip,.hero-stat-val,.hero-stat-label,.btn,.card,.tag,.tags span,.pillar-card,.tool-card,.pyramid-bar,.edu-card,.direct a{transition:none}
   #spot{display:none}
 }

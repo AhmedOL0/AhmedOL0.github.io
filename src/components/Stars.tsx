@@ -17,6 +17,7 @@ export default function Stars() {
     const mouse = { x: 0.5, y: 0.4 };
     const px = { x: 0.5, y: 0.4 };
     let lastDraw = 0;
+    let paused = false;
     const isMobile = window.matchMedia('(pointer:coarse)').matches;
     const throttleMs = isMobile ? 33 : 0; // 30fps mobile, 60fps desktop
 
@@ -48,6 +49,7 @@ export default function Stars() {
       mouse.y = e.clientY / h;
     };
     const draw = (t: number) => {
+      if (paused) return;
       if (throttleMs && t - lastDraw < throttleMs) {
         raf = requestAnimationFrame(draw);
         return;
@@ -80,8 +82,20 @@ export default function Stars() {
       if (!reduced) raf = requestAnimationFrame(draw);
     };
 
+    const onVisibility = () => {
+      if (document.hidden) {
+        paused = true;
+        cancelAnimationFrame(raf);
+      } else {
+        paused = false;
+        lastDraw = 0;
+        raf = requestAnimationFrame(draw);
+      }
+    };
+
     resize();
     window.addEventListener('resize', resize);
+    document.addEventListener('visibilitychange', onVisibility);
     if (!window.matchMedia('(pointer:coarse)').matches) {
       document.addEventListener('mousemove', onMove);
     }
@@ -89,6 +103,7 @@ export default function Stars() {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', resize);
+      document.removeEventListener('visibilitychange', onVisibility);
       document.removeEventListener('mousemove', onMove);
     };
   }, []);
