@@ -216,7 +216,7 @@ export function useTypingCycle(words: string[], typingMs = 70, deletingMs = 40, 
       if (text.length > 0) {
         timer = setTimeout(() => setState(s => ({ ...s, text: s.text.slice(0, -1) })), deletingMs);
       } else {
-        setState(s => ({ ...s, index: (s.index + 1) % words.length, phase: 'typing' }));
+        timer = setTimeout(() => setState(s => ({ ...s, index: (s.index + 1) % words.length, phase: 'typing' })), 0);
       }
     }
     return () => clearTimeout(timer);

@@ -1,4 +1,4 @@
-import { useState, useCallback, type FormEvent } from 'react';
+import { useState, useCallback, useRef, useEffect, type FormEvent } from 'react';
 import Section from './Section';
 import { useLang } from '../i18n-data';
 
@@ -13,10 +13,13 @@ function Spinner() {
 export default function Contact() {
   const { t } = useLang();
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'error'>('idle');
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
 
   const resetStatus = useCallback(() => {
-    const t = setTimeout(() => setStatus('idle'), 5000);
-    return () => clearTimeout(t);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => setStatus('idle'), 5000);
   }, []);
 
   const retry = useCallback(() => setStatus('idle'), []);
@@ -67,15 +70,15 @@ export default function Contact() {
         <form onSubmit={handleSubmit} aria-busy={sending}>
           <input type="text" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" aria-label="Leave this field empty" />
           <label className="field" htmlFor="contact-name">
-            <input id="contact-name" name="name" type="text" placeholder=" " required disabled={sending} autoComplete="name" />
+            <input id="contact-name" name="name" type="text" placeholder=" " required disabled={sending} autoComplete="name" aria-required="true" />
             <span>{t.contact.name}</span>
           </label>
           <label className="field" htmlFor="contact-email">
-            <input id="contact-email" name="email" type="email" placeholder=" " required disabled={sending} autoComplete="email" inputMode="email" />
+            <input id="contact-email" name="email" type="email" placeholder=" " required disabled={sending} autoComplete="email" inputMode="email" aria-required="true" />
             <span>{t.contact.email}</span>
           </label>
           <label className="field" htmlFor="contact-message">
-            <textarea id="contact-message" name="message" rows={5} placeholder=" " required disabled={sending} />
+            <textarea id="contact-message" name="message" rows={5} placeholder=" " required disabled={sending} aria-required="true" />
             <span>{t.contact.msg}</span>
           </label>
           <div style={{ marginTop: 22 }}>

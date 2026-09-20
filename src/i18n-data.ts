@@ -26,12 +26,12 @@ export type TechCategory = { name: string; items: string[] };
 
 export type Dict = {
   dir: 'ltr' | 'rtl';
-  nav: { home: string; whatIDo: string; work: string; experience: string; behind: string; contact: string; resume: string; skipToContent: string };
+  nav: { home: string; whatIDo: string; work: string; experience: string; behind: string; contact: string; resume: string; skipToContent: string; langChanged: string };
   hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede: string; ctaWork: string; ctaContact: string; statsLabels: [string, string, string]; personalityA: string; personalityB: string; avail: string; floatDev: string; floatProblem: string; floatTeam: string; floatImpact: string };
   whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
-  work: { kicker: string; title: string; sub: string; showLess: string; projects: ProjectT[] };
+  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; filterCount: string; projects: ProjectT[] };
   exp: { kicker: string; title: string; jobs: JobT[] };
   edu: { kicker: string; title: string; sub: string; entries: EduT[] };
   behind: { kicker: string; title: string; sub: string; categories: TechCategory[] };
@@ -44,7 +44,7 @@ export type Dict = {
     direct: string; phone: string; linkedin: string; github: string;
   };
   footer: { top: string; elsewhere: string; pageTitle: string };
-  dock: { home: string; whatIDo: string; work: string; contact: string; lang: string; nav: string; toggle: string; resume: string };
+  dock: { home: string; whatIDo: string; work: string; contact: string; lang: string; nav: string; footerNav: string; toggle: string; resume: string; linkedin: string; github: string; email: string; backToTop: string };
 };
 
 const tags = {
@@ -58,7 +58,7 @@ const tags = {
 
 const en: Dict = {
   dir: 'ltr',
-  nav: { home: 'Home', whatIDo: 'What I Do', work: 'Work', experience: 'Experience', behind: 'Tech Stack', contact: 'Contact', resume: 'Résumé', skipToContent: 'Skip to content' },
+  nav: { home: 'Home', whatIDo: 'What I Do', work: 'Work', experience: 'Experience', behind: 'Tech Stack', contact: 'Contact', resume: 'Résumé', skipToContent: 'Skip to content', langChanged: 'Language changed to English' },
   hero: {
     badge: 'Open to PFE internship', titleA: 'Building ', titleEm: 'complete products', titleB: ', not just features.',
     lede: 'I\'m a full-stack software engineer who builds and tests end-to-end digital products, from the first line of code to a running application people actually use.',
@@ -95,7 +95,7 @@ const en: Dict = {
   work: {
     kicker: 'Selected work', title: 'Systems that run in production, not demos that run once.',
     sub: 'Six builds across web, mobile, backend, AI and IoT. Each one deployed, used, or graded.',
-    showLess: 'show less',
+    showLess: 'show less', showFewer: 'Show fewer tags', filterCount: 'Showing {count} of {total} projects',
     projects: [
       { title: 'OdemLab: AI skincare e-commerce', year: 'Flagship', kind: 'Team of 4 · Private repo', heading: 'OdemLab', lead: 'd',
         description: 'A complete online skincare store with AI skin analysis, three payment methods (Stripe, CMI, cash-on-delivery), and trilingual FR/EN/AR support. Customers browse, scan their skin, and pay. All in one flow.',
@@ -170,12 +170,12 @@ const en: Dict = {
     direct: 'Direct email', phone: 'Phone', linkedin: 'LinkedIn', github: 'GitHub',
   },
   footer: { top: 'Top', elsewhere: 'Elsewhere', pageTitle: 'Ahmed Ouarrali, Full-Stack Software Engineer | PFE Internship' },
-  dock: { home: 'Home', whatIDo: 'What I Do', work: 'Work', contact: 'Contact', lang: 'Language', nav: 'Quick navigation', toggle: 'Toggle light / dark mode', resume: 'Résumé' },
+  dock: { home: 'Home', whatIDo: 'What I Do', work: 'Work', contact: 'Contact', lang: 'Language', nav: 'Quick navigation', footerNav: 'Footer navigation', toggle: 'Toggle light / dark mode', resume: 'Résumé', linkedin: 'LinkedIn', github: 'GitHub', email: 'Email', backToTop: 'Back to top' },
 };
 
 const fr: Dict = {
   dir: 'ltr',
-  nav: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', experience: 'Parcours', behind: 'Technologies', contact: 'Contact', resume: 'CV', skipToContent: 'Aller au contenu' },
+  nav: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', experience: 'Parcours', behind: 'Technologies', contact: 'Contact', resume: 'CV', skipToContent: 'Aller au contenu', langChanged: 'Langue changée en français' },
   hero: {
     badge: 'Disponible pour un PFE', titleA: 'Des ', titleEm: 'produits complets', titleB: ', pas juste des fonctionnalit\u00e9s.',
     lede: 'Je suis ing\u00e9nieur logiciel full-stack qui construis et teste des produits num\u00e9riques complets, de la premi\u00e8re ligne de code \u00e0 une application qui tourne vraiment.',
@@ -212,7 +212,7 @@ const fr: Dict = {
   work: {
     kicker: 'Projets', title: 'Des syst\u00e8mes qui tournent en production, pas des d\u00e9mos qui tournent une fois.',
     sub: 'Six r\u00e9alisations web, mobile, backend, IA et IoT. Chacune d\u00e9ploy\u00e9e, utilis\u00e9e ou \u00e9valu\u00e9e.',
-    showLess: 'voir moins',
+    showLess: 'voir moins', showFewer: 'Afficher moins', filterCount: '{count} projets sur {total} affichés',
     projects: [
       { title: 'OdemLab: e-commerce cosm\u00e9tique IA', year: 'Vitrine', kind: '\u00c9quipe de 4 \u00b7 D\u00e9p\u00f4t priv\u00e9', heading: 'OdemLab', lead: 'd',
         description: 'Boutique cosm\u00e9tique en ligne avec analyse IA de la peau, trois m\u00e9thodes de paiement (Stripe, CMI, contre-remboursement) et support trilingue FR/EN/AR.',
@@ -286,8 +286,8 @@ const fr: Dict = {
     retry: 'R\u00e9essayer',
     direct: 'E-mail direct', phone: 'T\u00e9l\u00e9phone', linkedin: 'LinkedIn', github: 'GitHub',
   },
-  footer: { top: 'Haut', elsewhere: 'Ailleurs', pageTitle: 'Ahmed Ouarrali, D\u00e9veloppeur Full-Stage | Stage PFE' },
-  dock: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', contact: 'Contact', lang: 'Langue', nav: 'Navigation rapide', toggle: 'Basculer mode clair / sombre', resume: 'CV' },
+  footer: { top: 'Haut', elsewhere: 'Ailleurs', pageTitle: 'Ahmed Ouarrali, D\u00e9veloppeur Full-Stack | Stage PFE' },
+  dock: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', contact: 'Contact', lang: 'Langue', nav: 'Navigation rapide', footerNav: 'Navigation du pied de page', toggle: 'Basculer mode clair / sombre', resume: 'CV', linkedin: 'LinkedIn', github: 'GitHub', email: 'E-mail', backToTop: 'Retour en haut' },
 };
 
 export const DICTS: Record<Lang, Dict> = { en, fr };

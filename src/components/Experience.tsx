@@ -4,7 +4,7 @@ import { useLang } from '../i18n-data';
 import type { JobT } from '../i18n-data';
 
 export function Timeline({ items }: { items: JobT[] }) {
-  const wrapRef = useRef<HTMLDivElement | null>(null);
+  const wrapRef = useRef<HTMLOListElement | null>(null);
   const fillRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     let raf = 0;
@@ -29,10 +29,10 @@ export function Timeline({ items }: { items: JobT[] }) {
     };
   }, []);
   return (
-    <div className="timeline mt-9" ref={wrapRef}>
+    <ol className="timeline mt-9" ref={wrapRef}>
       <div className="timeline-fill" ref={fillRef} aria-hidden="true" />
       {items.map((j) => (
-        <div className="job" key={j.title}>
+        <li className="job" key={j.title}>
           <div className="job-marker" aria-hidden="true">
             <span className="job-marker-dot" />
           </div>
@@ -46,9 +46,9 @@ export function Timeline({ items }: { items: JobT[] }) {
               ))}
             </ul>
           </div>
-        </div>
+        </li>
       ))}
-    </div>
+    </ol>
   );
 }
 

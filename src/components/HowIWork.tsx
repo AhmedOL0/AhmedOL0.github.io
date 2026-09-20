@@ -32,9 +32,9 @@ export default function HowIWork() {
   const { t } = useLang();
   return (
     <Section id="how-i-work" num="02" kicker={t.howIWork.kicker} title={t.howIWork.title} sub={t.howIWork.sub} variant="left">
-      <div className="process-flow mt-6 sm:mt-8">
+      <ol className="process-flow mt-6 sm:mt-8 list-none m-0 p-0">
         {t.howIWork.steps.map((step, i) => (
-          <div className={`process-step process-step--${STEPS[i].accent}`} key={step.label}>
+          <li className={`process-step process-step--${STEPS[i].accent}`} key={step.label}>
             <div className="process-marker">
               <div className="process-num">{String(i + 1).padStart(2, '0')}</div>
               {i < t.howIWork.steps.length - 1 && <div className="process-line" aria-hidden="true" />}
@@ -44,9 +44,9 @@ export default function HowIWork() {
               <h3 className="process-label">{step.label}</h3>
               <p className="process-desc">{step.desc}</p>
             </div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ol>
     </Section>
   );
 }

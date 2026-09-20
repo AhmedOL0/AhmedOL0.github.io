@@ -22,6 +22,7 @@ export default function Hero() {
       tx = ((e.clientX - r.left) / r.width - 0.5) * 12;
       ty = ((e.clientY - r.top) / r.height - 0.5) * 12;
     };
+    const onLeave = () => { tx = 0; ty = 0; };
     const follow = () => {
       cx += (tx - cx) * 0.05;
       cy += (ty - cy) * 0.05;
@@ -29,10 +30,11 @@ export default function Hero() {
       raf = requestAnimationFrame(follow);
     };
     el.addEventListener('mousemove', onMove);
-    el.addEventListener('mouseleave', () => { tx = 0; ty = 0; });
+    el.addEventListener('mouseleave', onLeave);
     raf = requestAnimationFrame(follow);
     return () => {
       el.removeEventListener('mousemove', onMove);
+      el.removeEventListener('mouseleave', onLeave);
       cancelAnimationFrame(raf);
     };
   }, []);
@@ -64,7 +66,7 @@ export default function Hero() {
         <div className="hero-visual" ref={visualRef} aria-hidden="true">
           <div className="hero-orbit" />
           <div className="hero-photo-lg">
-            <img src="/assets/photo.jpg" alt="Ahmed Ouarrali portrait" width="240" height="240" loading="eager" fetchPriority="high" />
+            <img src="/assets/photo.jpg" alt="" width="240" height="240" loading="eager" fetchPriority="high" />
           </div>
           <div className="hero-float hero-float--tr">
             <span className="hero-float-ic">

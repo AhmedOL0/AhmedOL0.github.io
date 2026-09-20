@@ -27,7 +27,7 @@ const P = {
 
 export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => void }) {
   const { lang, setLang, t } = useLang();
-  const langAnnounce = lang === 'fr' ? 'Langue changée en français' : 'Language changed to English';
+  const langAnnounce = t.nav.langChanged;
   const wrapRef = useRef<HTMLDivElement>(null);
   const [tp, setTp] = useState<{ text: string; x: number; y: number } | null>(null);
   const [hidden, setHidden] = useState(false);
@@ -72,7 +72,7 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
   return (
     <>
       <div aria-live="polite" className="sr-only">{langAnnounce}</div>
-      <a href="assets/CV_Ahmed_Ouarrali.pdf" download data-magnetic
+      <a href="assets/CV_Ahmed_Ouarrali.pdf" download data-magnetic aria-label={t.dock.resume}
         className={`btn btn-sm top-left top-pill fixed left-5 top-5 z-50 md:left-8 tip${hidden ? ' top-pills-hidden' : ''}`}
         data-tip={t.dock.resume}>
         {t.dock.resume}
@@ -167,10 +167,10 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
         <Icon d={theme === 'dark' ? P.sun : P.moon} />
       </button>
       <span className="dock-sep" />
-      <a className="dock-social tip" href="https://www.linkedin.com/in/ahmed-ouarrali" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-tip="LinkedIn">
+      <a className="dock-social tip" href="https://www.linkedin.com/in/ahmed-ouarrali" target="_blank" rel="noopener noreferrer" aria-label={t.dock.linkedin} data-tip={t.dock.linkedin}>
         <Icon d={P.linkedin} />
       </a>
-      <a className="dock-social tip" href="https://github.com/AhmedOL0" target="_blank" rel="noopener noreferrer" aria-label="GitHub" data-tip="GitHub">
+      <a className="dock-social tip" href="https://github.com/AhmedOL0" target="_blank" rel="noopener noreferrer" aria-label={t.dock.github} data-tip={t.dock.github}>
         <Icon d={P.github} filled />
       </a>
     </div>

@@ -18,6 +18,8 @@ export default function Work() {
   const prefersReduced = useMemo(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches, []);
   const skipTilt = isCoarse || prefersReduced;
 
+  const filteredCount = t.work.projects.filter((_, i) => f === 'all' || PROJECT_CATS[i].includes(f)).length;
+
   return (
     <Section id="work" num="03" kicker={t.work.kicker} title={t.work.title} sub={t.work.sub} variant="default">
       <div className="filters mt-5 sm:mt-8 mb-3 sm:mb-[26px] flex flex-wrap gap-1.5 sm:gap-2.5">
@@ -26,6 +28,9 @@ export default function Work() {
             {labels[k]}
           </button>
         ))}
+      </div>
+      <div aria-live="polite" className="sr-only">
+        {t.work.filterCount.replace('{count}', String(filteredCount)).replace('{total}', String(t.work.projects.length))}
       </div>
       <div className="grid grid-cols-1 gap-4 sm:gap-[22px] lg:grid-cols-2">
         {t.work.projects.map((p, i) => {
@@ -86,12 +91,12 @@ function Card({ p, th, i, skipTilt, cardId }: { p: { year: string; kind: string;
             <span key={tag}>{tag}</span>
           ))}
           {!tagsExpanded && PROJECT_TAGS[i].length > 6 && (
-            <button className="tag-more" type="button" aria-expanded={false} aria-label={`Show ${PROJECT_TAGS[i].length - 6} more tags`} onClick={() => setTagsExpanded(true)}>
+            <button className="tag-more" type="button" aria-expanded={false} aria-label={`+${PROJECT_TAGS[i].length - 6}`} onClick={() => setTagsExpanded(true)}>
               +{PROJECT_TAGS[i].length - 6}
             </button>
           )}
           {tagsExpanded && PROJECT_TAGS[i].length > 6 && (
-            <button className="tag-more" type="button" aria-expanded={true} aria-label="Show fewer tags" onClick={() => setTagsExpanded(false)}>
+            <button className="tag-more" type="button" aria-expanded={true} aria-label={t.work.showFewer} onClick={() => setTagsExpanded(false)}>
               {t.work.showLess}
             </button>
           )}
