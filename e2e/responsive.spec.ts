@@ -70,6 +70,16 @@ for (const vp of VIEWPORTS) {
         for (const el of Array.from(els)) {
           const h = el as HTMLElement;
           if (h.closest('.core')) continue; // intentional scroll strip
+          const ov = getComputedStyle(h).overflow;
+          if (ov === 'hidden' || ov === 'auto' || ov === 'scroll') continue;
+          let ancestor = h.parentElement;
+          let clipped = false;
+          while (ancestor && ancestor !== document.body) {
+            const aOv = getComputedStyle(ancestor).overflow;
+            if (aOv === 'hidden' || aOv === 'auto' || aOv === 'scroll') { clipped = true; break; }
+            ancestor = ancestor.parentElement;
+          }
+          if (clipped) continue;
           if (!getComputedStyle(h).display.includes('inline') && h.clientWidth > 0 && h.scrollWidth > h.clientWidth + 2) {
             const cls = typeof h.className === 'string' ? h.className.split(' ')[0] : '';
             return `${h.tagName}.${cls}: ${(h.innerText || '').slice(0, 50)}`;

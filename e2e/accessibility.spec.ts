@@ -20,7 +20,14 @@ test.describe('Accessibility (WCAG 2.2)', () => {
       const img = images.nth(i);
       const alt = await img.getAttribute('alt');
       expect(alt, `Image ${i} missing alt`).not.toBeNull();
-      expect(alt!.length, `Image ${i} has empty alt`).toBeGreaterThan(0);
+      const isDecorative = await img.evaluate((el) => {
+        return !!el.closest('[aria-hidden="true"]');
+      });
+      if (isDecorative) {
+        expect(alt, `Image ${i} decorative but should have empty alt`).toBe('');
+      } else {
+        expect(alt!.length, `Image ${i} has empty alt`).toBeGreaterThan(0);
+      }
     }
   });
 

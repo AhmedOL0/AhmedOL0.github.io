@@ -955,7 +955,7 @@ main{overflow-x:clip}
   .process-flow{flex-direction:row;gap:0;padding-top:0;align-items:stretch}
   .process-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding-bottom:0;padding-right:0;grid-template-columns:none;gap:0}
   .process-step:hover{transform:translateY(-4px)}
-  .process-step:not(:last-child)::after{content:"";position:absolute;top:18px;left:calc(50% + 26px);right:calc(-50% + 26px);height:1px;background:linear-gradient(90deg,var(--gold-deep),var(--line-soft));z-index:1}
+  .process-step:not(:last-child)::after{content:"";position:absolute;top:18px;left:calc(50% + 26px);width:calc(50% - 26px);height:1px;background:linear-gradient(90deg,var(--gold-deep),var(--line-soft));z-index:1}
   .process-marker{align-items:center}
   .process-line{display:none}
   .process-card{width:100%;max-width:160px;padding:20px 16px}

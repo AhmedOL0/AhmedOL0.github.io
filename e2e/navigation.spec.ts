@@ -81,24 +81,25 @@ test.describe('Navigation & Interaction', () => {
 
   test('back-to-top button gets show class on scroll', async ({ page }) => {
     const toTopBtn = page.locator('#toTop');
-    // Button exists in DOM
     await expect(toTopBtn).toBeAttached();
 
     // Before scroll: no .show class
     const initialClass = await toTopBtn.getAttribute('class');
     expect(initialClass, 'no show class at top').not.toContain('show');
 
-    // After scrolling down: hidden, so it never sits on content being read
-    await page.evaluate(() => window.scrollTo(0, 1000));
-    await page.waitForTimeout(400);
+    // Scroll well past the 700px threshold
+    await page.evaluate(() => window.scrollTo(0, 2000));
+    await page.waitForTimeout(500);
     const scrolledClass = await toTopBtn.getAttribute('class');
     expect(scrolledClass, 'hidden while scrolling down').not.toContain('show');
 
-    // After scrolling up: visible again
-    await page.evaluate(() => window.scrollTo(0, 990));
-    await page.waitForTimeout(400);
-    const upClass = await toTopBtn.getAttribute('class');
-    expect(upClass, 'show class after scrolling up').toContain('show');
+    // Scroll up — use waitForFunction instead of fixed timeout for Firefox compat
+    await page.evaluate(() => window.scrollTo(0, 1500));
+    await page.waitForFunction(
+      () => document.getElementById('toTop')?.classList.contains('show'),
+      { timeout: 2000 },
+    );
+    expect(await toTopBtn.getAttribute('class'), 'show class after scrolling up').toContain('show');
   });
 
   test('CV download link works', async ({ page }) => {

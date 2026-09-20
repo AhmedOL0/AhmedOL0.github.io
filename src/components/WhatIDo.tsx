@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import Section from './Section';
 import { useLang } from '../i18n-data';
 
@@ -45,6 +45,7 @@ export default function WhatIDo() {
 function CapabilityCard({ cap, card, num }: { cap: { title: string; desc: string; details: string }; card: typeof CARDS[number]; num: number }) {
   const { t } = useLang();
   const [open, setOpen] = useState(false);
+  const detailsId = useId();
   return (
     <div className={`cap-card cap-card--${card.accent}`}>
       <div className="cap-card-head">
@@ -57,11 +58,11 @@ function CapabilityCard({ cap, card, num }: { cap: { title: string; desc: string
       </div>
       <h3 className="cap-title">{cap.title}</h3>
       <p className="cap-desc">{cap.desc}</p>
-      <button className="cap-toggle" onClick={() => setOpen(!open)} aria-expanded={open}>
+      <button className="cap-toggle" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls={detailsId}>
         <span className="cap-toggle-text">{open ? t.whatIDo.showLess : t.whatIDo.showDetails}</span>
         <svg className={`cap-chevron${open ? ' open' : ''}`} width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 4.5l3 3 3-3"/></svg>
       </button>
-      <div className={`cap-details-wrap${open ? ' open' : ''}`}>
+      <div id={detailsId} className={`cap-details-wrap${open ? ' open' : ''}`} role="region" aria-label={cap.title}>
         <p className="cap-details">{cap.details}</p>
       </div>
     </div>
