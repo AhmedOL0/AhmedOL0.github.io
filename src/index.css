@@ -727,13 +727,18 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .hero-float:hover .hero-float-ic{background:linear-gradient(135deg,rgba(201,168,118,.2),rgba(201,168,118,.08));color:var(--gold-hi);box-shadow:0 0 12px rgba(201,168,118,.15)}
 .hero-float:hover .hero-float-tx{color:rgba(255,255,255,.95)}
 
-/* Only 2 cards: anchored to the top-right / bottom-left corners of the visual,
-   pulled 4% outside it so they clear the photo at every size (they used to sit
-   on the portrait's shoulder and cut through the orbit ring). On desktop they
-   end up fully outside the ring; on stacked layouts only the hairline passes
-   behind them. */
-.hero-float--tr{top:-4%;right:-4%;animation:floatA 5s ease-in-out infinite}
-.hero-float--bl{bottom:-4%;left:-4%;animation:floatB 5.5s ease-in-out infinite}
+/* Anchored just inside the top-right / bottom-left corners: the orbit ring
+   passes behind the chips (kissing the visual instead of floating off in the
+   empty corner like the -4% anchor) while the portrait keeps ~8-15px of air -
+   the old 8%/12% values sat on the portrait's shoulder. Desktop pulls in
+   further (7% vertical) where the container is bigger; stacked layouts stay at
+   2% because the photo fills most of the square there. */
+.hero-float--tr{top:2%;right:4%;animation:floatA 5s ease-in-out infinite}
+.hero-float--bl{bottom:2%;left:4%;animation:floatB 5.5s ease-in-out infinite}
+@media(min-width:960px){
+  .hero-float--tr{top:7%;right:4%}
+  .hero-float--bl{bottom:7%;left:4%}
+}
 
 @keyframes floatA{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 @keyframes floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
