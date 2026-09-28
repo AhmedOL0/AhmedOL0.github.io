@@ -27,7 +27,7 @@ export type TechCategory = { name: string; items: string[] };
 export type Dict = {
   dir: 'ltr' | 'rtl';
   nav: { home: string; whatIDo: string; work: string; experience: string; behind: string; contact: string; resume: string; skipToContent: string; langChanged: string };
-  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede: string; ctaWork: string; ctaContact: string; statsLabels: [string, string, string]; personalityA: string; personalityB: string; avail: string; floatDev: string; floatProblem: string; floatTeam: string; floatImpact: string };
+  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede: string; typingPrefix: string; ctaWork: string; ctaContact: string; statsLabels: [string, string, string]; personalityA: string; personalityB: string; avail: string; floatDev: string; floatProblem: string; floatTeam: string; floatImpact: string };
   whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
@@ -40,10 +40,11 @@ export type Dict = {
     kicker: string; title: string; sub: string; subEm: string; subEnd: string;
     name: string; namePh: string; email: string; emailPh: string; msg: string; msgPh: string;
     send: string; sending: string; success: string; error: string;
+    mailto: string;
     respondTime: string; retry: string;
     direct: string; phone: string; linkedin: string; github: string;
   };
-  footer: { top: string; elsewhere: string; pageTitle: string };
+  footer: { top: string; elsewhere: string; explore: string; built: string; pageTitle: string };
   dock: { home: string; whatIDo: string; work: string; contact: string; lang: string; nav: string; footerNav: string; toggle: string; resume: string; linkedin: string; github: string; email: string; backToTop: string };
 };
 
@@ -61,7 +62,8 @@ const en: Dict = {
   nav: { home: 'Home', whatIDo: 'What I Do', work: 'Work', experience: 'Experience', behind: 'Tech Stack', contact: 'Contact', resume: 'Résumé', skipToContent: 'Skip to content', langChanged: 'Language changed to English' },
   hero: {
     badge: 'Open to PFE internship', titleA: 'Building ', titleEm: 'complete products', titleB: ', not just features.',
-    lede: 'I\'m a full-stack software engineer who builds and tests end-to-end digital products, from the first line of code to a running application people actually use.',
+    lede: 'I\'m Ahmed Ouarrali, a full-stack software engineer who builds and tests end-to-end digital products, from the first line of code to a running application people actually use.',
+    typingPrefix: 'I build with',
     ctaWork: 'Browse production work', ctaContact: 'Get in touch',
     statsLabels: ['Projects shipped', 'Platforms', 'Internships completed'],
     personalityA: 'A student', personalityB: 'Who ships production code between lectures.',
@@ -119,16 +121,16 @@ const en: Dict = {
     ],
   },
   exp: {
-    kicker: 'Track record', title: 'Experience & education.',
+    kicker: 'Track record', title: 'The roles I\'ve held.',
     jobs: [
       { when: 'JUN 2026 – SEP 2026 · AGADIR, ON-SITE', title: 'End-of-year project (PFA): Full-Stack Developer', org: 'Zorium, Technoparc Agadir', where: 'OdemLab platform · team of four',
         points: ['Owned backend business modules: orders, products, payments, auth, GDPR', 'Hardened the money paths: server-side pricing, idempotent checkout, audited order lifecycle', 'Shipped to Cloud Run: zero-traffic deploy, health check, promotion, auto-rollback on failure'] },
       { when: 'JUL 2025 – SEP 2025 · REMOTE', title: 'Full-Stack Developer Intern', org: 'MOUSSA SOFT · Agadir', where: 'Laravel · MySQL · Bootstrap',
         points: ['Built MediCare: patient-doctor booking, appointment scheduling, PDF report generation, Chart.js dashboards'] },
-      { when: 'JUN 2023 – AUG 2023', title: 'QA Automation Intern', org: 'Web regression suites', where: 'Python · Selenium WebDriver · Page Objects',
-        points: ['Replaced a manual campaign with automated non-regression suites, one change point per UI change'] },
       { when: 'JUN 2024 – JUN 2024 · AGADIR, ON-SITE', title: 'End-of-study internship (DUT): Embedded Developer', org: 'MOUSSA SOFT · Agadir', where: 'ESP8266 · VL53L0X · PHP · MySQL',
         points: ['Built a cane counting system with ESP8266 + laser sensor, OLED display, Wi-Fi to PHP/MySQL dashboard', 'Designed 3D-printed enclosures in SolidWorks, fabricated with Creality CR-10 Max'] },
+      { when: 'JUN 2023 – AUG 2023', title: 'QA Automation Intern', org: 'Web regression suites', where: 'Python · Selenium WebDriver · Page Objects',
+        points: ['Replaced a manual campaign with automated non-regression suites, one change point per UI change'] },
     ],
   },
   edu: {
@@ -165,11 +167,12 @@ const en: Dict = {
     name: 'Your name', namePh: 'Your full name', email: 'Email address', emailPh: 'you@company.com',
     msg: 'Project details', msgPh: 'What are you building, and when?', send: 'Send message', sending: '...',
     success: '\u2713 Message sent. I\'ll get back to you soon.', error: '\u2717 Something went wrong. Try emailing me directly.',
+    mailto: '\u2713 Your email app is opening with the message ready to send.',
     respondTime: 'Typically respond within 24 hours',
     retry: 'Try again',
     direct: 'Direct email', phone: 'Phone', linkedin: 'LinkedIn', github: 'GitHub',
   },
-  footer: { top: 'Top', elsewhere: 'Elsewhere', pageTitle: 'Ahmed Ouarrali, Full-Stack Software Engineer | PFE Internship' },
+  footer: { top: 'Top', elsewhere: 'Elsewhere', explore: 'Explore', built: 'Built with React, Tailwind CSS \u00b7 Deployed on GitHub Pages', pageTitle: 'Ahmed Ouarrali, Full-Stack Software Engineer | PFE Internship' },
   dock: { home: 'Home', whatIDo: 'What I Do', work: 'Work', contact: 'Contact', lang: 'Language', nav: 'Quick navigation', footerNav: 'Footer navigation', toggle: 'Toggle light / dark mode', resume: 'Résumé', linkedin: 'LinkedIn', github: 'GitHub', email: 'Email', backToTop: 'Back to top' },
 };
 
@@ -178,7 +181,8 @@ const fr: Dict = {
   nav: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', experience: 'Parcours', behind: 'Technologies', contact: 'Contact', resume: 'CV', skipToContent: 'Aller au contenu', langChanged: 'Langue changée en français' },
   hero: {
     badge: 'Disponible pour un PFE', titleA: 'Des ', titleEm: 'produits complets', titleB: ', pas juste des fonctionnalit\u00e9s.',
-    lede: 'Je suis ing\u00e9nieur logiciel full-stack qui construis et teste des produits num\u00e9riques complets, de la premi\u00e8re ligne de code \u00e0 une application qui tourne vraiment.',
+    lede: 'Je suis Ahmed Ouarrali, ing\u00e9nieur logiciel full-stack qui construis et teste des produits num\u00e9riques complets, de la premi\u00e8re ligne de code \u00e0 une application qui tourne vraiment.',
+    typingPrefix: 'Je construis avec',
     ctaWork: 'Voir mes projets', ctaContact: 'Me contacter',
     statsLabels: ['Projets livr\u00e9s', 'Plateformes', 'Stages compl\u00e9t\u00e9s'],
     personalityA: '\u00c9tudiant', personalityB: 'Qui livre du code en production entre les cours.',
@@ -236,16 +240,16 @@ const fr: Dict = {
     ],
   },
   exp: {
-    kicker: 'Parcours', title: 'Exp\u00e9rience et formation.',
+    kicker: 'Parcours', title: 'Les postes que j\u2019ai occup\u00e9s.',
     jobs: [
       { when: 'JUIN 2026 \u2013 SEPT. 2026 \u00b7 AGADIR, SUR SITE', title: 'Projet de fin d\u2019ann\u00e9e (PFA): D\u00e9veloppeur Full-Stack', org: 'Zorium, Technoparc Agadir', where: 'Plateforme OdemLab \u00b7 \u00e9quipe de quatre',
         points: ['Modules m\u00e9tier backend : commandes, produits, paiements, auth, RGPD', 'Chemins mon\u00e9taires fiabilis\u00e9s : tarification serveur, checkout idempotent, cycle audité', 'Livraison Cloud Run : d\u00e9ploiement sans trafic, health check, promotion, rollback auto'] },
       { when: 'JUIL. 2025 \u2013 SEPT. 2025 \u00b7 DISTANCIEL', title: 'Stagiaire D\u00e9veloppeur Full-Stack', org: 'MOUSSA SOFT \u00b7 Agadir', where: 'Laravel \u00b7 MySQL \u00b7 Bootstrap',
         points: ['MediCare : r\u00e9servation patients-m\u00e9decins, planning, g\u00e9n\u00e9ration de rapports PDF, tableaux Chart.js'] },
-      { when: 'JUIN 2023 \u2013 AO\u00fbT 2023', title: 'Stagiaire QA Automatisation', org: 'Suites de non-r\u00e9gression web', where: 'Python \u00b7 Selenium WebDriver \u00b7 Page Objects',
-        points: ['Campagne manuelle remplac\u00e9e par des suites automatis\u00e9es, un point de changement par \u00e9cran'] },
       { when: 'JUIN 2024 \u2013 JUIN 2024 \u00b7 AGADIR, SUR SITE', title: 'Stage de fin d\u2019\u00e9tudes (DUT): D\u00e9veloppeur Embarqu\u00e9', org: 'MOUSSA SOFT \u00b7 Agadir', where: 'ESP8266 \u00b7 VL53L0X \u00b7 PHP \u00b7 MySQL',
         points: ['Syst\u00e8me de comptage de cannes avec ESP8266 + capteur laser, \u00e9cran OLED, Wi-Fi vers tableau PHP/MySQL', 'Bo\u00eatiers 3D imprim\u00e9s con\u00e7us dans SolidWorks, fabriqu\u00e9s avec Creality CR-10 Max'] },
+      { when: 'JUIN 2023 \u2013 AO\u00fbT 2023', title: 'Stagiaire QA Automatisation', org: 'Suites de non-r\u00e9gression web', where: 'Python \u00b7 Selenium WebDriver \u00b7 Page Objects',
+        points: ['Campagne manuelle remplac\u00e9e par des suites automatis\u00e9es, un point de changement par \u00e9cran'] },
     ],
   },
   edu: {
@@ -282,11 +286,12 @@ const fr: Dict = {
     name: 'Votre nom', namePh: 'Votre nom complet', email: 'Adresse e-mail', emailPh: 'vous@entreprise.com',
     msg: 'D\u00e9tails du projet', msgPh: 'Que construisez-vous, et pour quand ?', send: 'Envoyer', sending: '...',
     success: '\u2713 Message envoy\u00e9. Je vous r\u00e9ponds vite.', error: '\u2717 Une erreur s\u2019est produite. \u00c9crivez-moi directement.',
+    mailto: '\u2713 Votre application e-mail s\u2019ouvre avec le message pr\u00eat \u00e0 envoyer.',
     respondTime: 'Je r\u00e9ponds g\u00e9n\u00e9ralement sous 24 heures',
     retry: 'R\u00e9essayer',
     direct: 'E-mail direct', phone: 'T\u00e9l\u00e9phone', linkedin: 'LinkedIn', github: 'GitHub',
   },
-  footer: { top: 'Haut', elsewhere: 'Ailleurs', pageTitle: 'Ahmed Ouarrali, D\u00e9veloppeur Full-Stack | Stage PFE' },
+  footer: { top: 'Haut', elsewhere: 'Ailleurs', explore: 'Explorer', built: 'Construit avec React, Tailwind CSS \u00b7 D\u00e9ploy\u00e9 sur GitHub Pages', pageTitle: 'Ahmed Ouarrali, D\u00e9veloppeur Full-Stack | Stage PFE' },
   dock: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', contact: 'Contact', lang: 'Langue', nav: 'Navigation rapide', footerNav: 'Navigation du pied de page', toggle: 'Basculer mode clair / sombre', resume: 'CV', linkedin: 'LinkedIn', github: 'GitHub', email: 'E-mail', backToTop: 'Retour en haut' },
 };
 

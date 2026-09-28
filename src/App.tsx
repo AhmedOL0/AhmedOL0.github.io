@@ -41,7 +41,7 @@ function Footer() {
   const { t } = useLang();
   const cols: { head: string; links: { label: string; href: string }[] }[] = [
     { head: t.nav.work, links: [{ label: 'OdemLab', href: '#work-odemlab' }, { label: 'FitTrack', href: '#work-fittrack' }, { label: 'Smart Campus', href: '#work-campus' }] },
-    { head: t.nav.whatIDo, links: [{ label: t.nav.experience, href: '#experience' }, { label: t.nav.behind, href: '#behind' }, { label: t.nav.contact, href: '#contact' }] },
+    { head: t.footer.explore, links: [{ label: t.nav.experience, href: '#experience' }, { label: t.nav.behind, href: '#behind' }, { label: t.nav.contact, href: '#contact' }] },
     { head: t.footer.elsewhere, links: [{ label: 'GitHub', href: 'https://github.com/AhmedOL0' }, { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ahmed-ouarrali' }, { label: 'Email', href: 'mailto:ahmedouarrali12@gmail.com' }] },
   ];
   return (
@@ -82,7 +82,7 @@ function Footer() {
       </nav>
       <div className="mx-auto max-w-[1120px] mt-10 border-t pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 footer-bottom" style={{ borderColor: 'var(--line-soft)' }}>
         <p className="text-[.72rem] font-mono-d tracking-[.06em] order-2 sm:order-1 footer-built">
-          Built with React, Tailwind CSS &middot; Deployed on GitHub Pages
+          {t.footer.built}
         </p>
         <div className="flex items-center gap-4 order-1 sm:order-2">
           <a href="assets/CV_Ahmed_Ouarrali.pdf" download className="btn btn-sm btn-ghost">
