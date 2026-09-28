@@ -727,9 +727,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .hero-float:hover .hero-float-ic{background:linear-gradient(135deg,rgba(201,168,118,.2),rgba(201,168,118,.08));color:var(--gold-hi);box-shadow:0 0 12px rgba(201,168,118,.15)}
 .hero-float:hover .hero-float-tx{color:rgba(255,255,255,.95)}
 
-/* Only 2 cards: top-right and bottom-left */
-.hero-float--tr{top:8%;right:0;animation:floatA 5s ease-in-out infinite}
-.hero-float--bl{bottom:12%;left:0;animation:floatB 5.5s ease-in-out infinite}
+/* Only 2 cards: anchored to the top-right / bottom-left corners of the visual,
+   pulled 4% outside it so they clear the photo at every size (they used to sit
+   on the portrait's shoulder and cut through the orbit ring). On desktop they
+   end up fully outside the ring; on stacked layouts only the hairline passes
+   behind them. */
+.hero-float--tr{top:-4%;right:-4%;animation:floatA 5s ease-in-out infinite}
+.hero-float--bl{bottom:-4%;left:-4%;animation:floatB 5.5s ease-in-out infinite}
 
 @keyframes floatA{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 @keyframes floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
@@ -897,11 +901,17 @@ main{overflow-x:clip}
   .hero-visual{width:calc(var(--hero-p) + 40px);max-width:calc(var(--hero-p) + 40px);height:calc(var(--hero-p) + 40px);aspect-ratio:auto;margin-top:8px}
   .hero-photo-lg{width:var(--hero-p);height:var(--hero-p)}
   .hero-orbit{width:calc(var(--hero-p) + 40px);height:calc(var(--hero-p) + 40px)}
-  /* The floating chips are wider than the portrait at this size - they would cover it */
-  .hero-float{display:none}
   .hero-eyebrow{margin-bottom:12px}
   .hero-lede{margin-top:6px}
   .hero-actions{margin-top:0}
+}
+/* Stacked phones (under ~1000px tall): the bottom of the portrait column sits in
+   the dock band, so a bottom-corner chip slides behind the dock (seen at 390x844
+   and 390x926 - only ~1024px-tall tablets clear it). Decorative chips stay on
+   desktop and on tall tablets; the short-viewport ladder above hides them below
+   840px for the portrait-covering reason. */
+@media(max-width:959px) and (max-height:999px){
+  .hero-float{display:none}
 }
 /* Very short viewports (landscape phones, short windows - any width): nothing but
    empty hero space may sit in the dock band, so top-anchor the hero, trim the type
@@ -920,6 +930,13 @@ main{overflow-x:clip}
   .hero-visual{max-width:170px;margin-top:8px}
   .hero-photo-lg{width:140px;height:140px}
   .hero-orbit{width:170px;height:170px}
+  .hero-float{display:none}
+}
+/* Desktop windows short enough that the bottom-corner chip rides the dock band.
+   Measured at 1280w: overlap at 575-613 and 651-700, under 18px of air until
+   740; from 741 up there is always >=20px. Decorative chips show only where
+   they float free (phones/tablets are covered by the stacked rule above). */
+@media(max-height:740px){
   .hero-float{display:none}
 }
 /* Very short windows (<=430px): the copy itself must shrink to keep the CTAs above
