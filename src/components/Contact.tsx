@@ -12,7 +12,7 @@ function Spinner() {
 
 export default function Contact() {
   const { t } = useLang();
-  const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'error' | 'mailto'>('idle');
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
@@ -31,8 +31,17 @@ export default function Contact() {
     const formData = new FormData(form);
     const accessKey = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined;
     if (!accessKey) {
-      setStatus('error');
+      // No form backend configured (local/preview builds): hand the message to the
+      // visitor's mail client instead of failing, so the form still reaches me.
+      const name = String(formData.get('name') ?? '');
+      const email = String(formData.get('email') ?? '');
+      const message = String(formData.get('message') ?? '');
+      const subject = encodeURIComponent(`Portfolio contact \u2014 ${name}`);
+      const body = encodeURIComponent(`${message}\n\n\u2014 ${name}${email ? ` <${email}>` : ''}`);
+      setStatus('mailto');
+      form.reset();
       resetStatus();
+      window.location.href = `mailto:ahmedouarrali12@gmail.com?subject=${subject}&body=${body}`;
       return;
     }
     formData.append('access_key', accessKey);
@@ -104,6 +113,18 @@ export default function Contact() {
               </svg>
               <p className="form-success-text">{t.contact.success}</p>
               <p className="form-success-sub">{t.contact.respondTime}</p>
+            </div>
+          )}
+          {status === 'mailto' && (
+            <div className="form-success-box" role="status" aria-live="polite">
+              <svg viewBox="0 0 52 52" style={{ width: 44, height: 44 }}>
+                <circle cx="26" cy="26" r="24" fill="none" stroke="var(--sage)" strokeWidth="2.5"
+                  style={{ strokeDasharray: 151, strokeDashoffset: 151, animation: 'check-circle .5s ease .1s forwards' }} />
+                <path d="M15 27l7 7 15-15" fill="none" stroke="var(--sage)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                  style={{ strokeDasharray: 40, strokeDashoffset: 40, animation: 'check-mark .3s ease .45s forwards' }} />
+              </svg>
+              <p className="form-success-text">{t.contact.mailto}</p>
+              <p className="form-success-sub"><a href="mailto:ahmedouarrali12@gmail.com">ahmedouarrali12@gmail.com</a></p>
             </div>
           )}
           {status === 'error' && (
