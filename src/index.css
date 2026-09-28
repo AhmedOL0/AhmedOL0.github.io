@@ -458,6 +458,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 /* Hero typing cycler */
 .hero-typing{display:inline-flex;align-items:center;gap:2px;font-family:var(--mono);font-size:.78rem;color:var(--gold);letter-spacing:.02em;min-height:1.4em;margin-top:4px;opacity:0;animation:fadeUp .5s ease 1.2s forwards}
 .hero-typing-word{display:inline-block;transition:opacity .2s}
+.hero-typing-prefix{color:var(--muted);margin-right:.5ch}
 .hero-typing-cursor{display:inline-block;width:1px;height:1em;background:var(--gold);margin-left:2px;animation:blink 1s step-end infinite}
 @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
@@ -696,6 +697,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 
 /* Hero actions */
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+/* Full-viewport hero: the floating dock must sit on empty hero space at rest,
+   never on section 01's heading (which otherwise lands in the dock band). */
+.hero-block--top{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
 .hero-lede{color:#c8c2b8;font-size:clamp(.92rem,1.6vw,1.02rem);line-height:1.65;max-width:38ch;margin-top:10px}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;color:var(--gold);margin-bottom:20px;padding:6px 14px;border-radius:999px;background:rgba(201,168,118,.06);border:1px solid rgba(201,168,118,.12)}
 .hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--sage);box-shadow:0 0 8px rgba(107,138,94,.6);animation:beaconPulse 2s ease-in-out infinite}
@@ -874,9 +878,63 @@ main{overflow-x:clip}
 }
 /* Landscape phones: vertical space is the constraint - compress everything */
 @media(max-height:500px) and (orientation:landscape){
-  .hero-block{padding-top:44px;padding-bottom:80px}
+  .hero-block{padding-top:24px;padding-bottom:80px}
   section{padding-top:32px;padding-bottom:32px}
   .footer-block{padding-top:28px;padding-bottom:96px}
+}
+/* Short single-column hero: below 960px the portrait stacks UNDER the copy, and the
+   section starts ~48px down the page, so `min-height:100svh` pushes the fold through
+   the photo - the fixed dock then lands on the face (and at worst on section 01).
+   Anchor the stacked hero to the top so all leftover space falls BELOW the copy -
+   exactly where the dock floats - and scale the portrait with the remaining height
+   (`--hero-p` = space left after header + copy + dock band, clamped to 110..200px):
+   the copy clears the dock at every height, and the portrait only shrinks when the
+   viewport gets shorter instead of growing into the dock band. */
+@media(max-width:959px) and (max-height:840px){
+  .hero-block--top{--hero-p:clamp(110px, calc(100svh - 560px), 200px);justify-content:flex-start}
+  .hero-block{padding-bottom:16px}
+  .hero-inner{gap:12px}
+  .hero-visual{width:calc(var(--hero-p) + 40px);max-width:calc(var(--hero-p) + 40px);height:calc(var(--hero-p) + 40px);aspect-ratio:auto;margin-top:8px}
+  .hero-photo-lg{width:var(--hero-p);height:var(--hero-p)}
+  .hero-orbit{width:calc(var(--hero-p) + 40px);height:calc(var(--hero-p) + 40px)}
+  /* The floating chips are wider than the portrait at this size - they would cover it */
+  .hero-float{display:none}
+  .hero-eyebrow{margin-bottom:12px}
+  .hero-lede{margin-top:6px}
+  .hero-actions{margin-top:0}
+}
+/* Very short viewports (landscape phones, short windows - any width): nothing but
+   empty hero space may sit in the dock band, so top-anchor the hero, trim the type
+   and drop the decorative typing line so even the CTAs clear the dock. */
+@media(max-height:650px){
+  .hero-block--top{justify-content:flex-start}
+  .hero-title{font-size:clamp(1.5rem,2.4vw,1.9rem)}
+  .hero-lede{font-size:.85rem;line-height:1.5}
+  .hero-eyebrow{margin-bottom:12px}
+  .hero-lede{margin-top:6px}
+  .hero-actions{margin-top:0}
+  .hero-typing{display:none}
+}
+/* Short wide viewports: the full 420px portrait column would drop into the dock band */
+@media(max-height:560px){
+  .hero-visual{max-width:170px;margin-top:8px}
+  .hero-photo-lg{width:140px;height:140px}
+  .hero-orbit{width:170px;height:170px}
+  .hero-float{display:none}
+}
+/* Very short windows (<=430px): the copy itself must shrink to keep the CTAs above
+   the dock - compact type and buttons, tighter top offset. */
+@media(max-height:430px){
+  .hero-block{padding-top:16px}
+  .hero-eyebrow{margin-bottom:8px;padding:4px 10px;font-size:.68rem}
+  .hero-title{font-size:clamp(1.4rem,2.2vw,1.7rem)}
+  .hero-lede{font-size:.78rem;line-height:1.45}
+  .btn{padding:8px 14px;min-height:36px;font-size:.78rem}
+}
+/* Very short viewports (legacy small phones): even the smallest portrait cannot
+   clear the dock band - the hero becomes copy-only. */
+@media(max-width:959px) and (max-height:639px){
+  .hero-visual{display:none}
 }
 
 /* ── What I Do: capability cards ── */
