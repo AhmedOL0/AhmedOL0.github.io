@@ -1,15 +1,11 @@
 import { test, expect, type Page } from '@playwright/test';
 
 /**
- * The terminal preloader overlays the page for ~3.1s after mount. Screenshotting
- * on a fixed 2500ms timer raced it - the capture sometimes caught the preloader,
- * sometimes the settled hero (that was the intermittent "mobile viewport" failure,
- * and some baselines even recorded the preloader). Waiting for it to unmount makes
- * every capture a fixed offset after mount: same hero state, same typing word.
+ * Captures run a fixed offset after mount so every screenshot starts from the
+ * same hero state (animations disabled below).
  */
 async function gotoSettled(page: Page) {
   await page.goto('/');
-  await expect(page.locator('.loader')).toBeHidden({ timeout: 20000 });
   await page.waitForTimeout(700);
 }
 

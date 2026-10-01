@@ -1,6 +1,5 @@
-import { Suspense, lazy, useCallback, useEffect, useState, Component, type ReactNode } from 'react';
+import { Component, useEffect, type ReactNode } from 'react';
 import Dock, { TopPills } from './components/Dock';
-import Preloader from './components/Preloader';
 import Hero from './components/Hero';
 import WhatIDo from './components/WhatIDo';
 import HowIWork from './components/HowIWork';
@@ -11,11 +10,7 @@ import AboutMe from './components/AboutMe';
 import Contact from './components/Contact';
 import { LangProvider } from './i18n';
 import { useLang } from './i18n-data';
-import { useActiveSection, useBackToTop, useMagnetic, useProgress, useSpotlight, useTheme } from './hooks';
-
-const Stars = lazy(() => import('./components/Stars'));
-const CursorGlow = lazy(() => import('./components/CursorGlow'));
-const CursorTrail = lazy(() => import('./components/CursorTrail'));
+import { useActiveSection, useBackToTop, useProgress, useSpotlight, useTheme } from './hooks';
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
   state = { hasError: false };
@@ -46,7 +41,6 @@ function Footer() {
   ];
   return (
     <footer className="relative z-[1] footer-block border-t text-[.85rem] footer-container" style={{ overflow: 'hidden' }}>
-      <div className="foot-mark mx-auto max-w-[1120px]" aria-hidden="true">AO</div>
       <nav className="mx-auto grid max-w-[1120px] grid-cols-2 gap-6 sm:gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]" aria-label={t.dock.footerNav}>
         <div>
           <p className="font-serif-d text-xl sm:text-2xl font-bold footer-brand">
@@ -103,61 +97,21 @@ function Site() {
   const progress = useProgress();
   const showTop = useBackToTop();
   const active = useActiveSection(STICKY_SECTIONS);
-  const [ready, setReady] = useState(false);
-  const [loading, setLoading] = useState(() => {
-    try {
-      return !sessionStorage.getItem('ao-seen');
-    } catch {
-      return true;
-    }
-  });
   useSpotlight();
-  useMagnetic();
   useEffect(() => { document.title = t.footer.pageTitle; }, [t.footer.pageTitle]);
-  // Stable identity: Preloader's timers must survive parent re-renders
-  // (scroll/progress), otherwise its effect cleanup reschedules them forever.
-  const handlePreloaderDone = useCallback(() => {
-    try {
-      sessionStorage.setItem('ao-seen', '1');
-    } catch { /* ignore */ }
-    setLoading(false);
-  }, []);
-  useEffect(() => {
-    if (loading) return;
-    const t = setTimeout(() => setReady(true), 30);
-    return () => clearTimeout(t);
-  }, [loading]);
 
   return (
     <>
-      {loading && (
-        <Preloader onDone={handlePreloaderDone} />
-      )}
-      <ErrorBoundary>
-        <Suspense fallback={null}>
-          <CursorGlow />
-          <CursorTrail />
-        </Suspense>
-      </ErrorBoundary>
       <a href="#main" className="skip-link">{t.nav.skipToContent}</a>
       <div className="grid-bg" aria-hidden="true" />
-      <ErrorBoundary>
-        <Suspense fallback={null}>
-          <Stars />
-        </Suspense>
-      </ErrorBoundary>
       <div className="orb orb-1" aria-hidden="true" />
       <div className="orb orb-2" aria-hidden="true" />
-      <div className="orb orb-3" aria-hidden="true" />
-      <div className="orb orb-4" aria-hidden="true" />
       <div id="spot" aria-hidden="true" />
       <div id="progress" style={{ width: `${progress}%` }} aria-hidden="true" />
       <div className="grain" aria-hidden="true" />
       <TopPills theme={theme} onToggle={toggle} />
       <Dock active={active} theme={theme} onToggle={toggle} />
-      <div className="relative z-[1]" style={{ opacity: ready ? 1 : 0 }}>
-        <Hero />
-      </div>
+      <Hero />
       <main id="main" tabIndex={-1} className="relative z-[1]">
         <WhatIDo />
         <HowIWork />
@@ -185,7 +139,9 @@ function Site() {
 export default function App() {
   return (
     <LangProvider>
-      <Site />
+      <ErrorBoundary>
+        <Site />
+      </ErrorBoundary>
     </LangProvider>
   );
 }

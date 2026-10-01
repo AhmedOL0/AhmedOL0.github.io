@@ -33,7 +33,7 @@ function TechIcon({ name }: { name: string }) {
 
 const WIDE_CATS = new Set(['Frontend', 'Backend']);
 
-const CAT_ACCENTS = ['amber', 'sage', 'gold', 'rust', 'sage', 'amber'];
+const CAT_ACCENTS = ['amber', 'sage', 'gold', 'rust', 'sage', 'amber', 'gold'];
 
 export default function BehindTheWork() {
   const { t } = useLang();

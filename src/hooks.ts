@@ -139,37 +139,6 @@ export function useActiveSection(ids: readonly string[]) {
   return active;
 }
 
-export function useMagnetic() {
-  useEffect(() => {
-    if (
-      window.matchMedia('(pointer:coarse)').matches ||
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    ) {
-      return;
-    }
-    const els = Array.from(document.querySelectorAll<HTMLElement>('[data-magnetic]'));
-    const cleanups = els.map((el) => {
-      const strength = 0.32;
-      const onMove = (e: MouseEvent) => {
-        const r = el.getBoundingClientRect();
-        const dx = e.clientX - (r.left + r.width / 2);
-        const dy = e.clientY - (r.top + r.height / 2);
-        el.style.transform = `translate(${dx * strength}px,${dy * strength}px)`;
-      };
-      const onLeave = () => {
-        el.style.transform = '';
-      };
-      el.addEventListener('mousemove', onMove);
-      el.addEventListener('mouseleave', onLeave);
-      return () => {
-        el.removeEventListener('mousemove', onMove);
-        el.removeEventListener('mouseleave', onLeave);
-      };
-    });
-    return () => cleanups.forEach((fn) => fn());
-  }, []);
-}
-
 export function useBackToTop(threshold = 700) {
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -194,33 +163,4 @@ export function useBackToTop(threshold = 700) {
     };
   }, [threshold]);
   return show;
-}
-
-export function useTypingCycle(words: string[], typingMs = 70, deletingMs = 40, pauseMs = 2000) {
-  const [{ index, text, phase }, setState] = useState({ index: 0, text: '', phase: 'typing' as 'typing' | 'pause' | 'deleting' });
-
-  useEffect(() => {
-    if (words.length === 0) return;
-    const word = words[index];
-    let timer: ReturnType<typeof setTimeout>;
-
-    if (phase === 'typing') {
-      if (text.length < word.length) {
-        timer = setTimeout(() => setState(s => ({ ...s, text: word.slice(0, s.text.length + 1) })), typingMs);
-      } else {
-        timer = setTimeout(() => setState(s => ({ ...s, phase: 'pause' })), pauseMs);
-      }
-    } else if (phase === 'pause') {
-      timer = setTimeout(() => setState(s => ({ ...s, phase: 'deleting' })), pauseMs);
-    } else {
-      if (text.length > 0) {
-        timer = setTimeout(() => setState(s => ({ ...s, text: s.text.slice(0, -1) })), deletingMs);
-      } else {
-        timer = setTimeout(() => setState(s => ({ ...s, index: (s.index + 1) % words.length, phase: 'typing' })), 0);
-      }
-    }
-    return () => clearTimeout(timer);
-  }, [text, phase, index, words, typingMs, deletingMs, pauseMs]);
-
-  return text;
 }
