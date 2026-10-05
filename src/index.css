@@ -139,11 +139,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .grad-text{font-style:italic;color:var(--gold)}
 .lede{color:var(--muted)}
 
-/* Section headers — dossier: mono index, hairline rule, Newsreader title */
-.kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem}
-.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--line)}
-.sec-num{font-family:var(--mono);font-size:.72rem;color:var(--faint);letter-spacing:.14em}
-.sub{color:var(--muted);margin-top:.75rem;max-width:68ch}
+/* Section headers — dossier: mono index + hairline, serif-italic label, Newsreader title */
+.kicker{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--gold);margin:14px 0 6px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:0;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.sec-num{font-family:var(--mono);font-size:.68rem;color:var(--faint);letter-spacing:.18em}
+.sub{color:var(--muted);margin-top:12px;max-width:68ch}
+.section-block h2{font-weight:500;letter-spacing:-.01em;margin:0}
 
 /* Filters — dossier index tabs */
 .filters button{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:var(--r);padding:8px 18px;font-size:.78rem;font-family:var(--mono);cursor:pointer;transition:border-color .2s,color .2s,background .2s;letter-spacing:.06em;text-transform:uppercase}
