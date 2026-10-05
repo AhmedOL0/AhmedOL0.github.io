@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useRef } from 'react';
+import { useState } from 'react';
 import Section from './Section';
 import { useLang } from '../i18n-data';
 import { PROJECT_CATS, PROJECT_TAGS, PROJECT_THUMBS, thumbTitle } from '../i18n-data';
@@ -14,9 +14,6 @@ export default function Work() {
     all: t.filters.all, web: t.filters.web, mobile: t.filters.mobile,
     backend: t.filters.backend, ai: t.filters.ai, iot: t.filters.iot,
   };
-  const isCoarse = useMemo(() => window.matchMedia('(pointer:coarse)').matches, []);
-  const prefersReduced = useMemo(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches, []);
-  const skipTilt = isCoarse || prefersReduced;
 
   const filteredCount = t.work.projects.filter((_, i) => f === 'all' || PROJECT_CATS[i].includes(f)).length;
 
@@ -37,7 +34,7 @@ export default function Work() {
           if (f !== 'all' && !PROJECT_CATS[i].includes(f)) return null;
           const th = thumbTitle(p);
           return (
-            <Card key={f + p.title} p={p} th={th} i={i} skipTilt={skipTilt} cardId={cardIds[i]} />
+            <Card key={f + p.title} p={p} th={th} i={i} cardId={cardIds[i]} />
           );
         })}
       </div>
@@ -45,37 +42,15 @@ export default function Work() {
   );
 }
 
-function Card({ p, th, i, skipTilt, cardId }: { p: { year: string; kind: string; title: string; description: string; result?: string; note?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; skipTilt: boolean; cardId: string }) {
+function Card({ p, th, i, cardId }: { p: { year: string; kind: string; title: string; description: string; result?: string; note?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; cardId: string }) {
   const { t } = useLang();
-  const ref = useRef<HTMLDivElement>(null);
   const [tagsExpanded, setTagsExpanded] = useState(false);
-
-  const handleMove = useCallback((e: React.MouseEvent) => {
-    if (skipTilt) return;
-    const el = ref.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    const dx = (e.clientX - r.left) / r.width - 0.5;
-    const dy = (e.clientY - r.top) / r.height - 0.5;
-    el.style.transform = `perspective(950px) rotateX(${(-dy * 5).toFixed(2)}deg) rotateY(${(dx * 6).toFixed(2)}deg) translateY(-5px)`;
-    const thumb = el.querySelector('.thumb') as HTMLElement | null;
-    if (thumb) thumb.style.transform = 'scale(1.02)';
-  }, [skipTilt]);
-
-  const handleLeave = useCallback(() => {
-    if (ref.current) ref.current.style.transform = '';
-    const thumb = ref.current?.querySelector('.thumb') as HTMLElement | null;
-    if (thumb) thumb.style.transform = '';
-  }, []);
 
   return (
     <article
-      ref={ref}
       id={`work-${cardId}`}
       className="card rise" style={{ animationDelay: `${Math.min(i, 5) * 90}ms` }}
       onAnimationEnd={(e) => { e.currentTarget.classList.remove('rise'); }}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
     >
       <div className={`thumb ${PROJECT_THUMBS[i]}`}>
         <span className="tag-corner">{p.year}</span>

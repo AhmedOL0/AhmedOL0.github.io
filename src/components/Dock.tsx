@@ -72,7 +72,7 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
   return (
     <>
       <div aria-live="polite" className="sr-only">{langAnnounce}</div>
-      <a href="assets/CV_Ahmed_Ouarrali.pdf" download data-magnetic aria-label={t.dock.resume}
+      <a href="assets/CV_Ahmed_Ouarrali.pdf" download aria-label={t.dock.resume}
         className={`btn btn-sm top-left top-pill fixed left-5 top-5 z-50 md:left-8 tip${hidden ? ' top-pills-hidden' : ''}`}
         data-tip={t.dock.resume}>
         {t.dock.resume}
