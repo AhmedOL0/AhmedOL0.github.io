@@ -3,15 +3,14 @@ import { useLang } from '../i18n-data';
 function Fingerprint() {
   return (
     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
-      <path d="M24 6c-7 0-12.5 4.2-14.5 10" />
-      <path d="M24 6c7 0 12.5 4.2 14.5 10" />
-      <path d="M14 14.5C12 17 11 20 11 23.5c0 2.5.4 4.8 1.2 7" />
-      <path d="M34 14.5c2 2.5 3 5.5 3 9 0 2.5-.4 4.8-1.2 7" />
-      <path d="M17 19c-1.2 1.8-2 4-2 6.5 0 4.5 1.4 8.4 4 11.5" />
-      <path d="M31 19c1.2 1.8 2 4 2 6.5 0 4.5-1.4 8.4-4 11.5" />
-      <path d="M21 22.5c-.8 1.2-1.2 2.6-1.2 4 0 3.4 1.2 6.4 3.4 8.8" />
-      <path d="M27 22.5c.8 1.2 1.2 2.6 1.2 4 0 3.4-1.2 6.4-3.4 8.8" />
-      <circle cx="24" cy="27" r="1.4" fill="currentColor" stroke="none" />
+      <path d="M8 24c0-9 7-16 16-16s16 7 16 16" />
+      <path d="M13 24c0-6.5 5-11.5 11-11.5s11 5 11 11.5" />
+      <path d="M18 24c0-4 2.7-7 6-7s6 3 6 7" />
+      <path d="M8 24v9c0 4.5 1.2 8 3.5 11" />
+      <path d="M40 24v9c0 4.5-1.2 8-3.5 11" />
+      <path d="M18 24v5c0 4.5 1.2 8.5 3.5 11.5" />
+      <path d="M30 24v5c0 4.5-1.2 8.5-3.5 11.5" />
+      <circle cx="24" cy="27" r="1.3" fill="currentColor" stroke="none" />
     </svg>
   );
 }
