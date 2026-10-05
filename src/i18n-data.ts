@@ -28,6 +28,7 @@ export type Dict = {
   dir: 'ltr' | 'rtl';
   nav: { home: string; whatIDo: string; work: string; experience: string; behind: string; contact: string; resume: string; skipToContent: string; langChanged: string };
   hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede: string; typingPrefix: string; ctaWork: string; ctaContact: string; statsLabels: [string, string, string]; personalityA: string; personalityB: string; avail: string; floatDev: string; floatProblem: string; floatTeam: string; floatImpact: string };
+  plate: { roleLabel: string; role: string; focusLabel: string; focus: string; locLabel: string; loc: string; statusLabel: string; status: string };
   whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
@@ -69,6 +70,12 @@ const en: Dict = {
     personalityA: 'A student', personalityB: 'Who ships production code between lectures.',
     avail: 'Available for PFE \u00b7 Morocco or remote',
     floatDev: 'Full-stack shipping', floatProblem: 'Problem Solving', floatTeam: 'Team Player', floatImpact: 'End-to-end testing',
+  },
+  plate: {
+    roleLabel: 'ROLE', role: 'PFE CANDIDATE',
+    focusLabel: 'FOCUS', focus: 'BACKEND SYSTEMS & FULL-STACK',
+    locLabel: 'LOCATION', loc: 'AGADIR / TAROUDANT \u00b7 UTC+1',
+    statusLabel: 'STATUS', status: 'OPEN FOR PFE \u00b7 2026',
   },
   whatIDo: {
     kicker: 'What I do', title: 'I turn complex ideas into simple, working products.',
@@ -194,6 +201,12 @@ const fr: Dict = {
     personalityA: '\u00c9tudiant', personalityB: 'Qui livre du code en production entre les cours.',
     avail: 'Disponible pour PFE \u00b7 Maroc ou distanciel',
     floatDev: 'Full-stack', floatProblem: 'R\u00e9solution de probl\u00e8mes', floatTeam: 'Travail en \u00e9quipe', floatImpact: 'Test de bout en bout',
+  },
+  plate: {
+    roleLabel: 'R\u00d4LE', role: 'CANDIDAT PFE',
+    focusLabel: 'FOCUS', focus: 'SYST\u00c8MES BACKEND & FULL-STACK',
+    locLabel: 'BASE', loc: 'AGADIR / TAROUDANT \u00b7 UTC+1',
+    statusLabel: 'STATUT', status: 'OUVERT PFE \u00b7 2026',
   },
   whatIDo: {
     kicker: 'Ce que je fais', title: 'Je transforme des id\u00e9es complexes en produits simples et fonctionnels.',

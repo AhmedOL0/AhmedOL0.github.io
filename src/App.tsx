@@ -103,6 +103,7 @@ function Site() {
     <>
       <a href="#main" className="skip-link">{t.nav.skipToContent}</a>
       <div className="folio-grid" aria-hidden="true" />
+      <div className="folio-grid-minor" aria-hidden="true" />
       <div className="folio-frame" aria-hidden="true" />
       <div id="progress" style={{ width: `${progress}%` }} aria-hidden="true" />
       <div className="grain" aria-hidden="true" />
