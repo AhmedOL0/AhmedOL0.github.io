@@ -62,8 +62,8 @@ export default function Experience() {
 }
 
 const EDU_ICONS = [
-  /* graduation cap */
-  <svg key="eng" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/><path d="M22 10v6"/></svg>,
+  /* landmark — academic institution */
+  <svg key="eng" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18"/><path d="M5 21V10"/><path d="M9.5 21V10"/><path d="M14.5 21V10"/><path d="M19 21V10"/><path d="m12 3 9 5H3l9-5z"/></svg>,
   /* microchip */
   <svg key="dut" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 1v4m6-4v4m-8 14v4m6-4v4m-9-8H1m22 0h-4m-1.5-6.5L15 7m-6 10l-2.5 2.5m11-10.5L15 17m-6-10l-2.5-2.5"/></svg>,
 ];

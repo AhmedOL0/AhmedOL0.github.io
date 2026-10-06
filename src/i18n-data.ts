@@ -74,7 +74,7 @@ const en: Dict = {
   plate: {
     roleLabel: 'ROLE', role: 'PFE CANDIDATE',
     focusLabel: 'FOCUS', focus: 'BACKEND SYSTEMS & FULL-STACK',
-    locLabel: 'LOCATION', loc: 'AGADIR / TAROUDANT \u00b7 UTC+1',
+    locLabel: 'LOCATION', loc: 'MOROCCO \u00b7 UTC+1',
     statusLabel: 'STATUS', status: 'OPEN FOR PFE \u00b7 2026',
   },
   whatIDo: {
@@ -205,7 +205,7 @@ const fr: Dict = {
   plate: {
     roleLabel: 'R\u00d4LE', role: 'CANDIDAT PFE',
     focusLabel: 'FOCUS', focus: 'SYST\u00c8MES BACKEND & FULL-STACK',
-    locLabel: 'BASE', loc: 'AGADIR / TAROUDANT \u00b7 UTC+1',
+    locLabel: 'BASE', loc: 'MAROC \u00b7 UTC+1',
     statusLabel: 'STATUT', status: 'OUVERT PFE \u00b7 2026',
   },
   whatIDo: {
