@@ -7,6 +7,8 @@ import { test, expect, type Page } from '@playwright/test';
 async function gotoSettled(page: Page) {
   await page.goto('/');
   await page.waitForTimeout(700);
+  // Custom cursor follows the real mouse — hide it so captures stay deterministic.
+  await page.addStyleTag({ content: '.magnetic-ring,.magnetic-dot{display:none !important}' });
 }
 
 test.describe('Visual Regression', () => {

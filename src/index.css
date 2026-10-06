@@ -249,6 +249,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .edu-school{font-size:.85rem;color:var(--muted);margin-top:4px}
 .edu-desc{font-size:.85rem;color:var(--faint);margin-top:8px;line-height:1.55}
 
+/* Magnetic cursor — exclusion-blend ring + core dot, fine pointers only */
+.magnetic-ring{position:fixed;top:0;left:0;width:36px;height:36px;border:1.5px solid #fff;border-radius:50%;mix-blend-mode:exclusion;pointer-events:none;z-index:200;opacity:0;transition:opacity .3s,width .25s ease,height .25s ease}
+.magnetic-dot{position:fixed;top:0;left:0;width:6px;height:6px;border-radius:50%;background:#fff;mix-blend-mode:exclusion;pointer-events:none;z-index:200;opacity:0;transition:opacity .3s}
+html.has-magnetic-cursor,html.has-magnetic-cursor a,html.has-magnetic-cursor button,html.has-magnetic-cursor input,html.has-magnetic-cursor textarea,html.has-magnetic-cursor label{cursor:none}
+
 /* Screen reader only */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 

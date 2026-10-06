@@ -156,14 +156,14 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
       <span ref={indicatorRef} className="dock-indicator" />
       {items.map((it) => (
         <a key={it.id} href={it.href} aria-label={it.label}
-          data-tip={it.label}
+          data-tip={it.label} data-magnetic
           aria-current={isActive(it.id) ? 'page' : undefined}
           className={`dock-item tip${isActive(it.id) ? ' active' : ''}`}>
           {it.icon}
         </a>
       ))}
       <span className="dock-sep" />
-      <button onClick={onToggle} aria-label={t.dock.toggle} data-tip={t.dock.toggle} className="tip">
+      <button onClick={onToggle} aria-label={t.dock.toggle} data-tip={t.dock.toggle} data-magnetic className="tip">
         <Icon d={theme === 'dark' ? P.sun : P.moon} />
       </button>
       <span className="dock-sep" />

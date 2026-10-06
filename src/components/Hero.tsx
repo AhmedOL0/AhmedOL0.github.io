@@ -62,10 +62,10 @@ export default function Hero() {
             </div>
           </div>
           <div className="hero-actions">
-            <a className="btn btn-gold" href="#work">
+            <a className="btn btn-gold" href="#work" data-magnetic>
               {t.hero.ctaWork}<span className="arr">&rarr;</span>
             </a>
-            <a className="btn btn-ghost" href="#contact">
+            <a className="btn btn-ghost" href="#contact" data-magnetic>
               {t.hero.ctaContact}
             </a>
           </div>

@@ -93,6 +93,7 @@ export default function Contact() {
           <div style={{ marginTop: 22 }}>
             <button
               className="btn btn-gold"
+              data-magnetic
               type="submit"
               disabled={sending}
               style={{ opacity: sending ? 0.7 : 1, transition: 'opacity .2s' }}

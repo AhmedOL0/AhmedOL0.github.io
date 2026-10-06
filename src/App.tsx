@@ -1,6 +1,7 @@
 import { Component, useEffect, type ReactNode } from 'react';
 import Dock, { TopPills } from './components/Dock';
 import Hero from './components/Hero';
+import MagneticCursor from './components/MagneticCursor';
 import WhatIDo from './components/WhatIDo';
 import HowIWork from './components/HowIWork';
 import Work from './components/Work';
@@ -138,7 +139,9 @@ export default function App() {
   return (
     <LangProvider>
       <ErrorBoundary>
-        <Site />
+        <MagneticCursor>
+          <Site />
+        </MagneticCursor>
       </ErrorBoundary>
     </LangProvider>
   );
