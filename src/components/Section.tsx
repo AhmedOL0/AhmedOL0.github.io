@@ -13,7 +13,7 @@ export default function Section({
   return (
     <section id={id} ref={ref} className={`section-block ${variantClass}`}>
       <div className="sec-head">
-        <span className="sec-num">DOC. REF {num}</span>
+        <span className="sec-num">{num}</span>
       </div>
       <div className="kicker">{kicker}</div>
       <h2 className="font-serif-d text-[clamp(2.1rem,4vw,3rem)] font-medium leading-[1.1] max-w-[24ch]">{title}</h2>
