@@ -7,15 +7,15 @@ const filterKeys = ['all', 'web', 'mobile', 'backend', 'ai', 'iot'] as const;
 
 const cardIds = ['odemlab', 'medical', 'fittrack', 'campus', 'summarizer', 'iot'];
 
-// Abstract dossier motifs — one per project, drawn in the thumb's line language.
-// Decorative only (aria-hidden at render site); no screenshots needed.
+// Readable line icons — one per project, drawn in the thumb's dossier language.
+// Decorative only (aria-hidden at render site).
 const MOTIFS: Record<string, ReactNode> = {
-  odemlab: (<g><polygon points="60,10 96,30 96,58 60,78 24,58 24,30" /><circle cx="60" cy="44" r="10" /><path d="M60 34v20M50 44h20" /></g>),
-  medical: (<g><path d="M6,44 h22 l7,-16 l9,30 l7,-14 h19" /><path d="M96,26 h14 M103,19 v14" /></g>),
-  fittrack: (<g><circle cx="34" cy="40" r="16" /><path d="M6,62 L34,28 L52,48 L78,20 L96,36 L114,24" /></g>),
-  campus: (<g><rect x="10" y="14" width="24" height="24" /><rect x="16" y="20" width="12" height="12" /><rect x="86" y="14" width="24" height="24" /><rect x="92" y="20" width="12" height="12" /><rect x="10" y="52" width="24" height="24" /><path d="M48,52 h30 M48,64 h22 M86,52 h24 M86,64 h24" /></g>),
-  summarizer: (<g><circle cx="26" cy="44" r="7" /><circle cx="72" cy="20" r="5" /><circle cx="78" cy="44" r="5" /><circle cx="72" cy="68" r="5" /><path d="M33,44 h26 M59,32 L67,23 M59,56 L67,65 M77,20 h18 M83,44 h16 M77,68 h18" /></g>),
-  iot: (<g><circle cx="34" cy="44" r="3.5" /><path d="M22,32 a17,17 0 0 1 0,24 M46,32 a17,17 0 0 0 0,24 M14,24 a29,29 0 0 1 0,40 M54,24 a29,29 0 0 0 0,40 M84,30 h22 M95,19 v22" /></g>),
+  odemlab: (<g><path d="M42 36h36l-3 44H45z" /><path d="M52 36v-6a8 8 0 0 1 16 0v6" /><path d="M94 20l1.8 4.6 4.6 1.8-4.6 1.8-1.8 4.6-1.8-4.6-4.6-1.8 4.6-1.8z" /></g>),
+  medical: (<g><rect x="32" y="24" width="56" height="56" rx="5" /><path d="M46 17v11 M74 17v11 M32 39h56" /><path d="M50 58l9 9 19-21" /></g>),
+  fittrack: (<g><path d="M10 44h100" /><rect x="20" y="32" width="9" height="24" /><rect x="33" y="37" width="7" height="14" /><rect x="80" y="37" width="7" height="14" /><rect x="91" y="32" width="9" height="24" /></g>),
+  campus: (<g><rect x="10" y="12" width="26" height="26" /><rect x="18" y="20" width="10" height="10" /><rect x="84" y="12" width="26" height="26" /><rect x="92" y="20" width="10" height="10" /><rect x="10" y="52" width="26" height="26" /><rect x="18" y="60" width="10" height="10" /><rect x="86" y="52" width="12" height="12" /><rect x="86" y="68" width="12" height="12" /><rect x="102" y="52" width="8" height="8" /></g>),
+  summarizer: (<g><path d="M38 6h32l18 18v58H38z" /><path d="M70 6v18h18" /><path d="M48 50h30 M48 60h20" /><circle cx="88" cy="58" r="4" /><path d="M74 54l8-2" /></g>),
+  iot: (<g><rect x="42" y="26" width="36" height="36" rx="5" /><rect x="52" y="36" width="16" height="16" /><path d="M34 34h8 M34 44h8 M34 54h8 M78 34h8 M78 44h8 M78 54h8 M50 26v-8 M60 26v-8 M70 26v-8 M50 62v8 M60 62v8 M70 62v8" /></g>),
 };
 
 function ThumbMotif({ id }: { id: string }) {
