@@ -43,11 +43,16 @@ test.describe('SEO & Meta', () => {
     await expect(jsonLd).toBeAttached();
     const content = await jsonLd.innerText();
     const data = JSON.parse(content);
-    expect(data['@type']).toBe('ProfilePage');
-    expect(data.mainEntity['@type']).toBe('Person');
-    expect(data.mainEntity.name).toContain('Ahmed');
-    expect(data.mainEntity.jobTitle).toBeTruthy();
-    expect(data.mainEntity.knowsAbout.length).toBeGreaterThan(0);
+    // @graph shape: ProfilePage + WebSite + Person nodes
+    const nodes = Array.isArray(data['@graph']) ? data['@graph'] : [data];
+    const byType = (t: string) => nodes.find((n: any) => n['@type'] === t);
+    expect(byType('ProfilePage'), 'ProfilePage node present').toBeTruthy();
+    expect(byType('WebSite'), 'WebSite node present').toBeTruthy();
+    const person = byType('Person');
+    expect(person, 'Person node present').toBeTruthy();
+    expect(person.name).toContain('Ahmed');
+    expect(person.jobTitle).toBeTruthy();
+    expect(person.knowsAbout.length).toBeGreaterThan(0);
   });
 
   test('robots meta allows indexing', async ({ page }) => {

@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import Section from './Section';
 import { useLang } from '../i18n-data';
 
@@ -24,16 +25,43 @@ const STEPS = [
 
 export default function HowIWork() {
   const { t } = useLang();
+  const flowRef = useRef<HTMLOListElement | null>(null);
+  const [active, setActive] = useState(-1);
+  const total = t.howIWork.steps.length;
+
+  useEffect(() => {
+    const flow = flowRef.current;
+    if (!flow) return;
+    const cards = Array.from(flow.querySelectorAll('.process-step'));
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) setActive(cards.indexOf(e.target as HTMLElement));
+      }),
+      { rootMargin: '-35% 0px -55% 0px', threshold: 0 },
+    );
+    cards.forEach((c) => io.observe(c));
+    return () => io.disconnect();
+  }, []);
+
   return (
     <Section id="how-i-work" num="02" kicker={t.howIWork.kicker} title={t.howIWork.title} sub={t.howIWork.sub} variant="left">
-      <ol className="process-flow mt-6 sm:mt-8 list-none m-0 p-0">
+      <div className="process-progress" aria-hidden="true">
+        <div
+          className="process-progress-fill"
+          style={{ width: `${active < 0 ? 0 : ((active + 1) / total) * 100}%` }}
+        />
+      </div>
+      <ol className="process-flow mt-6 sm:mt-8 list-none m-0 p-0" ref={flowRef}>
         {t.howIWork.steps.map((step, i) => (
-          <li className="process-step" key={step.label}>
-            <div className="process-marker">
+          <li className={`process-step${i === active ? ' active' : ''}`} key={step.label}>
+            <div className="process-marker" aria-hidden="true">
               <div className="process-num">{String(i + 1).padStart(2, '0')}</div>
-              {i < t.howIWork.steps.length - 1 && <div className="process-line" aria-hidden="true" />}
+              {i < total - 1 && <div className="process-line" />}
             </div>
             <div className="process-card">
+              <span className="step-tag" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+              </span>
               <div className="process-icon">{STEPS[i].icon}</div>
               <h3 className="process-label">{step.label}</h3>
               <p className="process-desc">{step.desc}</p>

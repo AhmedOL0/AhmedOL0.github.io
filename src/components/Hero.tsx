@@ -1,43 +1,20 @@
-import { useEffect, useRef } from 'react';
 import { useLang } from '../i18n-data';
-import HeroTyping from './HeroTyping';
+
+function Seal() {
+  return (
+    <span className="plate-seal" aria-hidden="true">
+      A<em>O</em>
+    </span>
+  );
+}
 
 export default function Hero() {
   const { t } = useLang();
-  const visualRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (
-      window.matchMedia('(pointer:coarse)').matches ||
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    ) return;
-    const el = visualRef.current;
-    if (!el) return;
-    const ring = el.querySelector<HTMLElement>('.hero-orbit');
-    if (!ring) return;
-    let raf = 0;
-    let tx = 0, ty = 0, cx = 0, cy = 0;
-    const onMove = (e: MouseEvent) => {
-      const r = el.getBoundingClientRect();
-      tx = ((e.clientX - r.left) / r.width - 0.5) * 12;
-      ty = ((e.clientY - r.top) / r.height - 0.5) * 12;
-    };
-    const onLeave = () => { tx = 0; ty = 0; };
-    const follow = () => {
-      cx += (tx - cx) * 0.05;
-      cy += (ty - cy) * 0.05;
-      ring.style.translate = `${cx}px ${cy}px`;
-      raf = requestAnimationFrame(follow);
-    };
-    el.addEventListener('mousemove', onMove);
-    el.addEventListener('mouseleave', onLeave);
-    raf = requestAnimationFrame(follow);
-    return () => {
-      el.removeEventListener('mousemove', onMove);
-      el.removeEventListener('mouseleave', onLeave);
-      cancelAnimationFrame(raf);
-    };
-  }, []);
+  // Values stated by the site owner (see Experience section for roles).
+  const stats: [string, string][] = [
+    ['06+', t.hero.statsLabels[0]],
+    ['04', t.hero.statsLabels[1]],
+  ];
 
   return (
     <section id="top" className="hero-block hero-block--top">
@@ -53,7 +30,33 @@ export default function Hero() {
             {t.hero.titleB}
           </h1>
           <p className="hero-lede">{t.hero.lede}</p>
-          <HeroTyping />
+          <div className="plate">
+            <div className="plate-mark" aria-hidden="true">
+              <Seal />
+            </div>
+            <dl className="plate-rows">
+              <div className="plate-row">
+                <dt>{t.plate.roleLabel}</dt><dd>{t.plate.role}</dd>
+              </div>
+              <div className="plate-row">
+                <dt>{t.plate.focusLabel}</dt><dd>{t.plate.focus}</dd>
+              </div>
+              <div className="plate-row">
+                <dt>{t.plate.locLabel}</dt><dd>{t.plate.loc}</dd>
+              </div>
+              <div className="plate-row">
+                <dt>{t.plate.statusLabel}</dt><dd className="plate-ok">{t.plate.status}</dd>
+              </div>
+            </dl>
+            <div className="plate-links">
+              <a href="https://github.com/AhmedOL0" target="_blank" rel="noopener noreferrer">
+                github.com/AhmedOL0 <span aria-hidden="true">↗</span>
+              </a>
+              <a href="https://www.linkedin.com/in/ahmed-ouarrali" target="_blank" rel="noopener noreferrer">
+                linkedin.com/in/ahmed-ouarrali <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
           <div className="hero-actions">
             <a className="btn btn-gold" href="#work" data-magnetic>
               {t.hero.ctaWork}<span className="arr">&rarr;</span>
@@ -62,25 +65,28 @@ export default function Hero() {
               {t.hero.ctaContact}
             </a>
           </div>
+          <dl className="hero-stats">
+            {stats.map(([v, l]) => (
+              <div className="hero-stat" key={l}>
+                <dt>{l}</dt><dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
-        <div className="hero-visual" ref={visualRef} aria-hidden="true">
-          <div className="hero-orbit" />
-          <div className="hero-photo-lg">
-            <img src="/assets/photo.jpg" alt="" width="240" height="240" loading="eager" fetchPriority="high" />
-          </div>
-          <div className="hero-float hero-float--tr">
-            <span className="hero-float-ic">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            </span>
-            <span className="hero-float-tx">{t.hero.floatDev}</span>
-            <span className="hero-float-dot" aria-hidden="true" />
-          </div>
-          <div className="hero-float hero-float--bl">
-            <span className="hero-float-ic">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
-            </span>
-            <span className="hero-float-tx">{t.hero.floatImpact}</span>
-            <span className="hero-float-dot" aria-hidden="true" />
+        <div className="hero-visual">
+          <div className="hero-orbit">
+            <span className="orbit-tick tick-tl" aria-hidden="true" />
+            <span className="orbit-tick tick-tr" aria-hidden="true" />
+            <span className="orbit-tick tick-bl" aria-hidden="true" />
+            <span className="orbit-tick tick-br" aria-hidden="true" />
+            <div className="hero-photo-lg">
+              <picture>
+                <source type="image/webp" srcSet="/assets/photo-240.webp 240w, /assets/photo-480.webp 480w" sizes="(max-width: 640px) 40vw, 240px" />
+                <img src="/assets/photo-480.jpg" srcSet="/assets/photo-240.jpg 240w, /assets/photo-480.jpg 480w" sizes="(max-width: 640px) 40vw, 240px" alt="Ahmed Ouarrali" width="240" height="240" loading="eager" fetchPriority="high" decoding="async" />
+              </picture>
+            </div>
+            <span className="orbit-chip chip-a" aria-hidden="true">{t.hero.photoChipA}</span>
+            <span className="orbit-chip chip-b" aria-hidden="true">{t.hero.photoChipB}</span>
           </div>
         </div>
       </div>

@@ -6,4 +6,10 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   base: '/',
   plugins: [react(), tailwindcss()],
+  build: {
+    sourcemap: false,
+    cssMinify: true,
+    chunkSizeWarningLimit: 600,
+    assetsInlineLimit: 4096,
+  },
 })

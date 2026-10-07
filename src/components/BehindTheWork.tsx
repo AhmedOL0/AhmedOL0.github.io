@@ -27,7 +27,7 @@ function techKey(name: string): string {
 
 function TechIcon({ name }: { name: string }) {
   const d = techIcons[techKey(name)];
-  if (!d) return null;
+  if (!d) return <span className="tech-item-dot" aria-hidden="true" />;
   return <svg className="tech-item-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d={d}/></svg>;
 }
 

@@ -8,9 +8,6 @@ export default function AboutMe() {
       <div className="about-layout mt-5 sm:mt-6">
         <div className="about-main">
           <div className="about-top">
-            <div className="about-photo">
-              <img src="/assets/photo.jpg" alt="Ahmed Ouarrali" width="80" height="80" loading="lazy" />
-            </div>
             <div className="about-identity">
               <h3 className="about-name">Ahmed Ouarrali</h3>
               <p className="about-role">{t.aboutMe.role}</p>

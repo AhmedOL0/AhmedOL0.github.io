@@ -17,7 +17,7 @@ export function thumbTitle(p: ProjectT): { pre: string; em: string; post: string
   return { pre: p.heading.slice(0, i), em: p.lead, post: p.heading.slice(i + 1) };
 }
 
-export type JobT = { when: string; title: string; org: string; where: string; points: string[] };
+export type JobT = { when: string; title: string; org: string; where: string; points: string[]; tags: string[] };
 export type EduT = { years: string; title: string; school: string; desc: string };
 
 export type Capability = { title: string; desc: string; details: string };
@@ -27,7 +27,8 @@ export type TechCategory = { name: string; items: string[] };
 export type Dict = {
   dir: 'ltr' | 'rtl';
   nav: { home: string; whatIDo: string; work: string; experience: string; behind: string; contact: string; resume: string; skipToContent: string; langChanged: string };
-  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede: string; typingPrefix: string; ctaWork: string; ctaContact: string; statsLabels: [string, string, string]; personalityA: string; personalityB: string; avail: string; floatDev: string; floatProblem: string; floatTeam: string; floatImpact: string };
+  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede: string; ctaWork: string; ctaContact: string; statsLabels: [string, string]; avail: string; photoChipA: string; photoChipB: string };
+  plate: { roleLabel: string; role: string; focusLabel: string; focus: string; locLabel: string; loc: string; statusLabel: string; status: string };
   whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
@@ -63,12 +64,16 @@ const en: Dict = {
   hero: {
     badge: 'Open to PFE internship', titleA: 'Building ', titleEm: 'complete products', titleB: ', not just features.',
     lede: 'I\'m Ahmed Ouarrali, a full-stack software engineer who builds and tests end-to-end digital products, from the first line of code to a running application people actually use.',
-    typingPrefix: 'I build with',
     ctaWork: 'Browse production work', ctaContact: 'Get in touch',
-    statsLabels: ['Projects shipped', 'Platforms', 'Internships completed'],
-    personalityA: 'A student', personalityB: 'Who ships production code between lectures.',
+    statsLabels: ['Projects shipped', 'Internships completed'],
     avail: 'Available for PFE \u00b7 Morocco or remote',
-    floatDev: 'Full-stack shipping', floatProblem: 'Problem Solving', floatTeam: 'Team Player', floatImpact: 'End-to-end testing',
+    photoChipA: 'FULL-STACK ENGINEER', photoChipB: 'QA & TEST AUTOMATION',
+  },
+  plate: {
+    roleLabel: 'ROLE', role: 'PFE CANDIDATE',
+    focusLabel: 'FOCUS', focus: 'BACKEND SYSTEMS & FULL-STACK',
+    locLabel: 'LOCATION', loc: 'MOROCCO \u00b7 UTC+1',
+    statusLabel: 'STATUS', status: 'OPEN FOR PFE \u00b7 2027',
   },
   whatIDo: {
     kicker: 'What I do', title: 'I turn complex ideas into simple, working products.',
@@ -96,7 +101,7 @@ const en: Dict = {
   filters: { all: 'All', web: 'Web', mobile: 'Mobile', backend: 'Backend', ai: 'AI', iot: 'IoT' },
   work: {
     kicker: 'Selected work', title: 'Systems that run in production, not demos that run once.',
-    sub: 'Six builds across web, mobile, backend, AI and IoT. Each one deployed, used, or graded.',
+    sub: 'More than six builds across web, mobile, backend, AI and IoT. Each one deployed, used, or graded.',
     showLess: 'show less', showFewer: 'Show fewer tags', filterCount: 'Showing {count} of {total} projects',
     projects: [
       { title: 'OdemLab: AI skincare e-commerce', year: 'Flagship', kind: 'Team of 4 · Private repo', heading: 'OdemLab', lead: 'd',
@@ -130,12 +135,16 @@ const en: Dict = {
     kicker: 'Track record', title: 'The roles I\'ve held.',
     jobs: [
       { when: 'JUN 2026 – SEP 2026 · AGADIR, ON-SITE', title: 'End-of-year project (PFA): Full-Stack Developer', org: 'Zorium, Technoparc Agadir', where: 'OdemLab platform · team of four',
+        tags: ['Spring Boot', 'Next.js', 'PostgreSQL', 'Cloud Run'],
         points: ['Owned backend business modules: orders, products, payments, auth, GDPR', 'Hardened the money paths: server-side pricing, idempotent checkout, audited order lifecycle', 'Shipped to Cloud Run: zero-traffic deploy, health check, promotion, auto-rollback on failure'] },
       { when: 'JUL 2025 – SEP 2025 · REMOTE', title: 'Full-Stack Developer Intern', org: 'MOUSSA SOFT · Agadir', where: 'Laravel · MySQL · Bootstrap',
+        tags: ['Laravel', 'MySQL', 'Bootstrap'],
         points: ['Built MediCare: patient-doctor booking, appointment scheduling, PDF report generation, Chart.js dashboards'] },
       { when: 'JUN 2024 – JUN 2024 · AGADIR, ON-SITE', title: 'End-of-study internship (DUT): Embedded Developer', org: 'MOUSSA SOFT · Agadir', where: 'ESP8266 · VL53L0X · PHP · MySQL',
+        tags: ['ESP8266', 'VL53L0X', 'PHP', 'MySQL'],
         points: ['Built a cane counting system with ESP8266 + laser sensor, OLED display, Wi-Fi to PHP/MySQL dashboard', 'Designed 3D-printed enclosures in SolidWorks, fabricated with Creality CR-10 Max'] },
       { when: 'JUN 2023 – AUG 2023', title: 'QA Automation Intern', org: 'Univers Architecture Maroc', where: 'Python · Selenium WebDriver · Page Objects',
+        tags: ['Python', 'Selenium', 'Page Objects'],
         points: ['Replaced a manual campaign with automated non-regression suites, one change point per UI change'] },
     ],
   },
@@ -143,7 +152,7 @@ const en: Dict = {
     kicker: 'Education', title: 'Schools, not jobs.', sub: 'The two programs behind the work above.',
     entries: [
       { years: '2024 – Present', title: 'Engineering Cycle, Software Engineering', school: 'ENSIASD · Ibn Zohr University, Taroudant', desc: 'Artificial intelligence, data science, software architecture.' },
-      { years: '2022 – 2024 · With honors', title: 'DUT, Embedded Computer Engineering', school: 'EST Oujda, École Supérieure de Technologie', desc: 'Embedded systems, IoT, firmware: ESP32/ESP8266, Arduino, Raspberry Pi.' },
+      { years: '2022 – 2024 · With honors', title: 'DUT, Embedded Computer Engineering', school: 'EST Oujda, École Supérieure de Technologie', desc: 'Embedded systems, IoT, firmware: ESP32/ESP8266, Arduino, Raspberry Pi. Thesis: laser-based cane counting system.' },
     ],
   },
   behind: {
@@ -178,7 +187,7 @@ const en: Dict = {
     retry: 'Try again',
     direct: 'Direct email', phone: 'Phone', linkedin: 'LinkedIn', github: 'GitHub',
   },
-  footer: { top: 'Top', elsewhere: 'Elsewhere', explore: 'Explore', built: 'Built with React, Tailwind CSS \u00b7 Deployed on GitHub Pages', pageTitle: 'Ahmed Ouarrali, Full-Stack Software Engineer | PFE Internship' },
+  footer: { top: 'Top', elsewhere: 'Elsewhere', explore: 'Explore', built: '\u00a9 2027 Ahmed Ouarrali \u00b7 Built with React, Tailwind CSS \u00b7 Deployed on GitHub Pages', pageTitle: 'Ahmed Ouarrali, Full-Stack Software Engineer | PFE Internship' },
   dock: { home: 'Home', whatIDo: 'What I Do', work: 'Work', contact: 'Contact', lang: 'Language', nav: 'Quick navigation', footerNav: 'Footer navigation', toggle: 'Toggle light / dark mode', resume: 'Résumé', linkedin: 'LinkedIn', github: 'GitHub', email: 'Email', backToTop: 'Back to top' },
 };
 
@@ -188,12 +197,16 @@ const fr: Dict = {
   hero: {
     badge: 'Disponible pour un PFE', titleA: 'Des ', titleEm: 'produits complets', titleB: ', pas juste des fonctionnalit\u00e9s.',
     lede: 'Je suis Ahmed Ouarrali, ing\u00e9nieur logiciel full-stack qui construis et teste des produits num\u00e9riques complets, de la premi\u00e8re ligne de code \u00e0 une application qui tourne vraiment.',
-    typingPrefix: 'Je construis avec',
     ctaWork: 'Voir mes projets', ctaContact: 'Me contacter',
-    statsLabels: ['Projets livr\u00e9s', 'Plateformes', 'Stages compl\u00e9t\u00e9s'],
-    personalityA: '\u00c9tudiant', personalityB: 'Qui livre du code en production entre les cours.',
+    statsLabels: ['Projets livr\u00e9s', 'Stages compl\u00e9t\u00e9s'],
     avail: 'Disponible pour PFE \u00b7 Maroc ou distanciel',
-    floatDev: 'Full-stack', floatProblem: 'R\u00e9solution de probl\u00e8mes', floatTeam: 'Travail en \u00e9quipe', floatImpact: 'Test de bout en bout',
+    photoChipA: 'ING\u00c9NIEUR FULL-STACK', photoChipB: 'QA & AUTOMATISATION DES TESTS',
+  },
+  plate: {
+    roleLabel: 'R\u00d4LE', role: 'CANDIDAT PFE',
+    focusLabel: 'FOCUS', focus: 'SYST\u00c8MES BACKEND & FULL-STACK',
+    locLabel: 'BASE', loc: 'MAROC \u00b7 UTC+1',
+    statusLabel: 'STATUT', status: 'OUVERT PFE \u00b7 2027',
   },
   whatIDo: {
     kicker: 'Ce que je fais', title: 'Je transforme des id\u00e9es complexes en produits simples et fonctionnels.',
@@ -221,7 +234,7 @@ const fr: Dict = {
   filters: { all: 'Tous', web: 'Web', mobile: 'Mobile', backend: 'Backend', ai: 'IA', iot: 'IoT' },
   work: {
     kicker: 'Projets', title: 'Des syst\u00e8mes qui tournent en production, pas des d\u00e9mos qui tournent une fois.',
-    sub: 'Six r\u00e9alisations web, mobile, backend, IA et IoT. Chacune d\u00e9ploy\u00e9e, utilis\u00e9e ou \u00e9valu\u00e9e.',
+    sub: 'Plus de six r\u00e9alisations web, mobile, backend, IA et IoT. Chacune d\u00e9ploy\u00e9e, utilis\u00e9e ou \u00e9valu\u00e9e.',
     showLess: 'voir moins', showFewer: 'Afficher moins', filterCount: '{count} projets sur {total} affichés',
     projects: [
       { title: 'OdemLab: e-commerce cosm\u00e9tique IA', year: 'Vitrine', kind: '\u00c9quipe de 4 \u00b7 D\u00e9p\u00f4t priv\u00e9', heading: 'OdemLab', lead: 'd',
@@ -255,12 +268,16 @@ const fr: Dict = {
     kicker: 'Parcours', title: 'Les postes que j\u2019ai occup\u00e9s.',
     jobs: [
       { when: 'JUIN 2026 \u2013 SEPT. 2026 \u00b7 AGADIR, SUR SITE', title: 'Projet de fin d\u2019ann\u00e9e (PFA): D\u00e9veloppeur Full-Stack', org: 'Zorium, Technoparc Agadir', where: 'Plateforme OdemLab \u00b7 \u00e9quipe de quatre',
+        tags: ['Spring Boot', 'Next.js', 'PostgreSQL', 'Cloud Run'],
         points: ['Modules m\u00e9tier backend : commandes, produits, paiements, auth, RGPD', 'Chemins mon\u00e9taires fiabilis\u00e9s : tarification serveur, checkout idempotent, cycle audité', 'Livraison Cloud Run : d\u00e9ploiement sans trafic, health check, promotion, rollback auto'] },
       { when: 'JUIL. 2025 \u2013 SEPT. 2025 \u00b7 DISTANCIEL', title: 'Stagiaire D\u00e9veloppeur Full-Stack', org: 'MOUSSA SOFT \u00b7 Agadir', where: 'Laravel \u00b7 MySQL \u00b7 Bootstrap',
+        tags: ['Laravel', 'MySQL', 'Bootstrap'],
         points: ['MediCare : r\u00e9servation patients-m\u00e9decins, planning, g\u00e9n\u00e9ration de rapports PDF, tableaux Chart.js'] },
       { when: 'JUIN 2024 \u2013 JUIN 2024 \u00b7 AGADIR, SUR SITE', title: 'Stage de fin d\u2019\u00e9tudes (DUT): D\u00e9veloppeur Embarqu\u00e9', org: 'MOUSSA SOFT \u00b7 Agadir', where: 'ESP8266 \u00b7 VL53L0X \u00b7 PHP \u00b7 MySQL',
-        points: ['Syst\u00e8me de comptage de cannes avec ESP8266 + capteur laser, \u00e9cran OLED, Wi-Fi vers tableau PHP/MySQL', 'Bo\u00eatiers 3D imprim\u00e9s con\u00e7us dans SolidWorks, fabriqu\u00e9s avec Creality CR-10 Max'] },
+        tags: ['ESP8266', 'VL53L0X', 'PHP', 'MySQL'],
+        points: ['Syst\u00e8me de comptage de cannes avec ESP8266 + capteur laser, \u00e9cran OLED, Wi-Fi vers tableau PHP/MySQL', 'Bo\u00eetiers 3D imprim\u00e9s con\u00e7us dans SolidWorks, fabriqu\u00e9s avec Creality CR-10 Max'] },
       { when: 'JUIN 2023 \u2013 AO\u00fbT 2023', title: 'Stagiaire QA Automatisation', org: 'Univers Architecture Maroc', where: 'Python \u00b7 Selenium WebDriver \u00b7 Page Objects',
+        tags: ['Python', 'Selenium', 'Page Objects'],
         points: ['Campagne manuelle remplac\u00e9e par des suites automatis\u00e9es, un point de changement par \u00e9cran'] },
     ],
   },
@@ -268,7 +285,7 @@ const fr: Dict = {
     kicker: 'Formation', title: 'Des \u00e9coles, pas des postes.', sub: 'Les deux formations derri\u00e8re ce travail.',
     entries: [
       { years: '2024 \u2013 Pr\u00e9sent', title: 'Cycle ing\u00e9nieur, G\u00e9nie logiciel', school: 'ENSIASD \u00b7 Universit\u00e9 Ibn Zohr, Taroudant', desc: 'Intelligence artificielle, science des donn\u00e9es, architecture logicielle.' },
-      { years: '2022 \u2013 2024 \u00b7 Mention bien', title: 'DUT, G\u00e9nie informatique embarqu\u00e9', school: 'EST Oujda, \u00c9cole Sup\u00e9rieure de Technologie', desc: 'Syst\u00e8mes embarqu\u00e9s, IoT, firmware: ESP32/ESP8266, Arduino, Raspberry Pi.' },
+      { years: '2022 \u2013 2024 \u00b7 Mention bien', title: 'DUT, G\u00e9nie informatique embarqu\u00e9', school: 'EST Oujda, \u00c9cole Sup\u00e9rieure de Technologie', desc: 'Syst\u00e8mes embarqu\u00e9s, IoT, firmware: ESP32/ESP8266, Arduino, Raspberry Pi. Projet de fin d\u2019\u00e9tudes : syst\u00e8me de comptage de cannes par laser.' },
     ],
   },
   behind: {
@@ -303,7 +320,7 @@ const fr: Dict = {
     retry: 'R\u00e9essayer',
     direct: 'E-mail direct', phone: 'T\u00e9l\u00e9phone', linkedin: 'LinkedIn', github: 'GitHub',
   },
-  footer: { top: 'Haut', elsewhere: 'Ailleurs', explore: 'Explorer', built: 'Construit avec React, Tailwind CSS \u00b7 D\u00e9ploy\u00e9 sur GitHub Pages', pageTitle: 'Ahmed Ouarrali, D\u00e9veloppeur Full-Stack | Stage PFE' },
+  footer: { top: 'Haut', elsewhere: 'Ailleurs', explore: 'Explorer', built: '\u00a9 2027 Ahmed Ouarrali \u00b7 Construit avec React, Tailwind CSS \u00b7 D\u00e9ploy\u00e9 sur GitHub Pages', pageTitle: 'Ahmed Ouarrali, D\u00e9veloppeur Full-Stack | Stage PFE' },
   dock: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', contact: 'Contact', lang: 'Langue', nav: 'Navigation rapide', footerNav: 'Navigation du pied de page', toggle: 'Basculer mode clair / sombre', resume: 'CV', linkedin: 'LinkedIn', github: 'GitHub', email: 'E-mail', backToTop: 'Retour en haut' },
 };
 

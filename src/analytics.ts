@@ -59,7 +59,19 @@ function sendErrors() {
   });
 }
 
+function loadGoatCounter() {
+  // Deferred until after first paint (called from an idle callback in main.tsx):
+  // the counter script no longer sits on the critical path or needs a preconnect.
+  if (document.querySelector('script[data-goatcounter]')) return;
+  const s = document.createElement('script');
+  s.async = true;
+  s.setAttribute('data-goatcounter', 'https://ahmedouarrali.goatcounter.com/count');
+  s.src = 'https://gc.zgo.at/count.js';
+  document.head.appendChild(s);
+}
+
 export function initAnalytics() {
   sendVitals();
   sendErrors();
+  loadGoatCounter();
 }

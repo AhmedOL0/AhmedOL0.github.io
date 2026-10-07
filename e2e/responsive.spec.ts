@@ -105,6 +105,21 @@ for (const vp of VIEWPORTS) {
       }
     });
 
+    test('header controls meet 44px touch height on mobile', async ({ page }) => {
+      if (vp.width >= 768) return; // skip desktop
+
+      for (const sel of ['.langsw button', '.iconbtn', '.footer-social-icon']) {
+        const els = page.locator(sel);
+        const count = await els.count();
+        for (let i = 0; i < count; i++) {
+          const box = await els.nth(i).boundingBox();
+          if (!box || box.width === 0) continue;
+          // Math.round: sub-pixel layout can report 43.9999 for a 44px target
+          expect(Math.round(box.height), `${sel}[${i}] height`).toBeGreaterThanOrEqual(44);
+        }
+      }
+    });
+
     test('footer columns stack on mobile', async ({ page }) => {
       if (vp.width >= 768) return;
       const footer = page.locator('footer');

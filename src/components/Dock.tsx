@@ -4,7 +4,7 @@ import { LANGS, useLang } from '../i18n-data';
 
 function Icon({ d, filled }: { d: string; filled?: boolean }) {
   return (
-    <svg viewBox="0 0 24 24" fill={filled ? 'currentColor' : 'none'} stroke="currentColor"
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill={filled ? 'currentColor' : 'none'} stroke="currentColor"
       strokeWidth={filled ? 0 : 1.8} strokeLinecap="round" strokeLinejoin="round"
       style={{ width: 19, height: 19 }}>
       <path d={d} />
@@ -72,7 +72,7 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
   return (
     <>
       <div aria-live="polite" className="sr-only">{langAnnounce}</div>
-      <a href="assets/CV_Ahmed_Ouarrali.pdf" download data-magnetic aria-label={t.dock.resume}
+      <a href="assets/CV_Ahmed_Ouarrali.pdf" download aria-label={t.dock.resume}
         className={`btn btn-sm top-left top-pill fixed left-5 top-5 z-50 md:left-8 tip${hidden ? ' top-pills-hidden' : ''}`}
         data-tip={t.dock.resume}>
         {t.dock.resume}
@@ -135,11 +135,20 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
   useEffect(() => {
     const dock = dockRef.current, ind = indicatorRef.current;
     if (!dock || !ind) return;
-    const btn = dock.querySelector('.dock-item.active') as HTMLElement | null;
-    if (!btn) { ind.style.opacity = '0'; return; }
-    ind.style.opacity = '1';
-    ind.style.left = `${btn.offsetLeft + btn.offsetWidth / 2}px`;
-    ind.style.width = `${btn.offsetWidth + 8}px`;
+    // Batch the layout reads + writes in one frame: a single
+    // getBoundingClientRect pass instead of offsetWidth/offsetLeft
+    // reads interleaved with style writes (forced reflow).
+    const raf = requestAnimationFrame(() => {
+      const btn = dock.querySelector('.dock-item.active') as HTMLElement | null;
+      if (!btn || !btn.isConnected) { ind.style.opacity = '0'; return; }
+      const dockRect = dock.getBoundingClientRect();
+      const btnRect = btn.getBoundingClientRect();
+      const w = btnRect.width + 8;
+      ind.style.opacity = '1';
+      ind.style.width = `${w}px`;
+      ind.style.transform = `translate(${btnRect.left - dockRect.left + btnRect.width / 2 - w / 2}px,-50%)`;
+    });
+    return () => cancelAnimationFrame(raf);
   }, [active]);
   const items = [
     { id: 'top', href: '#top', label: t.dock.home, icon: <Icon d={P.home} /> },
@@ -156,14 +165,14 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
       <span ref={indicatorRef} className="dock-indicator" />
       {items.map((it) => (
         <a key={it.id} href={it.href} aria-label={it.label}
-          data-tip={it.label}
+          data-tip={it.label} data-magnetic
           aria-current={isActive(it.id) ? 'page' : undefined}
           className={`dock-item tip${isActive(it.id) ? ' active' : ''}`}>
           {it.icon}
         </a>
       ))}
       <span className="dock-sep" />
-      <button onClick={onToggle} aria-label={t.dock.toggle} data-tip={t.dock.toggle} className="tip">
+      <button onClick={onToggle} aria-label={t.dock.toggle} data-tip={t.dock.toggle} data-magnetic className="tip">
         <Icon d={theme === 'dark' ? P.sun : P.moon} />
       </button>
       <span className="dock-sep" />
