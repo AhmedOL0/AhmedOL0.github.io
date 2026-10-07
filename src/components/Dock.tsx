@@ -138,7 +138,9 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
     // Batch the layout reads + writes in one frame: a single
     // getBoundingClientRect pass instead of offsetWidth/offsetLeft
     // reads interleaved with style writes (forced reflow).
-    const raf = requestAnimationFrame(() => {
+    let raf = 0;
+    const position = () => {
+      raf = 0;
       const btn = dock.querySelector('.dock-item.active') as HTMLElement | null;
       if (!btn || !btn.isConnected) { ind.style.opacity = '0'; return; }
       const dockRect = dock.getBoundingClientRect();
@@ -147,8 +149,18 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
       ind.style.opacity = '1';
       ind.style.width = `${w}px`;
       ind.style.transform = `translate(${btnRect.left - dockRect.left + btnRect.width / 2 - w / 2}px,-50%)`;
-    });
-    return () => cancelAnimationFrame(raf);
+    };
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(position);
+    };
+    schedule();
+    // Button positions shift with viewport width — recompute (dock would
+    // otherwise point at the pre-resize slot until the section changes).
+    window.addEventListener('resize', schedule);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', schedule);
+    };
   }, [active]);
   const items = [
     { id: 'top', href: '#top', label: t.dock.home, icon: <Icon d={P.home} /> },

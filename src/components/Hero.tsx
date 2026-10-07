@@ -29,7 +29,8 @@ export default function Hero() {
             <em className="hero-title-em">{t.hero.titleEm}</em>
             {t.hero.titleB}
           </h1>
-          <p className="hero-lede">{t.hero.lede}</p>
+          <p className="hero-lede lede-full">{t.hero.lede}</p>
+          <p className="hero-lede lede-short">{t.hero.ledeShort}</p>
           <div className="plate">
             <div className="plate-mark" aria-hidden="true">
               <Seal />
@@ -75,10 +76,6 @@ export default function Hero() {
         </div>
         <div className="hero-visual">
           <div className="hero-orbit">
-            <span className="orbit-tick tick-tl" aria-hidden="true" />
-            <span className="orbit-tick tick-tr" aria-hidden="true" />
-            <span className="orbit-tick tick-bl" aria-hidden="true" />
-            <span className="orbit-tick tick-br" aria-hidden="true" />
             <div className="hero-photo-lg">
               <picture>
                 <source type="image/webp" srcSet="/assets/photo-240.webp 240w, /assets/photo-480.webp 480w" sizes="(max-width: 640px) 40vw, 240px" />

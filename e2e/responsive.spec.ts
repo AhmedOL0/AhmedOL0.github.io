@@ -132,6 +132,31 @@ for (const vp of VIEWPORTS) {
   });
 }
 
+test.describe('Dock indicator', () => {
+  test('tracks the active item across resizes', async ({ page }) => {
+    const drift = () =>
+      page.evaluate(() => {
+        const dock = document.querySelector('.dock') as HTMLElement;
+        const btn = document.querySelector('.dock-item.active') as HTMLElement | null;
+        const ind = document.querySelector('.dock-indicator') as HTMLElement;
+        if (!dock || !btn || !ind) return null;
+        const d = dock.getBoundingClientRect();
+        const b = btn.getBoundingClientRect();
+        const m = new DOMMatrix(getComputedStyle(ind).transform);
+        const indCX = d.left + m.m41 + parseFloat(getComputedStyle(ind).width) / 2;
+        return Math.abs(indCX - (b.left + b.width / 2));
+      });
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    for (const w of [1440, 1100, 768, 1600]) {
+      await page.setViewportSize({ width: w, height: 900 });
+      await page.locator('#work').scrollIntoViewIfNeeded();
+      await page.waitForTimeout(500);
+      expect(await drift(), `indicator drift at ${w}px`).toBeLessThanOrEqual(1);
+    }
+  });
+});
+
 test.describe('Trilingual overflow (FR/AR)', () => {
   test.use({ viewport: { width: 390, height: 844 } });
 

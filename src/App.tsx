@@ -97,6 +97,18 @@ function Footer() {
 
 const STICKY_SECTIONS = ['what-i-do', 'how-i-work', 'work', 'experience', 'education', 'behind', 'about', 'contact'];
 
+// Reserve space for below-fold chunks on slow networks: avoids a flash of
+// empty page + layout shift when lazy sections stream in. Pure decoration.
+function BelowFoldFallback() {
+  return (
+    <div className="below-fold-fallback" aria-hidden="true">
+      <span />
+      <span />
+      <span />
+    </div>
+  );
+}
+
 // Own component so the per-frame progress value re-renders only this 2px bar,
 // not the entire page tree (was: useProgress() inside Site → full re-render
 // on every scroll frame, the main mobile jank source).
@@ -122,9 +134,9 @@ function Site() {
       <div className="grain" aria-hidden="true" />
       <TopPills theme={theme} onToggle={toggle} />
       <Dock active={active} theme={theme} onToggle={toggle} />
-      <Hero />
       <main id="main" tabIndex={-1} className="relative z-[1]">
-        <Suspense fallback={null}>
+        <Hero />
+        <Suspense fallback={<BelowFoldFallback />}>
           <WhatIDo />
           <HowIWork />
           <Work />

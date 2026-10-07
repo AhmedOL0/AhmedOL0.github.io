@@ -27,7 +27,7 @@ export type TechCategory = { name: string; items: string[] };
 export type Dict = {
   dir: 'ltr' | 'rtl';
   nav: { home: string; whatIDo: string; work: string; experience: string; behind: string; contact: string; resume: string; skipToContent: string; langChanged: string };
-  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede: string; ctaWork: string; ctaContact: string; statsLabels: [string, string]; avail: string; photoChipA: string; photoChipB: string };
+  hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede: string; ledeShort: string; ctaWork: string; ctaContact: string; statsLabels: [string, string]; avail: string; photoChipA: string; photoChipB: string };
   plate: { roleLabel: string; role: string; focusLabel: string; focus: string; locLabel: string; loc: string; statusLabel: string; status: string };
   whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
@@ -64,6 +64,7 @@ const en: Dict = {
   hero: {
     badge: 'Open to PFE internship', titleA: 'Building ', titleEm: 'complete products', titleB: ', not just features.',
     lede: 'I\'m Ahmed Ouarrali, a full-stack software engineer who builds and tests end-to-end digital products, from the first line of code to a running application people actually use.',
+    ledeShort: 'Full-stack software engineer building end-to-end digital products — from first line of code to production.',
     ctaWork: 'Browse production work', ctaContact: 'Get in touch',
     statsLabels: ['Projects shipped', 'Internships completed'],
     avail: 'Available for PFE \u00b7 Morocco or remote',
@@ -135,7 +136,7 @@ const en: Dict = {
       { when: 'JUL 2025 – SEP 2025 · REMOTE', title: 'Full-Stack Developer Intern', org: 'MOUSSA SOFT · Agadir',
         tags: ['Laravel', 'MySQL', 'Bootstrap'],
         points: ['Built MediCare: patient-doctor booking, appointment scheduling, PDF report generation, Chart.js dashboards'] },
-      { when: 'JUN 2024 – JUN 2024 · AGADIR, ON-SITE', title: 'End-of-study internship (DUT): Embedded Developer', org: 'MOUSSA SOFT · Agadir',
+      { when: 'MAR 2024 – JUN 2024 · AGADIR, ON-SITE', title: 'End-of-study internship (DUT): Embedded Developer', org: 'MOUSSA SOFT · Agadir',
         tags: ['ESP8266', 'VL53L0X', 'PHP', 'MySQL'],
         points: ['Built a cane counting system with ESP8266 + laser sensor, OLED display, Wi-Fi to PHP/MySQL dashboard', 'Designed 3D-printed enclosures in SolidWorks, fabricated with Creality CR-10 Max'] },
       { when: 'JUN 2023 – AUG 2023', title: 'QA Automation Intern', org: 'Univers Architecture Maroc',
@@ -192,6 +193,7 @@ const fr: Dict = {
   hero: {
     badge: 'Disponible pour un PFE', titleA: 'Des ', titleEm: 'produits complets', titleB: ', pas juste des fonctionnalit\u00e9s.',
     lede: 'Je suis Ahmed Ouarrali, ing\u00e9nieur logiciel full-stack qui construis et teste des produits num\u00e9riques complets, de la premi\u00e8re ligne de code \u00e0 une application qui tourne vraiment.',
+    ledeShort: 'Ing\u00e9nieur full-stack : des produits num\u00e9riques complets, de la premi\u00e8re ligne de code \u00e0 la production.',
     ctaWork: 'Voir mes projets', ctaContact: 'Me contacter',
     statsLabels: ['Projets livr\u00e9s', 'Stages compl\u00e9t\u00e9s'],
     avail: 'Disponible pour PFE \u00b7 Maroc ou distanciel',
@@ -263,7 +265,7 @@ const fr: Dict = {
       { when: 'JUIL. 2025 \u2013 SEPT. 2025 \u00b7 DISTANCIEL', title: 'Stagiaire D\u00e9veloppeur Full-Stack', org: 'MOUSSA SOFT \u00b7 Agadir',
         tags: ['Laravel', 'MySQL', 'Bootstrap'],
         points: ['MediCare : r\u00e9servation patients-m\u00e9decins, planning, g\u00e9n\u00e9ration de rapports PDF, tableaux Chart.js'] },
-      { when: 'JUIN 2024 \u2013 JUIN 2024 \u00b7 AGADIR, SUR SITE', title: 'Stage de fin d\u2019\u00e9tudes (DUT): D\u00e9veloppeur Embarqu\u00e9', org: 'MOUSSA SOFT \u00b7 Agadir',
+      { when: 'MARS 2024 \u2013 JUIN 2024 \u00b7 AGADIR, SUR SITE', title: 'Stage de fin d\u2019\u00e9tudes (DUT): D\u00e9veloppeur Embarqu\u00e9', org: 'MOUSSA SOFT \u00b7 Agadir',
         tags: ['ESP8266', 'VL53L0X', 'PHP', 'MySQL'],
         points: ['Syst\u00e8me de comptage de cannes avec ESP8266 + capteur laser, \u00e9cran OLED, Wi-Fi vers tableau PHP/MySQL', 'Bo\u00eetiers 3D imprim\u00e9s con\u00e7us dans SolidWorks, fabriqu\u00e9s avec Creality CR-10 Max'] },
       { when: 'JUIN 2023 \u2013 AO\u00fbT 2023', title: 'Stagiaire QA Automatisation', org: 'Univers Architecture Maroc',

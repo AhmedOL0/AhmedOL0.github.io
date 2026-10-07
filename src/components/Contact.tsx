@@ -98,17 +98,17 @@ export default function Contact() {
         <form onSubmit={handleSubmit} aria-busy={sending} noValidate>
           <input type="text" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" aria-label="Leave this field empty" />
           <label className="field" htmlFor="contact-name">
-            <input id="contact-name" name="name" type="text" placeholder=" " required disabled={sending} autoComplete="name" aria-required="true" aria-invalid={!!errors.name} aria-describedby={errors.name ? 'contact-name-err' : undefined} onInput={() => clearError('name')} />
+            <input id="contact-name" name="name" type="text" placeholder=" " required disabled={sending} autoComplete="name" enterKeyHint="next" aria-required="true" aria-invalid={!!errors.name} aria-describedby={errors.name ? 'contact-name-err' : undefined} onInput={() => clearError('name')} />
             <span>{t.contact.name}</span>
             {errors.name && <p className="field-error" id="contact-name-err" role="alert">{errors.name}</p>}
           </label>
           <label className="field" htmlFor="contact-email">
-            <input id="contact-email" name="email" type="email" placeholder=" " required disabled={sending} autoComplete="email" inputMode="email" aria-required="true" aria-invalid={!!errors.email} aria-describedby={errors.email ? 'contact-email-err' : undefined} onInput={() => clearError('email')} />
+            <input id="contact-email" name="email" type="email" placeholder=" " required disabled={sending} autoComplete="email" inputMode="email" enterKeyHint="next" aria-required="true" aria-invalid={!!errors.email} aria-describedby={errors.email ? 'contact-email-err' : undefined} onInput={() => clearError('email')} />
             <span>{t.contact.email}</span>
             {errors.email && <p className="field-error" id="contact-email-err" role="alert">{errors.email}</p>}
           </label>
           <label className="field" htmlFor="contact-message">
-            <textarea id="contact-message" name="message" rows={5} maxLength={2000} placeholder=" " required disabled={sending} aria-required="true" aria-invalid={!!errors.message} aria-describedby={errors.message ? 'contact-message-err' : undefined} onInput={() => clearError('message')} />
+            <textarea id="contact-message" name="message" rows={5} maxLength={2000} placeholder=" " required disabled={sending} enterKeyHint="send" aria-required="true" aria-invalid={!!errors.message} aria-describedby={errors.message ? 'contact-message-err' : undefined} onInput={() => clearError('message')} />
             <span>{t.contact.msg}</span>
             {errors.message && <p className="field-error" id="contact-message-err" role="alert">{errors.message}</p>}
           </label>
