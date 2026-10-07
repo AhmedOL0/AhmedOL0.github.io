@@ -41,8 +41,11 @@ test.describe('Security Headers & Best Practices', () => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
 
+    // Fonts are self-hosted (same-origin) since the Google Fonts removal —
+    // no third-party font origin should remain.
+    expect(fontRequests.length, 'self-hosted fonts are requested').toBeGreaterThan(0);
     for (const url of fontRequests) {
-      expect(url).toMatch(/^https:\/\/fonts\.(googleapis|gstatic)\.com/);
+      expect(url, `font from untrusted origin: ${url}`).toMatch(/^http:\/\/(localhost|127\.0\.0\.1)/);
     }
   });
 });

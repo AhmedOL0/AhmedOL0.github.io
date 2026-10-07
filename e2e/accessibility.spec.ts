@@ -95,6 +95,13 @@ test.describe('Accessibility (WCAG 2.2)', () => {
     expect(outline).not.toBe('none');
   });
 
+  test('dock items keep a visible focus indicator (outline:none override)', async ({ page }) => {
+    const dockLink = page.locator('.dock a').first();
+    await dockLink.focus();
+    const outlineStyle = await dockLink.evaluate(el => window.getComputedStyle(el).outlineStyle);
+    expect(outlineStyle, 'dock link focus outline').not.toBe('none');
+  });
+
   test('lang attribute is set on html element', async ({ page }) => {
     const lang = await page.locator('html').getAttribute('lang');
     expect(lang).toBeTruthy();

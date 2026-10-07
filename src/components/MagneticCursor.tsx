@@ -24,10 +24,23 @@ export default function MagneticCursor({ children }: { children: ReactNode }) {
     let size = RING;
     let grown = false;
     let targets: HTMLElement[] = [];
+    // Cached geometry: avoids getBoundingClientRect() on every rAF (forced reflow).
+    // Refreshed on scroll/resize + every 1200ms, which is plenty for a cursor effect.
+    let rects = new Map<HTMLElement, { cx: number; cy: number; radius: number }>();
     const moved = new Map<HTMLElement, number>();
 
     const cache = () => {
       targets = Array.from(document.querySelectorAll<HTMLElement>('[data-magnetic]'));
+      const next = new Map<HTMLElement, { cx: number; cy: number; radius: number }>();
+      for (const el of targets) {
+        const r = el.getBoundingClientRect();
+        next.set(el, {
+          cx: r.left + r.width / 2,
+          cy: r.top + r.height / 2,
+          radius: Math.max(r.width, r.height) / 2 + 70,
+        });
+      }
+      rects = next;
       lastCache = performance.now();
     };
     cache();
@@ -48,19 +61,20 @@ export default function MagneticCursor({ children }: { children: ReactNode }) {
     };
 
     const frame = () => {
-      // Nearest magnetic target within pull radius
+      // Nearest magnetic target within pull radius (uses cached rects — no layout read here)
       let magnet: HTMLElement | null = null;
+      let magnetCx = 0, magnetCy = 0;
       let best = 130;
       for (const el of targets) {
         if (!el.isConnected) continue;
-        const r = el.getBoundingClientRect();
-        const cx = r.left + r.width / 2;
-        const cy = r.top + r.height / 2;
-        const d = Math.hypot(mx - cx, my - cy);
-        const radius = Math.max(r.width, r.height) / 2 + 70;
-        if (d < radius && d < best) {
+        const c = rects.get(el);
+        if (!c) continue;
+        const d = Math.hypot(mx - c.cx, my - c.cy);
+        if (d < c.radius && d < best) {
           best = d;
           magnet = el;
+          magnetCx = c.cx;
+          magnetCy = c.cy;
         }
       }
 
@@ -73,14 +87,11 @@ export default function MagneticCursor({ children }: { children: ReactNode }) {
         ring.style.height = `${size}px`;
       }
       if (magnet) {
-        const r = magnet.getBoundingClientRect();
-        const cx = r.left + r.width / 2;
-        const cy = r.top + r.height / 2;
-        tx = mx + (cx - mx) * PULL;
-        ty = my + (cy - my) * PULL;
+        tx = mx + (magnetCx - mx) * PULL;
+        ty = my + (magnetCy - my) * PULL;
         // Gentle element pull toward the pointer
-        const ex = (mx - cx) * EL_PULL;
-        const ey = (my - cy) * EL_PULL;
+        const ex = (mx - magnetCx) * EL_PULL;
+        const ey = (my - magnetCy) * EL_PULL;
         magnet.style.transform = `translate(${ex.toFixed(1)}px,${ey.toFixed(1)}px)`;
         moved.set(magnet, performance.now());
       }
@@ -108,9 +119,30 @@ export default function MagneticCursor({ children }: { children: ReactNode }) {
     document.documentElement.addEventListener('mouseleave', onLeave);
     document.documentElement.addEventListener('mouseenter', onEnter);
     window.addEventListener('resize', cache);
+    // Pause the rAF loop in background tabs (battery + CPU on laptops).
+    const onVis = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      } else if (!raf) {
+        cache();
+        raf = requestAnimationFrame(frame);
+      }
+    };
+    document.addEventListener('visibilitychange', onVis);
+    // Viewport-relative rects go stale on scroll — refresh at most once per frame.
+    let scrollRaf = 0;
+    const onScroll = () => {
+      if (scrollRaf) return;
+      scrollRaf = requestAnimationFrame(() => { scrollRaf = 0; cache(); });
+    };
+    document.addEventListener('scroll', onScroll, { passive: true });
     return () => {
       cancelAnimationFrame(raf);
+      cancelAnimationFrame(scrollRaf);
       document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('scroll', onScroll);
+      document.removeEventListener('visibilitychange', onVis);
       document.documentElement.removeEventListener('mouseleave', onLeave);
       document.documentElement.removeEventListener('mouseenter', onEnter);
       window.removeEventListener('resize', cache);

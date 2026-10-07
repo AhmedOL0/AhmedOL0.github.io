@@ -68,14 +68,23 @@ export function useStaggerReveal<T extends HTMLElement>(selector = ':scope > *')
 export function useProgress() {
   const [width, setWidth] = useState(0);
   useEffect(() => {
-    const onScroll = () => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      // Single layout pass per frame (was: read on every scroll event).
       const h = document.documentElement;
       const max = h.scrollHeight - h.clientHeight;
-      setWidth(max > 0 ? (h.scrollTop / max) * 100 : 0);
+      setWidth(max > 0 ? (window.scrollY / max) * 100 : 0);
     };
-    onScroll();
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
     document.addEventListener('scroll', onScroll, { passive: true });
-    return () => document.removeEventListener('scroll', onScroll);
+    return () => {
+      document.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
   return width;
 }
@@ -89,11 +98,25 @@ export function useActiveSection(ids: readonly string[]) {
       }),
       { rootMargin: '-40% 0px -55% 0px' },
     );
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) io.observe(el);
-    });
-    return () => io.disconnect();
+    const observed = new Set<string>();
+    const pickUp = () => {
+      // Sections may mount late (React.lazy code-split) — pick up newcomers.
+      ids.forEach((id) => {
+        if (observed.has(id)) return;
+        const el = document.getElementById(id);
+        if (el) {
+          io.observe(el);
+          observed.add(id);
+        }
+      });
+    };
+    pickUp();
+    const mo = new MutationObserver(pickUp);
+    mo.observe(document.body, { childList: true, subtree: true });
+    return () => {
+      io.disconnect();
+      mo.disconnect();
+    };
   }, [ids]);
   return active;
 }

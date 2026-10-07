@@ -1,0 +1,81 @@
+{
+  "name": "Ahmed Ouarrali",
+  "role": "Full-Stack Software Engineer",
+  "seeking": "PFE internship (Spring Boot, Next.js, React Native, Flutter)",
+  "location": "Morocco (UTC+1), open to remote",
+  "url": "https://ahmedol0.github.io/",
+  "email": "ahmedouarrali12@gmail.com",
+  "phone": "+212 645 372 099",
+  "profiles": {
+    "github": "https://github.com/AhmedOL0",
+    "linkedin": "https://www.linkedin.com/in/ahmed-ouarrali"
+  },
+  "education": [
+    {
+      "school": "ENSIASD, Ibn Zohr University",
+      "title": "Software Engineering (AI & Data Science)",
+      "years": "2024 — 2026"
+    },
+    {
+      "school": "DUT",
+      "title": "Computer Science (IoT thesis: cane counting system, ESP8266 + laser sensor)",
+      "years": "2022 — 2024"
+    }
+  ],
+  "stack": {
+    "backend": ["Spring Boot", "Java 21", "Laravel", "Flask", "Flyway", "JUnit 5", "Testcontainers"],
+    "frontend_mobile": ["Next.js", "React", "React Native", "Expo", "Flutter", "TypeScript", "Tailwind CSS"],
+    "data_ai": ["PostgreSQL", "MySQL", "Redis", "Firebase", "PyTorch", "CamemBERT", "spaCy", "Groq", "Gemini AI"],
+    "devops_quality": ["Docker", "GitHub Actions", "Google Cloud Run", "Playwright", "axe-core", "Stripe"]
+  },
+  "projects": [
+    {
+      "title": "OdemLab",
+      "year": "2026",
+      "summary": "AI-augmented skincare e-commerce",
+      "stack": ["Spring Boot", "Next.js", "React Native", "PostgreSQL", "Redis", "Stripe", "Gemini AI", "Playwright"],
+      "anchor": "#work-odemlab"
+    },
+    {
+      "title": "Medical appointment platform",
+      "year": "2025",
+      "summary": "Laravel clinic booking (internship)",
+      "stack": ["Laravel", "MySQL", "Bootstrap", "Chart.js"]
+    },
+    {
+      "title": "FitTrack",
+      "year": "2025",
+      "summary": "Fitness training platform",
+      "stack": ["Spring Boot", "Next.js", "MySQL", "Docker"]
+    },
+    {
+      "title": "Smart Campus Companion",
+      "year": "2026",
+      "summary": "Flutter campus app with QR room info, AR explored",
+      "stack": ["Flutter", "Firebase", "ARCore", "ARKit"]
+    },
+    {
+      "title": "SmartSummarizer",
+      "year": "2025",
+      "summary": "PDFs to summaries, quizzes and mind maps (NLP)",
+      "stack": ["Flask", "PyTorch", "CamemBERT", "spaCy", "Groq"]
+    },
+    {
+      "title": "Cane counting system",
+      "year": "2024",
+      "summary": "ESP8266 + laser sensor IoT (DUT thesis)",
+      "stack": ["ESP8266", "Arduino", "PHP", "MySQL"]
+    }
+  ],
+  "languages": [
+    { "language": "Arabic", "level": "native" },
+    { "language": "French", "level": "fluent" },
+    { "language": "English", "level": "professional" }
+  ],
+  "site": {
+    "languages": ["en", "fr"],
+    "sitemap": "https://ahmedol0.github.io/sitemap.xml",
+    "llms": "https://ahmedol0.github.io/llms.txt",
+    "resume": "https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali.pdf"
+  }
+}

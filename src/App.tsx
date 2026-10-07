@@ -1,17 +1,22 @@
-import { Component, useEffect, type ReactNode } from 'react';
+import { Component, lazy, Suspense, useEffect, type ReactNode } from 'react';
 import Dock, { TopPills } from './components/Dock';
 import Hero from './components/Hero';
 import MagneticCursor from './components/MagneticCursor';
-import WhatIDo from './components/WhatIDo';
-import HowIWork from './components/HowIWork';
-import Work from './components/Work';
-import Experience, { Education } from './components/Experience';
-import BehindTheWork from './components/BehindTheWork';
-import AboutMe from './components/AboutMe';
-import Contact from './components/Contact';
 import { LangProvider } from './i18n';
 import { useLang } from './i18n-data';
 import { useActiveSection, useBackToTop, useProgress, useTheme } from './hooks';
+
+// Below-the-fold sections are code-split: Hero + nav stay in the initial
+// bundle (LCP), everything else loads in parallel chunks. This shortens the
+// critical request chain (techIcons, Contact form, i18n-heavy sections).
+const WhatIDo = lazy(() => import('./components/WhatIDo'));
+const HowIWork = lazy(() => import('./components/HowIWork'));
+const Work = lazy(() => import('./components/Work'));
+const Experience = lazy(() => import('./components/Experience'));
+const Education = lazy(() => import('./components/Experience').then((m) => ({ default: m.Education })));
+const BehindTheWork = lazy(() => import('./components/BehindTheWork'));
+const AboutMe = lazy(() => import('./components/AboutMe'));
+const Contact = lazy(() => import('./components/Contact'));
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
   state = { hasError: false };
@@ -92,10 +97,17 @@ function Footer() {
 
 const STICKY_SECTIONS = ['what-i-do', 'how-i-work', 'work', 'experience', 'education', 'behind', 'about', 'contact'];
 
+// Own component so the per-frame progress value re-renders only this 2px bar,
+// not the entire page tree (was: useProgress() inside Site → full re-render
+// on every scroll frame, the main mobile jank source).
+function ProgressBar() {
+  const progress = useProgress();
+  return <div id="progress" style={{ width: `${progress}%` }} aria-hidden="true" />;
+}
+
 function Site() {
   const { t } = useLang();
   const { theme, toggle } = useTheme();
-  const progress = useProgress();
   const showTop = useBackToTop();
   const active = useActiveSection(STICKY_SECTIONS);
   useEffect(() => { document.title = t.footer.pageTitle; }, [t.footer.pageTitle]);
@@ -106,20 +118,22 @@ function Site() {
       <div className="folio-grid" aria-hidden="true" />
       <div className="folio-grid-minor" aria-hidden="true" />
       <div className="folio-frame" aria-hidden="true" />
-      <div id="progress" style={{ width: `${progress}%` }} aria-hidden="true" />
+      <ProgressBar />
       <div className="grain" aria-hidden="true" />
       <TopPills theme={theme} onToggle={toggle} />
       <Dock active={active} theme={theme} onToggle={toggle} />
       <Hero />
       <main id="main" tabIndex={-1} className="relative z-[1]">
-        <WhatIDo />
-        <HowIWork />
-        <Work />
-        <Experience />
-        <Education />
-        <BehindTheWork />
-        <AboutMe />
-        <Contact />
+        <Suspense fallback={null}>
+          <WhatIDo />
+          <HowIWork />
+          <Work />
+          <Experience />
+          <Education />
+          <BehindTheWork />
+          <AboutMe />
+          <Contact />
+        </Suspense>
       </main>
       <button
         id="toTop"

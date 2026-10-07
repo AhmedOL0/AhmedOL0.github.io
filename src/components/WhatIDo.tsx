@@ -12,7 +12,7 @@ const CARDS = [
   {
     /* app window — "interfaces people use" */
     icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><circle cx="6" cy="6.5" r=".8" fill="currentColor" stroke="none"/><path d="M7 13h4"/><path d="M7 16.5h7"/></svg>,
-    metric: 'WCAG', metricLabel: '2.2',
+    metric: 'WCAG', metricLabel: '2.2 AA',
     accent: 'gold',
   },
   {
@@ -60,7 +60,7 @@ function CapabilityCard({ cap, card, num }: { cap: { title: string; desc: string
       <p className="cap-desc">{cap.desc}</p>
       <button className="cap-toggle" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls={detailsId}>
         <span className="cap-toggle-text">{open ? t.whatIDo.showLess : t.whatIDo.showDetails}</span>
-        <svg className={`cap-chevron${open ? ' open' : ''}`} width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 4.5l3 3 3-3"/></svg>
+        <svg className={`cap-chevron${open ? ' open' : ''}`} aria-hidden="true" focusable="false" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 4.5l3 3 3-3"/></svg>
       </button>
       <div id={detailsId} className={`cap-details-wrap${open ? ' open' : ''}`} role="region" aria-label={cap.title}>
         <p className="cap-details">{cap.details}</p>

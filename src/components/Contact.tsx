@@ -13,6 +13,7 @@ function Spinner() {
 export default function Contact() {
   const { t } = useLang();
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'error' | 'mailto'>('idle');
+  const [errors, setErrors] = useState<Record<'name' | 'email' | 'message', string>>({ name: '', email: '', message: '' });
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
@@ -24,10 +25,28 @@ export default function Contact() {
 
   const retry = useCallback(() => setStatus('idle'), []);
 
+  const clearError = useCallback((field: 'name' | 'email' | 'message') => {
+    setErrors((prev) => (prev[field] ? { ...prev, [field]: '' } : prev));
+  }, []);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus('sending');
     const form = e.currentTarget;
+    // Inline per-field errors (browser-localized messages, no i18n keys needed).
+    // The form carries noValidate so these replace the native bubbles.
+    const next = { name: '', email: '', message: '' } as Record<'name' | 'email' | 'message', string>;
+    (['name', 'email', 'message'] as const).forEach((key) => {
+      const field = form.elements.namedItem(key) as HTMLInputElement | HTMLTextAreaElement | null;
+      if (field && !field.validity.valid) next[key] = field.validationMessage;
+    });
+    if (next.name || next.email || next.message) {
+      setErrors(next);
+      const firstBad = (['name', 'email', 'message'] as const).find((k) => next[k]);
+      document.getElementById(`contact-${firstBad}`)?.focus();
+      return;
+    }
+    setErrors({ name: '', email: '', message: '' });
+    setStatus('sending');
     const formData = new FormData(form);
     const accessKey = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined;
     if (!accessKey) {
@@ -76,21 +95,25 @@ export default function Contact() {
         {t.contact.sub}<strong style={{ color: 'var(--ink)' }}>{t.contact.subEm}</strong>{t.contact.subEnd}
       </p>
       <div className="contact-box mt-6 sm:mt-8">
-        <form onSubmit={handleSubmit} aria-busy={sending}>
+        <form onSubmit={handleSubmit} aria-busy={sending} noValidate>
           <input type="text" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" aria-label="Leave this field empty" />
           <label className="field" htmlFor="contact-name">
-            <input id="contact-name" name="name" type="text" placeholder=" " required disabled={sending} autoComplete="name" aria-required="true" />
+            <input id="contact-name" name="name" type="text" placeholder=" " required disabled={sending} autoComplete="name" aria-required="true" aria-invalid={!!errors.name} aria-describedby={errors.name ? 'contact-name-err' : undefined} onInput={() => clearError('name')} />
             <span>{t.contact.name}</span>
+            {errors.name && <p className="field-error" id="contact-name-err" role="alert">{errors.name}</p>}
           </label>
           <label className="field" htmlFor="contact-email">
-            <input id="contact-email" name="email" type="email" placeholder=" " required disabled={sending} autoComplete="email" inputMode="email" aria-required="true" />
+            <input id="contact-email" name="email" type="email" placeholder=" " required disabled={sending} autoComplete="email" inputMode="email" aria-required="true" aria-invalid={!!errors.email} aria-describedby={errors.email ? 'contact-email-err' : undefined} onInput={() => clearError('email')} />
             <span>{t.contact.email}</span>
+            {errors.email && <p className="field-error" id="contact-email-err" role="alert">{errors.email}</p>}
           </label>
           <label className="field" htmlFor="contact-message">
-            <textarea id="contact-message" name="message" rows={5} placeholder=" " required disabled={sending} aria-required="true" />
+            <textarea id="contact-message" name="message" rows={5} placeholder=" " required disabled={sending} aria-required="true" aria-invalid={!!errors.message} aria-describedby={errors.message ? 'contact-message-err' : undefined} onInput={() => clearError('message')} />
             <span>{t.contact.msg}</span>
+            {errors.message && <p className="field-error" id="contact-message-err" role="alert">{errors.message}</p>}
           </label>
           <div style={{ marginTop: 22 }}>
+            <p className="form-hint">{t.contact.respondTime}</p>
             <button
               className="btn btn-gold"
               data-magnetic

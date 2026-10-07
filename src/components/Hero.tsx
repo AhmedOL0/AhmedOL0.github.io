@@ -10,6 +10,11 @@ function Seal() {
 
 export default function Hero() {
   const { t } = useLang();
+  // Values stated by the site owner (see Experience section for roles).
+  const stats: [string, string][] = [
+    ['06+', t.hero.statsLabels[0]],
+    ['04', t.hero.statsLabels[1]],
+  ];
 
   return (
     <section id="top" className="hero-block hero-block--top">
@@ -60,10 +65,28 @@ export default function Hero() {
               {t.hero.ctaContact}
             </a>
           </div>
+          <dl className="hero-stats">
+            {stats.map(([v, l]) => (
+              <div className="hero-stat" key={l}>
+                <dt>{l}</dt><dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
         <div className="hero-visual">
-          <div className="hero-photo-lg">
-            <img src="/assets/photo.jpg" alt="Ahmed Ouarrali" width="240" height="240" loading="eager" fetchPriority="high" />
+          <div className="hero-orbit">
+            <span className="orbit-tick tick-tl" aria-hidden="true" />
+            <span className="orbit-tick tick-tr" aria-hidden="true" />
+            <span className="orbit-tick tick-bl" aria-hidden="true" />
+            <span className="orbit-tick tick-br" aria-hidden="true" />
+            <div className="hero-photo-lg">
+              <picture>
+                <source type="image/webp" srcSet="/assets/photo-240.webp 240w, /assets/photo-480.webp 480w" sizes="(max-width: 640px) 40vw, 240px" />
+                <img src="/assets/photo-480.jpg" srcSet="/assets/photo-240.jpg 240w, /assets/photo-480.jpg 480w" sizes="(max-width: 640px) 40vw, 240px" alt="Ahmed Ouarrali" width="240" height="240" loading="eager" fetchPriority="high" decoding="async" />
+              </picture>
+            </div>
+            <span className="orbit-chip chip-a" aria-hidden="true">{t.hero.photoChipA}</span>
+            <span className="orbit-chip chip-b" aria-hidden="true">{t.hero.photoChipB}</span>
           </div>
         </div>
       </div>

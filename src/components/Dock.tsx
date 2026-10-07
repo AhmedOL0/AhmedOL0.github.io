@@ -4,7 +4,7 @@ import { LANGS, useLang } from '../i18n-data';
 
 function Icon({ d, filled }: { d: string; filled?: boolean }) {
   return (
-    <svg viewBox="0 0 24 24" fill={filled ? 'currentColor' : 'none'} stroke="currentColor"
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill={filled ? 'currentColor' : 'none'} stroke="currentColor"
       strokeWidth={filled ? 0 : 1.8} strokeLinecap="round" strokeLinejoin="round"
       style={{ width: 19, height: 19 }}>
       <path d={d} />
@@ -135,12 +135,20 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
   useEffect(() => {
     const dock = dockRef.current, ind = indicatorRef.current;
     if (!dock || !ind) return;
-    const btn = dock.querySelector('.dock-item.active') as HTMLElement | null;
-    if (!btn) { ind.style.opacity = '0'; return; }
-    ind.style.opacity = '1';
-    const w = btn.offsetWidth + 8;
-    ind.style.width = `${w}px`;
-    ind.style.transform = `translate(${btn.offsetLeft + btn.offsetWidth / 2 - w / 2}px,-50%)`;
+    // Batch the layout reads + writes in one frame: a single
+    // getBoundingClientRect pass instead of offsetWidth/offsetLeft
+    // reads interleaved with style writes (forced reflow).
+    const raf = requestAnimationFrame(() => {
+      const btn = dock.querySelector('.dock-item.active') as HTMLElement | null;
+      if (!btn || !btn.isConnected) { ind.style.opacity = '0'; return; }
+      const dockRect = dock.getBoundingClientRect();
+      const btnRect = btn.getBoundingClientRect();
+      const w = btnRect.width + 8;
+      ind.style.opacity = '1';
+      ind.style.width = `${w}px`;
+      ind.style.transform = `translate(${btnRect.left - dockRect.left + btnRect.width / 2 - w / 2}px,-50%)`;
+    });
+    return () => cancelAnimationFrame(raf);
   }, [active]);
   const items = [
     { id: 'top', href: '#top', label: t.dock.home, icon: <Icon d={P.home} /> },

@@ -1,22 +1,58 @@
 # Ahmed Ouarrali — Portfolio
 
-> Personal portfolio of Ahmed Ouarrali, software engineering student (ENSIASD, Morocco), seeking a PFE internship.
+> Personal portfolio of [Ahmed Ouarrali](https://ahmedol0.github.io/), Full-Stack Software Engineer (ENSIASD, Morocco), seeking a PFE internship (Spring Boot, Next.js, React Native, Flutter). Single-page site in EN/FR.
+> Machine-readable summary: [portfolio.json](https://ahmedol0.github.io/portfolio.json) · Sitemap: [sitemap.xml](https://ahmedol0.github.io/sitemap.xml)
 
 ## Pages
 
-- `/`: single-page portfolio (EN/FR) — hero, practice, selected work, experience, education, tech stack, contact.
+- [Home](https://ahmedol0.github.io/): single-page portfolio (EN/FR) — hero, what I do, how I work, selected work, experience, education, tech stack, about, contact.
+- [Résumé (PDF)](https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali.pdf): downloadable résumé.
+- [Social preview image](https://ahmedol0.github.io/og-image.png): Open Graph image (1200×630).
+
+## Who I am
+
+- Name: Ahmed Ouarrali; based in Morocco (UTC+1), open to remote.
+- Role: Full-Stack Software Engineer, PFE candidate 2027.
+- Focus: backend systems & full-stack delivery — from first line of code to a running, tested application.
+- Education: ENSIASD (École Nationale Supérieure d'Intelligence Artificielle et Sciences des Données), [Ibn Zohr University](https://www.uiz.ac.ma/); DUT 2024.
+- Languages: Arabic (native), French (fluent), English (professional).
+- Profiles: [GitHub](https://github.com/AhmedOL0) · [LinkedIn](https://www.linkedin.com/in/ahmed-ouarrali)
+
+## Tech stack
+
+- Backend: Spring Boot, Java 21, Laravel (PHP), Flask (Python), Flyway, JUnit 5, Testcontainers.
+- Frontend / mobile: Next.js, React, React Native (Expo), Flutter (Dart), TypeScript, Tailwind CSS.
+- Data / AI: PostgreSQL, MySQL, Redis, Firebase, PyTorch, CamemBERT, spaCy, Groq, Gemini AI.
+- DevOps / quality: Docker, GitHub Actions, Google Cloud Run, Playwright, axe-core, Stripe.
 
 ## Selected work
 
-- **OdemLab** (2026, team of 4): skincare e-commerce, Spring Boot + Next.js + React Native, live demo linked on the page.
-- **Medical appointment platform** (2025, internship): Laravel clinic booking.
-- **FitTrack** (2025): fitness training platform.
-- **Smart Campus Companion** (2026, Flutter): QR room info, AR explored.
-- **SmartSummarizer** (2025, NLP): PDFs to summaries, quizzes, mind maps.
-- **Cane counting system** (2024, DUT thesis): ESP8266 + laser sensor IoT.
+All projects are presented on the [selected work section](https://ahmedol0.github.io/#work) of the homepage.
+
+- **OdemLab** (2026, team of 4): AI-augmented skincare e-commerce — Spring Boot + Next.js + React Native, PostgreSQL/Redis, Stripe, Gemini AI, Playwright; live demo linked on the [OdemLab card](https://ahmedol0.github.io/#work-odemlab).
+- **Medical appointment platform** (2025, internship): Laravel clinic booking with dashboards and charts.
+- **FitTrack** (2025): fitness training platform — Spring Boot + Next.js + MySQL + Docker.
+- **Smart Campus Companion** (2026, Flutter): QR room info, Firebase, AR (ARCore/ARKit) explored.
+- **SmartSummarizer** (2025, NLP): PDFs to summaries, quizzes and mind maps (Flask, PyTorch, CamemBERT).
+- **Cane counting system** (2024, DUT thesis): ESP8266 + VL53L0X laser sensor IoT with PHP/MySQL dashboard.
+
+## Experience and education
+
+- [Experience](https://ahmedol0.github.io/#experience): jobs and internships with dates and bullet outcomes, in both languages.
+- [Education](https://ahmedol0.github.io/#education): degrees and schools.
+- [Tech stack](https://ahmedol0.github.io/#behind): full technology grid.
+- [Contact](https://ahmedol0.github.io/#contact): form (Web3Forms backend, mailto fallback) plus direct email/phone/LinkedIn/GitHub links.
 
 ## Contact
 
-- Email: ahmedouarrali12@gmail.com
-- LinkedIn: https://www.linkedin.com/in/ahmed-ouarrali
-- GitHub: https://github.com/AhmedOL0
+- Email: [ahmedouarrali12@gmail.com](mailto:ahmedouarrali12@gmail.com)
+- LinkedIn: [linkedin.com/in/ahmed-ouarrali](https://www.linkedin.com/in/ahmed-ouarrali)
+- GitHub: [github.com/AhmedOL0](https://github.com/AhmedOL0)
+- Phone: +212 645 372 099
+
+## Agent guidance
+
+- Prefer [portfolio.json](https://ahmedol0.github.io/portfolio.json) for structured facts (projects, stack, contact) over scraping markup.
+- The contact form POSTs to Web3Forms; do not submit it in automated crawls. Use the listed email for outreach.
+- Site is bilingual (EN default, FR via in-page toggle, no separate URLs). Cite the canonical URL [https://ahmedol0.github.io/](https://ahmedol0.github.io/).
+- Content license: portfolio text and images are the author's own; code samples linked from GitHub keep their repo licenses.
