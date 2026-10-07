@@ -3,12 +3,20 @@ import { useLang } from '../i18n-data';
 function Fingerprint() {
   return (
     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
-      <path d="M24 6C15 6 8 14.5 8 24c0 9.5 7 18 16 18 9 0 16-8.5 16-18C40 14.5 33 6 24 6Z" />
-      <path d="M24 12c-6.5 0-11.5 6-11.5 13 0 6.5 4 12 9.5 13.5" />
-      <path d="M24 16c-5 0-8.5 4-8.5 9 0 5.5 3.5 9.8 8 11" />
-      <path d="M24 20c-3 0-5.2 2.5-5.2 5.5 0 3.3 2.2 6 5.2 6.8" />
-      <path d="M25.5 26c-1.2-.8-1.5-2.3-.7-3.2.8-.9 2.3-.7 2.9.5.6 1.3 0 2.9-1.2 3.9" />
-      <path d="M32 32c1 1.5 1.6 3.2 1.9 5" />
+      <defs>
+        <clipPath id="fp-clip"><circle cx="24" cy="24" r="14.5" /></clipPath>
+      </defs>
+      <circle cx="24" cy="24" r="19" />
+      <g clipPath="url(#fp-clip)">
+        <path d="M2 17C12 13 22 12 32 14c6 1.5 10 3.5 14 6" />
+        <path d="M2 22c10-4 20-5 30-3 6 1.5 10 3.5 14 6" />
+        <path d="M2 27c10-4 20-5 30-3 6 1.5 10 3.5 14 6" />
+        <path d="M4 32c9-4 18-5 27-3 5.5 1.5 9.5 3.5 13 6" />
+        <path d="M7 37c8-4 16-5 24-3 5 1.5 9 3.5 12 6" />
+        <path d="M28 19c2-1 4-1 6 0" />
+        <path d="M14 35c2-1 4-1.5 6-1.5" />
+        <path d="M22 24.5c-1-1.5-.8-3 .5-3.8 1.3-.7 2.8 0 3 1.5.2 1.7-.7 3.3-2.2 4.2" />
+      </g>
     </svg>
   );
 }

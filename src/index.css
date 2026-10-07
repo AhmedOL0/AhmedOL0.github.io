@@ -3,7 +3,7 @@
 :root, :root[data-theme="dark"]{
   color-scheme:dark;
   --bg:#12261E; --bg2:#0C1B15; --card:#183328; --line:#2B483B; --line-soft:#1E3D31;
-  --ink:#EFEAD8; --muted:#C8C3B3; --faint:#9B8F7F;
+  --ink:#EFEAD8; --muted:#C8C3B3; --faint:#A39A8B;
   --gold:#C49A4C; --gold-hi:#EDC06D; --gold-deep:#AD843C; --rust:#C47B4A;
   --amber:#C49A4C; --sage:#8AA898; --cocoa:#1E3D31;
   --navbg:rgba(18,38,30,.88); --inputbg:rgba(12,27,21,.6);
@@ -330,7 +330,7 @@ html.has-magnetic-cursor,html.has-magnetic-cursor a,html.has-magnetic-cursor but
 .dock a.active{color:var(--gold)}
 .dock-sep{width:1px;height:22px;background:var(--line);margin:0 5px}
 .dock{transition:transform .3s ease,translate .3s ease}
-.dock-indicator{position:absolute;top:50%;left:50%;width:42px;height:42px;border-radius:var(--r);background:var(--bg2);border:1px solid var(--line);transform:translate(-50%,-50%);transition:left .3s ease,width .3s ease,opacity .3s;pointer-events:none;z-index:0}
+.dock-indicator{position:absolute;top:50%;left:0;width:50px;height:42px;border-radius:var(--r);background:var(--bg2);border:1px solid var(--line);transform:translate(0,-50%);transition:transform .35s cubic-bezier(.32,.72,0,1),opacity .3s;pointer-events:none;z-index:0}
 .dock-hidden{translate:0 110px}
 
 /* Nav bits */
@@ -440,7 +440,7 @@ html.has-magnetic-cursor,html.has-magnetic-cursor a,html.has-magnetic-cursor but
 }
 
 /* Top pills + language switcher — dossier index markers */
-.top-pill{background:transparent !important;border:1px solid var(--line) !important;
+.top-pill{background:var(--card) !important;border:1px solid var(--line) !important;
   color:var(--gold) !important;box-shadow:none;border-radius:var(--r) !important;
   animation:drop-in .5s ease .1s both;transition:opacity .3s,border-color .2s,color .2s}
 .top-pill::after{display:none}

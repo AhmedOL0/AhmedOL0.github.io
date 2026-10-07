@@ -1,0 +1,22 @@
+# Ahmed Ouarrali — Portfolio
+
+> Personal portfolio of Ahmed Ouarrali, software engineering student (ENSIASD, Morocco), seeking a PFE internship.
+
+## Pages
+
+- `/`: single-page portfolio (EN/FR) — hero, practice, selected work, experience, education, tech stack, contact.
+
+## Selected work
+
+- **OdemLab** (2026, team of 4): skincare e-commerce, Spring Boot + Next.js + React Native, live demo linked on the page.
+- **Medical appointment platform** (2025, internship): Laravel clinic booking.
+- **FitTrack** (2025): fitness training platform.
+- **Smart Campus Companion** (2026, Flutter): QR room info, AR explored.
+- **SmartSummarizer** (2025, NLP): PDFs to summaries, quizzes, mind maps.
+- **Cane counting system** (2024, DUT thesis): ESP8266 + laser sensor IoT.
+
+## Contact
+
+- Email: ahmedouarrali12@gmail.com
+- LinkedIn: https://www.linkedin.com/in/ahmed-ouarrali
+- GitHub: https://github.com/AhmedOL0

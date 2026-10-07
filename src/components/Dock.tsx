@@ -138,8 +138,9 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
     const btn = dock.querySelector('.dock-item.active') as HTMLElement | null;
     if (!btn) { ind.style.opacity = '0'; return; }
     ind.style.opacity = '1';
-    ind.style.left = `${btn.offsetLeft + btn.offsetWidth / 2}px`;
-    ind.style.width = `${btn.offsetWidth + 8}px`;
+    const w = btn.offsetWidth + 8;
+    ind.style.width = `${w}px`;
+    ind.style.transform = `translate(${btn.offsetLeft + btn.offsetWidth / 2 - w / 2}px,-50%)`;
   }, [active]);
   const items = [
     { id: 'top', href: '#top', label: t.dock.home, icon: <Icon d={P.home} /> },
