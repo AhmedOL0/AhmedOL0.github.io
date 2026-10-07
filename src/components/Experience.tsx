@@ -69,10 +69,10 @@ export default function Experience() {
 }
 
 const EDU_ICONS = [
-  /* landmark — academic institution */
-  <svg key="eng" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18"/><path d="M5 21V10"/><path d="M9.5 21V10"/><path d="M14.5 21V10"/><path d="M19 21V10"/><path d="m12 3 9 5H3l9-5z"/></svg>,
-  /* microchip */
-  <svg key="dut" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 1v4m6-4v4m-8 14v4m6-4v4m-9-8H1m22 0h-4m-1.5-6.5L15 7m-6 10l-2.5 2.5m11-10.5L15 17m-6-10l-2.5-2.5"/></svg>,
+  /* landmark — filled pediment for weight, three pillars that breathe */
+  <svg key="eng" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l9 5H3z" fill="currentColor" stroke="none"/><path d="M7.5 21V11 M12 21V11 M16.5 21V11"/><path d="M3 21h18"/></svg>,
+  /* packaged chip — body, filled core, short stubs; unmistakably a microchip */
+  <svg key="dut" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="10" y="10" width="4" height="4" rx="1" fill="currentColor" stroke="none"/><path d="M12 6V2.5 M12 18v3.5 M6 12H2.5 M18 12h3.5"/></svg>,
 ];
 
 export function Education() {
