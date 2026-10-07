@@ -4,7 +4,7 @@ import { useLang } from '../i18n-data';
 
 function Spinner() {
   return (
-    <svg className="send-spinner" viewBox="0 0 20 20" style={{ width: 16, height: 16, marginRight: 8, animation: 'spin .8s linear infinite' }}>
+    <svg className="send-spinner" viewBox="0 0 20 20" aria-hidden="true" focusable="false" style={{ width: 16, height: 16, marginRight: 8, animation: 'spin .8s linear infinite' }}>
       <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="32 18" strokeLinecap="round" />
     </svg>
   );
@@ -108,7 +108,7 @@ export default function Contact() {
             {errors.email && <p className="field-error" id="contact-email-err" role="alert">{errors.email}</p>}
           </label>
           <label className="field" htmlFor="contact-message">
-            <textarea id="contact-message" name="message" rows={5} placeholder=" " required disabled={sending} aria-required="true" aria-invalid={!!errors.message} aria-describedby={errors.message ? 'contact-message-err' : undefined} onInput={() => clearError('message')} />
+            <textarea id="contact-message" name="message" rows={5} maxLength={2000} placeholder=" " required disabled={sending} aria-required="true" aria-invalid={!!errors.message} aria-describedby={errors.message ? 'contact-message-err' : undefined} onInput={() => clearError('message')} />
             <span>{t.contact.msg}</span>
             {errors.message && <p className="field-error" id="contact-message-err" role="alert">{errors.message}</p>}
           </label>

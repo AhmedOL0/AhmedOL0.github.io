@@ -1,6 +1,6 @@
 # Portfolio — Ahmed Ouarrali
 
-React 18 + TypeScript + Vite + Tailwind v4. Single-page portfolio, trilingual (EN/FR/AR with RTL), dark/light themes, deploys to GitHub Pages.
+React 19 + TypeScript + Vite + Tailwind v4. Single-page portfolio, bilingual (EN/FR), dark/light themes, deploys to GitHub Pages.
 
 ## Develop
 
@@ -15,4 +15,4 @@ Push to `main` — the `deploy.yml` workflow builds and publishes to Pages autom
 
 ## Assets
 
-`public/assets/` holds `photo.jpg` and `CV_Ahmed_Ouarrali.pdf` (not tracked here — add your own).
+`public/assets/` holds responsive portraits (`photo-240/480.webp` + `.jpg` fallbacks) and `CV_Ahmed_Ouarrali.pdf`. Self-hosted latin variable fonts live in `public/fonts/`.

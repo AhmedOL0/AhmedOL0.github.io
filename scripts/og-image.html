@@ -6,27 +6,25 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     width: 1200px; height: 630px;
-    background: #0b0b0e;
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    color: #f2ede4;
+    background: #12261E;
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #EFEAD8;
     display: flex;
     overflow: hidden;
     position: relative;
   }
-  body::before {
-    content: '';
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(circle at 80% 20%, rgba(201,168,118,.18), transparent 50%),
-      radial-gradient(circle at 10% 80%, rgba(180,85,45,.12), transparent 50%);
-  }
   .grid {
     position: absolute; inset: 0;
     background-image:
-      linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      linear-gradient(rgba(239,234,216,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(239,234,216,.04) 1px, transparent 1px);
     background-size: 72px 72px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, #000 20%, transparent 100%);
+  }
+  .frame {
+    position: absolute; inset: 24px;
+    border: 1px solid #2B483B;
+    pointer-events: none;
   }
   .content {
     position: relative; z-index: 1;
@@ -37,13 +35,15 @@
   }
   .badge {
     display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(201,168,118,.12);
-    border: 1px solid rgba(201,168,118,.3);
-    border-radius: 999px;
+    background: transparent;
+    border: 1px solid #2B483B;
+    border-radius: 4px;
     padding: 8px 20px;
     font-size: 15px;
-    color: #c9a876;
-    letter-spacing: .03em;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: #C49A4C;
     width: fit-content;
     margin-bottom: 32px;
   }
@@ -51,25 +51,24 @@
     content: '';
     width: 8px; height: 8px;
     border-radius: 50%;
-    background: #c9a876;
-    box-shadow: 0 0 8px #c9a876;
+    background: #8AA898;
   }
   h1 {
-    font-size: 62px;
-    font-weight: 700;
+    font-size: 64px;
+    font-weight: 500;
     line-height: 1.1;
     max-width: 800px;
     margin-bottom: 24px;
+    letter-spacing: -.015em;
   }
   h1 em {
     font-style: italic;
-    background: linear-gradient(135deg, #ecd3a8, #c9a876, #8a6a3e);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #C49A4C;
   }
   .sub {
     font-size: 22px;
-    color: #a8a29a;
+    font-family: system-ui, -apple-system, sans-serif;
+    color: #C8C3B3;
     max-width: 700px;
     line-height: 1.5;
     margin-bottom: 40px;
@@ -80,10 +79,10 @@
   .tech span {
     font-size: 14px;
     font-family: 'Courier New', monospace;
-    color: #c9a876;
-    background: rgba(201,168,118,.08);
-    border: 1px solid rgba(201,168,118,.2);
-    border-radius: 999px;
+    color: #C49A4C;
+    background: transparent;
+    border: 1px solid #2B483B;
+    border-radius: 4px;
     padding: 6px 16px;
     letter-spacing: .04em;
   }
@@ -91,18 +90,20 @@
     position: absolute;
     bottom: 50px; right: 90px;
     font-size: 20px;
-    color: #969189;
+    font-family: 'Courier New', monospace;
+    color: #A39A8B;
     letter-spacing: .06em;
   }
   .name strong {
-    color: #f2ede4;
+    color: #EFEAD8;
     font-weight: 600;
   }
-  .dot { color: #c9a876; }
+  .dot { color: #C49A4C; }
 </style>
 </head>
 <body>
   <div class="grid"></div>
+  <div class="frame"></div>
   <div class="content">
     <div class="badge">Open to PFE internship</div>
     <h1>Building <em>complete products</em>: API, web, mobile.</h1>

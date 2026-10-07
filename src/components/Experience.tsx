@@ -39,7 +39,7 @@ export function Timeline({ items }: { items: JobT[] }) {
           <div className="job-card">
             <div className="when font-mono-d">{j.when}</div>
             <h3>{j.title} <span>· {j.org}</span></h3>
-            <div className="where">{j.where}</div>
+            {j.where && <div className="where">{j.where}</div>}
             {j.tags.length > 0 && (
               <div className="tags job-tags">
                 {j.tags.map((tag) => (

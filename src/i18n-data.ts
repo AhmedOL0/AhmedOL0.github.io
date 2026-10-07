@@ -8,7 +8,7 @@ export const LANGS: { code: Lang; label: string; aria: string }[] = [
 
 export type ProjectT = {
   title: string; year: string; kind: string; heading: string; lead: string;
-  description: string; result?: string; note?: string; linkLabel?: string; linkHref?: string;
+  description: string; result?: string; linkLabel?: string; linkHref?: string;
 };
 
 export function thumbTitle(p: ProjectT): { pre: string; em: string; post: string } {
@@ -17,7 +17,7 @@ export function thumbTitle(p: ProjectT): { pre: string; em: string; post: string
   return { pre: p.heading.slice(0, i), em: p.lead, post: p.heading.slice(i + 1) };
 }
 
-export type JobT = { when: string; title: string; org: string; where: string; points: string[]; tags: string[] };
+export type JobT = { when: string; title: string; org: string; where?: string; points: string[]; tags: string[] };
 export type EduT = { years: string; title: string; school: string; desc: string };
 
 export type Capability = { title: string; desc: string; details: string };
@@ -32,7 +32,7 @@ export type Dict = {
   whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
-  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; filterCount: string; projects: ProjectT[] };
+  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; filterCount: string; walkthroughNote: string; projects: ProjectT[] };
   exp: { kicker: string; title: string; jobs: JobT[] };
   edu: { kicker: string; title: string; sub: string; entries: EduT[] };
   behind: { kicker: string; title: string; sub: string; categories: TechCategory[] };
@@ -103,32 +103,27 @@ const en: Dict = {
     kicker: 'Selected work', title: 'Systems that run in production, not demos that run once.',
     sub: 'More than six builds across web, mobile, backend, AI and IoT. Each one deployed, used, or graded.',
     showLess: 'show less', showFewer: 'Show fewer tags', filterCount: 'Showing {count} of {total} projects',
+    walkthroughNote: 'Live demos, private repositories and hardware: code walkthroughs and guided demos available on request.',
     projects: [
       { title: 'OdemLab: AI skincare e-commerce', year: 'Flagship', kind: 'Team of 4 · Private repo', heading: 'OdemLab', lead: 'd',
         description: 'A complete online skincare store with AI skin analysis, three payment methods (Stripe, CMI, cash-on-delivery), and trilingual FR/EN/AR support. Customers browse, scan their skin, and pay. All in one flow.',
         result: '810 automated tests, 93 schema migrations, 3 payment integrations. Deployed to Cloud Run with zero-downtime promotion.',
-        note: 'Private repository: live demo and code walkthrough on request.',
         linkLabel: 'Open the live store', linkHref: 'https://odemlab-frontend-fne55ek37q-no.a.run.app/fr' },
       { title: 'Medical appointment platform', year: '2025', kind: 'Internship · Full-stack', heading: 'Medical', lead: 'e',
         description: 'A clinic management platform where patients book appointments online and doctors manage schedules, patients, and generate PDF reports.',
-        result: 'Reduced scheduling from 15min phone calls to 2-minute online booking.',
-        note: 'Internship project — code walkthrough and live demo on request.' },
+        result: 'Reduced scheduling from 15min phone calls to 2-minute online booking.'},
       { title: 'FitTrack: training platform', year: '2025', kind: 'Team of 2 · Full-stack', heading: 'FitTrack', lead: 'i',
         description: 'A fitness web app where users create training programs, track sessions in real time, and view BMI and calorie stats. Admin panel with 38-exercise library.',
-        result: 'Full admin moderation pipeline across 38 exercises with video demos.',
-        note: 'Academic project — code walkthrough and live demo on request.' },
+        result: 'Full admin moderation pipeline across 38 exercises with video demos.'},
       { title: 'Smart Campus Companion', year: '2026', kind: 'Team of 4 · Flutter', heading: 'Campus', lead: 'a',
         description: 'A Flutter campus app where students scan QR codes on classroom doors for instant room info and AR visualization. Professors reserve rooms and post announcements.',
-        result: 'QR-to-room info in one scan. Real-time sync across 7 collections for 3 campus roles.',
-        note: 'Academic project — code walkthrough and live demo on request.' },
+        result: 'QR-to-room info in one scan. Real-time sync across 7 collections for 3 campus roles.'},
       { title: 'SmartSummarizer', year: '2025', kind: 'Team of 4 · NLP', heading: 'Summarizer', lead: 'u',
         description: 'An AI platform that transforms lecture PDFs into study tools. Summaries, audio, quizzes, and mind maps. Using CamemBERT and Groq.',
-        result: '9.9s average processing. 8.4/10 quality score from 30 students.',
-        note: 'Academic project — code walkthrough and live demo on request.' },
+        result: '9.9s average processing. 8.4/10 quality score from 30 students.'},
       { title: 'Cane counting system', year: '2024 · DUT thesis', kind: 'Embedded · Final-year project', heading: 'IoT', lead: 'T',
         description: 'An ESP8266-based counting system using a laser sensor to count canes on a production line, with real-time OLED display and Wi-Fi dashboard.',
-        result: '98%+ accuracy. 3D-printed production-ready enclosure.',
-        note: 'Final-year project — code walkthrough and hardware demo on request.' },
+        result: '98%+ accuracy. 3D-printed production-ready enclosure.'},
     ],
   },
   exp: {
@@ -137,13 +132,13 @@ const en: Dict = {
       { when: 'JUN 2026 – SEP 2026 · AGADIR, ON-SITE', title: 'End-of-year project (PFA): Full-Stack Developer', org: 'Zorium, Technoparc Agadir', where: 'OdemLab platform · team of four',
         tags: ['Spring Boot', 'Next.js', 'PostgreSQL', 'Cloud Run'],
         points: ['Owned backend business modules: orders, products, payments, auth, GDPR', 'Hardened the money paths: server-side pricing, idempotent checkout, audited order lifecycle', 'Shipped to Cloud Run: zero-traffic deploy, health check, promotion, auto-rollback on failure'] },
-      { when: 'JUL 2025 – SEP 2025 · REMOTE', title: 'Full-Stack Developer Intern', org: 'MOUSSA SOFT · Agadir', where: 'Laravel · MySQL · Bootstrap',
+      { when: 'JUL 2025 – SEP 2025 · REMOTE', title: 'Full-Stack Developer Intern', org: 'MOUSSA SOFT · Agadir',
         tags: ['Laravel', 'MySQL', 'Bootstrap'],
         points: ['Built MediCare: patient-doctor booking, appointment scheduling, PDF report generation, Chart.js dashboards'] },
-      { when: 'JUN 2024 – JUN 2024 · AGADIR, ON-SITE', title: 'End-of-study internship (DUT): Embedded Developer', org: 'MOUSSA SOFT · Agadir', where: 'ESP8266 · VL53L0X · PHP · MySQL',
+      { when: 'JUN 2024 – JUN 2024 · AGADIR, ON-SITE', title: 'End-of-study internship (DUT): Embedded Developer', org: 'MOUSSA SOFT · Agadir',
         tags: ['ESP8266', 'VL53L0X', 'PHP', 'MySQL'],
         points: ['Built a cane counting system with ESP8266 + laser sensor, OLED display, Wi-Fi to PHP/MySQL dashboard', 'Designed 3D-printed enclosures in SolidWorks, fabricated with Creality CR-10 Max'] },
-      { when: 'JUN 2023 – AUG 2023', title: 'QA Automation Intern', org: 'Univers Architecture Maroc', where: 'Python · Selenium WebDriver · Page Objects',
+      { when: 'JUN 2023 – AUG 2023', title: 'QA Automation Intern', org: 'Univers Architecture Maroc',
         tags: ['Python', 'Selenium', 'Page Objects'],
         points: ['Replaced a manual campaign with automated non-regression suites, one change point per UI change'] },
     ],
@@ -180,7 +175,7 @@ const en: Dict = {
     kicker: 'Contact', title: 'Let\'s build something solid.',
     sub: 'Looking for a ', subEm: 'PFE internship', subEnd: ', backend or full-stack, Morocco or remote. I answer fast.',
     name: 'Your name', namePh: 'Your full name', email: 'Email address', emailPh: 'you@company.com',
-    msg: 'Project details', msgPh: 'What are you building, and when?', send: 'Send message', sending: '...',
+    msg: 'Project details', msgPh: 'What are you building, and when?', send: 'Send message', sending: 'Sending…',
     success: '\u2713 Message sent. I\'ll get back to you soon.', error: '\u2717 Something went wrong. Try emailing me directly.',
     mailto: '\u2713 Your email app is opening with the message ready to send.',
     respondTime: 'Typically respond within 24 hours',
@@ -236,32 +231,27 @@ const fr: Dict = {
     kicker: 'Projets', title: 'Des syst\u00e8mes qui tournent en production, pas des d\u00e9mos qui tournent une fois.',
     sub: 'Plus de six r\u00e9alisations web, mobile, backend, IA et IoT. Chacune d\u00e9ploy\u00e9e, utilis\u00e9e ou \u00e9valu\u00e9e.',
     showLess: 'voir moins', showFewer: 'Afficher moins', filterCount: '{count} projets sur {total} affichés',
+    walkthroughNote: 'D\u00e9mos en direct, d\u00e9p\u00f4ts priv\u00e9s et mat\u00e9riel : revues de code et d\u00e9monstrations guid\u00e9es sur demande.',
     projects: [
       { title: 'OdemLab: e-commerce cosm\u00e9tique IA', year: 'Vitrine', kind: '\u00c9quipe de 4 \u00b7 D\u00e9p\u00f4t priv\u00e9', heading: 'OdemLab', lead: 'd',
         description: 'Boutique cosm\u00e9tique en ligne avec analyse IA de la peau, trois m\u00e9thodes de paiement (Stripe, CMI, contre-remboursement) et support trilingue FR/EN/AR.',
         result: '810 tests automatis\u00e9s, 93 migrations, 3 int\u00e9grations paiement. D\u00e9ploy\u00e9 sur Cloud Run.',
-        note: 'D\u00e9p\u00f4t priv\u00e9: d\u00e9mo en direct et revue de code sur demande.',
         linkLabel: 'Ouvrir la boutique', linkHref: 'https://odemlab-frontend-fne55ek37q-no.a.run.app/fr' },
       { title: 'Plateforme de rendez-vous m\u00e9dicaux', year: '2025', kind: 'Stage \u00b7 Full-stack', heading: 'M\u00e9dical', lead: 'e',
         description: 'Plateforme de gestion de cabinet m\u00e9dical o\u00f9 les patients prennent rendez-vous en ligne et les m\u00e9decins g\u00e8rent leurs plannings et g\u00e9n\u00e8rent des rapports PDF.',
-        result: 'R\u00e9duction de 15min d\u2019appel \u00e0 2 minutes de r\u00e9servation en ligne.',
-        note: 'Projet de stage — revue de code et d\u00e9mo en direct sur demande.' },
+        result: 'R\u00e9duction de 15min d\u2019appel \u00e0 2 minutes de r\u00e9servation en ligne.'},
       { title: 'FitTrack: suivi sportif', year: '2025', kind: '\u00c9quipe de 2 \u00b7 Full-stack', heading: 'FitTrack', lead: 'i',
         description: 'Application web fitness pour cr\u00e9er des programmes d\u2019entra\u00eEnement, suivre les s\u00e9ances en temps r\u00e9el et visualiser IMC et calories.',
-        result: 'Pipeline complet de mod\u00e9ration admin pour 38 exercices avec vid\u00e9os.',
-        note: 'Projet acad\u00e9mique — revue de code et d\u00e9mo en direct sur demande.' },
+        result: 'Pipeline complet de mod\u00e9ration admin pour 38 exercices avec vid\u00e9os.'},
       { title: 'Smart Campus Companion', year: '2026', kind: '\u00c9quipe de 4 \u00b7 Flutter', heading: 'Campus', lead: 'a',
         description: 'Application Flutter de gestion de campus o\u00f9 les \u00e9tudiants scannent des QR codes pour obtenir les informations de salle instantan\u00e9ment avec visualisation AR.',
-        result: 'Info salle en un scan QR. Synchronisation temps r\u00e9el pour 7 collections.',
-        note: 'Projet acad\u00e9mique — revue de code et d\u00e9mo en direct sur demande.' },
+        result: 'Info salle en un scan QR. Synchronisation temps r\u00e9el pour 7 collections.'},
       { title: 'SmartSummarizer', year: '2025', kind: '\u00c9quipe de 4 \u00b7 NLP', heading: 'R\u00e9sumeur', lead: 'u',
         description: 'Plateforme IA qui transforme les PDF de cours en outils d\u2019\u00e9tude. R\u00e9sum\u00e9s, audio, quiz et cartes mentales.',
-        result: '9.9s de traitement moyen. Score 8.4/10 sur 30 \u00e9tudiants.',
-        note: 'Projet acad\u00e9mique — revue de code et d\u00e9mo en direct sur demande.' },
+        result: '9.9s de traitement moyen. Score 8.4/10 sur 30 \u00e9tudiants.'},
       { title: 'Syst\u00e8me de comptage de cannes', year: '2024 \u00b7 PFE DUT', kind: 'Embarqu\u00e9 \u00b7 Projet de fin', heading: 'IoT', lead: 'T',
         description: 'Syst\u00e8me de comptage bas\u00e9 sur ESP8266 utilisant un capteur laser pour compter les cannes sur une ligne de production, avec affichage OLED et tableau de bord Wi-Fi.',
-        result: '98%+ de pr\u00e9cision. Bo\u00eetier 3D imprim\u00e9.',
-        note: 'Projet de fin d\u2019\u00e9tudes — revue de code et d\u00e9mo mat\u00e9rielle sur demande.' },
+        result: '98%+ de pr\u00e9cision. Bo\u00eetier 3D imprim\u00e9.'},
     ],
   },
   exp: {
@@ -270,13 +260,13 @@ const fr: Dict = {
       { when: 'JUIN 2026 \u2013 SEPT. 2026 \u00b7 AGADIR, SUR SITE', title: 'Projet de fin d\u2019ann\u00e9e (PFA): D\u00e9veloppeur Full-Stack', org: 'Zorium, Technoparc Agadir', where: 'Plateforme OdemLab \u00b7 \u00e9quipe de quatre',
         tags: ['Spring Boot', 'Next.js', 'PostgreSQL', 'Cloud Run'],
         points: ['Modules m\u00e9tier backend : commandes, produits, paiements, auth, RGPD', 'Chemins mon\u00e9taires fiabilis\u00e9s : tarification serveur, checkout idempotent, cycle audité', 'Livraison Cloud Run : d\u00e9ploiement sans trafic, health check, promotion, rollback auto'] },
-      { when: 'JUIL. 2025 \u2013 SEPT. 2025 \u00b7 DISTANCIEL', title: 'Stagiaire D\u00e9veloppeur Full-Stack', org: 'MOUSSA SOFT \u00b7 Agadir', where: 'Laravel \u00b7 MySQL \u00b7 Bootstrap',
+      { when: 'JUIL. 2025 \u2013 SEPT. 2025 \u00b7 DISTANCIEL', title: 'Stagiaire D\u00e9veloppeur Full-Stack', org: 'MOUSSA SOFT \u00b7 Agadir',
         tags: ['Laravel', 'MySQL', 'Bootstrap'],
         points: ['MediCare : r\u00e9servation patients-m\u00e9decins, planning, g\u00e9n\u00e9ration de rapports PDF, tableaux Chart.js'] },
-      { when: 'JUIN 2024 \u2013 JUIN 2024 \u00b7 AGADIR, SUR SITE', title: 'Stage de fin d\u2019\u00e9tudes (DUT): D\u00e9veloppeur Embarqu\u00e9', org: 'MOUSSA SOFT \u00b7 Agadir', where: 'ESP8266 \u00b7 VL53L0X \u00b7 PHP \u00b7 MySQL',
+      { when: 'JUIN 2024 \u2013 JUIN 2024 \u00b7 AGADIR, SUR SITE', title: 'Stage de fin d\u2019\u00e9tudes (DUT): D\u00e9veloppeur Embarqu\u00e9', org: 'MOUSSA SOFT \u00b7 Agadir',
         tags: ['ESP8266', 'VL53L0X', 'PHP', 'MySQL'],
         points: ['Syst\u00e8me de comptage de cannes avec ESP8266 + capteur laser, \u00e9cran OLED, Wi-Fi vers tableau PHP/MySQL', 'Bo\u00eetiers 3D imprim\u00e9s con\u00e7us dans SolidWorks, fabriqu\u00e9s avec Creality CR-10 Max'] },
-      { when: 'JUIN 2023 \u2013 AO\u00fbT 2023', title: 'Stagiaire QA Automatisation', org: 'Univers Architecture Maroc', where: 'Python \u00b7 Selenium WebDriver \u00b7 Page Objects',
+      { when: 'JUIN 2023 \u2013 AO\u00fbT 2023', title: 'Stagiaire QA Automatisation', org: 'Univers Architecture Maroc',
         tags: ['Python', 'Selenium', 'Page Objects'],
         points: ['Campagne manuelle remplac\u00e9e par des suites automatis\u00e9es, un point de changement par \u00e9cran'] },
     ],
@@ -313,7 +303,7 @@ const fr: Dict = {
     kicker: 'Contact', title: 'Construisons quelque chose de solide.',
     sub: 'Je cherche un ', subEm: 'stage PFE', subEnd: ', backend ou full-stack, Maroc ou distanciel. Je r\u00e9ponds vite.',
     name: 'Votre nom', namePh: 'Votre nom complet', email: 'Adresse e-mail', emailPh: 'vous@entreprise.com',
-    msg: 'D\u00e9tails du projet', msgPh: 'Que construisez-vous, et pour quand ?', send: 'Envoyer', sending: '...',
+    msg: 'D\u00e9tails du projet', msgPh: 'Que construisez-vous, et pour quand ?', send: 'Envoyer', sending: 'Envoi…',
     success: '\u2713 Message envoy\u00e9. Je vous r\u00e9ponds vite.', error: '\u2717 Une erreur s\u2019est produite. \u00c9crivez-moi directement.',
     mailto: '\u2713 Votre application e-mail s\u2019ouvre avec le message pr\u00eat \u00e0 envoyer.',
     respondTime: 'Je r\u00e9ponds g\u00e9n\u00e9ralement sous 24 heures',

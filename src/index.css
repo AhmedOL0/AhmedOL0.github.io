@@ -179,6 +179,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .tag-more:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .result{font-size:.84rem;font-weight:500;color:var(--ink);margin-top:2px;border-left:2px solid var(--gold-deep);padding-left:10px}
 .note{font-size:.78rem;color:var(--faint);font-style:italic}
+.work-footnote{margin-top:20px;max-width:70ch}
 
 /* Back to top */
 #toTop{position:fixed;bottom:28px;right:28px;z-index:65;width:44px;height:44px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);color:var(--muted);font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s,border-color .25s,color .25s;pointer-events:none}
@@ -304,7 +305,6 @@ html.has-magnetic-cursor,html.has-magnetic-cursor a,html.has-magnetic-cursor but
 
 /* Tag hover */
 .tags span{transition:border-color .2s,color .2s}
-.tags span:hover{color:var(--gold);border-color:var(--gold-deep)}
 
 /* Contact */
 .contact-box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);position:relative;display:grid;grid-template-columns:1fr;gap:24px;padding:12px}
@@ -769,8 +769,6 @@ main{overflow-x:clip}
 .about-layout{display:flex;flex-direction:column;gap:24px}
 .about-main{display:flex;flex-direction:column;gap:16px}
 .about-top{display:flex;align-items:center;gap:16px}
-.about-photo{width:80px;height:80px;border-radius:50%;overflow:hidden;border:1px solid var(--line);flex-shrink:0}
-.about-photo img{width:100%;height:100%;object-fit:cover;display:block}
 .about-identity{display:flex;flex-direction:column;gap:2px}
 .about-name{margin:0;font-size:1.1rem;font-weight:600}
 .about-role{margin:0;font-size:.85rem;color:var(--muted)}

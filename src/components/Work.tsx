@@ -57,11 +57,12 @@ export default function Work() {
           );
         })}
       </div>
+      <p className="note work-footnote">{t.work.walkthroughNote}</p>
     </Section>
   );
 }
 
-function Card({ p, th, i, cardId }: { p: { year: string; kind: string; title: string; description: string; result?: string; note?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; cardId: string }) {
+function Card({ p, th, i, cardId }: { p: { year: string; kind: string; title: string; description: string; result?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; cardId: string }) {
   const { t } = useLang();
   const [tagsExpanded, setTagsExpanded] = useState(false);
 
@@ -96,13 +97,11 @@ function Card({ p, th, i, cardId }: { p: { year: string; kind: string; title: st
             </button>
           )}
         </div>
-        <div className="flex items-center gap-3 pt-1">
-          {p.linkHref ? (
-            <a className="btn btn-ghost btn-sm" href={p.linkHref}>{p.linkLabel}<span className="arr">→</span></a>
-          ) : (
-            <span className="note text-[.78rem] italic" style={{ color: 'var(--faint)' }}>{p.note}</span>
-          )}
-        </div>
+        {p.linkHref && (
+          <div className="flex items-center gap-3 pt-1">
+            <a className="btn btn-ghost btn-sm" href={p.linkHref} target="_blank" rel="noopener noreferrer">{p.linkLabel}<span className="arr">→</span></a>
+          </div>
+        )}
       </div>
     </article>
   );
