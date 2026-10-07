@@ -403,7 +403,8 @@ html.has-magnetic-cursor,html.has-magnetic-cursor a,html.has-magnetic-cursor but
 /* Identity plate — dossier record plate */
 .plate{display:grid;grid-template-columns:auto 1fr;gap:16px 20px;align-items:center;border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:18px 20px;margin-top:22px;max-width:560px}
 .plate-mark{width:58px;height:58px;border:1px solid var(--line);border-radius:var(--r);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
-.plate-mark svg{width:36px;height:36px}
+.plate-seal{font-family:var(--serif);font-size:1.5rem;font-weight:600;letter-spacing:-.02em;line-height:1}
+.plate-seal em{font-style:italic;font-weight:500}
 .plate-rows{display:grid;gap:5px;margin:0}
 .plate-row{display:flex;gap:12px;align-items:baseline;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;margin:0}
 .plate-row dt{color:var(--faint);min-width:52px;text-transform:uppercase}
