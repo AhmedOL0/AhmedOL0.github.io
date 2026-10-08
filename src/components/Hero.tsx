@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useLang } from '../i18n-data';
 
 function Seal() {
@@ -10,6 +11,9 @@ function Seal() {
 
 export default function Hero() {
   const { t } = useLang();
+  // Photo fade: the frame reserves exact space (no shift); the image dissolves
+  // in over a shimmer placeholder once decoded.
+  const [photoReady, setPhotoReady] = useState(false);
   // Values stated by the site owner (see Experience section for roles).
   const stats: [string, string][] = [
     ['06+', t.hero.statsLabels[0]],
@@ -73,13 +77,18 @@ export default function Hero() {
               </div>
             ))}
           </dl>
+          <div className="hero-contact">
+            <a href="mailto:ahmedouarrali12@gmail.com">ahmedouarrali12@gmail.com</a>
+            <a href="tel:+212645372099">+212 645 372 099</a>
+            <span className="hero-loc"><span className="direct-loc-dot" aria-hidden="true" />{t.plate.loc}</span>
+          </div>
         </div>
         <div className="hero-visual">
           <div className="hero-orbit">
-            <div className="hero-photo-lg">
+            <div className={`hero-photo-lg${photoReady ? ' is-ready' : ''}`}>
               <picture>
                 <source type="image/webp" srcSet="/assets/photo-240.webp 240w, /assets/photo-480.webp 480w" sizes="(max-width: 640px) 40vw, 240px" />
-                <img src="/assets/photo-480.jpg" srcSet="/assets/photo-240.jpg 240w, /assets/photo-480.jpg 480w" sizes="(max-width: 640px) 40vw, 240px" alt="Ahmed Ouarrali" width="240" height="240" loading="eager" fetchPriority="high" decoding="async" />
+                <img src="/assets/photo-480.jpg" srcSet="/assets/photo-240.jpg 240w, /assets/photo-480.jpg 480w" sizes="(max-width: 640px) 40vw, 240px" alt="Ahmed Ouarrali" width="240" height="240" loading="eager" fetchPriority="high" decoding="async" onLoad={() => setPhotoReady(true)} onError={() => setPhotoReady(true)} />
               </picture>
             </div>
             <span className="orbit-chip chip-a" aria-hidden="true">{t.hero.photoChipA}</span>

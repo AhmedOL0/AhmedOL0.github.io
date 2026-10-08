@@ -8,7 +8,7 @@ export const LANGS: { code: Lang; label: string; aria: string }[] = [
 
 export type ProjectT = {
   title: string; year: string; kind: string; heading: string; lead: string;
-  description: string; result?: string; linkLabel?: string; linkHref?: string;
+  description: string; highlight: string; result?: string; linkLabel?: string; linkHref?: string;
 };
 
 export function thumbTitle(p: ProjectT): { pre: string; em: string; post: string } {
@@ -32,11 +32,11 @@ export type Dict = {
   whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
-  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; filterCount: string; walkthroughNote: string; projects: ProjectT[] };
+  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; filterCount: string; walkthroughNote: string; highlightLabel: string; projects: ProjectT[] };
   exp: { kicker: string; title: string; jobs: JobT[] };
   edu: { kicker: string; title: string; sub: string; entries: EduT[] };
-  behind: { kicker: string; title: string; sub: string; categories: TechCategory[] };
-  aboutMe: { kicker: string; title: string; sub: string; role: string; body: string; interests: string[]; langsTitle: string; langs: { l: string; lvl: string }[] };
+  behind: { kicker: string; title: string; sub: string; dailyLabel: string; daily: string; exploredLabel: string; explored: string; categories: TechCategory[] };
+  aboutMe: { kicker: string; title: string; sub: string; role: string; body: string; interests: string[]; langsTitle: string; langs: { l: string; lvl: string }[]; principlesTitle: string; principles: string[] };
   contact: {
     kicker: string; title: string; sub: string; subEm: string; subEnd: string;
     name: string; namePh: string; email: string; emailPh: string; msg: string; msgPh: string;
@@ -44,6 +44,7 @@ export type Dict = {
     mailto: string;
     respondTime: string; retry: string;
     direct: string; phone: string; linkedin: string; github: string;
+    copy: string; copied: string; copyEmail: string; copyPhone: string;
   };
   footer: { top: string; elsewhere: string; explore: string; built: string; pageTitle: string };
   dock: { home: string; whatIDo: string; work: string; contact: string; lang: string; nav: string; footerNav: string; toggle: string; resume: string; linkedin: string; github: string; email: string; backToTop: string };
@@ -64,7 +65,7 @@ const en: Dict = {
   hero: {
     badge: 'Open to PFE internship', titleA: 'Building ', titleEm: 'complete products', titleB: ', not just features.',
     lede: 'I\'m Ahmed Ouarrali, a full-stack software engineer who builds and tests end-to-end digital products, from the first line of code to a running application people actually use.',
-    ledeShort: 'Full-stack software engineer building end-to-end digital products — from first line of code to production.',
+    ledeShort: 'Full-stack software engineer building end-to-end digital products, from first line of code to production.',
     ctaWork: 'Browse production work', ctaContact: 'Get in touch',
     statsLabels: ['Projects shipped', 'Internships completed'],
     avail: 'Available for PFE \u00b7 Morocco or remote',
@@ -105,25 +106,32 @@ const en: Dict = {
     sub: 'More than six builds across web, mobile, backend, AI and IoT. Each one deployed, used, or graded.',
     showLess: 'show less', showFewer: 'Show fewer tags', filterCount: 'Showing {count} of {total} projects',
     walkthroughNote: 'Live demos, private repositories and hardware: code walkthroughs and guided demos available on request.',
+    highlightLabel: 'Engineering highlight',
     projects: [
       { title: 'OdemLab: AI skincare e-commerce', year: 'Flagship', kind: 'Team of 4 · Private repo', heading: 'OdemLab', lead: 'd',
         description: 'A complete online skincare store with AI skin analysis, three payment methods (Stripe, CMI, cash-on-delivery), and trilingual FR/EN/AR support. Customers browse, scan their skin, and pay. All in one flow.',
+        highlight: 'Money paths hardened: server-side pricing and idempotent checkout. Modules guarded by architecture tests that fail the build on boundary violations.',
         result: '810 automated tests, 93 schema migrations, 3 payment integrations. Deployed to Cloud Run with zero-downtime promotion.',
         linkLabel: 'Open the live store', linkHref: 'https://odemlab-frontend-fne55ek37q-no.a.run.app/fr' },
       { title: 'Medical appointment platform', year: '2025', kind: 'Internship · Full-stack', heading: 'Medical', lead: 'e',
         description: 'A clinic management platform where patients book appointments online and doctors manage schedules, patients, and generate PDF reports.',
+        highlight: 'Booking flow designed around the clinic’s real bottleneck: phone scheduling replaced by two-minute online booking, with PDF reports for doctors.',
         result: 'Reduced scheduling from 15min phone calls to 2-minute online booking.'},
       { title: 'FitTrack: training platform', year: '2025', kind: 'Team of 2 · Full-stack', heading: 'FitTrack', lead: 'i',
         description: 'A fitness web app where users create training programs, track sessions in real time, and view BMI and calorie stats. Admin panel with 38-exercise library.',
+        highlight: 'Real-time session tracking with computed stats (BMI, calories), plus a full admin moderation pipeline for the exercise library.',
         result: 'Full admin moderation pipeline across 38 exercises with video demos.'},
       { title: 'Smart Campus Companion', year: '2026', kind: 'Team of 4 · Flutter', heading: 'Campus', lead: 'a',
         description: 'A Flutter campus app where students scan QR codes on classroom doors for instant room info and AR visualization. Professors reserve rooms and post announcements.',
+        highlight: 'One QR scan resolves to room info with real-time sync across roles; AR explored for indoor wayfinding.',
         result: 'QR-to-room info in one scan. Real-time sync across 7 collections for 3 campus roles.'},
       { title: 'SmartSummarizer', year: '2025', kind: 'Team of 4 · NLP', heading: 'Summarizer', lead: 'u',
         description: 'An AI platform that transforms lecture PDFs into study tools. Summaries, audio, quizzes, and mind maps. Using CamemBERT and Groq.',
+        highlight: 'Lecture PDFs become study tools: CamemBERT extraction plus Groq generation, scored 8.4/10 by 30 students.',
         result: '9.9s average processing. 8.4/10 quality score from 30 students.'},
       { title: 'Cane counting system', year: '2024 · DUT thesis', kind: 'Embedded · Final-year project', heading: 'IoT', lead: 'T',
         description: 'An ESP8266-based counting system using a laser sensor to count canes on a production line, with real-time OLED display and Wi-Fi dashboard.',
+        highlight: 'Laser sensing with on-device counting and a Wi-Fi dashboard. 98%+ accuracy in production-line conditions.',
         result: '98%+ accuracy. 3D-printed production-ready enclosure.'},
     ],
   },
@@ -154,6 +162,8 @@ const en: Dict = {
   behind: {
     kicker: 'Tech stack', title: 'Behind the work.',
     sub: 'The technologies I use, organized by what they do.',
+    dailyLabel: 'Heaviest use', daily: 'Spring Boot \u00b7 Next.js \u00b7 TypeScript \u00b7 PostgreSQL \u00b7 Docker \u00b7 Laravel \u00b7 Flutter \u00b7 Playwright',
+    exploredLabel: 'Also explored', explored: 'Qt \u00b7 Terraform \u00b7 Prometheus \u00b7 CamemBERT \u00b7 Vitest \u00b7 PyTorch',
     categories: [
       { name: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Flutter', 'React Native'] },
       { name: 'Backend', items: ['Java', 'Spring Boot', 'Node.js', 'Python', 'Flask', 'Laravel', 'C++', 'Qt'] },
@@ -171,6 +181,12 @@ const en: Dict = {
     interests: ['Open source', 'System design', 'Chess', 'Martial arts'],
     langsTitle: 'Languages',
     langs: [{ l: 'Arabic', lvl: 'native' }, { l: 'French', lvl: 'professional' }, { l: 'English', lvl: 'professional' }],
+    principlesTitle: 'How I think',
+    principles: [
+      'Say what was built and why, never how many.',
+      'A feature is not done until it is verified automatically.',
+      'Paranoia on money and data paths; simplicity everywhere else.',
+    ],
   },
   contact: {
     kicker: 'Contact', title: 'Let\'s build something solid.',
@@ -182,6 +198,7 @@ const en: Dict = {
     respondTime: 'Typically respond within 24 hours',
     retry: 'Try again',
     direct: 'Direct email', phone: 'Phone', linkedin: 'LinkedIn', github: 'GitHub',
+    copy: 'Copy', copied: 'Copied', copyEmail: 'Copy email address', copyPhone: 'Copy phone number',
   },
   footer: { top: 'Top', elsewhere: 'Elsewhere', explore: 'Explore', built: '\u00a9 2027 Ahmed Ouarrali \u00b7 Built with React, Tailwind CSS \u00b7 Deployed on GitHub Pages', pageTitle: 'Ahmed Ouarrali, Full-Stack Software Engineer | PFE Internship' },
   dock: { home: 'Home', whatIDo: 'What I Do', work: 'Work', contact: 'Contact', lang: 'Language', nav: 'Quick navigation', footerNav: 'Footer navigation', toggle: 'Toggle light / dark mode', resume: 'Résumé', linkedin: 'LinkedIn', github: 'GitHub', email: 'Email', backToTop: 'Back to top' },
@@ -234,25 +251,32 @@ const fr: Dict = {
     sub: 'Plus de six r\u00e9alisations web, mobile, backend, IA et IoT. Chacune d\u00e9ploy\u00e9e, utilis\u00e9e ou \u00e9valu\u00e9e.',
     showLess: 'voir moins', showFewer: 'Afficher moins', filterCount: '{count} projets sur {total} affichés',
     walkthroughNote: 'D\u00e9mos en direct, d\u00e9p\u00f4ts priv\u00e9s et mat\u00e9riel : revues de code et d\u00e9monstrations guid\u00e9es sur demande.',
+    highlightLabel: 'Point technique',
     projects: [
       { title: 'OdemLab: e-commerce cosm\u00e9tique IA', year: 'Vitrine', kind: '\u00c9quipe de 4 \u00b7 D\u00e9p\u00f4t priv\u00e9', heading: 'OdemLab', lead: 'd',
         description: 'Boutique cosm\u00e9tique en ligne avec analyse IA de la peau, trois m\u00e9thodes de paiement (Stripe, CMI, contre-remboursement) et support trilingue FR/EN/AR.',
+        highlight: 'Chemins mon\u00e9taires fiabilis\u00e9s : tarification c\u00f4t\u00e9 serveur et checkout idempotent. Modules gard\u00e9s par des tests d\u2019architecture qui cassent la construction en cas de violation.',
         result: '810 tests automatis\u00e9s, 93 migrations, 3 int\u00e9grations paiement. D\u00e9ploy\u00e9 sur Cloud Run.',
         linkLabel: 'Ouvrir la boutique', linkHref: 'https://odemlab-frontend-fne55ek37q-no.a.run.app/fr' },
       { title: 'Plateforme de rendez-vous m\u00e9dicaux', year: '2025', kind: 'Stage \u00b7 Full-stack', heading: 'M\u00e9dical', lead: 'e',
         description: 'Plateforme de gestion de cabinet m\u00e9dical o\u00f9 les patients prennent rendez-vous en ligne et les m\u00e9decins g\u00e8rent leurs plannings et g\u00e9n\u00e8rent des rapports PDF.',
+        highlight: 'Parcours de r\u00e9servation pens\u00e9 autour du vrai goulot : la prise de rendez-vous par t\u00e9l\u00e9phone remplac\u00e9e par deux minutes de r\u00e9servation en ligne, avec rapports PDF pour les m\u00e9decins.',
         result: 'R\u00e9duction de 15min d\u2019appel \u00e0 2 minutes de r\u00e9servation en ligne.'},
       { title: 'FitTrack: suivi sportif', year: '2025', kind: '\u00c9quipe de 2 \u00b7 Full-stack', heading: 'FitTrack', lead: 'i',
         description: 'Application web fitness pour cr\u00e9er des programmes d\u2019entra\u00eEnement, suivre les s\u00e9ances en temps r\u00e9el et visualiser IMC et calories.',
+        highlight: 'Suivi de s\u00e9ances en temps r\u00e9el avec statistiques calcul\u00e9es (IMC, calories), plus un pipeline complet de mod\u00e9ration pour la biblioth\u00e8que d\u2019exercices.',
         result: 'Pipeline complet de mod\u00e9ration admin pour 38 exercices avec vid\u00e9os.'},
       { title: 'Smart Campus Companion', year: '2026', kind: '\u00c9quipe de 4 \u00b7 Flutter', heading: 'Campus', lead: 'a',
         description: 'Application Flutter de gestion de campus o\u00f9 les \u00e9tudiants scannent des QR codes pour obtenir les informations de salle instantan\u00e9ment avec visualisation AR.',
+        highlight: 'Un scan QR donne les infos de salle avec synchronisation temps r\u00e9el entre les r\u00f4les ; la RA explor\u00e9e pour l\u2019orientation int\u00e9rieure.',
         result: 'Info salle en un scan QR. Synchronisation temps r\u00e9el pour 7 collections.'},
       { title: 'SmartSummarizer', year: '2025', kind: '\u00c9quipe de 4 \u00b7 NLP', heading: 'R\u00e9sumeur', lead: 'u',
         description: 'Plateforme IA qui transforme les PDF de cours en outils d\u2019\u00e9tude. R\u00e9sum\u00e9s, audio, quiz et cartes mentales.',
+        highlight: 'Les PDF de cours deviennent des outils d\u2019\u00e9tude : extraction CamemBERT et g\u00e9n\u00e9ration Groq, not\u00e9s 8,4/10 par 30 \u00e9tudiants.',
         result: '9.9s de traitement moyen. Score 8.4/10 sur 30 \u00e9tudiants.'},
       { title: 'Syst\u00e8me de comptage de cannes', year: '2024 \u00b7 PFE DUT', kind: 'Embarqu\u00e9 \u00b7 Projet de fin', heading: 'IoT', lead: 'T',
         description: 'Syst\u00e8me de comptage bas\u00e9 sur ESP8266 utilisant un capteur laser pour compter les cannes sur une ligne de production, avec affichage OLED et tableau de bord Wi-Fi.',
+        highlight: 'D\u00e9tection laser embarqu\u00e9e avec comptage local et tableau de bord Wi-Fi. 98 %+ de pr\u00e9cision dans les conditions d\u2019une ligne de production.',
         result: '98%+ de pr\u00e9cision. Bo\u00eetier 3D imprim\u00e9.'},
     ],
   },
@@ -283,6 +307,8 @@ const fr: Dict = {
   behind: {
     kicker: 'Technologies', title: 'Derri\u00e8re les projets.',
     sub: 'Les technologies que j\u2019utilise, organis\u00e9es par fonction.',
+    dailyLabel: 'Usage intensif', daily: 'Spring Boot \u00b7 Next.js \u00b7 TypeScript \u00b7 PostgreSQL \u00b7 Docker \u00b7 Laravel \u00b7 Flutter \u00b7 Playwright',
+    exploredLabel: 'Aussi explor\u00e9', explored: 'Qt \u00b7 Terraform \u00b7 Prometheus \u00b7 CamemBERT \u00b7 Vitest \u00b7 PyTorch',
     categories: [
       { name: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Flutter', 'React Native'] },
       { name: 'Backend', items: ['Java', 'Spring Boot', 'Node.js', 'Python', 'Flask', 'Laravel', 'C++', 'Qt'] },
@@ -300,6 +326,12 @@ const fr: Dict = {
     interests: ['Open source', 'Conception de syst\u00e8mes', '\u00c9checs', 'Arts martiaux'],
     langsTitle: 'Langues',
     langs: [{ l: 'Arabe', lvl: 'maternelle' }, { l: 'Fran\u00e7ais', lvl: 'professionnel' }, { l: 'Anglais', lvl: 'professionnel' }],
+    principlesTitle: 'Ma fa\u00e7on de penser',
+    principles: [
+      'Dire ce qui a \u00e9t\u00e9 construit et pourquoi, jamais combien.',
+      'Une fonctionnalit\u00e9 n\u2019est termin\u00e9e que lorsqu\u2019elle est v\u00e9rifi\u00e9e automatiquement.',
+      'Parano\u00efa sur les chemins d\u2019argent et de donn\u00e9es ; simplicit\u00e9 partout ailleurs.',
+    ],
   },
   contact: {
     kicker: 'Contact', title: 'Construisons quelque chose de solide.',
@@ -311,6 +343,7 @@ const fr: Dict = {
     respondTime: 'Je r\u00e9ponds g\u00e9n\u00e9ralement sous 24 heures',
     retry: 'R\u00e9essayer',
     direct: 'E-mail direct', phone: 'T\u00e9l\u00e9phone', linkedin: 'LinkedIn', github: 'GitHub',
+    copy: 'Copier', copied: 'Copi\u00e9', copyEmail: 'Copier l\u2019adresse e-mail', copyPhone: 'Copier le num\u00e9ro de t\u00e9l\u00e9phone',
   },
   footer: { top: 'Haut', elsewhere: 'Ailleurs', explore: 'Explorer', built: '\u00a9 2027 Ahmed Ouarrali \u00b7 Construit avec React, Tailwind CSS \u00b7 D\u00e9ploy\u00e9 sur GitHub Pages', pageTitle: 'Ahmed Ouarrali, D\u00e9veloppeur Full-Stack | Stage PFE' },
   dock: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', contact: 'Contact', lang: 'Langue', nav: 'Navigation rapide', footerNav: 'Navigation du pied de page', toggle: 'Basculer mode clair / sombre', resume: 'CV', linkedin: 'LinkedIn', github: 'GitHub', email: 'E-mail', backToTop: 'Retour en haut' },

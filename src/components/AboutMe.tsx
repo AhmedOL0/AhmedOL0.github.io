@@ -21,6 +21,14 @@ export default function AboutMe() {
               <span key={interest} className="interest-chip">{interest}</span>
             ))}
           </div>
+          <div className="about-principles">
+            <h3 className="about-langs-title">{t.aboutMe.principlesTitle}</h3>
+            <ul>
+              {t.aboutMe.principles.map((p) => (
+                <li key={p}>{p}</li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div className="about-langs">
           <h3 className="about-langs-title">{t.aboutMe.langsTitle}</h3>

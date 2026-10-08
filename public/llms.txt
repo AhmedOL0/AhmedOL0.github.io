@@ -5,7 +5,7 @@
 
 ## Pages
 
-- [Home](https://ahmedol0.github.io/): single-page portfolio (EN/FR) — hero, what I do, how I work, selected work, experience, education, tech stack, about, contact.
+- [Home](https://ahmedol0.github.io/): single-page portfolio (EN/FR): hero, what I do, how I work, selected work, experience, education, tech stack, about, contact.
 - [Résumé (PDF)](https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali.pdf): downloadable résumé.
 - [Social preview image](https://ahmedol0.github.io/og-image.png): Open Graph image (1200×630).
 
@@ -13,7 +13,7 @@
 
 - Name: Ahmed Ouarrali; based in Morocco (UTC+1), open to remote.
 - Role: Full-Stack Software Engineer, PFE candidate 2027.
-- Focus: backend systems & full-stack delivery — from first line of code to a running, tested application.
+- Focus: backend systems & full-stack delivery, from first line of code to a running, tested application.
 - Education: ENSIASD (École Nationale Supérieure d'Intelligence Artificielle et Sciences des Données), [Ibn Zohr University](https://www.uiz.ac.ma/); DUT 2024.
 - Languages: Arabic (native), French (fluent), English (professional).
 - Profiles: [GitHub](https://github.com/AhmedOL0) · [LinkedIn](https://www.linkedin.com/in/ahmed-ouarrali)
@@ -29,9 +29,9 @@
 
 All projects are presented on the [selected work section](https://ahmedol0.github.io/#work) of the homepage.
 
-- **OdemLab** (2026, team of 4): AI-augmented skincare e-commerce — Spring Boot + Next.js + React Native, PostgreSQL/Redis, Stripe, Gemini AI, Playwright; live demo linked on the [OdemLab card](https://ahmedol0.github.io/#work-odemlab).
+- **OdemLab** (2026, team of 4): AI-augmented skincare e-commerce: Spring Boot + Next.js + React Native, PostgreSQL/Redis, Stripe, Gemini AI, Playwright; live demo linked on the [OdemLab card](https://ahmedol0.github.io/#work-odemlab).
 - **Medical appointment platform** (2025, internship): Laravel clinic booking with dashboards and charts.
-- **FitTrack** (2025): fitness training platform — Spring Boot + Next.js + MySQL + Docker.
+- **FitTrack** (2025): fitness training platform: Spring Boot + Next.js + MySQL + Docker.
 - **Smart Campus Companion** (2026, Flutter): QR room info, Firebase, AR (ARCore/ARKit) explored.
 - **SmartSummarizer** (2025, NLP): PDFs to summaries, quizzes and mind maps (Flask, PyTorch, CamemBERT).
 - **Cane counting system** (2024, DUT thesis): ESP8266 + VL53L0X laser sensor IoT with PHP/MySQL dashboard.

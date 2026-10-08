@@ -29,6 +29,36 @@ export default function Contact() {
     setErrors((prev) => (prev[field] ? { ...prev, [field]: '' } : prev));
   }, []);
 
+  const [copied, setCopied] = useState<'email' | 'phone' | null>(null);
+  const [copyTimer, setCopyTimer] = useState<ReturnType<typeof setTimeout> | null>(null);
+
+  const copy = useCallback((text: string, which: 'email' | 'phone') => {
+    if (copyTimer) clearTimeout(copyTimer);
+    setCopyTimer(setTimeout(() => setCopied(null), 2000));
+    setCopied(which);
+    const attempt = async () => {
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          throw new Error('clipboard unavailable');
+        }
+      } catch {
+        // Fallback for non-secure contexts: hidden textarea + execCommand.
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch { /* best effort */ }
+        ta.remove();
+      }
+    };
+    void attempt();
+  }, [copyTimer]);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -168,14 +198,17 @@ export default function Contact() {
           )}
         </form>
         <div className="direct text-[.95rem]">
-          <a href="mailto:ahmedouarrali12@gmail.com" className="direct-item">
+          <div className="direct-item">
             <span className="direct-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
-            <span className="direct-text"><strong>{t.contact.direct}</strong><span className="direct-link">ahmedouarrali12@gmail.com</span></span>
-          </a>
-          <a href="tel:+212645372099" className="direct-item">
+            <span className="direct-text"><strong>{t.contact.direct}</strong><a className="direct-link" href="mailto:ahmedouarrali12@gmail.com">ahmedouarrali12@gmail.com</a></span>
+            <button type="button" className="copy-btn" onClick={() => copy('ahmedouarrali12@gmail.com', 'email')} aria-label={t.contact.copyEmail}>{copied === 'email' ? t.contact.copied : t.contact.copy}</button>
+          </div>
+          <div className="direct-item">
             <span className="direct-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-            <span className="direct-text"><strong>{t.contact.phone}</strong><span className="direct-link">+212 645 372 099</span></span>
-          </a>
+            <span className="direct-text"><strong>{t.contact.phone}</strong><a className="direct-link" href="tel:+212645372099">+212 645 372 099</a></span>
+            <button type="button" className="copy-btn" onClick={() => copy('+212645372099', 'phone')} aria-label={t.contact.copyPhone}>{copied === 'phone' ? t.contact.copied : t.contact.copy}</button>
+          </div>
+          <span className="sr-only" aria-live="polite">{copied ? t.contact.copied : ''}</span>
           <a href="https://www.linkedin.com/in/ahmed-ouarrali" target="_blank" rel="noopener noreferrer" className="direct-item">
             <span className="direct-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>
             <span className="direct-text"><strong>{t.contact.linkedin}</strong><span className="direct-link">linkedin.com/in/ahmed-ouarrali</span></span>

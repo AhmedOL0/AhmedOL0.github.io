@@ -62,7 +62,7 @@ export default function Work() {
   );
 }
 
-function Card({ p, th, i, cardId }: { p: { year: string; kind: string; title: string; description: string; result?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; cardId: string }) {
+function Card({ p, th, i, cardId }: { p: { year: string; kind: string; title: string; description: string; highlight: string; result?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; cardId: string }) {
   const { t } = useLang();
   const [tagsExpanded, setTagsExpanded] = useState(false);
 
@@ -81,6 +81,10 @@ function Card({ p, th, i, cardId }: { p: { year: string; kind: string; title: st
         <span className="flag">{p.kind}</span>
         <h3 className="font-serif-d">{p.title}</h3>
         <p className="text-[.86rem] leading-[1.6]" style={{ color: 'var(--muted)' }}>{p.description}</p>
+        <div className="engineering-highlight">
+          <p className="eh-label">{t.work.highlightLabel}</p>
+          <p className="eh-text">{p.highlight}</p>
+        </div>
         {p.result && <p className="result text-[.82rem] font-medium" style={{ color: 'var(--gold)' }}>{p.result}</p>}
         <div className="tags flex flex-wrap gap-1.5 mt-1">
           {PROJECT_TAGS[i].slice(0, tagsExpanded ? undefined : 6).map((tag) => (

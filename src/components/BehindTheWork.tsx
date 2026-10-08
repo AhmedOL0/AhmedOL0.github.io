@@ -39,6 +39,14 @@ export default function BehindTheWork() {
   const { t } = useLang();
   return (
     <Section id="behind" num="06" kicker={t.behind.kicker} title={t.behind.title} sub={t.behind.sub} variant="left">
+      <dl className="tech-tiers">
+        <div className="tech-tier">
+          <dt>{t.behind.dailyLabel}</dt><dd>{t.behind.daily}</dd>
+        </div>
+        <div className="tech-tier">
+          <dt>{t.behind.exploredLabel}</dt><dd>{t.behind.explored}</dd>
+        </div>
+      </dl>
       <div className="tech-grid mt-6 sm:mt-8">
         {t.behind.categories.map((cat, i) => (
           <div className={`tech-cat tech-cat--${CAT_ACCENTS[i] || 'gold'}`} key={cat.name} data-wide={WIDE_CATS.has(cat.name) || undefined}>
