@@ -22,20 +22,31 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boole
   state = { hasError: false };
   static getDerivedStateFromError() { return { hasError: true }; }
   render() {
-    if (this.state.hasError) {
-      return (
-        <div style={{ padding: '3rem 1.5rem', textAlign: 'center', color: 'var(--muted)' }}>
-          <p style={{ fontSize: '1.2rem', color: 'var(--ink)', marginBottom: '.5rem' }}>Something went wrong.</p>
-          <p style={{ fontSize: '.9rem', marginBottom: '1.5rem' }}>Try refreshing the page.</p>
-          <button onClick={() => window.location.reload()}
-            style={{ background: 'var(--gold)', color: '#0b0b0e', border: 'none', padding: '.5rem 1.2rem', borderRadius: 999, cursor: 'pointer', fontSize: '.85rem' }}>
-            Refresh
-          </button>
-        </div>
-      );
-    }
+    if (this.state.hasError) return <ErrorFallback />;
     return this.props.children;
   }
+}
+
+function ErrorFallback() {
+  const { t } = useLang();
+  return (
+    <div className="error-block" role="alert">
+      <p className="error-eyebrow">{t.error.label}</p>
+      <h1 className="error-title font-serif-d">{t.error.title}</h1>
+      <p className="error-sub">{t.error.sub}</p>
+      <div className="error-actions">
+        <button className="btn btn-gold" onClick={() => window.location.reload()}>
+          {t.error.refresh}
+        </button>
+        <a className="btn btn-ghost" href="/">
+          {t.error.home}
+        </a>
+      </div>
+      <p className="error-contact">
+        {t.error.still} <a href="mailto:ahmedouarrali12@gmail.com">ahmedouarrali12@gmail.com</a>
+      </p>
+    </div>
+  );
 }
 
 function Footer() {
@@ -128,7 +139,6 @@ function Site() {
     <>
       <a href="#main" className="skip-link">{t.nav.skipToContent}</a>
       <div className="folio-grid" aria-hidden="true" />
-      <div className="folio-grid-minor" aria-hidden="true" />
       <div className="folio-frame" aria-hidden="true" />
       <ProgressBar />
       <div className="grain" aria-hidden="true" />
@@ -151,7 +161,12 @@ function Site() {
         id="toTop"
         aria-label={t.dock.backToTop}
         title={t.dock.backToTop}
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={() => {
+          // CSS smooth scrolling already respects reduced-motion; the JS API
+          // does not, so choose explicitly here.
+          const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+        }}
         className={showTop ? 'show' : ''}
       >
         ↑
