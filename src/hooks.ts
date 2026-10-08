@@ -14,7 +14,7 @@ export function useTheme() {
       localStorage.setItem('ao-theme', theme);
     } catch { /* ignore */ }
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'dark' ? '#12261E' : '#F7F4ED');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#161310' : '#F7F4ED');
   }, [theme]);
   return { theme, toggle: () => setTheme((t) => (t === 'light' ? 'dark' : 'light')) };
 }
