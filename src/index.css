@@ -437,6 +437,7 @@ a.direct-link:hover{text-decoration:underline;text-underline-offset:3px}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
 /* Hero contact strip — direct reachability right under the CTAs */
 .hero-contact{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin-top:18px;font-family:var(--mono);font-size:.74rem;letter-spacing:.03em;color:var(--muted)}
+.hero-contact a,.hero-contact .hero-loc{display:inline-flex;align-items:center;min-height:44px}
 .hero-contact a{color:var(--gold);text-decoration:none}
 .hero-contact a:hover{text-decoration:underline;text-underline-offset:3px}
 .hero-loc{display:inline-flex;align-items:center;gap:8px}
