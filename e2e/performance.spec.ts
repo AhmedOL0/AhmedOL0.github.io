@@ -35,6 +35,15 @@ test.describe('Performance & Core Web Vitals', () => {
     }
   });
 
+  test('hero portrait fades in over its placeholder (no pop-in)', async ({ page }) => {
+    const photo = page.locator('.hero-photo-lg');
+    await expect(photo).toBeVisible();
+    // Placeholder reserves exact space; image dissolves in once decoded.
+    await expect(photo).toHaveClass(/is-ready/);
+    const opacity = await photo.locator('img').evaluate((el) => parseFloat(getComputedStyle(el).opacity));
+    expect(opacity).toBe(1);
+  });
+
   test('LCP element is identifiable', async ({ page }) => {
     const lcp = await page.evaluate(() => {
       return new Promise<string | null>((resolve) => {
