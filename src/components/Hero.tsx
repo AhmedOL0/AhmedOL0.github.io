@@ -53,14 +53,6 @@ export default function Hero() {
                 <dt>{t.plate.statusLabel}</dt><dd className="plate-ok">{t.plate.status}</dd>
               </div>
             </dl>
-            <div className="plate-links">
-              <a href="https://github.com/AhmedOL0" target="_blank" rel="noopener noreferrer">
-                github.com/AhmedOL0 <span aria-hidden="true">↗</span>
-              </a>
-              <a href="https://www.linkedin.com/in/ahmed-ouarrali" target="_blank" rel="noopener noreferrer">
-                linkedin.com/in/ahmed-ouarrali <span aria-hidden="true">↗</span>
-              </a>
-            </div>
           </div>
           <div className="hero-actions">
             <a className="btn btn-gold" href="#work" data-magnetic>

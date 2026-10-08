@@ -48,6 +48,7 @@ export type Dict = {
   };
   footer: { top: string; elsewhere: string; explore: string; built: string; pageTitle: string };
   dock: { home: string; whatIDo: string; work: string; contact: string; lang: string; nav: string; footerNav: string; toggle: string; resume: string; linkedin: string; github: string; email: string; backToTop: string };
+  error: { label: string; title: string; sub: string; refresh: string; home: string; still: string };
 };
 
 const tags = {
@@ -202,6 +203,12 @@ const en: Dict = {
   },
   footer: { top: 'Top', elsewhere: 'Elsewhere', explore: 'Explore', built: '\u00a9 2027 Ahmed Ouarrali \u00b7 Built with React, Tailwind CSS \u00b7 Deployed on GitHub Pages', pageTitle: 'Ahmed Ouarrali, Full-Stack Software Engineer | PFE Internship' },
   dock: { home: 'Home', whatIDo: 'What I Do', work: 'Work', contact: 'Contact', lang: 'Language', nav: 'Quick navigation', footerNav: 'Footer navigation', toggle: 'Toggle light / dark mode', resume: 'Résumé', linkedin: 'LinkedIn', github: 'GitHub', email: 'Email', backToTop: 'Back to top' },
+  error: {
+    label: 'Error', title: 'Something went wrong.',
+    sub: 'The page hit an unexpected error. Refreshing usually fixes it.',
+    refresh: 'Refresh the page', home: 'Back to homepage',
+    still: 'Still broken? Email me:',
+  },
 };
 
 const fr: Dict = {
@@ -347,6 +354,12 @@ const fr: Dict = {
   },
   footer: { top: 'Haut', elsewhere: 'Ailleurs', explore: 'Explorer', built: '\u00a9 2027 Ahmed Ouarrali \u00b7 Construit avec React, Tailwind CSS \u00b7 D\u00e9ploy\u00e9 sur GitHub Pages', pageTitle: 'Ahmed Ouarrali, D\u00e9veloppeur Full-Stack | Stage PFE' },
   dock: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', contact: 'Contact', lang: 'Langue', nav: 'Navigation rapide', footerNav: 'Navigation du pied de page', toggle: 'Basculer mode clair / sombre', resume: 'CV', linkedin: 'LinkedIn', github: 'GitHub', email: 'E-mail', backToTop: 'Retour en haut' },
+  error: {
+    label: 'Erreur', title: 'Un probl\u00e8me est survenu.',
+    sub: 'La page a rencontr\u00e9 une erreur inattendue. L\u2019actualiser suffit g\u00e9n\u00e9ralement.',
+    refresh: 'Actualiser la page', home: 'Retour \u00e0 l\u2019accueil',
+    still: 'Toujours bloqu\u00e9 ? \u00c9crivez-moi :',
+  },
 };
 
 export const DICTS: Record<Lang, Dict> = { en, fr };
