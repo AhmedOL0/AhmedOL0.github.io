@@ -112,4 +112,45 @@ test.describe('Accessibility (WCAG 2.2)', () => {
     const meta = page.locator('meta[name="color-scheme"]');
     await expect(meta).toBeAttached();
   });
+
+  test('keyboard tab order starts at skip link and hits only interactive stops', async ({ page }) => {
+    const order: string[] = [];
+    for (let i = 0; i < 12; i++) {
+      await page.keyboard.press('Tab');
+      order.push(await page.evaluate(() => {
+        const a = document.activeElement as HTMLElement | null;
+        if (!a) return 'NONE';
+        const cls = (typeof a.className === 'string' ? a.className : '').split(' ')[0];
+        const label = (a.textContent || a.getAttribute('aria-label') || '').trim().slice(0, 28);
+        return `${a.tagName}.${cls}:${label}`;
+      }));
+    }
+    expect(order[0], 'first stop is the skip link').toContain('A.skip-link');
+    for (const stop of order) {
+      expect(stop, `non-interactive tab stop: ${stop}`).toMatch(/^(A|BUTTON|INPUT|TEXTAREA)/);
+    }
+    expect(order, 'no keyboard trap in first stops').not.toContain('NONE');
+  });
+
+  test('design tokens resolve to real values (no self-referencing variables)', async ({ page }) => {
+    // Regression: var(--x) defined as var(--x) invalidates every consumer.
+    const btn = page.locator('.hero-actions .btn-gold');
+    const colors = await btn.evaluate((el) => {
+      const cs = getComputedStyle(el);
+      return { color: cs.color, bg: cs.backgroundColor };
+    });
+    expect(colors.color, 'gold button text must differ from its background').not.toBe(colors.bg);
+
+    const dur = await page.locator('.dock a').first().evaluate((el) => getComputedStyle(el).transitionDuration);
+    expect(dur.split(',')[0].trim(), 'transitions must resolve (easing tokens valid)').not.toBe('0s');
+
+    await page.locator('#contact').scrollIntoViewIfNeeded();
+    await page.locator('#contact button[type="submit"]').click();
+    await expect(page.locator('#contact-name')).toHaveAttribute('aria-invalid', 'true');
+    // Light theme in this suite: danger token resolves to #b91c1c.
+    // Poll: border-color transitions over 200ms, so first samples blend.
+    await expect
+      .poll(async () => page.locator('#contact-name').evaluate((el) => getComputedStyle(el).borderColor), { timeout: 5000 })
+      .toBe('rgb(185, 28, 28)');
+  });
 });
