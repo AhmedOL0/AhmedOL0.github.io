@@ -7,7 +7,7 @@ const filterKeys = ['all', 'web', 'mobile', 'backend', 'ai', 'iot'] as const;
 
 const cardIds = ['odemlab', 'procure', 'medical', 'fittrack', 'campus', 'summarizer', 'iot'];
 
-// Readable line icons — one per project, drawn in the thumb's dossier language.
+// Readable line icons: one per project, drawn in the thumb's dossier language.
 // Decorative only (aria-hidden at render site).
 const MOTIFS: Record<string, ReactNode> = {
   odemlab: (<g><path d="M42 36h36l-3 44H45z" /><path d="M52 36v-6a8 8 0 0 1 16 0v6" /><path d="M94 20l1.8 4.6 4.6 1.8-4.6 1.8-1.8 4.6-1.8-4.6-4.6-1.8 4.6-1.8z" /></g>),

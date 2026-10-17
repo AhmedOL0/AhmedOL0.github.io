@@ -69,9 +69,9 @@ export default function Experience() {
 }
 
 const EDU_ICONS = [
-  /* landmark — filled pediment for weight, three pillars that breathe */
+  /* landmark: filled pediment for weight, three pillars that breathe */
   <svg key="eng" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l9 5H3z" fill="currentColor" stroke="none"/><path d="M7.5 21V11 M12 21V11 M16.5 21V11"/><path d="M3 21h18"/></svg>,
-  /* packaged chip — body, filled core, short stubs; unmistakably a microchip */
+  /* packaged chip: body, filled core, short stubs; unmistakably a microchip */
   <svg key="dut" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="10" y="10" width="4" height="4" rx="1" fill="currentColor" stroke="none"/><path d="M12 6V2.5 M12 18v3.5 M6 12H2.5 M18 12h3.5"/></svg>,
 ];
 

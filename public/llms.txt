@@ -1,4 +1,4 @@
-# Ahmed Ouarrali — Portfolio
+# Ahmed Ouarrali · Portfolio
 
 > Personal portfolio of [Ahmed Ouarrali](https://ahmedol0.github.io/), Full-Stack Software Engineer (ENSIASD, Morocco), seeking a PFE internship (Spring Boot, Next.js, React Native, Flutter). Single-page site in EN/FR.
 > Machine-readable summary: [portfolio.json](https://ahmedol0.github.io/portfolio.json) · Sitemap: [sitemap.xml](https://ahmedol0.github.io/sitemap.xml)

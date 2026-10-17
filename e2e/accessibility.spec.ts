@@ -72,7 +72,7 @@ test.describe('Accessibility (WCAG 2.2)', () => {
       if (prevLevel > 0) {
         expect(
           level,
-          `Heading "${headings[i]}" (h${level}) follows h${prevLevel} — must not skip levels`
+          `Heading "${headings[i]}" (h${level}) follows h${prevLevel}: must not skip levels`
         ).toBeLessThanOrEqual(prevLevel + 1);
       }
       prevLevel = level;

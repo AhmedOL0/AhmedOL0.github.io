@@ -34,7 +34,7 @@ jobs:
             echo "❌ WEB3FORMS_KEY is EMPTY or not set"
             echo "   Go to: Settings → Secrets and variables → Actions → Secrets"
             echo "   Add secret named exactly: WEB3FORMS_KEY"
-            echo "   NOT as a Variable — must be a Secret."
+            echo "   NOT as a Variable: must be a Secret."
             exit 1
           fi
         env:

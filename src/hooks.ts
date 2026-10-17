@@ -100,7 +100,7 @@ export function useActiveSection(ids: readonly string[]) {
     );
     const observed = new Set<string>();
     const pickUp = () => {
-      // Sections may mount late (React.lazy code-split) — pick up newcomers.
+      // Sections may mount late (React.lazy code-split): pick up newcomers.
       ids.forEach((id) => {
         if (observed.has(id)) return;
         const el = document.getElementById(id);
