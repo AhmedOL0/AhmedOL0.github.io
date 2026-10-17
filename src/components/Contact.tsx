@@ -183,9 +183,9 @@ export default function Contact() {
           {status === 'error' && (
             <div className="form-error-box" role="alert" aria-live="assertive">
               <svg viewBox="0 0 52 52" style={{ width: 44, height: 44 }}>
-                <circle cx="26" cy="26" r="24" fill="none" stroke="#ef4444" strokeWidth="2.5"
+                <circle cx="26" cy="26" r="24" fill="none" stroke="var(--danger)" strokeWidth="2.5"
                   style={{ strokeDasharray: 151, strokeDashoffset: 151, animation: 'check-circle .5s ease .1s forwards' }} />
-                <path d="M18 18l16 16M34 18l-16 16" fill="none" stroke="#ef4444" strokeWidth="2.5" strokeLinecap="round"
+                <path d="M18 18l16 16M34 18l-16 16" fill="none" stroke="var(--danger)" strokeWidth="2.5" strokeLinecap="round"
                   style={{ strokeDasharray: 40, strokeDashoffset: 40, animation: 'check-mark .3s ease .45s forwards' }} />
               </svg>
               <p className="form-error-text">{t.contact.error}</p>
@@ -219,7 +219,7 @@ export default function Contact() {
           </a>
           <div className="direct-location">
             <span className="direct-loc-dot" aria-hidden="true" />
-            <span>Morocco</span>
+            <span>{t.contact.loc}</span>
           </div>
         </div>
       </div>

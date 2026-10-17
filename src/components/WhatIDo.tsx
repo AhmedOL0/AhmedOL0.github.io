@@ -6,25 +6,25 @@ const CARDS = [
   {
     /* stacked layers — "full-stack", every layer of the product */
     icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 2 9 5-9 5-9-5 9-5z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg>,
-    metric: '6+', metricLabel: 'shipped',
+    metric: '7+',
     accent: 'amber',
   },
   {
     /* app window — "interfaces people use" */
     icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><circle cx="6" cy="6.5" r=".9" fill="currentColor" stroke="none"/><path d="M7 13h4"/><path d="M7 16.5h7"/></svg>,
-    metric: 'WCAG', metricLabel: '2.2 AA',
+    metric: 'WCAG',
     accent: 'gold',
   },
   {
     /* shield check — "systems that hold up" */
     icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2 4.5 5v6c0 5 3.2 8.7 7.5 11 4.3-2.3 7.5-6 7.5-11V5L12 2z"/><path d="m9 12 2 2 4-4"/></svg>,
-    metric: '810+', metricLabel: 'tests',
+    metric: '810+',
     accent: 'sage',
   },
   {
     /* chat bubble with typing dots — "conversation across languages" */
     icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-5 4V6z"/><circle cx="9" cy="10" r="1.1" fill="currentColor" stroke="none"/><circle cx="12.5" cy="10" r="1.1" fill="currentColor" stroke="none"/><circle cx="16" cy="10" r="1.1" fill="currentColor" stroke="none"/></svg>,
-    metric: 'FR EN', metricLabel: 'AR',
+    metric: 'FR EN',
     accent: 'rust',
   },
 ];
@@ -54,7 +54,7 @@ function CapabilityCard({ cap, card, num }: { cap: { title: string; desc: string
       </div>
       <div className="cap-metric">
         <span className="cap-metric-val">{card.metric}</span>
-        <span className="cap-metric-label">{card.metricLabel}</span>
+        <span className="cap-metric-label">{t.whatIDo.metricLabels[num - 1]}</span>
       </div>
       <h3 className="cap-title">{cap.title}</h3>
       <p className="cap-desc">{cap.desc}</p>

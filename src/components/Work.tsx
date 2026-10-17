@@ -5,12 +5,13 @@ import { PROJECT_CATS, PROJECT_TAGS, PROJECT_THUMBS, thumbTitle } from '../i18n-
 
 const filterKeys = ['all', 'web', 'mobile', 'backend', 'ai', 'iot'] as const;
 
-const cardIds = ['odemlab', 'medical', 'fittrack', 'campus', 'summarizer', 'iot'];
+const cardIds = ['odemlab', 'procure', 'medical', 'fittrack', 'campus', 'summarizer', 'iot'];
 
 // Readable line icons — one per project, drawn in the thumb's dossier language.
 // Decorative only (aria-hidden at render site).
 const MOTIFS: Record<string, ReactNode> = {
   odemlab: (<g><path d="M42 36h36l-3 44H45z" /><path d="M52 36v-6a8 8 0 0 1 16 0v6" /><path d="M94 20l1.8 4.6 4.6 1.8-4.6 1.8-1.8 4.6-1.8-4.6-4.6-1.8 4.6-1.8z" /></g>),
+  procure: (<g><rect x="34" y="14" width="42" height="62" rx="4" /><path d="M48 10h14v8H48z" /><path d="M44 36h22 M44 46h22 M44 56h12" /><circle cx="88" cy="62" r="11" /><path d="M83 62l4 4 7-8" /></g>),
   medical: (<g><rect x="32" y="24" width="56" height="56" rx="5" /><path d="M46 17v11 M74 17v11 M32 39h56" /><path d="M50 58l9 9 19-21" /></g>),
   fittrack: (<g><path d="M10 44h100" /><rect x="20" y="32" width="9" height="24" /><rect x="33" y="37" width="7" height="14" /><rect x="80" y="37" width="7" height="14" /><rect x="91" y="32" width="9" height="24" /></g>),
   campus: (<g><rect x="10" y="12" width="26" height="26" /><rect x="18" y="20" width="10" height="10" /><rect x="84" y="12" width="26" height="26" /><rect x="92" y="20" width="10" height="10" /><rect x="10" y="52" width="26" height="26" /><rect x="18" y="60" width="10" height="10" /><rect x="86" y="52" width="12" height="12" /><rect x="86" y="68" width="12" height="12" /><rect x="102" y="52" width="8" height="8" /></g>),
@@ -91,7 +92,7 @@ function Card({ p, th, i, cardId }: { p: { year: string; kind: string; title: st
             <span key={tag}>{tag}</span>
           ))}
           {!tagsExpanded && PROJECT_TAGS[i].length > 6 && (
-            <button className="tag-more" type="button" aria-expanded={false} aria-label={`+${PROJECT_TAGS[i].length - 6}`} onClick={() => setTagsExpanded(true)}>
+            <button className="tag-more" type="button" aria-expanded={false} aria-label={t.work.showMoreTags.replace('{count}', String(PROJECT_TAGS[i].length - 6))} onClick={() => setTagsExpanded(true)}>
               +{PROJECT_TAGS[i].length - 6}
             </button>
           )}

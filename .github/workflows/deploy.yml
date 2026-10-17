@@ -59,12 +59,12 @@ jobs:
       - run: npm run build
         env:
           VITE_WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
-      # Visual Regression excluded: screenshot baselines are environment-specific
-      # (fonts/GPU). Generate them once on ubuntu-latest and commit before enabling.
-      - run: npx playwright test --project=chromium --grep-invert "Visual Regression"
+      # Single-engine smoke in CI (chromium). The full 4-engine suite
+      # (firefox, webkit, mobile-chrome) runs locally before shipping.
+      - run: npx playwright test --project=chromium
 
   deploy:
-    needs: build
+    needs: [build, e2e]
     runs-on: ubuntu-24.04
     environment:
       name: github-pages
