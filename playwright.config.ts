@@ -14,7 +14,6 @@ export default defineConfig({
     baseURL,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    updateSnapshots: 'missing',
   },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },

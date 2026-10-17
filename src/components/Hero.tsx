@@ -16,7 +16,7 @@ export default function Hero() {
   const [photoReady, setPhotoReady] = useState(false);
   // Values stated by the site owner (see Experience section for roles).
   const stats: [string, string][] = [
-    ['06+', t.hero.statsLabels[0]],
+    ['07+', t.hero.statsLabels[0]],
     ['04', t.hero.statsLabels[1]],
   ];
 

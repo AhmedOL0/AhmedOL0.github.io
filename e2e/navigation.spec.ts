@@ -48,6 +48,11 @@ test.describe('Navigation & Interaction', () => {
   });
 
   test('work filter buttons toggle project cards', async ({ page }) => {
+    // Render the work section first: it sits inside a content-visibility:auto
+    // block, and WebKit cannot compute click points for skipped subtrees.
+    await page.evaluate(() => document.querySelector('#work')?.scrollIntoView());
+    await page.waitForTimeout(400);
+
     const allBtn = page.locator('.filters button', { hasText: /all|tous/i });
     const webBtn = page.locator('.filters button', { hasText: /web/i });
 

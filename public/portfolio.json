@@ -14,7 +14,7 @@
     {
       "school": "ENSIASD, Ibn Zohr University",
       "title": "Software Engineering (AI & Data Science)",
-      "years": "2024 – 2026"
+      "years": "2024 – Present"
     },
     {
       "school": "DUT",
@@ -24,7 +24,7 @@
   ],
   "stack": {
     "backend": ["Spring Boot", "Java 21", "Laravel", "Flask", "Flyway", "JUnit 5", "Testcontainers"],
-    "frontend_mobile": ["Next.js", "React", "React Native", "Expo", "Flutter", "TypeScript", "Tailwind CSS"],
+    "frontend_mobile": ["Next.js", "React", "Angular", "React Native", "Expo", "Flutter", "TypeScript", "Tailwind CSS"],
     "data_ai": ["PostgreSQL", "MySQL", "Redis", "Firebase", "PyTorch", "CamemBERT", "spaCy", "Groq", "Gemini AI"],
     "devops_quality": ["Docker", "GitHub Actions", "Google Cloud Run", "Playwright", "axe-core", "Stripe"]
   },
@@ -35,6 +35,13 @@
       "summary": "AI-augmented skincare e-commerce",
       "stack": ["Spring Boot", "Next.js", "React Native", "PostgreSQL", "Redis", "Stripe", "Gemini AI", "Playwright"],
       "anchor": "#work-odemlab"
+    },
+    {
+      "title": "ProcureFlow",
+      "year": "2026",
+      "summary": "Multi-tenant B2B procurement platform (requests, approvals, suppliers, orders, invoices, budgets)",
+      "stack": ["Spring Boot", "Angular", "TypeScript", "PostgreSQL", "MongoDB", "Flyway", "Playwright", "Docker"],
+      "anchor": "#work-procure"
     },
     {
       "title": "Medical appointment platform",
@@ -69,7 +76,7 @@
   ],
   "languages": [
     { "language": "Arabic", "level": "native" },
-    { "language": "French", "level": "fluent" },
+    { "language": "French", "level": "professional" },
     { "language": "English", "level": "professional" }
   ],
   "site": {

@@ -29,10 +29,10 @@ export type Dict = {
   nav: { home: string; whatIDo: string; work: string; experience: string; behind: string; contact: string; resume: string; skipToContent: string; langChanged: string };
   hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede: string; ledeShort: string; ctaWork: string; ctaContact: string; statsLabels: [string, string]; avail: string; photoChipA: string; photoChipB: string };
   plate: { roleLabel: string; role: string; focusLabel: string; focus: string; locLabel: string; loc: string; statusLabel: string; status: string };
-  whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; capabilities: Capability[] };
+  whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; metricLabels: [string, string, string, string]; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
-  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; filterCount: string; walkthroughNote: string; highlightLabel: string; projects: ProjectT[] };
+  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; showMoreTags: string; filterCount: string; walkthroughNote: string; highlightLabel: string; projects: ProjectT[] };
   exp: { kicker: string; title: string; jobs: JobT[] };
   edu: { kicker: string; title: string; sub: string; entries: EduT[] };
   behind: { kicker: string; title: string; sub: string; dailyLabel: string; daily: string; exploredLabel: string; explored: string; categories: TechCategory[] };
@@ -43,7 +43,7 @@ export type Dict = {
     send: string; sending: string; success: string; error: string;
     mailto: string;
     respondTime: string; retry: string;
-    direct: string; phone: string; linkedin: string; github: string;
+    direct: string; phone: string; linkedin: string; github: string; loc: string;
     copy: string; copied: string; copyEmail: string; copyPhone: string;
   };
   footer: { top: string; elsewhere: string; explore: string; built: string; pageTitle: string };
@@ -53,6 +53,7 @@ export type Dict = {
 
 const tags = {
   odemlab: ['Spring Boot', 'Java 21', 'Next.js', 'React Native', 'Expo', 'PostgreSQL', 'Redis', 'Tailwind CSS', 'Docker', 'GitHub Actions', 'Google Cloud Run', 'Stripe', 'Gemini AI', 'Flyway', 'Playwright'],
+  procure: ['Java 21', 'Spring Boot', 'Angular', 'TypeScript', 'PostgreSQL', 'MongoDB', 'Flyway', 'Playwright', 'Docker'],
   med: ['PHP', 'Laravel', 'MySQL', 'Bootstrap', 'Chart.js'],
   fit: ['Spring Boot', 'Next.js', 'TypeScript', 'Tailwind CSS', 'MySQL', 'Docker'],
   campus: ['Flutter', 'Dart', 'Firebase', 'ARCore', 'ARKit', 'QR Scanner'],
@@ -82,6 +83,7 @@ const en: Dict = {
     kicker: 'What I do', title: 'I turn complex ideas into simple, working products.',
     sub: 'From concept to deployment. I handle the full journey so you don\'t have to.',
     showDetails: 'Details', showLess: 'Less',
+    metricLabels: ['shipped', '2.2 AA', 'tests', 'AR'],
     capabilities: [
       { title: 'Build complete products', desc: 'I take an idea from concept to a running application. Frontend, backend, database, and deployment. Everything connected, everything working.', details: 'Full-stack development with Spring Boot, Next.js, React Native. REST APIs, real-time sync, payment integrations, authentication, and database design.' },
       { title: 'Design intuitive interfaces', desc: 'I create web and mobile experiences that feel simple, even when the technology behind them is complex.', details: 'Responsive design, trilingual support (FR/EN/AR with real RTL), accessibility (WCAG 2.2), animations, and progressive disclosure.' },
@@ -104,8 +106,8 @@ const en: Dict = {
   filters: { all: 'All', web: 'Web', mobile: 'Mobile', backend: 'Backend', ai: 'AI', iot: 'IoT' },
   work: {
     kicker: 'Selected work', title: 'Systems that run in production, not demos that run once.',
-    sub: 'More than six builds across web, mobile, backend, AI and IoT. Each one deployed, used, or graded.',
-    showLess: 'show less', showFewer: 'Show fewer tags', filterCount: 'Showing {count} of {total} projects',
+    sub: 'Seven builds across web, mobile, backend, AI and IoT. Each one deployed, used, or graded.',
+    showLess: 'show less', showFewer: 'Show fewer tags', showMoreTags: 'Show {count} more tags', filterCount: 'Showing {count} of {total} projects',
     walkthroughNote: 'Live demos, private repositories and hardware: code walkthroughs and guided demos available on request.',
     highlightLabel: 'Engineering highlight',
     projects: [
@@ -114,6 +116,10 @@ const en: Dict = {
         highlight: 'Money paths hardened: server-side pricing and idempotent checkout. Modules guarded by architecture tests that fail the build on boundary violations.',
         result: '810 automated tests, 93 schema migrations, 3 payment integrations. Deployed to Cloud Run with zero-downtime promotion.',
         linkLabel: 'Open the live store', linkHref: 'https://odemlab-frontend-fne55ek37q-no.a.run.app/fr' },
+      { title: 'ProcureFlow: B2B procurement platform', year: '2026', kind: 'Full-stack \u00b7 Spring Boot & Angular', heading: 'ProcureFlow', lead: 'F',
+        description: 'A multi-tenant B2B procurement platform: requests, approvals, suppliers, orders, invoices and budgets. Requests move through a stepped approval workflow with bounded delegation, and budget is reserved atomically on approval.',
+        highlight: 'Multi-tenant isolation: cross-tenant access answers 404, never 403. Amounts are recomputed server-side with idempotency keys, and frontend types are generated from the API contract.',
+        result: 'JWT refresh-token rotation, bilingual FR/EN interface, and an AI copilot that cites workspace data and drafts requests from natural-language descriptions.'},
       { title: 'Medical appointment platform', year: '2025', kind: 'Internship · Full-stack', heading: 'Medical', lead: 'e',
         description: 'A clinic management platform where patients book appointments online and doctors manage schedules, patients, and generate PDF reports.',
         highlight: 'Booking flow designed around the clinic’s real bottleneck: phone scheduling replaced by two-minute online booking, with PDF reports for doctors.',
@@ -166,7 +172,7 @@ const en: Dict = {
     dailyLabel: 'Heaviest use', daily: 'Spring Boot \u00b7 Next.js \u00b7 TypeScript \u00b7 PostgreSQL \u00b7 Docker \u00b7 Laravel \u00b7 Flutter \u00b7 Playwright',
     exploredLabel: 'Also explored', explored: 'Qt \u00b7 Terraform \u00b7 Prometheus \u00b7 CamemBERT \u00b7 Vitest \u00b7 PyTorch',
     categories: [
-      { name: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Flutter', 'React Native'] },
+      { name: 'Frontend', items: ['React', 'Next.js', 'Angular', 'TypeScript', 'Tailwind CSS', 'Flutter', 'React Native'] },
       { name: 'Backend', items: ['Java', 'Spring Boot', 'Node.js', 'Python', 'Flask', 'Laravel', 'C++', 'Qt'] },
       { name: 'Data', items: ['PostgreSQL', 'Redis', 'MySQL', 'Firebase Firestore'] },
       { name: 'Cloud & DevOps', items: ['Docker', 'GitHub Actions', 'Google Cloud Run', 'Terraform', 'Flyway', 'Prometheus', 'Grafana'] },
@@ -198,10 +204,10 @@ const en: Dict = {
     mailto: '\u2713 Your email app is opening with the message ready to send.',
     respondTime: 'Typically respond within 24 hours',
     retry: 'Try again',
-    direct: 'Direct email', phone: 'Phone', linkedin: 'LinkedIn', github: 'GitHub',
+    direct: 'Direct email', loc: 'Morocco', phone: 'Phone', linkedin: 'LinkedIn', github: 'GitHub',
     copy: 'Copy', copied: 'Copied', copyEmail: 'Copy email address', copyPhone: 'Copy phone number',
   },
-  footer: { top: 'Top', elsewhere: 'Elsewhere', explore: 'Explore', built: '\u00a9 2027 Ahmed Ouarrali \u00b7 Built with React, Tailwind CSS \u00b7 Deployed on GitHub Pages', pageTitle: 'Ahmed Ouarrali, Full-Stack Software Engineer | PFE Internship' },
+  footer: { top: 'Top', elsewhere: 'Elsewhere', explore: 'Explore', built: `\u00a9 ${new Date().getFullYear()} Ahmed Ouarrali \u00b7 Built with React, Tailwind CSS \u00b7 Deployed on GitHub Pages`, pageTitle: 'Ahmed Ouarrali, Full-Stack Software Engineer | PFE Internship' },
   dock: { home: 'Home', whatIDo: 'What I Do', work: 'Work', contact: 'Contact', lang: 'Language', nav: 'Quick navigation', footerNav: 'Footer navigation', toggle: 'Toggle light / dark mode', resume: 'Résumé', linkedin: 'LinkedIn', github: 'GitHub', email: 'Email', backToTop: 'Back to top' },
   error: {
     label: 'Error', title: 'Something went wrong.',
@@ -233,6 +239,7 @@ const fr: Dict = {
     kicker: 'Ce que je fais', title: 'Je transforme des id\u00e9es complexes en produits simples et fonctionnels.',
     sub: 'Du concept au d\u00e9ploiement. Je g\u00e8re tout le parcours.',
     showDetails: 'D\u00e9tails', showLess: 'Moins',
+    metricLabels: ['livr\u00e9s', '2.2 AA', 'tests', 'AR'],
     capabilities: [
       { title: 'Construire des produits complets', desc: 'Je prends une id\u00e9e et la transforme en application fonctionnelle. Frontend, backend, base de donn\u00e9es et d\u00e9ploiement. Tout connect\u00e9, tout qui marche.', details: 'D\u00e9veloppement full-stack avec Spring Boot, Next.js, React Native. APIs REST, synchronisation en temps r\u00e9el, int\u00e9grations de paiement, authentification et conception de bases de donn\u00e9es.' },
       { title: 'Concevoir des interfaces intuitives', desc: 'Je cr\u00e9e des exp\u00e9riences web et mobile qui semblent simples, m\u00eame quand la technologie derri\u00e8re est complexe.', details: 'Design responsive, support trilingue (FR/EN/AR avec vrai RTL), accessibilit\u00e9 (WCAG 2.2), animations et divulgation progressive.' },
@@ -255,8 +262,8 @@ const fr: Dict = {
   filters: { all: 'Tous', web: 'Web', mobile: 'Mobile', backend: 'Backend', ai: 'IA', iot: 'IoT' },
   work: {
     kicker: 'Projets', title: 'Des syst\u00e8mes qui tournent en production, pas des d\u00e9mos qui tournent une fois.',
-    sub: 'Plus de six r\u00e9alisations web, mobile, backend, IA et IoT. Chacune d\u00e9ploy\u00e9e, utilis\u00e9e ou \u00e9valu\u00e9e.',
-    showLess: 'voir moins', showFewer: 'Afficher moins', filterCount: '{count} projets sur {total} affichés',
+    sub: 'Sept r\u00e9alisations web, mobile, backend, IA et IoT. Chacune d\u00e9ploy\u00e9e, utilis\u00e9e ou \u00e9valu\u00e9e.',
+    showLess: 'voir moins', showFewer: 'Afficher moins', showMoreTags: 'Afficher {count} autres tags', filterCount: '{count} projets sur {total} affichés',
     walkthroughNote: 'D\u00e9mos en direct, d\u00e9p\u00f4ts priv\u00e9s et mat\u00e9riel : revues de code et d\u00e9monstrations guid\u00e9es sur demande.',
     highlightLabel: 'Point technique',
     projects: [
@@ -265,6 +272,10 @@ const fr: Dict = {
         highlight: 'Chemins mon\u00e9taires fiabilis\u00e9s : tarification c\u00f4t\u00e9 serveur et checkout idempotent. Modules gard\u00e9s par des tests d\u2019architecture qui cassent la construction en cas de violation.',
         result: '810 tests automatis\u00e9s, 93 migrations, 3 int\u00e9grations paiement. D\u00e9ploy\u00e9 sur Cloud Run.',
         linkLabel: 'Ouvrir la boutique', linkHref: 'https://odemlab-frontend-fne55ek37q-no.a.run.app/fr' },
+      { title: 'ProcureFlow: approvisionnement B2B', year: '2026', kind: 'Full-stack \u00b7 Spring Boot & Angular', heading: 'ProcureFlow', lead: 'F',
+        description: 'Plateforme d\u2019achats B2B multitenant : demandes, approbations, fournisseurs, commandes, factures et budgets. Les demandes suivent un circuit d\u2019approbation \u00e0 paliers avec d\u00e9l\u00e9gation born\u00e9e, et le budget est r\u00e9serv\u00e9 atomiquement \u00e0 l\u2019approbation.',
+        highlight: 'Isolement multi-tenant : les acc\u00e8s inter-tenant r\u00e9pondent 404, jamais 403. Les montants sont recalcul\u00e9s c\u00f4t\u00e9 serveur avec des cl\u00e9s d\u2019idempotence, et les types du frontend sont g\u00e9n\u00e9r\u00e9s depuis le contrat d\u2019API.',
+        result: 'Rotation des jetons JWT, interface bilingue FR/EN et copilote IA qui cite les donn\u00e9es de l\u2019espace de travail et r\u00e9dige des brouillons de demandes depuis une description en langage naturel.'},
       { title: 'Plateforme de rendez-vous m\u00e9dicaux', year: '2025', kind: 'Stage \u00b7 Full-stack', heading: 'M\u00e9dical', lead: 'e',
         description: 'Plateforme de gestion de cabinet m\u00e9dical o\u00f9 les patients prennent rendez-vous en ligne et les m\u00e9decins g\u00e8rent leurs plannings et g\u00e9n\u00e8rent des rapports PDF.',
         highlight: 'Parcours de r\u00e9servation pens\u00e9 autour du vrai goulot : la prise de rendez-vous par t\u00e9l\u00e9phone remplac\u00e9e par deux minutes de r\u00e9servation en ligne, avec rapports PDF pour les m\u00e9decins.',
@@ -292,7 +303,7 @@ const fr: Dict = {
     jobs: [
       { when: 'JUIN 2026 \u2013 SEPT. 2026 \u00b7 AGADIR, SUR SITE', title: 'Projet de fin d\u2019ann\u00e9e (PFA): D\u00e9veloppeur Full-Stack', org: 'Zorium, Technoparc Agadir', where: 'Plateforme OdemLab \u00b7 \u00e9quipe de quatre',
         tags: ['Spring Boot', 'Next.js', 'PostgreSQL', 'Cloud Run'],
-        points: ['Modules m\u00e9tier backend : commandes, produits, paiements, auth, RGPD', 'Chemins mon\u00e9taires fiabilis\u00e9s : tarification serveur, checkout idempotent, cycle audité', 'Livraison Cloud Run : d\u00e9ploiement sans trafic, health check, promotion, rollback auto'] },
+        points: ['Modules m\u00e9tier backend : commandes, produits, paiements, auth, RGPD', 'Chemins mon\u00e9taires fiabilis\u00e9s : tarification serveur, checkout idempotent, cycle de commande audité', 'Livraison Cloud Run : d\u00e9ploiement sans trafic, health check, promotion, rollback auto'] },
       { when: 'JUIL. 2025 \u2013 SEPT. 2025 \u00b7 DISTANCIEL', title: 'Stagiaire D\u00e9veloppeur Full-Stack', org: 'MOUSSA SOFT \u00b7 Agadir',
         tags: ['Laravel', 'MySQL', 'Bootstrap'],
         points: ['MediCare : r\u00e9servation patients-m\u00e9decins, planning, g\u00e9n\u00e9ration de rapports PDF, tableaux Chart.js'] },
@@ -317,7 +328,7 @@ const fr: Dict = {
     dailyLabel: 'Usage intensif', daily: 'Spring Boot \u00b7 Next.js \u00b7 TypeScript \u00b7 PostgreSQL \u00b7 Docker \u00b7 Laravel \u00b7 Flutter \u00b7 Playwright',
     exploredLabel: 'Aussi explor\u00e9', explored: 'Qt \u00b7 Terraform \u00b7 Prometheus \u00b7 CamemBERT \u00b7 Vitest \u00b7 PyTorch',
     categories: [
-      { name: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Flutter', 'React Native'] },
+      { name: 'Frontend', items: ['React', 'Next.js', 'Angular', 'TypeScript', 'Tailwind CSS', 'Flutter', 'React Native'] },
       { name: 'Backend', items: ['Java', 'Spring Boot', 'Node.js', 'Python', 'Flask', 'Laravel', 'C++', 'Qt'] },
       { name: 'Donn\u00e9es', items: ['PostgreSQL', 'Redis', 'MySQL', 'Firebase Firestore'] },
       { name: 'Cloud & DevOps', items: ['Docker', 'GitHub Actions', 'Google Cloud Run', 'Terraform', 'Flyway', 'Prometheus', 'Grafana'] },
@@ -349,10 +360,10 @@ const fr: Dict = {
     mailto: '\u2713 Votre application e-mail s\u2019ouvre avec le message pr\u00eat \u00e0 envoyer.',
     respondTime: 'Je r\u00e9ponds g\u00e9n\u00e9ralement sous 24 heures',
     retry: 'R\u00e9essayer',
-    direct: 'E-mail direct', phone: 'T\u00e9l\u00e9phone', linkedin: 'LinkedIn', github: 'GitHub',
+    direct: 'E-mail direct', loc: 'Maroc', phone: 'T\u00e9l\u00e9phone', linkedin: 'LinkedIn', github: 'GitHub',
     copy: 'Copier', copied: 'Copi\u00e9', copyEmail: 'Copier l\u2019adresse e-mail', copyPhone: 'Copier le num\u00e9ro de t\u00e9l\u00e9phone',
   },
-  footer: { top: 'Haut', elsewhere: 'Ailleurs', explore: 'Explorer', built: '\u00a9 2027 Ahmed Ouarrali \u00b7 Construit avec React, Tailwind CSS \u00b7 D\u00e9ploy\u00e9 sur GitHub Pages', pageTitle: 'Ahmed Ouarrali, D\u00e9veloppeur Full-Stack | Stage PFE' },
+  footer: { top: 'Haut', elsewhere: 'Ailleurs', explore: 'Explorer', built: `\u00a9 ${new Date().getFullYear()} Ahmed Ouarrali \u00b7 Construit avec React, Tailwind CSS \u00b7 D\u00e9ploy\u00e9 sur GitHub Pages`, pageTitle: 'Ahmed Ouarrali, D\u00e9veloppeur Full-Stack | Stage PFE' },
   dock: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', contact: 'Contact', lang: 'Langue', nav: 'Navigation rapide', footerNav: 'Navigation du pied de page', toggle: 'Basculer mode clair / sombre', resume: 'CV', linkedin: 'LinkedIn', github: 'GitHub', email: 'E-mail', backToTop: 'Retour en haut' },
   error: {
     label: 'Erreur', title: 'Un probl\u00e8me est survenu.',
@@ -365,12 +376,12 @@ const fr: Dict = {
 export const DICTS: Record<Lang, Dict> = { en, fr };
 
 export const PROJECT_TAGS: string[][] = [
-  tags.odemlab, tags.med, tags.fit, tags.campus, tags.sum, tags.iot,
+  tags.odemlab, tags.procure, tags.med, tags.fit, tags.campus, tags.sum, tags.iot,
 ];
 export const PROJECT_CATS: string[][] = [
-  ['web', 'mobile', 'backend'], ['web', 'backend'], ['web', 'backend'], ['mobile'], ['ai'], ['iot'],
+  ['web', 'mobile', 'backend'], ['web', 'backend'], ['web', 'backend'], ['web', 'backend'], ['mobile'], ['ai'], ['iot'],
 ];
-export const PROJECT_THUMBS = ['thumb-odem', 'thumb-med', 'thumb-fit', 'thumb-campus', 'thumb-sum', 'thumb-iot'];
+export const PROJECT_THUMBS = ['thumb-odem', 'thumb-procure', 'thumb-med', 'thumb-fit', 'thumb-campus', 'thumb-sum', 'thumb-iot'];
 
 type LangCtx = { lang: Lang; setLang: (l: Lang) => void; t: Dict };
 

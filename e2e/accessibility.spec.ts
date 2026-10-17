@@ -113,7 +113,7 @@ test.describe('Accessibility (WCAG 2.2)', () => {
     await expect(meta).toBeAttached();
   });
 
-  test('keyboard tab order starts at skip link and hits only interactive stops', async ({ page }) => {
+  test('keyboard tab order starts at skip link and hits only interactive stops', async ({ page, browserName }) => {
     const order: string[] = [];
     for (let i = 0; i < 12; i++) {
       await page.keyboard.press('Tab');
@@ -125,7 +125,15 @@ test.describe('Accessibility (WCAG 2.2)', () => {
         return `${a.tagName}.${cls}:${label}`;
       }));
     }
-    expect(order[0], 'first stop is the skip link').toContain('A.skip-link');
+    if (browserName === 'webkit') {
+      // WebKit (like Safari) skips links in Tab navigation by default.
+      // Verify the skip link is focusable programmatically instead.
+      await page.locator('a.skip-link').focus();
+      const focused = await page.evaluate(() => document.activeElement?.className ?? '');
+      expect(focused, 'skip link is focusable').toContain('skip-link');
+    } else {
+      expect(order[0], 'first stop is the skip link').toContain('A.skip-link');
+    }
     for (const stop of order) {
       expect(stop, `non-interactive tab stop: ${stop}`).toMatch(/^(A|BUTTON|INPUT|TEXTAREA)/);
     }

@@ -66,10 +66,9 @@ for (const vp of VIEWPORTS) {
 
     test('no text is clipped inside its container', async ({ page }) => {
       const clipped = await page.evaluate(() => {
-        const els = document.querySelectorAll('.pyramid-bar, .card, .pillar-card, .stat, .edu-card, p, h1, h2, h3, li');
+        const els = document.querySelectorAll('.cap-card, .card, .hero-stat, .edu-card, .tech-cat, p, h1, h2, h3, li');
         for (const el of Array.from(els)) {
           const h = el as HTMLElement;
-          if (h.closest('.core')) continue; // intentional scroll strip
           const ov = getComputedStyle(h).overflow;
           if (ov === 'hidden' || ov === 'auto' || ov === 'scroll') continue;
           let ancestor = h.parentElement;
@@ -151,13 +150,16 @@ test.describe('Dock indicator', () => {
     for (const w of [1440, 1100, 768, 1600]) {
       await page.setViewportSize({ width: w, height: 900 });
       await page.locator('#work').scrollIntoViewIfNeeded();
-      await page.waitForTimeout(500);
-      expect(await drift(), `indicator drift at ${w}px`).toBeLessThanOrEqual(1);
+      // The indicator slides toward the new active item; under load it can
+      // still be mid-transition after a fixed wait, so poll until settled.
+      await expect
+        .poll(async () => (await drift()) ?? Infinity, { message: `indicator drift at ${w}px`, timeout: 5000 })
+        .toBeLessThanOrEqual(1);
     }
   });
 });
 
-test.describe('Trilingual overflow (FR/AR)', () => {
+test.describe('French copy overflow (FR)', () => {
   test.use({ viewport: { width: 390, height: 844 } });
 
   test.beforeEach(async ({ page }) => {

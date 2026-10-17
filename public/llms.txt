@@ -15,13 +15,13 @@
 - Role: Full-Stack Software Engineer, PFE candidate 2027.
 - Focus: backend systems & full-stack delivery, from first line of code to a running, tested application.
 - Education: ENSIASD (École Nationale Supérieure d'Intelligence Artificielle et Sciences des Données), [Ibn Zohr University](https://www.uiz.ac.ma/); DUT 2024.
-- Languages: Arabic (native), French (fluent), English (professional).
+- Languages: Arabic (native), French (professional), English (professional).
 - Profiles: [GitHub](https://github.com/AhmedOL0) · [LinkedIn](https://www.linkedin.com/in/ahmed-ouarrali)
 
 ## Tech stack
 
 - Backend: Spring Boot, Java 21, Laravel (PHP), Flask (Python), Flyway, JUnit 5, Testcontainers.
-- Frontend / mobile: Next.js, React, React Native (Expo), Flutter (Dart), TypeScript, Tailwind CSS.
+- Frontend / mobile: Next.js, React, Angular, React Native (Expo), Flutter (Dart), TypeScript, Tailwind CSS.
 - Data / AI: PostgreSQL, MySQL, Redis, Firebase, PyTorch, CamemBERT, spaCy, Groq, Gemini AI.
 - DevOps / quality: Docker, GitHub Actions, Google Cloud Run, Playwright, axe-core, Stripe.
 
@@ -30,6 +30,7 @@
 All projects are presented on the [selected work section](https://ahmedol0.github.io/#work) of the homepage.
 
 - **OdemLab** (2026, team of 4): AI-augmented skincare e-commerce: Spring Boot + Next.js + React Native, PostgreSQL/Redis, Stripe, Gemini AI, Playwright; live demo linked on the [OdemLab card](https://ahmedol0.github.io/#work-odemlab).
+- **ProcureFlow** (2026): multi-tenant B2B procurement platform (requests, approvals, suppliers, orders, invoices, budgets): Spring Boot + Angular, PostgreSQL/MongoDB, Flyway, Docker; card on the [ProcureFlow section](https://ahmedol0.github.io/#work-procure).
 - **Medical appointment platform** (2025, internship): Laravel clinic booking with dashboards and charts.
 - **FitTrack** (2025): fitness training platform: Spring Boot + Next.js + MySQL + Docker.
 - **Smart Campus Companion** (2026, Flutter): QR room info, Firebase, AR (ARCore/ARKit) explored.

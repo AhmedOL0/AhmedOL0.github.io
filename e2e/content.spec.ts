@@ -20,13 +20,14 @@ test.describe('Case-study content', () => {
       for (let i = 0; i < count; i++) {
         const card = cards.nth(i);
         // content-visibility:auto skips rendering off-screen subtrees (where
-        // innerText reads empty) — scroll into view like a real visitor.
-        await card.scrollIntoViewIfNeeded();
-        // Poll: skipped subtrees need a frame to render after scrolling.
+        // innerText reads empty). Scroll in-page like a real visitor (the
+        // protocol-level scrollIntoViewIfNeeded does not trigger rendering in
+        // WebKit) and read textContent, which is render-independent.
+        await card.evaluate((el) => (el as HTMLElement).scrollIntoView({ block: 'center' }));
         await expect
-          .poll(async () => (await card.locator('.eh-label').innerText()).trim().length, { message: `card ${i} highlight label renders` })
+          .poll(async () => ((await card.locator('.eh-label').textContent()) ?? '').trim().length, { message: `card ${i} highlight label renders` })
           .toBeGreaterThan(0);
-        const text = await card.locator('.eh-text').innerText();
+        const text = (await card.locator('.eh-text').textContent()) ?? '';
         expect(text.trim().length, `card ${i} highlight text`).toBeGreaterThan(40);
         expect(text, `card ${i} no placeholder`).not.toMatch(/lorem|todo|tbd|xxx/i);
       }
@@ -66,6 +67,20 @@ test.describe('Case-study content', () => {
     expect(text, 'no em dashes in UI copy').not.toContain('—');
     for (const word of ['delve', 'tapestry', 'seamless', 'cutting-edge', 'cutting edge', 'game-changer', 'nestled', 'vibrant', 'elevate', 'supercharge']) {
       expect(text.toLowerCase(), `no hype word "${word}"`).not.toContain(word);
+    }
+  });
+
+  test('French mode leaks no untranslated copy', async ({ page }) => {
+    await page.locator('.langsw button', { hasText: 'FR' }).click();
+    await page.waitForTimeout(500);
+    const height = await page.evaluate(() => document.documentElement.scrollHeight);
+    for (let y = 0; y < height; y += 600) {
+      await page.evaluate((pos) => window.scrollTo(0, pos), y);
+      await page.waitForTimeout(80);
+    }
+    const text = await page.evaluate(() => document.body.innerText);
+    for (const phrase of ['shipped', 'Morocco', 'Send message', 'Your name']) {
+      expect(text, `FR page must not contain EN copy "${phrase}"`).not.toContain(phrase);
     }
   });
 });
