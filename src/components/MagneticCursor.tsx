@@ -61,7 +61,7 @@ export default function MagneticCursor({ children }: { children: ReactNode }) {
     };
 
     const frame = () => {
-      // Nearest magnetic target within pull radius (uses cached rects — no layout read here)
+      // Nearest magnetic target within pull radius (uses cached rects: no layout read here)
       let magnet: HTMLElement | null = null;
       let magnetCx = 0, magnetCy = 0;
       let best = 130;
@@ -130,7 +130,7 @@ export default function MagneticCursor({ children }: { children: ReactNode }) {
       }
     };
     document.addEventListener('visibilitychange', onVis);
-    // Viewport-relative rects go stale on scroll — refresh at most once per frame.
+    // Viewport-relative rects go stale on scroll: refresh at most once per frame.
     let scrollRaf = 0;
     const onScroll = () => {
       if (scrollRaf) return;

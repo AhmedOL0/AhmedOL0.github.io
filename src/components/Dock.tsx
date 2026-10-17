@@ -154,7 +154,7 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
       if (!raf) raf = requestAnimationFrame(position);
     };
     schedule();
-    // Button positions shift with viewport width — recompute (dock would
+    // Button positions shift with viewport width: recompute (dock would
     // otherwise point at the pre-resize slot until the section changes).
     window.addEventListener('resize', schedule);
     return () => {

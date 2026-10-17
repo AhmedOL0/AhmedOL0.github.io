@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 // Mobile journey probes: overflow sweep, scroll fluidity, tap obstruction.
-// Generous budgets — these guard against regressions, not for benchmarking.
+// Generous budgets: these guard against regressions, not for benchmarking.
 
 const WIDTHS = [320, 360, 375, 390, 412, 430];
 

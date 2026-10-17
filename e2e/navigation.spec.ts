@@ -98,7 +98,7 @@ test.describe('Navigation & Interaction', () => {
     const scrolledClass = await toTopBtn.getAttribute('class');
     expect(scrolledClass, 'hidden while scrolling down').not.toContain('show');
 
-    // Scroll up — use waitForFunction instead of fixed timeout for Firefox compat
+    // Scroll up: use waitForFunction instead of fixed timeout for Firefox compat
     await page.evaluate(() => window.scrollTo(0, 1500));
     await page.waitForFunction(
       () => document.getElementById('toTop')?.classList.contains('show'),
