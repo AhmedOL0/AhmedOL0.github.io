@@ -13,8 +13,8 @@ export type ProjectT = {
 
 export function thumbTitle(p: ProjectT): { pre: string; em: string; post: string } {
   const i = p.heading.indexOf(p.lead);
-  if (i === -1) return { pre: p.heading, em: '', post: '' };
-  return { pre: p.heading.slice(0, i), em: p.lead, post: p.heading.slice(i + 1) };
+  if (i === -1 || !p.lead) return { pre: p.heading, em: '', post: '' };
+  return { pre: p.heading.slice(0, i), em: p.lead, post: p.heading.slice(i + p.lead.length) };
 }
 
 export type JobT = { when: string; title: string; org: string; where?: string; points: string[]; tags: string[] };
@@ -47,7 +47,7 @@ export type Dict = {
     copy: string; copied: string; copyEmail: string; copyPhone: string;
   };
   footer: { top: string; elsewhere: string; explore: string; built: string; pageTitle: string };
-  dock: { home: string; whatIDo: string; work: string; contact: string; lang: string; nav: string; footerNav: string; toggle: string; resume: string; linkedin: string; github: string; email: string; backToTop: string };
+  dock: { home: string; whatIDo: string; work: string; contact: string; lang: string; nav: string; footerNav: string; toggle: string; toggleLight: string; toggleDark: string; resume: string; linkedin: string; github: string; email: string; backToTop: string };
   error: { label: string; title: string; sub: string; refresh: string; home: string; still: string };
 };
 
@@ -114,12 +114,12 @@ const en: Dict = {
       { title: 'OdemLab: AI skincare e-commerce', year: 'Flagship', kind: 'Team of 4 · Private repo', heading: 'OdemLab', lead: 'd',
         description: 'A complete online skincare store with AI skin analysis, three payment methods (Stripe, CMI, cash-on-delivery), and trilingual FR/EN/AR support. Customers browse, scan their skin, and pay. All in one flow.',
         highlight: 'Money paths hardened: server-side pricing and idempotent checkout. Modules guarded by architecture tests that fail the build on boundary violations.',
-        result: '810 automated tests, 93 schema migrations, 3 payment integrations. Deployed to Cloud Run with zero-downtime promotion.',
-        linkLabel: 'Open the live store', linkHref: 'https://odemlab-frontend-fne55ek37q-no.a.run.app/fr' },
+        result: '810 automated tests, 93 schema migrations, 3 payment integrations. Deployed to Cloud Run with zero-downtime promotion.' },
       { title: 'ProcureFlow: B2B procurement platform', year: '2026', kind: 'Full-stack \u00b7 Spring Boot & Angular', heading: 'ProcureFlow', lead: 'F',
         description: 'A multi-tenant B2B procurement platform: requests, approvals, suppliers, orders, invoices and budgets. Requests move through a stepped approval workflow with bounded delegation, and budget is reserved atomically on approval.',
         highlight: 'Multi-tenant isolation: cross-tenant access answers 404, never 403. Amounts are recomputed server-side with idempotency keys, and frontend types are generated from the API contract.',
-        result: 'JWT refresh-token rotation, bilingual FR/EN interface, and an AI copilot that cites workspace data and drafts requests from natural-language descriptions.'},
+        result: 'JWT refresh-token rotation, bilingual FR/EN interface, and an AI copilot that cites workspace data and drafts requests from natural-language descriptions.',
+        linkLabel: 'View the repository', linkHref: 'https://github.com/AhmedOL0/ProcureFlow' },
       { title: 'Medical appointment platform', year: '2025', kind: 'Internship · Full-stack', heading: 'Medical', lead: 'e',
         description: 'A clinic management platform where patients book appointments online and doctors manage schedules, patients, and generate PDF reports.',
         highlight: 'Booking flow designed around the clinic’s real bottleneck: phone scheduling replaced by two-minute online booking, with PDF reports for doctors.',
@@ -208,7 +208,7 @@ const en: Dict = {
     copy: 'Copy', copied: 'Copied', copyEmail: 'Copy email address', copyPhone: 'Copy phone number',
   },
   footer: { top: 'Top', elsewhere: 'Elsewhere', explore: 'Explore', built: `\u00a9 ${new Date().getFullYear()} Ahmed Ouarrali \u00b7 Built with React, Tailwind CSS \u00b7 Deployed on GitHub Pages`, pageTitle: 'Ahmed Ouarrali, Full-Stack Software Engineer | PFE Internship' },
-  dock: { home: 'Home', whatIDo: 'What I Do', work: 'Work', contact: 'Contact', lang: 'Language', nav: 'Quick navigation', footerNav: 'Footer navigation', toggle: 'Toggle light / dark mode', resume: 'Résumé', linkedin: 'LinkedIn', github: 'GitHub', email: 'Email', backToTop: 'Back to top' },
+  dock: { home: 'Home', whatIDo: 'What I Do', work: 'Work', contact: 'Contact', lang: 'Language', nav: 'Quick navigation', footerNav: 'Footer navigation', toggle: 'Toggle light / dark mode', toggleLight: 'Switch to light mode', toggleDark: 'Switch to dark mode', resume: 'Résumé', linkedin: 'LinkedIn', github: 'GitHub', email: 'Email', backToTop: 'Back to top' },
   error: {
     label: 'Error', title: 'Something went wrong.',
     sub: 'The page hit an unexpected error. Refreshing usually fixes it.',
@@ -270,12 +270,12 @@ const fr: Dict = {
       { title: 'OdemLab: e-commerce cosm\u00e9tique IA', year: 'Vitrine', kind: '\u00c9quipe de 4 \u00b7 D\u00e9p\u00f4t priv\u00e9', heading: 'OdemLab', lead: 'd',
         description: 'Boutique cosm\u00e9tique en ligne avec analyse IA de la peau, trois m\u00e9thodes de paiement (Stripe, CMI, contre-remboursement) et support trilingue FR/EN/AR.',
         highlight: 'Chemins mon\u00e9taires fiabilis\u00e9s : tarification c\u00f4t\u00e9 serveur et checkout idempotent. Modules gard\u00e9s par des tests d\u2019architecture qui cassent la construction en cas de violation.',
-        result: '810 tests automatis\u00e9s, 93 migrations, 3 int\u00e9grations paiement. D\u00e9ploy\u00e9 sur Cloud Run.',
-        linkLabel: 'Ouvrir la boutique', linkHref: 'https://odemlab-frontend-fne55ek37q-no.a.run.app/fr' },
+        result: '810 tests automatis\u00e9s, 93 migrations, 3 int\u00e9grations paiement. D\u00e9ploy\u00e9 sur Cloud Run.' },
       { title: 'ProcureFlow: approvisionnement B2B', year: '2026', kind: 'Full-stack \u00b7 Spring Boot & Angular', heading: 'ProcureFlow', lead: 'F',
         description: 'Plateforme d\u2019achats B2B multitenant : demandes, approbations, fournisseurs, commandes, factures et budgets. Les demandes suivent un circuit d\u2019approbation \u00e0 paliers avec d\u00e9l\u00e9gation born\u00e9e, et le budget est r\u00e9serv\u00e9 atomiquement \u00e0 l\u2019approbation.',
         highlight: 'Isolement multi-tenant : les acc\u00e8s inter-tenant r\u00e9pondent 404, jamais 403. Les montants sont recalcul\u00e9s c\u00f4t\u00e9 serveur avec des cl\u00e9s d\u2019idempotence, et les types du frontend sont g\u00e9n\u00e9r\u00e9s depuis le contrat d\u2019API.',
-        result: 'Rotation des jetons JWT, interface bilingue FR/EN et copilote IA qui cite les donn\u00e9es de l\u2019espace de travail et r\u00e9dige des brouillons de demandes depuis une description en langage naturel.'},
+        result: 'Rotation des jetons JWT, interface bilingue FR/EN et copilote IA qui cite les donn\u00e9es de l\u2019espace de travail et r\u00e9dige des brouillons de demandes depuis une description en langage naturel.',
+        linkLabel: 'Voir le d\u00e9p\u00f4t', linkHref: 'https://github.com/AhmedOL0/ProcureFlow' },
       { title: 'Plateforme de rendez-vous m\u00e9dicaux', year: '2025', kind: 'Stage \u00b7 Full-stack', heading: 'M\u00e9dical', lead: 'e',
         description: 'Plateforme de gestion de cabinet m\u00e9dical o\u00f9 les patients prennent rendez-vous en ligne et les m\u00e9decins g\u00e8rent leurs plannings et g\u00e9n\u00e8rent des rapports PDF.',
         highlight: 'Parcours de r\u00e9servation pens\u00e9 autour du vrai goulot : la prise de rendez-vous par t\u00e9l\u00e9phone remplac\u00e9e par deux minutes de r\u00e9servation en ligne, avec rapports PDF pour les m\u00e9decins.',
@@ -292,7 +292,7 @@ const fr: Dict = {
         description: 'Plateforme IA qui transforme les PDF de cours en outils d\u2019\u00e9tude. R\u00e9sum\u00e9s, audio, quiz et cartes mentales.',
         highlight: 'Les PDF de cours deviennent des outils d\u2019\u00e9tude : extraction CamemBERT et g\u00e9n\u00e9ration Groq, not\u00e9s 8,4/10 par 30 \u00e9tudiants.',
         result: '9.9s de traitement moyen. Score 8.4/10 sur 30 \u00e9tudiants.'},
-      { title: 'Syst\u00e8me de comptage de cannes', year: '2024 \u00b7 PFE DUT', kind: 'Embarqu\u00e9 \u00b7 Projet de fin', heading: 'IoT', lead: 'T',
+      { title: 'Syst\u00e8me de comptage de cannes', year: '2024 \u00b7 PFE DUT', kind: 'Embarqu\u00e9 \u00b7 Projet de fin d\u2019\u00e9tudes', heading: 'IoT', lead: 'T',
         description: 'Syst\u00e8me de comptage bas\u00e9 sur ESP8266 utilisant un capteur laser pour compter les cannes sur une ligne de production, avec affichage OLED et tableau de bord Wi-Fi.',
         highlight: 'D\u00e9tection laser embarqu\u00e9e avec comptage local et tableau de bord Wi-Fi. 98 %+ de pr\u00e9cision dans les conditions d\u2019une ligne de production.',
         result: '98%+ de pr\u00e9cision. Bo\u00eetier 3D imprim\u00e9.'},
@@ -364,7 +364,7 @@ const fr: Dict = {
     copy: 'Copier', copied: 'Copi\u00e9', copyEmail: 'Copier l\u2019adresse e-mail', copyPhone: 'Copier le num\u00e9ro de t\u00e9l\u00e9phone',
   },
   footer: { top: 'Haut', elsewhere: 'Ailleurs', explore: 'Explorer', built: `\u00a9 ${new Date().getFullYear()} Ahmed Ouarrali \u00b7 Construit avec React, Tailwind CSS \u00b7 D\u00e9ploy\u00e9 sur GitHub Pages`, pageTitle: 'Ahmed Ouarrali, D\u00e9veloppeur Full-Stack | Stage PFE' },
-  dock: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', contact: 'Contact', lang: 'Langue', nav: 'Navigation rapide', footerNav: 'Navigation du pied de page', toggle: 'Basculer mode clair / sombre', resume: 'CV', linkedin: 'LinkedIn', github: 'GitHub', email: 'E-mail', backToTop: 'Retour en haut' },
+  dock: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', contact: 'Contact', lang: 'Langue', nav: 'Navigation rapide', footerNav: 'Navigation du pied de page', toggle: 'Basculer mode clair / sombre', toggleLight: 'Passer en mode clair', toggleDark: 'Passer en mode sombre', resume: 'CV', linkedin: 'LinkedIn', github: 'GitHub', email: 'E-mail', backToTop: 'Retour en haut' },
   error: {
     label: 'Erreur', title: 'Un probl\u00e8me est survenu.',
     sub: 'La page a rencontr\u00e9 une erreur inattendue. L\u2019actualiser suffit g\u00e9n\u00e9ralement.',

@@ -81,7 +81,7 @@ function Card({ p, th, i, cardId }: { p: { year: string; kind: string; title: st
       <div className="body flex flex-col gap-1.5 p-3.5 sm:p-[20px_22px_22px] flex-1">
         <span className="flag">{p.kind}</span>
         <h3 className="font-serif-d">{p.title}</h3>
-        <p className="text-[.86rem] leading-[1.6]" style={{ color: 'var(--muted)' }}>{p.description}</p>
+        <p className="text-[.9rem] leading-[1.65]" style={{ color: 'var(--muted)' }}>{p.description}</p>
         <div className="engineering-highlight">
           <p className="eh-label">{t.work.highlightLabel}</p>
           <p className="eh-text">{p.highlight}</p>
@@ -91,14 +91,15 @@ function Card({ p, th, i, cardId }: { p: { year: string; kind: string; title: st
           {PROJECT_TAGS[i].slice(0, tagsExpanded ? undefined : 6).map((tag) => (
             <span key={tag}>{tag}</span>
           ))}
-          {!tagsExpanded && PROJECT_TAGS[i].length > 6 && (
-            <button className="tag-more" type="button" aria-expanded={false} aria-label={t.work.showMoreTags.replace('{count}', String(PROJECT_TAGS[i].length - 6))} onClick={() => setTagsExpanded(true)}>
-              +{PROJECT_TAGS[i].length - 6}
-            </button>
-          )}
-          {tagsExpanded && PROJECT_TAGS[i].length > 6 && (
-            <button className="tag-more" type="button" aria-expanded={true} aria-label={t.work.showFewer} onClick={() => setTagsExpanded(false)}>
-              {t.work.showLess}
+          {PROJECT_TAGS[i].length > 6 && (
+            <button
+              className="tag-more"
+              type="button"
+              aria-expanded={tagsExpanded}
+              aria-label={tagsExpanded ? t.work.showFewer : t.work.showMoreTags.replace('{count}', String(PROJECT_TAGS[i].length - 6))}
+              onClick={() => setTagsExpanded((v) => !v)}
+            >
+              {tagsExpanded ? t.work.showLess : `+${PROJECT_TAGS[i].length - 6}`}
             </button>
           )}
         </div>

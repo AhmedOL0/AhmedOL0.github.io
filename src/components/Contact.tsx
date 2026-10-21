@@ -15,8 +15,12 @@ export default function Contact() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'error' | 'mailto'>('idle');
   const [errors, setErrors] = useState<Record<'name' | 'email' | 'message', string>>({ name: '', email: '', message: '' });
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
+  useEffect(() => () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+  }, []);
 
   const resetStatus = useCallback(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
@@ -30,11 +34,10 @@ export default function Contact() {
   }, []);
 
   const [copied, setCopied] = useState<'email' | 'phone' | null>(null);
-  const [copyTimer, setCopyTimer] = useState<ReturnType<typeof setTimeout> | null>(null);
 
   const copy = useCallback((text: string, which: 'email' | 'phone') => {
-    if (copyTimer) clearTimeout(copyTimer);
-    setCopyTimer(setTimeout(() => setCopied(null), 2000));
+    if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+    copyTimerRef.current = setTimeout(() => setCopied(null), 2000);
     setCopied(which);
     const attempt = async () => {
       try {
@@ -57,7 +60,7 @@ export default function Contact() {
       }
     };
     void attempt();
-  }, [copyTimer]);
+  }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -85,8 +88,8 @@ export default function Contact() {
       const name = String(formData.get('name') ?? '');
       const email = String(formData.get('email') ?? '');
       const message = String(formData.get('message') ?? '');
-      const subject = encodeURIComponent(`Portfolio contact \u2014 ${name}`);
-      const body = encodeURIComponent(`${message}\n\n\u2014 ${name}${email ? ` <${email}>` : ''}`);
+      const subject = encodeURIComponent(`Portfolio contact - ${name}`);
+      const body = encodeURIComponent(`${message}\n\n- ${name}${email ? ` <${email}>` : ''}`);
       setStatus('mailto');
       form.reset();
       resetStatus();
@@ -97,10 +100,13 @@ export default function Contact() {
     formData.append('subject', 'New message from portfolio');
     formData.append('from_name', 'Portfolio Contact');
 
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: formData,
+        signal: controller.signal,
       });
       const data = await res.json();
       if (data.success) {
@@ -114,6 +120,8 @@ export default function Contact() {
     } catch {
       setStatus('error');
       resetStatus();
+    } finally {
+      clearTimeout(timeout);
     }
   };
 
@@ -130,18 +138,18 @@ export default function Contact() {
           <label className="field" htmlFor="contact-name">
             <input id="contact-name" name="name" type="text" placeholder=" " required disabled={sending} autoComplete="name" enterKeyHint="next" aria-required="true" aria-invalid={!!errors.name} aria-describedby={errors.name ? 'contact-name-err' : undefined} onInput={() => clearError('name')} />
             <span>{t.contact.name}</span>
-            {errors.name && <p className="field-error" id="contact-name-err" role="alert">{errors.name}</p>}
           </label>
+          {errors.name && <p className="field-error" id="contact-name-err" role="alert">{errors.name}</p>}
           <label className="field" htmlFor="contact-email">
             <input id="contact-email" name="email" type="email" placeholder=" " required disabled={sending} autoComplete="email" inputMode="email" enterKeyHint="next" aria-required="true" aria-invalid={!!errors.email} aria-describedby={errors.email ? 'contact-email-err' : undefined} onInput={() => clearError('email')} />
             <span>{t.contact.email}</span>
-            {errors.email && <p className="field-error" id="contact-email-err" role="alert">{errors.email}</p>}
           </label>
+          {errors.email && <p className="field-error" id="contact-email-err" role="alert">{errors.email}</p>}
           <label className="field" htmlFor="contact-message">
             <textarea id="contact-message" name="message" rows={5} maxLength={2000} placeholder=" " required disabled={sending} enterKeyHint="send" aria-required="true" aria-invalid={!!errors.message} aria-describedby={errors.message ? 'contact-message-err' : undefined} onInput={() => clearError('message')} />
             <span>{t.contact.msg}</span>
-            {errors.message && <p className="field-error" id="contact-message-err" role="alert">{errors.message}</p>}
           </label>
+          {errors.message && <p className="field-error" id="contact-message-err" role="alert">{errors.message}</p>}
           <div style={{ marginTop: 22 }}>
             <p className="form-hint">{t.contact.respondTime}</p>
             <button

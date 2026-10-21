@@ -27,10 +27,12 @@ const P = {
 
 export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => void }) {
   const { lang, setLang, t } = useLang();
-  const langAnnounce = t.nav.langChanged;
   const wrapRef = useRef<HTMLDivElement>(null);
   const [tp, setTp] = useState<{ text: string; x: number; y: number } | null>(null);
   const [hidden, setHidden] = useState(false);
+  const [announce, setAnnounce] = useState(false);
+  const langAnnounce = announce ? t.nav.langChanged : '';
+  const toggleLabel = theme === 'dark' ? t.dock.toggleLight : t.dock.toggleDark;
 
   useEffect(() => {
     let last = window.scrollY, raf = 0;
@@ -72,21 +74,21 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
   return (
     <>
       <div aria-live="polite" className="sr-only">{langAnnounce}</div>
-      <a href="assets/CV_Ahmed_Ouarrali.pdf" download aria-label={t.dock.resume}
+      <a href="assets/CV_Ahmed_Ouarrali.pdf" download aria-label={t.dock.resume} inert={hidden || undefined}
         className={`btn btn-sm top-left top-pill fixed left-5 top-5 z-50 md:left-8 tip${hidden ? ' top-pills-hidden' : ''}`}
         data-tip={t.dock.resume}>
         {t.dock.resume}
       </a>
-      <div ref={wrapRef} className={`top-right fixed right-5 top-5 z-50 flex max-w-[calc(100vw-2.5rem)] flex-wrap items-center justify-end gap-2 md:right-8${hidden ? ' top-pills-hidden' : ''}`}>
+      <div ref={wrapRef} inert={hidden || undefined} className={`top-right fixed right-5 top-5 z-50 flex max-w-[calc(100vw-2.5rem)] flex-wrap items-center justify-end gap-2 md:right-8${hidden ? ' top-pills-hidden' : ''}`}>
         <div className="langsw" role="group" aria-label={t.dock.lang}>
           {LANGS.map((l) => (
-            <button key={l.code} className={lang === l.code ? 'active' : ''} onClick={() => setLang(l.code)} aria-label={l.aria}
+            <button key={l.code} className={lang === l.code ? 'active' : ''} onClick={() => { setLang(l.code); setAnnounce(true); }} aria-pressed={lang === l.code} aria-label={l.aria}
               data-tip={l.aria}>
               {l.label}
             </button>
           ))}
         </div>
-        <button onClick={onToggle} aria-label={t.dock.toggle} data-tip={t.dock.toggle}
+        <button onClick={onToggle} aria-label={toggleLabel} data-tip={toggleLabel}
           className="iconbtn iconbtn-glass" style={{ border: '1px solid var(--line)', color: 'var(--muted)' }}>
           <Icon d={theme === 'dark' ? P.sun : P.moon} />
         </button>
@@ -108,6 +110,7 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
 
 export default function Dock({ active, theme, onToggle }: { active: string; theme: string; onToggle: () => void }) {
   const { t } = useLang();
+  const toggleLabel = theme === 'dark' ? t.dock.toggleLight : t.dock.toggleDark;
   const [hidden, setHidden] = useState(false);
   const dockRef = useRef<HTMLDivElement>(null);
   const indicatorRef = useRef<HTMLSpanElement>(null);
@@ -173,7 +176,7 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
   const isActive = (id: string) =>
     id === 'top' ? active === '' : active === id;
   return (
-    <div ref={dockRef} className={`dock${hidden ? ' dock-hidden' : ''}`} role="navigation" aria-label={t.dock.nav}>
+    <div ref={dockRef} inert={hidden || undefined} className={`dock${hidden ? ' dock-hidden' : ''}`} role="navigation" aria-label={t.dock.nav}>
       <span ref={indicatorRef} className="dock-indicator" />
       {items.map((it) => (
         <a key={it.id} href={it.href} aria-label={it.label}
@@ -184,7 +187,7 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
         </a>
       ))}
       <span className="dock-sep" />
-      <button onClick={onToggle} aria-label={t.dock.toggle} data-tip={t.dock.toggle} data-magnetic className="tip">
+      <button onClick={onToggle} aria-label={toggleLabel} data-tip={toggleLabel} data-magnetic className="tip">
         <Icon d={theme === 'dark' ? P.sun : P.moon} />
       </button>
       <span className="dock-sep" />
