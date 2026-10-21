@@ -29,33 +29,35 @@ export function Timeline({ items }: { items: JobT[] }) {
     };
   }, []);
   return (
-    <ol className="timeline mt-9" ref={wrapRef}>
-      <div className="timeline-fill" ref={fillRef} aria-hidden="true" />
-      {items.map((j) => (
-        <li className="job" key={j.title}>
-          <div className="job-marker" aria-hidden="true">
-            <span className="job-marker-dot" />
-          </div>
-          <div className="job-card">
-            <div className="when font-mono-d">{j.when}</div>
-            <h3>{j.title} <span>· {j.org}</span></h3>
-            {j.where && <div className="where">{j.where}</div>}
-            {j.tags.length > 0 && (
-              <div className="tags job-tags">
-                {j.tags.map((tag) => (
-                  <span key={tag}>{tag}</span>
+    <div className="timeline-wrap mt-9">
+      <ol className="timeline" ref={wrapRef}>
+        {items.map((j) => (
+          <li className="job" key={j.title}>
+            <div className="job-marker" aria-hidden="true">
+              <span className="job-marker-dot" />
+            </div>
+            <div className="job-card">
+              <div className="when font-mono-d">{j.when}</div>
+              <h3>{j.title} <span>· {j.org}</span></h3>
+              {j.where && <div className="where">{j.where}</div>}
+              {j.tags.length > 0 && (
+                <div className="tags job-tags">
+                  {j.tags.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
+              )}
+              <ul>
+                {j.points.map((p) => (
+                  <li key={p}>{p}</li>
                 ))}
-              </div>
-            )}
-            <ul>
-              {j.points.map((p) => (
-                <li key={p}>{p}</li>
-              ))}
-            </ul>
-          </div>
-        </li>
-      ))}
-    </ol>
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <div className="timeline-fill" ref={fillRef} aria-hidden="true" />
+    </div>
   );
 }
 

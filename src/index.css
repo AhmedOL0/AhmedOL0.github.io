@@ -141,6 +141,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 }
 
 /* Timeline */
+.timeline-wrap{position:relative}
 .timeline{border-left:none;padding-left:0;display:flex;flex-direction:column;gap:24px;position:relative;list-style:none;margin:0}
 .timeline::before{content:"";position:absolute;left:11px;top:0;width:1px;height:100%;background:var(--line-soft)}
 .timeline-fill{position:absolute;left:11px;top:0;width:1px;height:100%;background:var(--gold-deep);
@@ -168,6 +169,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 
 /* Filters: dossier index tabs */
 .filters button{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:var(--r);padding:8px 18px;font-size:.78rem;font-family:var(--mono);cursor:pointer;transition:border-color .2s,color .2s,background .2s;letter-spacing:.06em;text-transform:uppercase}
+@media(max-width:639px){
+  .filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px!important}
+  .filters button{width:100%;padding:10px 6px;font-size:.72rem}
+}
 .filters button:hover{color:var(--ink);border-color:var(--gold-deep)}
 .filters button:active{transform:translateY(1px)}
 .filters button.active{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:600}
@@ -566,7 +571,7 @@ section{scroll-margin-top:84px;padding-top:104px;padding-bottom:104px}
 .error-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:28px}
 .error-contact{margin:20px 0 0;font-size:.82rem;color:var(--faint)}
 .error-contact a{color:var(--gold)}
-.section-block{position:relative;overflow-x:clip;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:8px;padding-right:8px;
+.section-block{position:relative;overflow-x:clip;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:8px;padding-right:8px;scroll-margin-top:84px;
   /* Skip rendering off-screen sections until scrolled toward (huge win on
      low-end mobile). Anchor jumps + IntersectionObserver still work. */
   content-visibility:auto;contain-intrinsic-size:auto 1000px}

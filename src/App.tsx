@@ -52,7 +52,7 @@ function ErrorFallback() {
 function Footer() {
   const { t } = useLang();
   const cols: { head: string; links: { label: string; href: string }[] }[] = [
-    { head: t.nav.work, links: [{ label: 'OdemLab', href: '#work-odemlab' }, { label: 'FitTrack', href: '#work-fittrack' }, { label: 'Smart Campus', href: '#work-campus' }] },
+    { head: t.nav.work, links: [{ label: 'OdemLab', href: '#work-odemlab' }, { label: 'ProcureFlow', href: '#work-procure' }, { label: 'Smart Campus', href: '#work-campus' }] },
     { head: t.footer.explore, links: [{ label: t.nav.experience, href: '#experience' }, { label: t.nav.behind, href: '#behind' }, { label: t.nav.contact, href: '#contact' }] },
     { head: t.footer.elsewhere, links: [{ label: 'GitHub', href: 'https://github.com/AhmedOL0' }, { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ahmed-ouarrali' }, { label: 'Email', href: 'mailto:ahmedouarrali12@gmail.com' }] },
   ];

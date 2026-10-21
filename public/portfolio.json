@@ -41,7 +41,8 @@
       "year": "2026",
       "summary": "Multi-tenant B2B procurement platform (requests, approvals, suppliers, orders, invoices, budgets)",
       "stack": ["Spring Boot", "Angular", "TypeScript", "PostgreSQL", "MongoDB", "Flyway", "Playwright", "Docker"],
-      "anchor": "#work-procure"
+      "anchor": "#work-procure",
+      "repo": "https://github.com/AhmedOL0/ProcureFlow"
     },
     {
       "title": "Medical appointment platform",
