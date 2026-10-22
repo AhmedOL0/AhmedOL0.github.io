@@ -168,10 +168,16 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .section-block h2{font-weight:500;letter-spacing:-.01em;margin:0}
 
 /* Filters: dossier index tabs */
-.filters button{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:var(--r);padding:8px 18px;font-size:.78rem;font-family:var(--mono);cursor:pointer;transition:border-color .2s,color .2s,background .2s;letter-spacing:.06em;text-transform:uppercase}
+.filter-row{display:flex;align-items:center;justify-content:space-between;gap:10px 18px;flex-wrap:wrap}
+.filter-status{margin:0;font-family:var(--mono);font-size:.68rem;line-height:1.4;letter-spacing:.04em;color:var(--faint);white-space:nowrap}
+.filters button{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:var(--r);padding:8px 18px;font-size:.78rem;font-family:var(--mono);cursor:pointer;transition:border-color .2s,color .2s,background .2s;letter-spacing:.06em;text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.filter-count{font-size:.62rem;line-height:1;letter-spacing:0;color:var(--faint)}
+.filters button.active .filter-count{color:var(--bg);opacity:.65}
 @media(max-width:639px){
-  .filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px!important}
+  .filter-row{align-items:stretch}
+  .filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px!important;width:100%}
   .filters button{width:100%;padding:10px 6px;font-size:.72rem}
+  .filter-status{width:100%;text-align:right;white-space:normal}
 }
 .filters button:hover{color:var(--ink);border-color:var(--gold-deep)}
 .filters button:active{transform:translateY(1px)}
@@ -182,6 +188,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .tag-more{font-family:var(--mono);font-size:.68rem;color:var(--faint);background:transparent;border:1px dashed var(--line);padding:3px 9px;border-radius:var(--r);cursor:pointer;outline:none;transition:color .2s,border-color .2s}.tag-more:hover{color:var(--gold);border-color:var(--gold)}
 .tag-more:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .result{font-size:.84rem;font-weight:500;color:var(--ink);margin-top:2px;border-left:2px solid var(--gold-deep);padding-left:10px}
+.result-label{display:block;margin-bottom:2px;font-family:var(--mono);font-size:.6rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+/* Engineering notes: progressive disclosure keeps cards scannable */
+.case-notes{margin-top:4px;border-top:1px solid var(--line-soft)}
+.case-notes summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:40px;padding:4px 0;font-family:var(--mono);font-size:.66rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;list-style:none}
+.case-notes summary::-webkit-details-marker{display:none}
+.case-notes summary::after{content:"+";font-family:var(--sans);font-size:1.1rem;line-height:1;color:var(--gold)}
+.case-notes[open] summary::after{content:"-"}
+.case-notes summary:hover{color:var(--gold)}
+.case-notes summary:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:2px}
 /* Engineering highlight: case-study inset: label + human-first explanation */
 .engineering-highlight{margin-top:10px;border:1px solid var(--line-soft);border-left:2px solid var(--gold-deep);border-radius:var(--r);background:var(--bg2);padding:12px 14px}
 .eh-label{margin:0 0 4px;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
@@ -198,6 +213,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .btn-sm{padding:10px 20px;font-size:.82rem}
   .tag-more{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center}
   .filters button{min-height:44px;padding:10px 18px}
+  .case-notes summary{min-height:44px}
+  .card .btn-sm{min-height:44px;display:inline-flex;align-items:center}
   .contact-box .field input,.contact-box .field textarea{font-size:16px}
   .dock{gap:2px;padding:8px calc(10px + env(safe-area-inset-right,0px)) 8px calc(10px + env(safe-area-inset-left,0px))}
   .dock a,.dock button{width:40px;height:40px;position:relative}
@@ -240,7 +257,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   [dir="rtl"] .top-right{left:calc(12px + env(safe-area-inset-left,0px))}
   .btn{padding:12px 20px;font-size:.82rem;min-height:44px;display:inline-flex;align-items:center}
   .filters{gap:6px !important}
-  .filters button{padding:9px 14px;font-size:.8rem}
+  .filters button{padding:9px 6px;font-size:.72rem}
   #toTop{width:44px;height:44px;bottom:calc(88px + env(safe-area-inset-bottom,0px));right:calc(12px + env(safe-area-inset-right,0px))}
   .edu-card{padding:16px 14px}
   .timeline{padding-left:0;gap:24px}
@@ -595,14 +612,16 @@ main{overflow-x:clip}
   .below-fold-fallback span:nth-child(2){animation:none}
 }
   @media print{
-    nav,.dock,.top-left,.top-right,#progress,#toTop,.filters,.grain,.skip-link,.send-spinner,.contact-box form,.below-fold-fallback{display:none}
+    nav,.dock,.top-left,.top-right,#progress,#toTop,.filter-row,.grain,.skip-link,.send-spinner,.contact-box form,.below-fold-fallback{display:none}
     body{background:#fff;color:#111;font-size:11pt}
-    .reveal{opacity:1;transform:none}
+    .reveal,.rise{opacity:1!important;animation:none!important;transform:none}
     .card,.edu-card{break-inside:avoid;box-shadow:none;border:1px solid #ddd}
     a{color:#111;text-decoration:underline}
     a[href]::after{content:" (" attr(href) ")";font-size:.8em;color:#666}
     a[href^="#"]::after,a[href^="mailto"]::after{content:""}
-    .section-block{padding:12pt 0;page-break-inside:avoid}
+    .section-block{content-visibility:visible!important;padding:12pt 0;page-break-inside:avoid}
+    .case-notes summary{display:none}
+    .case-notes .engineering-highlight{display:block!important}
     .hero-block{padding-top:0}
     h1,h2,h3{page-break-after:avoid}
     img{max-width:100%!important;height:auto!important}

@@ -42,7 +42,7 @@ npm run dev
 
 ## Testing
 
-The e2e suite runs against chromium, firefox, webkit and mobile-chrome (532 checks). It covers content integrity (including a French copy leak guard), accessibility (WCAG 2.2), keyboard navigation, responsive layout, security meta, SEO and mobile journeys.
+The e2e suite runs against chromium, firefox, webkit and mobile-chrome (540 checks). It covers content integrity (including a French copy leak guard), accessibility (WCAG 2.2), keyboard navigation, responsive layout, security meta, SEO, print output, and mobile journeys.
 
 Run it against a production build:
 
