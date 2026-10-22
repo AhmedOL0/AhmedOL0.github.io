@@ -58,13 +58,19 @@ test.describe('Navigation & Interaction', () => {
 
     await allBtn.click({ force: true });
     const allCount = await page.locator('.card').count();
+    const allBadge = Number(await allBtn.locator('.filter-count').innerText());
+    expect(allBadge).toBe(allCount);
 
+    const webBadge = Number(await webBtn.locator('.filter-count').innerText());
     await webBtn.click({ force: true });
     await page.waitForTimeout(200);
     const webCount = await page.locator('.card').count();
 
     expect(webCount).toBeLessThanOrEqual(allCount);
     expect(webCount).toBeGreaterThan(0);
+    expect(webCount).toBe(webBadge);
+    await expect(page.locator('.filter-status')).toHaveAttribute('role', 'status');
+    await expect(page.locator('.filter-status')).toContainText(String(webBadge));
   });
 
   test('contact form fields are interactive', async ({ page }) => {

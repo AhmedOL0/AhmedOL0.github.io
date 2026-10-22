@@ -34,6 +34,34 @@ test.describe('Case-study content', () => {
     });
   }
 
+  test('engineering notes are opt-in and keep their copy', async ({ page }) => {
+    const card = page.locator('#work .card').first();
+    await card.evaluate((el) => (el as HTMLElement).scrollIntoView({ block: 'center' }));
+    const notes = card.locator('details.case-notes');
+    const summary = notes.locator('summary');
+    await expect(notes).not.toHaveAttribute('open', '');
+    await expect(notes.locator('.eh-text')).toBeHidden();
+
+    await summary.scrollIntoViewIfNeeded();
+    await expect(summary).toBeInViewport();
+    await summary.click();
+    await expect(notes).toHaveAttribute('open', '');
+    await expect(notes.locator('.eh-text')).toBeVisible();
+  });
+
+  test('print media reveals lazy sections and closed notes', async ({ page }) => {
+    await page.emulateMedia({ media: 'print' });
+    await expect
+      .poll(() => page.locator('#work').evaluate((el) => getComputedStyle(el).contentVisibility))
+      .toBe('visible');
+    await expect(page.locator('#work details.case-notes').first()).toHaveAttribute('open', '');
+    const summaryDisplay = await page
+      .locator('#work details.case-notes summary')
+      .first()
+      .evaluate((el) => getComputedStyle(el).display);
+    expect(summaryDisplay).toBe('none');
+  });
+
   test('hero contact strip exposes direct channels', async ({ page }) => {
     const strip = page.locator('.hero-contact');
     await expect(strip).toBeVisible();

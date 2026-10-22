@@ -32,7 +32,7 @@ export type Dict = {
   whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; metricLabels: [string, string, string, string]; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
-  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; showMoreTags: string; filterCount: string; walkthroughNote: string; highlightLabel: string; projects: ProjectT[] };
+  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; showMoreTags: string; filterCount: string; filterCountOne: string; filterGroup: string; walkthroughNote: string; notesSummary: string; approachLabel: string; outcomeLabel: string; projects: ProjectT[] };
   exp: { kicker: string; title: string; jobs: JobT[] };
   edu: { kicker: string; title: string; sub: string; entries: EduT[] };
   behind: { kicker: string; title: string; sub: string; dailyLabel: string; daily: string; exploredLabel: string; explored: string; categories: TechCategory[] };
@@ -107,9 +107,9 @@ const en: Dict = {
   work: {
     kicker: 'Selected work', title: 'Systems that run in production, not demos that run once.',
     sub: 'Seven builds across web, mobile, backend, AI and IoT. Each one deployed, used, or graded.',
-    showLess: 'show less', showFewer: 'Show fewer tags', showMoreTags: 'Show {count} more tags', filterCount: 'Showing {count} of {total} projects',
+    showLess: 'show less', showFewer: 'Show fewer tags', showMoreTags: 'Show {count} more tags', filterCount: 'Showing {count} of {total} projects', filterCountOne: 'Showing 1 of {total} projects', filterGroup: 'Filter projects by discipline',
     walkthroughNote: 'Live demos, private repositories and hardware: code walkthroughs and guided demos available on request.',
-    highlightLabel: 'Engineering highlight',
+    notesSummary: 'Engineering notes', approachLabel: 'Approach', outcomeLabel: 'Outcome',
     projects: [
       { title: 'OdemLab: AI skincare e-commerce', year: 'Flagship', kind: 'Team of 4 · Private repo', heading: 'OdemLab', lead: 'd',
         description: 'A complete online skincare store with AI skin analysis, three payment methods (Stripe, CMI, cash-on-delivery), and trilingual FR/EN/AR support. Customers browse, scan their skin, and pay. All in one flow.',
@@ -263,9 +263,9 @@ const fr: Dict = {
   work: {
     kicker: 'Projets', title: 'Des syst\u00e8mes qui tournent en production, pas des d\u00e9mos qui tournent une fois.',
     sub: 'Sept r\u00e9alisations web, mobile, backend, IA et IoT. Chacune d\u00e9ploy\u00e9e, utilis\u00e9e ou \u00e9valu\u00e9e.',
-    showLess: 'voir moins', showFewer: 'Afficher moins', showMoreTags: 'Afficher {count} autres tags', filterCount: '{count} projets sur {total} affichés',
+    showLess: 'voir moins', showFewer: 'Afficher moins', showMoreTags: 'Afficher {count} autres tags', filterCount: '{count} projets sur {total} affichés', filterCountOne: '1 projet sur {total} affichés', filterGroup: 'Filtrer les projets par discipline',
     walkthroughNote: 'D\u00e9mos en direct, d\u00e9p\u00f4ts priv\u00e9s et mat\u00e9riel : revues de code et d\u00e9monstrations guid\u00e9es sur demande.',
-    highlightLabel: 'Point technique',
+    notesSummary: 'Notes techniques', approachLabel: 'Approche', outcomeLabel: 'R\u00e9sultat',
     projects: [
       { title: 'OdemLab: e-commerce cosm\u00e9tique IA', year: 'Vitrine', kind: '\u00c9quipe de 4 \u00b7 D\u00e9p\u00f4t priv\u00e9', heading: 'OdemLab', lead: 'd',
         description: 'Boutique cosm\u00e9tique en ligne avec analyse IA de la peau, trois m\u00e9thodes de paiement (Stripe, CMI, contre-remboursement) et support trilingue FR/EN/AR.',
