@@ -19,6 +19,14 @@ export type ProjectImageT = {
   alt: Record<Lang, string>;
 };
 
+export type ProjectGalleryImageT = {
+  src: string;
+  width: number;
+  height: number;
+  alt: Record<Lang, string>;
+  label: Record<Lang, string>;
+};
+
 export function thumbTitle(p: ProjectT): { pre: string; em: string; post: string } {
   const i = p.heading.indexOf(p.lead);
   if (i === -1 || !p.lead) return { pre: p.heading, em: '', post: '' };
@@ -40,7 +48,7 @@ export type Dict = {
   whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; metricLabels: [string, string, string, string]; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
-  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; showMoreTags: string; filterCount: string; filterCountOne: string; filterGroup: string; walkthroughNote: string; notesSummary: string; approachLabel: string; outcomeLabel: string; projects: ProjectT[] };
+  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; showMoreTags: string; filterCount: string; filterCountOne: string; filterGroup: string; walkthroughNote: string; notesSummary: string; approachLabel: string; outcomeLabel: string; explore: string; close: string; discuss: string; screensLabel: string; projects: ProjectT[] };
   exp: { kicker: string; title: string; jobs: JobT[] };
   edu: { kicker: string; title: string; sub: string; entries: EduT[] };
   behind: { kicker: string; title: string; sub: string; dailyLabel: string; daily: string; exploredLabel: string; explored: string; categories: TechCategory[] };
@@ -118,6 +126,7 @@ const en: Dict = {
     showLess: 'show less', showFewer: 'Show fewer tags', showMoreTags: 'Show {count} more tags', filterCount: 'Showing {count} of {total} projects', filterCountOne: 'Showing 1 of {total} projects', filterGroup: 'Filter projects by discipline',
     walkthroughNote: 'Live demos, private repositories and hardware: code walkthroughs and guided demos available on request.',
     notesSummary: 'Engineering notes', approachLabel: 'Approach', outcomeLabel: 'Outcome',
+    explore: 'Explore project', close: 'Close', discuss: 'Discuss this project', screensLabel: 'Project screens',
     projects: [
       { title: 'OdemLab: AI skincare e-commerce', year: 'Flagship', kind: 'Team of 4 · Private repo', heading: 'OdemLab', lead: 'd',
         description: 'A complete online skincare store with AI skin analysis, three payment methods (Stripe, CMI, cash-on-delivery), and trilingual FR/EN/AR support. Customers browse, scan their skin, and pay. All in one flow.',
@@ -274,6 +283,7 @@ const fr: Dict = {
     showLess: 'voir moins', showFewer: 'Afficher moins', showMoreTags: 'Afficher {count} autres tags', filterCount: '{count} projets sur {total} affichés', filterCountOne: '1 projet sur {total} affichés', filterGroup: 'Filtrer les projets par discipline',
     walkthroughNote: 'D\u00e9mos en direct, d\u00e9p\u00f4ts priv\u00e9s et mat\u00e9riel : revues de code et d\u00e9monstrations guid\u00e9es sur demande.',
     notesSummary: 'Notes techniques', approachLabel: 'Approche', outcomeLabel: 'R\u00e9sultat',
+    explore: 'Explorer le projet', close: 'Fermer', discuss: 'Discuter de ce projet', screensLabel: '\u00c9crans du projet',
     projects: [
       { title: 'OdemLab: e-commerce cosm\u00e9tique IA', year: 'Vitrine', kind: '\u00c9quipe de 4 \u00b7 D\u00e9p\u00f4t priv\u00e9', heading: 'OdemLab', lead: 'd',
         description: 'Boutique cosm\u00e9tique en ligne avec analyse IA de la peau, trois m\u00e9thodes de paiement (Stripe, CMI, contre-remboursement) et support trilingue FR/EN/AR.',
@@ -435,6 +445,130 @@ export const PROJECT_IMAGES: (ProjectImageT | null)[] = [
   },
   null,
   null,
+];
+
+export const PROJECT_GALLERIES: ProjectGalleryImageT[][] = [
+  [
+    {
+      src: '/assets/work/gallery/odemlab-scan.webp', width: 465, height: 990,
+      alt: { en: 'OdemLab AI skin scan screen', fr: '\u00c9cran de scan de peau IA OdemLab' },
+      label: { en: 'Skin scan', fr: 'Scan de peau' },
+    },
+    {
+      src: '/assets/work/gallery/odemlab-shop.webp', width: 465, height: 990,
+      alt: { en: 'OdemLab mobile shop with product recommendations', fr: 'Boutique mobile OdemLab avec recommandations produits' },
+      label: { en: 'Shop', fr: 'Boutique' },
+    },
+    {
+      src: '/assets/work/gallery/odemlab-routine.webp', width: 465, height: 1003,
+      alt: { en: 'OdemLab routine tracking screen', fr: '\u00c9cran de suivi de routine OdemLab' },
+      label: { en: 'Routine', fr: 'Routine' },
+    },
+    {
+      src: '/assets/work/gallery/odemlab-loyalty.webp', width: 465, height: 990,
+      alt: { en: 'OdemLab loyalty points screen', fr: '\u00c9cran de fid\u00e9lit\u00e9 OdemLab' },
+      label: { en: 'Loyalty', fr: 'Fid\u00e9lit\u00e9' },
+    },
+    {
+      src: '/assets/work/gallery/odemlab-site.webp', width: 800, height: 397,
+      alt: { en: 'OdemLab website storefront', fr: 'Vitrine web OdemLab' },
+      label: { en: 'Website', fr: 'Site web' },
+    },
+    {
+      src: '/assets/work/gallery/odemlab-catalogue.webp', width: 800, height: 394,
+      alt: { en: 'OdemLab product catalogue', fr: 'Catalogue produits OdemLab' },
+      label: { en: 'Catalogue', fr: 'Catalogue' },
+    },
+  ],
+  [
+    {
+      src: '/assets/work/gallery/procureflow-dashboard.webp', width: 800, height: 450,
+      alt: { en: 'ProcureFlow procurement dashboard', fr: 'Tableau de bord ProcureFlow' },
+      label: { en: 'Dashboard', fr: 'Tableau de bord' },
+    },
+    {
+      src: '/assets/work/gallery/procureflow-approvals.webp', width: 800, height: 450,
+      alt: { en: 'ProcureFlow approval inbox', fr: 'Bo\u00eete d\u2019approbation ProcureFlow' },
+      label: { en: 'Approvals', fr: 'Approbations' },
+    },
+    {
+      src: '/assets/work/gallery/procureflow-suppliers.webp', width: 800, height: 450,
+      alt: { en: 'ProcureFlow supplier directory', fr: 'R\u00e9pertoire fournisseurs ProcureFlow' },
+      label: { en: 'Suppliers', fr: 'Fournisseurs' },
+    },
+    {
+      src: '/assets/work/gallery/procureflow-budgets.webp', width: 800, height: 450,
+      alt: { en: 'ProcureFlow budget tracking', fr: 'Suivi budg\u00e9taire ProcureFlow' },
+      label: { en: 'Budgets', fr: 'Budgets' },
+    },
+    {
+      src: '/assets/work/gallery/procureflow-analytics.webp', width: 800, height: 450,
+      alt: { en: 'ProcureFlow spend analytics', fr: 'Analytique des d\u00e9penses ProcureFlow' },
+      label: { en: 'Analytics', fr: 'Analytique' },
+    },
+    {
+      src: '/assets/work/gallery/procureflow-copilot.webp', width: 800, height: 450,
+      alt: { en: 'ProcureFlow AI copilot', fr: 'Copilote IA ProcureFlow' },
+      label: { en: 'Copilot', fr: 'Copilote' },
+    },
+  ],
+  [],
+  [
+    {
+      src: '/assets/work/gallery/fittrack-landing.webp', width: 800, height: 580,
+      alt: { en: 'FitTrack landing page', fr: 'Page d\u2019accueil FitTrack' },
+      label: { en: 'Landing page', fr: 'Page d\u2019accueil' },
+    },
+    {
+      src: '/assets/work/gallery/fittrack-programs.webp', width: 800, height: 604,
+      alt: { en: 'FitTrack program catalogue', fr: 'Catalogue de programmes FitTrack' },
+      label: { en: 'Programs', fr: 'Programmes' },
+    },
+    {
+      src: '/assets/work/gallery/fittrack-exercises.webp', width: 800, height: 529,
+      alt: { en: 'FitTrack exercise picker', fr: 'S\u00e9lection d\u2019exercices FitTrack' },
+      label: { en: 'Exercise picker', fr: 'S\u00e9lection d\u2019exercices' },
+    },
+    {
+      src: '/assets/work/gallery/fittrack-sessions.webp', width: 800, height: 757,
+      alt: { en: 'FitTrack training sessions dashboard', fr: 'Tableau de bord des s\u00e9ances FitTrack' },
+      label: { en: 'Sessions', fr: 'S\u00e9ances' },
+    },
+    {
+      src: '/assets/work/gallery/fittrack-library.webp', width: 800, height: 575,
+      alt: { en: 'FitTrack exercise library', fr: 'Biblioth\u00e8que d\u2019exercices FitTrack' },
+      label: { en: 'Exercise library', fr: 'Biblioth\u00e8que d\u2019exercices' },
+    },
+    {
+      src: '/assets/work/gallery/fittrack-mobile.webp', width: 500, height: 545,
+      alt: { en: 'FitTrack mobile sessions screen', fr: '\u00c9cran mobile des s\u00e9ances FitTrack' },
+      label: { en: 'Mobile sessions', fr: 'S\u00e9ances mobile' },
+    },
+  ],
+  [
+    {
+      src: '/assets/work/gallery/campus-home.webp', width: 500, height: 1073,
+      alt: { en: 'Smart Campus home screen', fr: '\u00c9cran d\u2019accueil Smart Campus' },
+      label: { en: 'Home', fr: 'Accueil' },
+    },
+    {
+      src: '/assets/work/gallery/campus-schedule.webp', width: 500, height: 1073,
+      alt: { en: 'Smart Campus schedule screen', fr: '\u00c9cran d\u2019emploi du temps Smart Campus' },
+      label: { en: 'Schedule', fr: 'Emploi du temps' },
+    },
+    {
+      src: '/assets/work/gallery/campus-announcements.webp', width: 500, height: 1073,
+      alt: { en: 'Smart Campus announcements screen', fr: '\u00c9cran d\u2019annonces Smart Campus' },
+      label: { en: 'Announcements', fr: 'Annonces' },
+    },
+    {
+      src: '/assets/work/gallery/campus-reservations.webp', width: 500, height: 1073,
+      alt: { en: 'Smart Campus room reservations screen', fr: '\u00c9cran de r\u00e9servations de salles Smart Campus' },
+      label: { en: 'Reservations', fr: 'R\u00e9servations' },
+    },
+  ],
+  [],
+  [],
 ];
 
 type LangCtx = { lang: Lang; setLang: (l: Lang) => void; t: Dict };

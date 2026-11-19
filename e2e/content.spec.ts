@@ -64,6 +64,19 @@ test.describe('Case-study content', () => {
       .toBeGreaterThan(0);
   });
 
+  test('project dialog opens the full screen gallery and closes on Escape', async ({ page }) => {
+    const explore = page.locator('#work .card').first().locator('.explore-project');
+    await explore.scrollIntoViewIfNeeded();
+    await explore.click();
+    const dialog = page.getByRole('dialog');
+    await expect(dialog).toBeVisible();
+    await expect(dialog.locator('.pd-shot img')).toHaveCount(6);
+    await expect(dialog.locator('.pd-shot img').first()).toHaveAttribute('loading', 'lazy');
+    await expect(dialog.locator('.pd-close')).toBeFocused();
+    await page.keyboard.press('Escape');
+    await expect(dialog).toBeHidden();
+  });
+
   test('print media reveals lazy sections and closed notes', async ({ page }) => {
     await page.emulateMedia({ media: 'print' });
     await expect
