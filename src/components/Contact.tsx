@@ -132,6 +132,11 @@ export default function Contact() {
       <p className="sub">
         {t.contact.sub}<strong style={{ color: 'var(--ink)' }}>{t.contact.subEm}</strong>{t.contact.subEnd}
       </p>
+      <div className="contact-status">
+        <span className="contact-status-dot" aria-hidden="true" />
+        <span>{t.hero.avail}</span>
+        <span className="contact-status-note">{t.contact.respondTime}</span>
+      </div>
       <div className="contact-box mt-6 sm:mt-8">
         <form onSubmit={handleSubmit} aria-busy={sending} noValidate>
           <input type="text" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" aria-label="Leave this field empty" />

@@ -383,6 +383,9 @@ html.has-magnetic-cursor,html.has-magnetic-cursor a,html.has-magnetic-cursor but
 .tags span{transition:border-color .2s,color .2s}
 
 /* Contact */
+.contact-status{display:flex;align-items:center;flex-wrap:wrap;gap:7px 14px;margin-top:18px;padding:10px 14px;border:1px solid var(--line-soft);border-left:2px solid var(--sage);border-radius:var(--r);background:var(--card);font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.contact-status-dot{width:7px;height:7px;border-radius:50%;background:var(--sage);flex-shrink:0}
+.contact-status-note{margin-left:auto;color:var(--faint)}
 .contact-box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);position:relative;display:grid;grid-template-columns:1fr;gap:24px;padding:12px}
 .contact-box label{display:block;font-size:.78rem;color:var(--muted);margin:15px 0 6px;letter-spacing:.06em;text-transform:uppercase;font-family:var(--mono)}
 .contact-box input,.contact-box textarea{width:100%;background:var(--inputbg);border:1px solid var(--line);border-radius:var(--r);color:var(--ink);padding:13px 16px;font-family:var(--sans);font-size:.92rem;resize:vertical;transition:border-color .2s}
@@ -502,6 +505,7 @@ a.direct-link:hover{text-decoration:underline;text-underline-offset:3px}
   footer nav{grid-template-columns:1fr !important;gap:24px !important}
   footer nav > div:first-child{margin-bottom:8px}
   .footer-socials{margin-top:14px}
+  .contact-status-note{margin-left:0;flex-basis:100%}
 }
 
 /* Hero actions */
