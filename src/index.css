@@ -917,6 +917,8 @@ main{overflow-x:clip}
 .about-layout{display:flex;flex-direction:column;gap:24px}
 .about-main{display:flex;flex-direction:column;gap:16px}
 .about-top{display:flex;align-items:center;gap:16px}
+.about-seal{width:64px;height:64px;display:grid;place-items:center;flex-shrink:0;border:1px solid var(--line);border-radius:var(--r);background:var(--card);font-family:var(--serif);font-size:1.55rem;font-weight:500;line-height:1;letter-spacing:-.03em;color:var(--gold)}
+.about-seal em{font-style:italic;font-weight:500}
 .about-identity{display:flex;flex-direction:column;gap:2px}
 .about-name{margin:0;font-size:1.1rem;font-weight:600}
 .about-role{margin:0;font-size:.85rem;color:var(--muted)}

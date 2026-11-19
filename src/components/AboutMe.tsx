@@ -8,6 +8,7 @@ export default function AboutMe() {
       <div className="about-layout mt-5 sm:mt-6">
         <div className="about-main">
           <div className="about-top">
+            <div className="about-seal" aria-hidden="true">A<em>O</em></div>
             <div className="about-identity">
               <h3 className="about-name">Ahmed Ouarrali</h3>
               <p className="about-role">{t.aboutMe.role}</p>
