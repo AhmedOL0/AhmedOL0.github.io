@@ -94,12 +94,25 @@ test.describe('Case-study content', () => {
     await dialog.locator('.pd-shot-open').first().click();
     const lightbox = page.locator('dialog.project-lightbox');
     await expect(lightbox).toBeVisible();
+    await expect(lightbox.locator('.pl-count')).toHaveText('01 / 06');
+    await page.keyboard.press('ArrowRight');
+    await expect(lightbox.locator('.pl-count')).toHaveText('02 / 06');
     await page.keyboard.press('Escape');
     await expect(lightbox).toBeHidden();
     await expect(dialog).toBeVisible();
 
     await page.keyboard.press('Escape');
     await expect(dialog).toBeHidden();
+  });
+
+  test('case study deep links open directly and clear on close', async ({ page }) => {
+    await page.goto('/#case-procureflow');
+    const dialog = page.getByRole('dialog');
+    await expect(dialog).toBeVisible();
+    await expect(dialog.locator('.pd-title')).toContainText('ProcureFlow');
+    await page.keyboard.press('Escape');
+    await expect(dialog).toBeHidden();
+    await expect(page).not.toHaveURL(/#case-/);
   });
 
   test('print media reveals lazy sections and closed notes', async ({ page }) => {

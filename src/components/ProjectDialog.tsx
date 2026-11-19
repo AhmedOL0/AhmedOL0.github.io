@@ -19,7 +19,8 @@ export default function ProjectDialog({ project, gallery, tags, position, total,
   const dialogRef = useRef<HTMLDialogElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeShot, setActiveShot] = useState<ProjectGalleryImageT | null>(null);
+  const [activeShotIndex, setActiveShotIndex] = useState<number | null>(null);
+  const activeShot = activeShotIndex === null ? null : gallery[activeShotIndex] ?? null;
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -55,13 +56,13 @@ export default function ProjectDialog({ project, gallery, tags, position, total,
         if (event.target === event.currentTarget) close();
       }}
       onCancel={(event) => {
-        if (activeShot) {
+        if (activeShotIndex !== null) {
           event.preventDefault();
-          setActiveShot(null);
+          setActiveShotIndex(null);
         }
       }}
       onKeyDown={(event) => {
-        if (activeShot) return;
+        if (activeShotIndex !== null) return;
         if (event.key === 'ArrowLeft') {
           event.preventDefault();
           onPrev();
@@ -118,12 +119,12 @@ export default function ProjectDialog({ project, gallery, tags, position, total,
             <span aria-hidden="true">{gallery.length}</span>
           </div>
           <div className="pd-gallery">
-            {gallery.map((shot) => (
+            {gallery.map((shot, shotIndex) => (
               <figure className="pd-shot" key={shot.src}>
                 <button
                   type="button"
                   className="pd-shot-open"
-                  onClick={() => setActiveShot(shot)}
+                  onClick={() => setActiveShotIndex(shotIndex)}
                   aria-label={`${t.work.enlarge}: ${shot.label[lang]}`}
                 >
                   <img
@@ -153,7 +154,16 @@ export default function ProjectDialog({ project, gallery, tags, position, total,
           </div>
         </div>
       </div>
-      {activeShot && <ProjectLightbox shot={activeShot} onClose={() => setActiveShot(null)} />}
+      {activeShot && activeShotIndex !== null && (
+        <ProjectLightbox
+          shot={activeShot}
+          position={activeShotIndex}
+          total={gallery.length}
+          onPrev={() => setActiveShotIndex((current) => current === null ? null : (current - 1 + gallery.length) % gallery.length)}
+          onNext={() => setActiveShotIndex((current) => current === null ? null : (current + 1) % gallery.length)}
+          onClose={() => setActiveShotIndex(null)}
+        />
+      )}
     </dialog>,
     document.body,
   );
