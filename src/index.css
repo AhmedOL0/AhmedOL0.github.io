@@ -103,12 +103,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 /* Cards (dossier folios): flat surfaces, 1px hairlines, no lift, no glow */
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;position:relative;transition:border-color .25s}
 .card:hover{border-color:var(--gold-deep)}
-.thumb{aspect-ratio:2/1;position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:var(--bg2)}
+.thumb{aspect-ratio:3/2;position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:var(--bg2)}
 .thumb-odem,.thumb-procure,.thumb-med,.thumb-fit,.thumb-campus,.thumb-sum,.thumb-iot{background:var(--bg2)}
 .thumb::after{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--gridline) 1px,transparent 1px),linear-gradient(90deg,var(--gridline) 1px,transparent 1px);background-size:26px 26px}
-.thumb b{position:absolute;left:26px;bottom:12px;font-family:var(--serif);font-size:2.6rem;font-weight:500;line-height:1;color:var(--ink);z-index:1}
+.thumb:not(.thumb--image){background-image:radial-gradient(120% 110% at 78% 18%,rgba(196,160,106,.12),transparent 58%)}
+.thumb:not(.thumb--image)::before{content:"";position:absolute;inset:14px;border:1px solid var(--line-soft);border-radius:var(--r);pointer-events:none;z-index:1}
+.thumb b{position:absolute;left:28px;bottom:24px;font-family:var(--serif);font-size:3.2rem;font-weight:500;line-height:1;color:var(--ink);z-index:2}
 .thumb b i{font-style:italic;color:var(--gold)}
-.thumb-motif{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:180px;height:132px;color:var(--gold-deep);opacity:.5;z-index:0}
+.thumb-motif{position:absolute;right:4%;top:48%;transform:translateY(-50%);width:clamp(210px,52%,300px);height:auto;aspect-ratio:120/88;color:var(--gold-deep);opacity:.34;z-index:0}
 /* Real project previews take over the folio art; the overlay keeps the year legible. */
 .thumb--image::after{background:linear-gradient(180deg,rgba(0,0,0,.02) 48%,rgba(0,0,0,.4));pointer-events:none}
 .thumb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s var(--ease-snap)}
