@@ -331,7 +331,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 /* Hero photo + eyebrow: dossier cover */
 
 /* Timeline: dossier record */
-.job .when{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);padding:4px 10px;border-radius:var(--r);display:inline-block;margin-bottom:8px}
+.job-meta-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-bottom:8px}
+.job .when{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);padding:4px 10px;border-radius:var(--r);display:inline-block;margin-bottom:0}
+.job-latest{font-family:var(--mono);font-size:.57rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line-soft);border-radius:var(--r);padding:4px 8px;background:var(--card)}
 .job h3{font-size:1.1rem;margin:5px 0 2px;font-weight:600}
 .job h3 span{color:var(--muted);font-weight:400}
 .job .where{font-size:.85rem;color:var(--faint);margin-bottom:10px}
