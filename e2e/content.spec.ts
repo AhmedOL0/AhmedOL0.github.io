@@ -52,6 +52,7 @@ test.describe('Case-study content', () => {
   test('project previews are real, lazy-loaded and described', async ({ page }) => {
     const previews = page.locator('#work .thumb--image img');
     await expect(previews).toHaveCount(4);
+    await expect(page.locator('#work .thumb-count')).toHaveCount(4);
     for (let i = 0; i < 4; i++) {
       const img = previews.nth(i);
       await expect(img).toHaveAttribute('loading', 'lazy');
@@ -78,6 +79,40 @@ test.describe('Case-study content', () => {
     expect(rootCursor, 'native cursor is restored above the dialog').not.toBe('none');
     await page.keyboard.press('Escape');
     await expect(dialog).toBeHidden();
+  });
+
+  test('case study mode navigates projects and enlarges screens', async ({ page }) => {
+    const explore = page.locator('#work .card').first().locator('.explore-project');
+    await explore.scrollIntoViewIfNeeded();
+    await explore.click();
+    const dialog = page.getByRole('dialog');
+    await expect(dialog.locator('.pd-count')).toHaveText('01 / 04');
+    await page.keyboard.press('ArrowRight');
+    await expect(dialog.locator('.pd-count')).toHaveText('02 / 04');
+    await expect(dialog.locator('.pd-title')).toContainText('ProcureFlow');
+
+    await dialog.locator('.pd-shot-open').first().click();
+    const lightbox = page.locator('dialog.project-lightbox');
+    await expect(lightbox).toBeVisible();
+    await expect(lightbox.locator('.pl-count')).toHaveText('01 / 06');
+    await page.keyboard.press('ArrowRight');
+    await expect(lightbox.locator('.pl-count')).toHaveText('02 / 06');
+    await page.keyboard.press('Escape');
+    await expect(lightbox).toBeHidden();
+    await expect(dialog).toBeVisible();
+
+    await page.keyboard.press('Escape');
+    await expect(dialog).toBeHidden();
+  });
+
+  test('case study deep links open directly and clear on close', async ({ page }) => {
+    await page.goto('/#case-procureflow');
+    const dialog = page.getByRole('dialog');
+    await expect(dialog).toBeVisible();
+    await expect(dialog.locator('.pd-title')).toContainText('ProcureFlow');
+    await page.keyboard.press('Escape');
+    await expect(dialog).toBeHidden();
+    await expect(page).not.toHaveURL(/#case-/);
   });
 
   test('print media reveals lazy sections and closed notes', async ({ page }) => {

@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import Section from './Section';
 import ProjectDialog from './ProjectDialog';
 import { useLang } from '../i18n-data';
@@ -7,6 +7,7 @@ import { PROJECT_CATS, PROJECT_GALLERIES, PROJECT_IMAGES, PROJECT_TAGS, PROJECT_
 const filterKeys = ['all', 'web', 'mobile', 'backend', 'ai', 'iot'] as const;
 
 const cardIds = ['odemlab', 'procure', 'medical', 'fittrack', 'campus', 'summarizer', 'iot'];
+const caseSlugs = ['odemlab', 'procureflow', 'medical', 'fittrack', 'smart-campus', 'smart-summarizer', 'iot'];
 
 // Readable line icons: one per project, drawn in the thumb's dossier language.
 // Decorative only (aria-hidden at render site).
@@ -32,6 +33,7 @@ export default function Work() {
   const { t } = useLang();
   const [f, setF] = useState<(typeof filterKeys)[number]>('all');
   const [openProject, setOpenProject] = useState<number | null>(null);
+  const fromPageRef = useRef(false);
   const labels: Record<(typeof filterKeys)[number], string> = {
     all: t.filters.all, web: t.filters.web, mobile: t.filters.mobile,
     backend: t.filters.backend, ai: t.filters.ai, iot: t.filters.iot,
@@ -46,6 +48,55 @@ export default function Work() {
   const countLabel = (filteredCount === 1 ? t.work.filterCountOne : t.work.filterCount)
     .replace('{count}', String(filteredCount))
     .replace('{total}', String(t.work.projects.length));
+  const galleryOrder = t.work.projects.map((_, i) => i).filter((i) => PROJECT_GALLERIES[i].length > 0);
+  const openPosition = openProject === null ? -1 : galleryOrder.indexOf(openProject);
+
+  const openCaseStudy = (index: number) => {
+    const slug = caseSlugs[index];
+    fromPageRef.current = true;
+    if (window.location.hash !== `#case-${slug}`) {
+      window.history.pushState({ caseStudy: slug, fromPage: true }, '', `#case-${slug}`);
+    }
+    setOpenProject(index);
+  };
+
+  const moveProject = (delta: number) => {
+    if (openPosition < 0) return;
+    const next = galleryOrder[(openPosition + delta + galleryOrder.length) % galleryOrder.length];
+    window.history.replaceState({ caseStudy: caseSlugs[next], fromPage: fromPageRef.current }, '', `#case-${caseSlugs[next]}`);
+    setOpenProject(next);
+  };
+
+  const closeProject = () => {
+    if (fromPageRef.current) {
+      fromPageRef.current = false;
+      setOpenProject(null);
+      window.history.back();
+      return;
+    }
+    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+    setOpenProject(null);
+  };
+
+  useEffect(() => {
+    const syncFromHash = () => {
+      const match = window.location.hash.match(/^#case-([a-z0-9-]+)$/i);
+      const index = match ? caseSlugs.indexOf(match[1]) : -1;
+      if (index >= 0 && PROJECT_GALLERIES[index].length > 0) {
+        setOpenProject(index);
+      } else {
+        setOpenProject(null);
+        fromPageRef.current = false;
+      }
+    };
+    syncFromHash();
+    window.addEventListener('popstate', syncFromHash);
+    window.addEventListener('hashchange', syncFromHash);
+    return () => {
+      window.removeEventListener('popstate', syncFromHash);
+      window.removeEventListener('hashchange', syncFromHash);
+    };
+  }, []);
 
   useEffect(() => {
     const opened = new Set<HTMLDetailsElement>();
@@ -108,7 +159,7 @@ export default function Work() {
               cardId={cardIds[i]}
               image={PROJECT_IMAGES[i]}
               gallery={PROJECT_GALLERIES[i]}
-              onExplore={() => setOpenProject(i)}
+              onExplore={() => openCaseStudy(i)}
             />
           );
         })}
@@ -119,7 +170,11 @@ export default function Work() {
           project={t.work.projects[openProject]}
           gallery={PROJECT_GALLERIES[openProject]}
           tags={PROJECT_TAGS[openProject]}
-          onClose={() => setOpenProject(null)}
+          position={openPosition}
+          total={galleryOrder.length}
+          onPrev={() => moveProject(-1)}
+          onNext={() => moveProject(1)}
+          onClose={closeProject}
         />
       )}
     </Section>
@@ -156,6 +211,9 @@ function Card({ p, th, i, cardId, image, gallery, onExplore }: { p: { year: stri
           </>
         )}
         <span className="tag-corner">{p.year}</span>
+        {image && gallery.length > 0 && (
+          <span className="thumb-count" aria-hidden="true">{gallery.length} {t.work.screensShort}</span>
+        )}
       </div>
       <div className="body flex flex-col gap-1.5 p-3.5 sm:p-[20px_22px_22px] flex-1">
         <span className="flag">{p.kind}</span>
