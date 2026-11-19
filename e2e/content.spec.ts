@@ -101,7 +101,9 @@ test.describe('Case-study content', () => {
     await page.locator('#contact .direct').scrollIntoViewIfNeeded();
     const btn = page.locator('.copy-btn').first();
     await expect(btn).toContainText('Copy');
-    await btn.click();
+    await btn.focus();
+    await expect(btn).toBeFocused();
+    await page.keyboard.press('Enter');
     await expect(btn).toContainText('Copied');
   });
 
