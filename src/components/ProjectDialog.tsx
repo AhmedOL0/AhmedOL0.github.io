@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import ProjectLightbox from './ProjectLightbox';
+import TopLayerCursor from './TopLayerCursor';
 import { useLang, type ProjectGalleryImageT, type ProjectT } from '../i18n-data';
 
 type ProjectDialogProps = {
@@ -154,6 +155,7 @@ export default function ProjectDialog({ project, gallery, tags, position, total,
           </div>
         </div>
       </div>
+      {activeShotIndex === null && <TopLayerCursor />}
       {activeShot && activeShotIndex !== null && (
         <ProjectLightbox
           shot={activeShot}
