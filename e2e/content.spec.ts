@@ -73,6 +73,9 @@ test.describe('Case-study content', () => {
     await expect(dialog.locator('.pd-shot img')).toHaveCount(6);
     await expect(dialog.locator('.pd-shot img').first()).toHaveAttribute('loading', 'lazy');
     await expect(dialog.locator('.pd-close')).toBeFocused();
+    await expect(dialog.locator('.pd-close')).toHaveCSS('cursor', 'pointer');
+    const rootCursor = await page.evaluate(() => getComputedStyle(document.documentElement).cursor);
+    expect(rootCursor, 'native cursor is restored above the dialog').not.toBe('none');
     await page.keyboard.press('Escape');
     await expect(dialog).toBeHidden();
   });
