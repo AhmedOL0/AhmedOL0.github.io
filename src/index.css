@@ -115,6 +115,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .thumb--image::after{background:linear-gradient(180deg,rgba(0,0,0,.02) 48%,rgba(0,0,0,.4));pointer-events:none}
 .thumb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s var(--ease-snap)}
 .card:hover .thumb-img{transform:scale(1.025)}
+.thumb-count{position:absolute;left:14px;bottom:14px;z-index:2;padding:4px 9px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);color:var(--muted);font-family:var(--mono);font-size:.57rem;letter-spacing:.12em;text-transform:uppercase;pointer-events:none}
 .tag-corner{position:absolute;top:14px;right:16px;z-index:1;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:var(--r);padding:4px 10px;background:var(--card)}
 .flag{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);padding:2px 0;display:inline-flex;align-items:center;width:fit-content}
 
@@ -221,10 +222,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .pd-panel{display:flex;flex-direction:column;max-height:92dvh;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 32px 100px rgba(0,0,0,.42);overflow:hidden;animation:pd-in .28s var(--ease-snap) both}
 @keyframes pd-in{from{opacity:0;transform:translateY(14px) scale(.99)}to{opacity:1;transform:none}}
 .pd-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-shrink:0;padding:24px 28px 18px;border-bottom:1px solid var(--line-soft);background:var(--bg);position:relative;z-index:1}
+.pd-head-main{min-width:0}
+.pd-head-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .pd-kicker{margin:0;font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
 .pd-title{margin:7px 0 0;font-size:clamp(1.8rem,3.4vw,2.55rem);line-height:1.05;color:var(--ink)}
-.pd-close{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--line);border-radius:var(--r);background:var(--card);color:var(--muted);font-size:1.35rem;line-height:1;cursor:pointer;transition:color .2s,border-color .2s}
-.pd-close:hover{color:var(--gold);border-color:var(--gold-deep)}
+.pd-count{margin-right:4px;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--faint);white-space:nowrap}
+.pd-nav,.pd-close{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--line);border-radius:var(--r);background:var(--card);color:var(--muted);font-size:1.15rem;line-height:1;cursor:pointer;transition:color .2s,border-color .2s}
+.pd-close{font-size:1.35rem}
+.pd-nav:hover,.pd-close:hover{color:var(--gold);border-color:var(--gold-deep)}
 .pd-scroll{overflow-y:auto;overscroll-behavior:contain;padding:22px 28px 28px}
 .pd-desc{margin:0 0 18px;max-width:78ch;color:var(--muted);font-size:.94rem;line-height:1.7}
 .pd-notes{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:18px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);margin-bottom:16px}
@@ -237,10 +242,23 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .pd-gallery-head>span{font-family:var(--mono);font-size:.62rem;color:var(--faint)}
 .pd-gallery{columns:3;column-gap:14px}
 .pd-shot{break-inside:avoid;margin:0 0 14px;border:1px solid var(--line-soft);border-radius:var(--r);overflow:hidden;background:var(--card)}
-.pd-shot img{display:block;width:100%;height:auto;background:var(--bg2);transition:transform .45s var(--ease-snap)}
-.pd-shot:hover img{transform:scale(1.012)}
+.pd-shot-open{display:block;width:100%;padding:0;border:0;background:var(--bg2);cursor:zoom-in;position:relative;overflow:hidden}
+.pd-shot-open img{display:block;width:100%;height:auto;background:var(--bg2);transition:transform .45s var(--ease-snap)}
+.pd-shot-open:hover img{transform:scale(1.012)}
+.pd-shot-open:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+.pd-shot-zoom{position:absolute;top:10px;right:10px;width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.28);border-radius:var(--r);background:rgba(10,8,6,.62);color:#fff;font-size:1rem;line-height:1;opacity:0;transform:translateY(-3px);transition:opacity .2s,transform .2s;backdrop-filter:blur(4px)}
+.pd-shot:hover .pd-shot-zoom,.pd-shot-open:focus-visible .pd-shot-zoom{opacity:1;transform:none}
 .pd-shot figcaption{padding:8px 12px;border-top:1px solid var(--line-soft);font-family:var(--mono);font-size:.61rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .pd-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.project-lightbox{position:fixed;inset:0;margin:auto;width:min(1180px,calc(100vw - 32px));max-height:92dvh;padding:0;border:0;background:transparent;color:var(--ink);overflow:visible}
+.project-lightbox::backdrop{background:rgba(4,4,4,.88);backdrop-filter:blur(8px)}
+.pl-panel{display:flex;flex-direction:column;width:fit-content;max-width:100%;max-height:92dvh;margin:auto;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 32px 100px rgba(0,0,0,.55);overflow:hidden}
+.pl-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-shrink:0;padding:10px 14px;border-bottom:1px solid var(--line-soft);background:var(--bg)}
+.pl-caption{margin:0;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.pl-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.pl-count{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;color:var(--faint);white-space:nowrap;margin-right:4px}
+.pl-frame{display:flex;align-items:center;justify-content:center;min-height:0;overflow:auto;padding:16px;background:#0b0907}
+.pl-frame img{display:block;width:auto;height:auto;max-width:100%;max-height:calc(92dvh - 92px);object-fit:contain}
 @media(max-width:760px){
   .pd-notes{grid-template-columns:1fr;gap:14px}
   .pd-gallery{columns:2}
@@ -249,12 +267,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .project-dialog{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0}
   .pd-panel{height:100%;max-height:100%;border:0;border-radius:0}
   .project-dialog{margin:0}
-  .pd-head{padding:16px 16px 14px}
+  .pd-head{padding:16px 16px 14px;gap:12px}
+  .pd-head-actions{gap:6px}
+  .pd-count{display:none}
   .pd-title{font-size:1.7rem}
   .pd-scroll{padding:16px 16px 24px}
   .pd-gallery{column-gap:10px}
   .pd-shot{margin-bottom:10px}
   .pd-shot figcaption{font-size:.56rem;padding:7px 9px}
+  .project-lightbox{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0}
+  .pl-panel{width:100%;height:100%;max-height:100%;margin:0;border:0;border-radius:0}
+  .pl-frame{padding:10px}
+  .pl-frame img{max-height:calc(100dvh - 72px)}
+  .pl-actions{gap:6px}
+  .pl-count{display:none}
 }
 
 /* Back to top */
@@ -357,6 +383,22 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .magnetic-ring{position:fixed;top:0;left:0;width:36px;height:36px;border:1.5px solid #fff;border-radius:50%;mix-blend-mode:exclusion;pointer-events:none;z-index:200;opacity:0;transition:opacity .3s,width .25s ease,height .25s ease}
 .magnetic-dot{position:fixed;top:0;left:0;width:6px;height:6px;border-radius:50%;background:#fff;mix-blend-mode:exclusion;pointer-events:none;z-index:200;opacity:0;transition:opacity .3s}
 html.has-magnetic-cursor,html.has-magnetic-cursor a,html.has-magnetic-cursor button,html.has-magnetic-cursor input,html.has-magnetic-cursor textarea,html.has-magnetic-cursor label{cursor:none}
+/* Native dialogs live in the top layer, above the custom cursor. Restore the
+   real pointer while a project dialog is open. */
+html.has-magnetic-cursor.has-project-dialog,
+html.has-magnetic-cursor.has-project-dialog body,
+html.has-magnetic-cursor.has-project-dialog a,
+html.has-magnetic-cursor.has-project-dialog button,
+html.has-magnetic-cursor.has-project-dialog input,
+html.has-magnetic-cursor.has-project-dialog textarea,
+html.has-magnetic-cursor.has-project-dialog label,
+html.has-magnetic-cursor.has-project-dialog summary{cursor:auto}
+html.has-magnetic-cursor.has-project-dialog a,
+html.has-magnetic-cursor.has-project-dialog button,
+html.has-magnetic-cursor.has-project-dialog summary,
+html.has-magnetic-cursor.has-project-dialog [role="button"]{cursor:pointer}
+html.has-project-dialog .magnetic-ring,
+html.has-project-dialog .magnetic-dot{opacity:0!important}
 
 /* Screen reader only */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -660,10 +702,10 @@ main{overflow-x:clip}
   .rise{opacity:1;animation:none}
   html{scroll-behavior:auto}
   .dock,.top-left,.top-right{animation:none}
-  .btn,.card,.tags span,.edu-card,.direct-item,.footer-link,.cap-toggle,.cap-icon,.thumb-img,.pd-shot img{transition:none}
+  .btn,.card,.tags span,.edu-card,.direct-item,.footer-link,.cap-toggle,.cap-icon,.thumb-img,.pd-shot-open img{transition:none}
   #toTop,.dock-indicator,.cap-chevron,.cap-details-wrap,.cap-details,.hero-actions .btn,.btn .arr,.timeline-fill,.process-progress-fill{transition:none}
   .pd-panel{animation:none}
-  .pd-shot:hover img{transform:none}
+  .pd-shot-open:hover img{transform:none}
   .orbit-chip{animation:none}
   .hero-photo-lg::after{animation:none}
   .hero-photo-lg img{transition:none}

@@ -48,7 +48,7 @@ export type Dict = {
   whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; metricLabels: [string, string, string, string]; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
-  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; showMoreTags: string; filterCount: string; filterCountOne: string; filterGroup: string; walkthroughNote: string; notesSummary: string; approachLabel: string; outcomeLabel: string; explore: string; close: string; discuss: string; screensLabel: string; projects: ProjectT[] };
+  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; showMoreTags: string; filterCount: string; filterCountOne: string; filterGroup: string; walkthroughNote: string; notesSummary: string; approachLabel: string; outcomeLabel: string; explore: string; close: string; discuss: string; screensLabel: string; screensShort: string; previousProject: string; nextProject: string; previousScreen: string; nextScreen: string; enlarge: string; projects: ProjectT[] };
   exp: { kicker: string; title: string; latest: string; jobs: JobT[] };
   edu: { kicker: string; title: string; sub: string; entries: EduT[] };
   behind: { kicker: string; title: string; sub: string; dailyLabel: string; daily: string; exploredLabel: string; explored: string; categories: TechCategory[] };
@@ -126,7 +126,8 @@ const en: Dict = {
     showLess: 'show less', showFewer: 'Show fewer tags', showMoreTags: 'Show {count} more tags', filterCount: 'Showing {count} of {total} projects', filterCountOne: 'Showing 1 of {total} projects', filterGroup: 'Filter projects by discipline',
     walkthroughNote: 'Live demos, private repositories and hardware: code walkthroughs and guided demos available on request.',
     notesSummary: 'Engineering notes', approachLabel: 'Approach', outcomeLabel: 'Outcome',
-    explore: 'Explore project', close: 'Close', discuss: 'Discuss this project', screensLabel: 'Project screens',
+    explore: 'Explore project', close: 'Close', discuss: 'Discuss this project', screensLabel: 'Project screens', screensShort: 'screens',
+    previousProject: 'Previous project', nextProject: 'Next project', previousScreen: 'Previous screen', nextScreen: 'Next screen', enlarge: 'Enlarge screen',
     projects: [
       { title: 'OdemLab: AI skincare e-commerce', year: 'Flagship', kind: 'Team of 4 · Private repo', heading: 'OdemLab', lead: 'd',
         description: 'A complete online skincare store with AI skin analysis, three payment methods (Stripe, CMI, cash-on-delivery), and trilingual FR/EN/AR support. Customers browse, scan their skin, and pay. All in one flow.',
@@ -283,7 +284,8 @@ const fr: Dict = {
     showLess: 'voir moins', showFewer: 'Afficher moins', showMoreTags: 'Afficher {count} autres tags', filterCount: '{count} projets sur {total} affichés', filterCountOne: '1 projet sur {total} affichés', filterGroup: 'Filtrer les projets par discipline',
     walkthroughNote: 'D\u00e9mos en direct, d\u00e9p\u00f4ts priv\u00e9s et mat\u00e9riel : revues de code et d\u00e9monstrations guid\u00e9es sur demande.',
     notesSummary: 'Notes techniques', approachLabel: 'Approche', outcomeLabel: 'R\u00e9sultat',
-    explore: 'Explorer le projet', close: 'Fermer', discuss: 'Discuter de ce projet', screensLabel: '\u00c9crans du projet',
+    explore: 'Explorer le projet', close: 'Fermer', discuss: 'Discuter de ce projet', screensLabel: '\u00c9crans du projet', screensShort: '\u00e9crans',
+    previousProject: 'Projet pr\u00e9c\u00e9dent', nextProject: 'Projet suivant', previousScreen: '\u00c9cran pr\u00e9c\u00e9dent', nextScreen: '\u00c9cran suivant', enlarge: 'Agrandir l\u2019\u00e9cran',
     projects: [
       { title: 'OdemLab: e-commerce cosm\u00e9tique IA', year: 'Vitrine', kind: '\u00c9quipe de 4 \u00b7 D\u00e9p\u00f4t priv\u00e9', heading: 'OdemLab', lead: 'd',
         description: 'Boutique cosm\u00e9tique en ligne avec analyse IA de la peau, trois m\u00e9thodes de paiement (Stripe, CMI, contre-remboursement) et support trilingue FR/EN/AR.',
