@@ -51,8 +51,8 @@ test.describe('Case-study content', () => {
 
   test('project previews are real, lazy-loaded and described', async ({ page }) => {
     const previews = page.locator('#work .thumb--image img');
-    await expect(previews).toHaveCount(3);
-    for (let i = 0; i < 3; i++) {
+    await expect(previews).toHaveCount(4);
+    for (let i = 0; i < 4; i++) {
       const img = previews.nth(i);
       await expect(img).toHaveAttribute('loading', 'lazy');
       const alt = (await img.getAttribute('alt')) ?? '';

@@ -402,7 +402,16 @@ export const PROJECT_IMAGES: (ProjectImageT | null)[] = [
       fr: 'Vitrine OdemLab sur ordinateur et boutique mobile',
     },
   },
-  null,
+  {
+    src: '/assets/work/procureflow-1200.webp',
+    srcSet: '/assets/work/procureflow-600.webp 600w, /assets/work/procureflow-1200.webp 1200w',
+    width: 1200,
+    height: 600,
+    alt: {
+      en: 'ProcureFlow procurement dashboard with requests, approvals, suppliers and budget metrics',
+      fr: 'Tableau de bord ProcureFlow avec demandes, approbations, fournisseurs et budgets',
+    },
+  },
   null,
   {
     src: '/assets/work/fittrack-1200.webp',
