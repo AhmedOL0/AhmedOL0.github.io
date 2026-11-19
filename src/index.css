@@ -829,7 +829,12 @@ main{overflow-x:clip}
 
 
 /* ── How I Work: record steps ── */
-.process-progress{height:2px;background:var(--line-soft);border-radius:2px;margin:20px 0 4px;overflow:hidden}
+.process-readout{display:flex;align-items:baseline;gap:9px;margin:22px 0 7px;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.process-readout-num{font-family:var(--serif);font-style:italic;font-size:1.5rem;line-height:1;letter-spacing:0;text-transform:none;color:var(--gold)}
+.process-readout-total{font-size:.6rem;color:var(--faint)}
+.process-readout-label{margin-left:3px;color:var(--muted)}
+.process-readout-label::before{content:"\00b7";margin-right:8px;color:var(--line)}
+.process-progress{height:2px;background:var(--line-soft);border-radius:2px;margin:0 0 4px;overflow:hidden}
 .process-progress-fill{height:100%;width:0;background:var(--gold-deep);border-radius:2px;transition:width .45s var(--ease-snap)}
 .process-flow{display:flex;flex-direction:column;gap:0;position:relative}
 .process-step{display:grid;grid-template-columns:52px 1fr;gap:16px;position:relative;padding-bottom:16px}

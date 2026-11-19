@@ -28,6 +28,7 @@ export default function HowIWork() {
   const flowRef = useRef<HTMLOListElement | null>(null);
   const [active, setActive] = useState(-1);
   const total = t.howIWork.steps.length;
+  const current = active < 0 ? 0 : active;
 
   useEffect(() => {
     const flow = flowRef.current;
@@ -45,6 +46,11 @@ export default function HowIWork() {
 
   return (
     <Section id="how-i-work" num="02" kicker={t.howIWork.kicker} title={t.howIWork.title} sub={t.howIWork.sub} variant="left">
+      <div className="process-readout" aria-hidden="true">
+        <span className="process-readout-num">{String(current + 1).padStart(2, '0')}</span>
+        <span className="process-readout-total">/ {String(total).padStart(2, '0')}</span>
+        <span className="process-readout-label">{t.howIWork.steps[current].label}</span>
+      </div>
       <div className="process-progress" aria-hidden="true">
         <div
           className="process-progress-fill"
