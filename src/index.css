@@ -654,7 +654,7 @@ main{overflow-x:clip}
   .rise{opacity:1;animation:none}
   html{scroll-behavior:auto}
   .dock,.top-left,.top-right{animation:none}
-  .btn,.card,.tags span,.edu-card,.direct-item,.footer-link,.cap-toggle,.thumb-img,.pd-shot img{transition:none}
+  .btn,.card,.tags span,.edu-card,.direct-item,.footer-link,.cap-toggle,.cap-icon,.thumb-img,.pd-shot img{transition:none}
   #toTop,.dock-indicator,.cap-chevron,.cap-details-wrap,.cap-details,.hero-actions .btn,.btn .arr,.timeline-fill,.process-progress-fill{transition:none}
   .pd-panel{animation:none}
   .pd-shot:hover img{transform:none}
@@ -795,13 +795,20 @@ main{overflow-x:clip}
 
 /* ── What I Do: capability folios ── */
 .cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-.cap-card{border:1px solid var(--line-soft);border-radius:var(--r);padding:36px 32px;background:var(--card);transition:border-color .25s;position:relative}
+.cap-card{--cap-accent:var(--gold-deep);border:1px solid var(--line-soft);border-radius:var(--r);padding:36px 32px;background:var(--card);transition:border-color .25s;position:relative;overflow:hidden}
+.cap-card--amber{--cap-accent:var(--amber)}
+.cap-card--gold{--cap-accent:var(--gold)}
+.cap-card--sage{--cap-accent:var(--sage)}
+.cap-card--rust{--cap-accent:var(--rust)}
+.cap-card::before{content:"";position:absolute;top:0;left:32px;right:32px;height:2px;background:linear-gradient(90deg,var(--cap-accent),transparent 88%);opacity:.55;transition:opacity .25s}
 .cap-card:hover{border-color:var(--gold-deep)}
+.cap-card:hover::before{opacity:1}
 .cap-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .cap-num{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--faint)}
-.cap-icon{width:40px;height:40px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;border:1px solid var(--line);color:var(--gold);flex-shrink:0}
+.cap-icon{width:40px;height:40px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;border:1px solid var(--line);color:var(--cap-accent);flex-shrink:0;transition:transform .25s var(--ease-snap),border-color .25s}
+.cap-card:hover .cap-icon{transform:translateY(-2px);border-color:var(--cap-accent)}
 .cap-metric{display:flex;align-items:center;gap:6px;margin-bottom:10px}
-.cap-metric-val{font-family:var(--mono);font-size:.76rem;font-weight:700;letter-spacing:.04em;padding:3px 10px;border-radius:var(--r);border:1px solid var(--line);color:var(--gold)}
+.cap-metric-val{font-family:var(--mono);font-size:.76rem;font-weight:700;letter-spacing:.04em;padding:3px 10px;border-radius:var(--r);border:1px solid var(--line);color:var(--cap-accent)}
 .cap-metric-label{font-family:var(--mono);font-size:.68rem;color:var(--faint);letter-spacing:.04em}
 .cap-title{margin:0 0 8px;font-size:1.12rem;color:var(--ink);font-weight:600}
 .cap-desc{margin:0;color:var(--muted);font-size:.85rem;line-height:1.6}
