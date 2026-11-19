@@ -357,7 +357,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 /* Hero photo + eyebrow: dossier cover */
 
 /* Timeline: dossier record */
-.job .when{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);padding:4px 10px;border-radius:var(--r);display:inline-block;margin-bottom:8px}
+.job-meta-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-bottom:8px}
+.job .when{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);padding:4px 10px;border-radius:var(--r);display:inline-block;margin-bottom:0}
+.job-latest{font-family:var(--mono);font-size:.57rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line-soft);border-radius:var(--r);padding:4px 8px;background:var(--card)}
 .job h3{font-size:1.1rem;margin:5px 0 2px;font-weight:600}
 .job h3 span{color:var(--muted);font-weight:400}
 .job .where{font-size:.85rem;color:var(--faint);margin-bottom:10px}
@@ -423,6 +425,9 @@ html.has-project-dialog .magnetic-dot{opacity:0!important}
 .tags span{transition:border-color .2s,color .2s}
 
 /* Contact */
+.contact-status{display:flex;align-items:center;flex-wrap:wrap;gap:7px 14px;margin-top:18px;padding:10px 14px;border:1px solid var(--line-soft);border-left:2px solid var(--sage);border-radius:var(--r);background:var(--card);font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.contact-status-dot{width:7px;height:7px;border-radius:50%;background:var(--sage);flex-shrink:0}
+.contact-status-note{margin-left:auto;color:var(--faint)}
 .contact-box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);position:relative;display:grid;grid-template-columns:1fr;gap:24px;padding:12px}
 .contact-box label{display:block;font-size:.78rem;color:var(--muted);margin:15px 0 6px;letter-spacing:.06em;text-transform:uppercase;font-family:var(--mono)}
 .contact-box input,.contact-box textarea{width:100%;background:var(--inputbg);border:1px solid var(--line);border-radius:var(--r);color:var(--ink);padding:13px 16px;font-family:var(--sans);font-size:.92rem;resize:vertical;transition:border-color .2s}
@@ -542,6 +547,7 @@ a.direct-link:hover{text-decoration:underline;text-underline-offset:3px}
   footer nav{grid-template-columns:1fr !important;gap:24px !important}
   footer nav > div:first-child{margin-bottom:8px}
   .footer-socials{margin-top:14px}
+  .contact-status-note{margin-left:0;flex-basis:100%}
 }
 
 /* Hero actions */
@@ -696,7 +702,7 @@ main{overflow-x:clip}
   .rise{opacity:1;animation:none}
   html{scroll-behavior:auto}
   .dock,.top-left,.top-right{animation:none}
-  .btn,.card,.tags span,.edu-card,.direct-item,.footer-link,.cap-toggle,.thumb-img,.pd-shot-open img{transition:none}
+  .btn,.card,.tags span,.edu-card,.direct-item,.footer-link,.cap-toggle,.cap-icon,.thumb-img,.pd-shot-open img{transition:none}
   #toTop,.dock-indicator,.cap-chevron,.cap-details-wrap,.cap-details,.hero-actions .btn,.btn .arr,.timeline-fill,.process-progress-fill{transition:none}
   .pd-panel{animation:none}
   .pd-shot-open:hover img{transform:none}
@@ -837,13 +843,20 @@ main{overflow-x:clip}
 
 /* ── What I Do: capability folios ── */
 .cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-.cap-card{border:1px solid var(--line-soft);border-radius:var(--r);padding:36px 32px;background:var(--card);transition:border-color .25s;position:relative}
+.cap-card{--cap-accent:var(--gold-deep);border:1px solid var(--line-soft);border-radius:var(--r);padding:36px 32px;background:var(--card);transition:border-color .25s;position:relative;overflow:hidden}
+.cap-card--amber{--cap-accent:var(--amber)}
+.cap-card--gold{--cap-accent:var(--gold)}
+.cap-card--sage{--cap-accent:var(--sage)}
+.cap-card--rust{--cap-accent:var(--rust)}
+.cap-card::before{content:"";position:absolute;top:0;left:32px;right:32px;height:2px;background:linear-gradient(90deg,var(--cap-accent),transparent 88%);opacity:.55;transition:opacity .25s}
 .cap-card:hover{border-color:var(--gold-deep)}
+.cap-card:hover::before{opacity:1}
 .cap-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .cap-num{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--faint)}
-.cap-icon{width:40px;height:40px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;border:1px solid var(--line);color:var(--gold);flex-shrink:0}
+.cap-icon{width:40px;height:40px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;border:1px solid var(--line);color:var(--cap-accent);flex-shrink:0;transition:transform .25s var(--ease-snap),border-color .25s}
+.cap-card:hover .cap-icon{transform:translateY(-2px);border-color:var(--cap-accent)}
 .cap-metric{display:flex;align-items:center;gap:6px;margin-bottom:10px}
-.cap-metric-val{font-family:var(--mono);font-size:.76rem;font-weight:700;letter-spacing:.04em;padding:3px 10px;border-radius:var(--r);border:1px solid var(--line);color:var(--gold)}
+.cap-metric-val{font-family:var(--mono);font-size:.76rem;font-weight:700;letter-spacing:.04em;padding:3px 10px;border-radius:var(--r);border:1px solid var(--line);color:var(--cap-accent)}
 .cap-metric-label{font-family:var(--mono);font-size:.68rem;color:var(--faint);letter-spacing:.04em}
 .cap-title{margin:0 0 8px;font-size:1.12rem;color:var(--ink);font-weight:600}
 .cap-desc{margin:0;color:var(--muted);font-size:.85rem;line-height:1.6}
@@ -864,7 +877,12 @@ main{overflow-x:clip}
 
 
 /* ── How I Work: record steps ── */
-.process-progress{height:2px;background:var(--line-soft);border-radius:2px;margin:20px 0 4px;overflow:hidden}
+.process-readout{display:flex;align-items:baseline;gap:9px;margin:22px 0 7px;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.process-readout-num{font-family:var(--serif);font-style:italic;font-size:1.5rem;line-height:1;letter-spacing:0;text-transform:none;color:var(--gold)}
+.process-readout-total{font-size:.6rem;color:var(--faint)}
+.process-readout-label{margin-left:3px;color:var(--muted)}
+.process-readout-label::before{content:"\00b7";margin-right:8px;color:var(--line)}
+.process-progress{height:2px;background:var(--line-soft);border-radius:2px;margin:0 0 4px;overflow:hidden}
 .process-progress-fill{height:100%;width:0;background:var(--gold-deep);border-radius:2px;transition:width .45s var(--ease-snap)}
 .process-flow{display:flex;flex-direction:column;gap:0;position:relative}
 .process-step{display:grid;grid-template-columns:52px 1fr;gap:16px;position:relative;padding-bottom:16px}
@@ -930,7 +948,8 @@ main{overflow-x:clip}
 .tech-cat[data-wide]{grid-column:span 2}
 .tech-cat:hover{border-color:var(--gold-deep)}
 .tech-cat-watermark{display:none}
-.tech-cat-head{display:flex;align-items:center;justify-content:space-between}
+.tech-cat-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tech-cat-count{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;color:var(--faint);border:1px solid var(--line-soft);border-radius:var(--r);padding:3px 7px;background:var(--bg2)}
 .tech-cat-icon{display:flex;align-items:center;justify-content:center;width:22px;height:22px;color:var(--gold);opacity:1}
 .tech-cat-icon svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.5}
 .tech-cat-name{margin:0;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);display:flex;align-items:center;gap:8px}
@@ -944,6 +963,8 @@ main{overflow-x:clip}
 .about-layout{display:flex;flex-direction:column;gap:24px}
 .about-main{display:flex;flex-direction:column;gap:16px}
 .about-top{display:flex;align-items:center;gap:16px}
+.about-seal{width:64px;height:64px;display:grid;place-items:center;flex-shrink:0;border:1px solid var(--line);border-radius:var(--r);background:var(--card);font-family:var(--serif);font-size:1.55rem;font-weight:500;line-height:1;letter-spacing:-.03em;color:var(--gold)}
+.about-seal em{font-style:italic;font-weight:500}
 .about-identity{display:flex;flex-direction:column;gap:2px}
 .about-name{margin:0;font-size:1.1rem;font-weight:600}
 .about-role{margin:0;font-size:.85rem;color:var(--muted)}

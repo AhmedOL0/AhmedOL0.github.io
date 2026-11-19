@@ -4,6 +4,7 @@ import { useLang } from '../i18n-data';
 import type { JobT } from '../i18n-data';
 
 export function Timeline({ items }: { items: JobT[] }) {
+  const { t } = useLang();
   const wrapRef = useRef<HTMLOListElement | null>(null);
   const fillRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
@@ -31,13 +32,16 @@ export function Timeline({ items }: { items: JobT[] }) {
   return (
     <div className="timeline-wrap mt-9">
       <ol className="timeline" ref={wrapRef}>
-        {items.map((j) => (
+        {items.map((j, i) => (
           <li className="job" key={j.title}>
             <div className="job-marker" aria-hidden="true">
               <span className="job-marker-dot" />
             </div>
             <div className="job-card">
-              <div className="when font-mono-d">{j.when}</div>
+              <div className="job-meta-row">
+                <div className="when font-mono-d">{j.when}</div>
+                {i === 0 && <span className="job-latest">{t.exp.latest}</span>}
+              </div>
               <h3>{j.title} <span>· {j.org}</span></h3>
               {j.where && <div className="where">{j.where}</div>}
               {j.tags.length > 0 && (

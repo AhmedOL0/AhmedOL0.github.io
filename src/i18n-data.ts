@@ -49,7 +49,7 @@ export type Dict = {
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
   work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; showMoreTags: string; filterCount: string; filterCountOne: string; filterGroup: string; walkthroughNote: string; notesSummary: string; approachLabel: string; outcomeLabel: string; explore: string; close: string; discuss: string; screensLabel: string; screensShort: string; previousProject: string; nextProject: string; previousScreen: string; nextScreen: string; enlarge: string; projects: ProjectT[] };
-  exp: { kicker: string; title: string; jobs: JobT[] };
+  exp: { kicker: string; title: string; latest: string; jobs: JobT[] };
   edu: { kicker: string; title: string; sub: string; entries: EduT[] };
   behind: { kicker: string; title: string; sub: string; dailyLabel: string; daily: string; exploredLabel: string; explored: string; categories: TechCategory[] };
   aboutMe: { kicker: string; title: string; sub: string; role: string; body: string; interests: string[]; langsTitle: string; langs: { l: string; lvl: string }[]; principlesTitle: string; principles: string[] };
@@ -161,7 +161,7 @@ const en: Dict = {
     ],
   },
   exp: {
-    kicker: 'Track record', title: 'The roles I\'ve held.',
+    kicker: 'Track record', title: 'The roles I\'ve held.', latest: 'Latest role',
     jobs: [
       { when: 'JUN 2026 – SEP 2026 · AGADIR, ON-SITE', title: 'End-of-year project (PFA): Full-Stack Developer', org: 'Zorium, Technoparc Agadir', where: 'OdemLab platform · team of four',
         tags: ['Spring Boot', 'Next.js', 'PostgreSQL', 'Cloud Run'],
@@ -319,7 +319,7 @@ const fr: Dict = {
     ],
   },
   exp: {
-    kicker: 'Parcours', title: 'Les postes que j\u2019ai occup\u00e9s.',
+    kicker: 'Parcours', title: 'Les postes que j\u2019ai occup\u00e9s.', latest: 'Poste le plus r\u00e9cent',
     jobs: [
       { when: 'JUIN 2026 \u2013 SEPT. 2026 \u00b7 AGADIR, SUR SITE', title: 'Projet de fin d\u2019ann\u00e9e (PFA): D\u00e9veloppeur Full-Stack', org: 'Zorium, Technoparc Agadir', where: 'Plateforme OdemLab \u00b7 \u00e9quipe de quatre',
         tags: ['Spring Boot', 'Next.js', 'PostgreSQL', 'Cloud Run'],

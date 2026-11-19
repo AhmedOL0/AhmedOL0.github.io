@@ -56,6 +56,7 @@ export default function BehindTheWork() {
                 <span className="tech-cat-icon">{CAT_ICONS[cat.name] || null}</span>
                 {cat.name}
               </h3>
+              <span className="tech-cat-count" aria-hidden="true">{String(cat.items.length).padStart(2, '0')}</span>
             </div>
             <div className="tech-items">
               {cat.items.map((item) => (
