@@ -74,9 +74,17 @@ test.describe('Case-study content', () => {
     await expect(dialog.locator('.pd-shot img')).toHaveCount(6);
     await expect(dialog.locator('.pd-shot img').first()).toHaveAttribute('loading', 'lazy');
     await expect(dialog.locator('.pd-close')).toBeFocused();
-    await expect(dialog.locator('.pd-close')).toHaveCSS('cursor', 'pointer');
-    const rootCursor = await page.evaluate(() => getComputedStyle(document.documentElement).cursor);
-    expect(rootCursor, 'native cursor is restored above the dialog').not.toBe('none');
+    const magnetic = await page.evaluate(() => document.documentElement.classList.contains('has-magnetic-cursor'));
+    if (magnetic) {
+      await expect(dialog.locator('.dialog-cursor-ring')).toHaveCount(1);
+      await expect(dialog.locator('.pd-close')).toHaveCSS('cursor', 'none');
+      const rootCursor = await page.evaluate(() => getComputedStyle(document.documentElement).cursor);
+      expect(rootCursor, 'native cursor stays hidden under the dialog cursor').toBe('none');
+    } else {
+      await expect(dialog.locator('.pd-close')).toHaveCSS('cursor', 'pointer');
+      const rootCursor = await page.evaluate(() => getComputedStyle(document.documentElement).cursor);
+      expect(rootCursor, 'native cursor is used on coarse pointers').not.toBe('none');
+    }
     await page.keyboard.press('Escape');
     await expect(dialog).toBeHidden();
   });

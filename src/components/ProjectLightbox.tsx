@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import TopLayerCursor from './TopLayerCursor';
 import { useLang, type ProjectGalleryImageT } from '../i18n-data';
 
 type ProjectLightboxProps = {
@@ -67,6 +68,7 @@ export default function ProjectLightbox({ shot, position, total, onPrev, onNext,
           <img src={shot.src} width={shot.width} height={shot.height} alt={shot.alt[lang]} decoding="async" />
         </div>
       </div>
+      <TopLayerCursor />
     </dialog>,
     document.body,
   );
