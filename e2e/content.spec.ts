@@ -49,6 +49,21 @@ test.describe('Case-study content', () => {
     await expect(notes.locator('.eh-text')).toBeVisible();
   });
 
+  test('project previews are real, lazy-loaded and described', async ({ page }) => {
+    const previews = page.locator('#work .thumb--image img');
+    await expect(previews).toHaveCount(4);
+    for (let i = 0; i < 4; i++) {
+      const img = previews.nth(i);
+      await expect(img).toHaveAttribute('loading', 'lazy');
+      const alt = (await img.getAttribute('alt')) ?? '';
+      expect(alt.trim().length, `preview ${i} has meaningful alt text`).toBeGreaterThan(20);
+    }
+    await previews.first().evaluate((el) => (el as HTMLElement).scrollIntoView({ block: 'center' }));
+    await expect
+      .poll(() => previews.first().evaluate((el) => (el as HTMLImageElement).naturalWidth))
+      .toBeGreaterThan(0);
+  });
+
   test('print media reveals lazy sections and closed notes', async ({ page }) => {
     await page.emulateMedia({ media: 'print' });
     await expect

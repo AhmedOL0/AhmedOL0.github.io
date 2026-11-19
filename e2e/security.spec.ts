@@ -53,6 +53,8 @@ test.describe('Security Headers & Best Practices', () => {
 test.describe('Error Handling', () => {
   test('profile image has fallback mechanism', async ({ page }) => {
     await page.goto('/');
+    // Wait for the app shell: WebKit can still be mounting when count() runs.
+    await expect(page.locator('.hero-photo-lg')).toBeAttached();
     // Profile image exists or text fallback (AO initials) is shown
     const hasImg = await page.locator('.hero-photo-lg img, img[alt*="Ahmed"], img[alt*="Ahmed Ouarrali"]').count();
     const hasFallback = await page.locator('.hero-photo-lg').count();
