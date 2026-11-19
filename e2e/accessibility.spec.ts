@@ -153,7 +153,10 @@ test.describe('Accessibility (WCAG 2.2)', () => {
     expect(dur.split(',')[0].trim(), 'transitions must resolve (easing tokens valid)').not.toBe('0s');
 
     await page.locator('#contact').scrollIntoViewIfNeeded();
-    await page.locator('#contact button[type="submit"]').click();
+    const submit = page.locator('#contact button[type="submit"]');
+    await expect(submit).toBeEnabled();
+    await submit.focus();
+    await page.keyboard.press('Enter');
     await expect(page.locator('#contact-name')).toHaveAttribute('aria-invalid', 'true');
     // Light theme in this suite: danger token resolves to #b91c1c.
     // Poll: border-color transitions over 200ms, so first samples blend.
