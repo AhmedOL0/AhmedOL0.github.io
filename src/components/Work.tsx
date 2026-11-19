@@ -46,6 +46,12 @@ export default function Work() {
   const countLabel = (filteredCount === 1 ? t.work.filterCountOne : t.work.filterCount)
     .replace('{count}', String(filteredCount))
     .replace('{total}', String(t.work.projects.length));
+  const galleryOrder = t.work.projects.map((_, i) => i).filter((i) => PROJECT_GALLERIES[i].length > 0);
+  const openPosition = openProject === null ? -1 : galleryOrder.indexOf(openProject);
+  const moveProject = (delta: number) => {
+    if (openPosition < 0) return;
+    setOpenProject(galleryOrder[(openPosition + delta + galleryOrder.length) % galleryOrder.length]);
+  };
 
   useEffect(() => {
     const opened = new Set<HTMLDetailsElement>();
@@ -119,6 +125,10 @@ export default function Work() {
           project={t.work.projects[openProject]}
           gallery={PROJECT_GALLERIES[openProject]}
           tags={PROJECT_TAGS[openProject]}
+          position={openPosition}
+          total={galleryOrder.length}
+          onPrev={() => moveProject(-1)}
+          onNext={() => moveProject(1)}
           onClose={() => setOpenProject(null)}
         />
       )}
@@ -156,6 +166,9 @@ function Card({ p, th, i, cardId, image, gallery, onExplore }: { p: { year: stri
           </>
         )}
         <span className="tag-corner">{p.year}</span>
+        {image && gallery.length > 0 && (
+          <span className="thumb-count" aria-hidden="true">{gallery.length} {t.work.screensShort}</span>
+        )}
       </div>
       <div className="body flex flex-col gap-1.5 p-3.5 sm:p-[20px_22px_22px] flex-1">
         <span className="flag">{p.kind}</span>

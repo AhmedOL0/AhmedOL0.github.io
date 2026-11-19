@@ -1,18 +1,25 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import ProjectLightbox from './ProjectLightbox';
 import { useLang, type ProjectGalleryImageT, type ProjectT } from '../i18n-data';
 
 type ProjectDialogProps = {
   project: ProjectT;
   gallery: ProjectGalleryImageT[];
   tags: string[];
+  position: number;
+  total: number;
+  onPrev: () => void;
+  onNext: () => void;
   onClose: () => void;
 };
 
-export default function ProjectDialog({ project, gallery, tags, onClose }: ProjectDialogProps) {
+export default function ProjectDialog({ project, gallery, tags, position, total, onPrev, onNext, onClose }: ProjectDialogProps) {
   const { t, lang } = useLang();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeShot, setActiveShot] = useState<ProjectGalleryImageT | null>(null);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -32,6 +39,10 @@ export default function ProjectDialog({ project, gallery, tags, onClose }: Proje
     };
   }, []);
 
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: 0 });
+  }, [project.title]);
+
   const close = () => dialogRef.current?.close();
 
   return createPortal(
@@ -43,19 +54,46 @@ export default function ProjectDialog({ project, gallery, tags, onClose }: Proje
       onClick={(event) => {
         if (event.target === event.currentTarget) close();
       }}
+      onCancel={(event) => {
+        if (activeShot) {
+          event.preventDefault();
+          setActiveShot(null);
+        }
+      }}
+      onKeyDown={(event) => {
+        if (activeShot) return;
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          onPrev();
+        } else if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          onNext();
+        }
+      }}
     >
       <div className="pd-panel">
         <div className="pd-head">
-          <div>
+          <div className="pd-head-main">
             <p className="pd-kicker">{project.kind} &middot; {project.year}</p>
             <h2 id="project-dialog-title" className="pd-title font-serif-d">{project.title}</h2>
           </div>
-          <button ref={closeRef} type="button" className="pd-close" onClick={close} aria-label={t.work.close}>
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <div className="pd-head-actions">
+            <span className="pd-count" aria-hidden="true">
+              {String(position + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+            </span>
+            <button type="button" className="pd-nav" onClick={onPrev} aria-label={t.work.previousProject}>
+              <span aria-hidden="true">&larr;</span>
+            </button>
+            <button type="button" className="pd-nav" onClick={onNext} aria-label={t.work.nextProject}>
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+            <button ref={closeRef} type="button" className="pd-close" onClick={close} aria-label={t.work.close}>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
         </div>
 
-        <div className="pd-scroll">
+        <div ref={scrollRef} className="pd-scroll">
           <p className="pd-desc">{project.description}</p>
 
           <div className="pd-notes">
@@ -82,14 +120,22 @@ export default function ProjectDialog({ project, gallery, tags, onClose }: Proje
           <div className="pd-gallery">
             {gallery.map((shot) => (
               <figure className="pd-shot" key={shot.src}>
-                <img
-                  src={shot.src}
-                  width={shot.width}
-                  height={shot.height}
-                  alt={shot.alt[lang]}
-                  loading="lazy"
-                  decoding="async"
-                />
+                <button
+                  type="button"
+                  className="pd-shot-open"
+                  onClick={() => setActiveShot(shot)}
+                  aria-label={`${t.work.enlarge}: ${shot.label[lang]}`}
+                >
+                  <img
+                    src={shot.src}
+                    width={shot.width}
+                    height={shot.height}
+                    alt={shot.alt[lang]}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span className="pd-shot-zoom" aria-hidden="true">&#8599;</span>
+                </button>
                 <figcaption>{shot.label[lang]}</figcaption>
               </figure>
             ))}
@@ -107,6 +153,7 @@ export default function ProjectDialog({ project, gallery, tags, onClose }: Proje
           </div>
         </div>
       </div>
+      {activeShot && <ProjectLightbox shot={activeShot} onClose={() => setActiveShot(null)} />}
     </dialog>,
     document.body,
   );
