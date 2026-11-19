@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import Section from './Section';
 import { useLang } from '../i18n-data';
-import { PROJECT_CATS, PROJECT_TAGS, PROJECT_THUMBS, thumbTitle } from '../i18n-data';
+import { PROJECT_CATS, PROJECT_IMAGES, PROJECT_TAGS, PROJECT_THUMBS, thumbTitle, type ProjectImageT } from '../i18n-data';
 
 const filterKeys = ['all', 'web', 'mobile', 'backend', 'ai', 'iot'] as const;
 
@@ -98,7 +98,7 @@ export default function Work() {
           if (f !== 'all' && !PROJECT_CATS[i].includes(f)) return null;
           const th = thumbTitle(p);
           return (
-            <Card key={cardIds[i]} p={p} th={th} i={i} cardId={cardIds[i]} />
+            <Card key={cardIds[i]} p={p} th={th} i={i} cardId={cardIds[i]} image={PROJECT_IMAGES[i]} />
           );
         })}
       </div>
@@ -107,8 +107,8 @@ export default function Work() {
   );
 }
 
-function Card({ p, th, i, cardId }: { p: { year: string; kind: string; title: string; description: string; highlight: string; result?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; cardId: string }) {
-  const { t } = useLang();
+function Card({ p, th, i, cardId, image }: { p: { year: string; kind: string; title: string; description: string; highlight: string; result?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; cardId: string; image: ProjectImageT | null }) {
+  const { t, lang } = useLang();
   const [tagsExpanded, setTagsExpanded] = useState(false);
 
   return (
@@ -117,10 +117,26 @@ function Card({ p, th, i, cardId }: { p: { year: string; kind: string; title: st
       className="card rise" style={{ animationDelay: `${Math.min(i, 5) * 90}ms` }}
       onAnimationEnd={(e) => { e.currentTarget.classList.remove('rise'); }}
     >
-      <div className={`thumb ${PROJECT_THUMBS[i]}`}>
-        <ThumbMotif id={cardId} />
+      <div className={`thumb ${PROJECT_THUMBS[i]}${image ? ' thumb--image' : ''}`}>
+        {image ? (
+          <img
+            className="thumb-img"
+            src={image.src}
+            srcSet={image.srcSet}
+            sizes="(min-width: 1024px) 550px, calc(100vw - 32px)"
+            width={image.width}
+            height={image.height}
+            alt={image.alt[lang]}
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <>
+            <ThumbMotif id={cardId} />
+            <b>{th.pre}<i>{th.em}</i>{th.post}</b>
+          </>
+        )}
         <span className="tag-corner">{p.year}</span>
-        <b>{th.pre}<i>{th.em}</i>{th.post}</b>
       </div>
       <div className="body flex flex-col gap-1.5 p-3.5 sm:p-[20px_22px_22px] flex-1">
         <span className="flag">{p.kind}</span>

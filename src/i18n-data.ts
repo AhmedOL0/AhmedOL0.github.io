@@ -11,6 +11,14 @@ export type ProjectT = {
   description: string; highlight: string; result?: string; linkLabel?: string; linkHref?: string;
 };
 
+export type ProjectImageT = {
+  src: string;
+  srcSet: string;
+  width: number;
+  height: number;
+  alt: Record<Lang, string>;
+};
+
 export function thumbTitle(p: ProjectT): { pre: string; em: string; post: string } {
   const i = p.heading.indexOf(p.lead);
   if (i === -1 || !p.lead) return { pre: p.heading, em: '', post: '' };
@@ -68,7 +76,7 @@ const en: Dict = {
     badge: 'Open to PFE internship', titleA: 'Building ', titleEm: 'complete products', titleB: ', not just features.',
     lede: 'I\'m Ahmed Ouarrali, a full-stack software engineer who builds and tests end-to-end digital products, from the first line of code to a running application people actually use.',
     ledeShort: 'Full-stack software engineer building end-to-end digital products, from first line of code to production.',
-    ctaWork: 'Browse production work', ctaContact: 'Get in touch',
+    ctaWork: 'View my work', ctaContact: 'Get in touch',
     statsLabels: ['Projects shipped', 'Internships completed'],
     avail: 'Available for PFE \u00b7 Morocco or remote',
     photoChipA: 'FULL-STACK ENGINEER', photoChipB: 'QA & TEST AUTOMATION',
@@ -382,6 +390,43 @@ export const PROJECT_CATS: string[][] = [
   ['web', 'mobile', 'backend'], ['web', 'backend'], ['web', 'backend'], ['web', 'backend'], ['mobile'], ['ai'], ['iot'],
 ];
 export const PROJECT_THUMBS = ['thumb-odem', 'thumb-procure', 'thumb-med', 'thumb-fit', 'thumb-campus', 'thumb-sum', 'thumb-iot'];
+
+export const PROJECT_IMAGES: (ProjectImageT | null)[] = [
+  {
+    src: '/assets/work/odemlab-1200.webp',
+    srcSet: '/assets/work/odemlab-600.webp 600w, /assets/work/odemlab-1200.webp 1200w',
+    width: 1200,
+    height: 600,
+    alt: {
+      en: 'OdemLab skincare storefront on desktop and its mobile shop screen',
+      fr: 'Vitrine OdemLab sur ordinateur et boutique mobile',
+    },
+  },
+  null,
+  null,
+  {
+    src: '/assets/work/fittrack-1200.webp',
+    srcSet: '/assets/work/fittrack-600.webp 600w, /assets/work/fittrack-1200.webp 1200w',
+    width: 1200,
+    height: 600,
+    alt: {
+      en: 'FitTrack landing page with personalized programs and progress tracking',
+      fr: 'Page d\u2019accueil FitTrack avec programmes personnalis\u00e9s et suivi de progression',
+    },
+  },
+  {
+    src: '/assets/work/smart-campus-1200.webp',
+    srcSet: '/assets/work/smart-campus-600.webp 600w, /assets/work/smart-campus-1200.webp 1200w',
+    width: 1200,
+    height: 600,
+    alt: {
+      en: 'Smart Campus mobile screens for home, schedule and room reservations',
+      fr: '\u00c9crans mobiles Smart Campus : accueil, emploi du temps et r\u00e9servations de salles',
+    },
+  },
+  null,
+  null,
+];
 
 type LangCtx = { lang: Lang; setLang: (l: Lang) => void; t: Dict };
 

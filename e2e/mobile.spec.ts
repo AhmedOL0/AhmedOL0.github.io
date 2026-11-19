@@ -115,6 +115,29 @@ test.describe('Mobile scroll fluidity', () => {
   });
 });
 
+test.describe('Mobile hero cover', () => {
+  test.use({ viewport: { width: 390, height: 844 } });
+
+  test('portrait leads the hero copy on tall phones', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+    await page.evaluate(() => document.fonts.ready);
+    await page.waitForTimeout(800);
+    const portrait = page.locator('.hero-visual');
+    const title = page.locator('h1');
+    const stats = page.locator('.hero-stats');
+    const dock = page.locator('.dock');
+    await expect(portrait).toBeVisible();
+    const portraitBox = await portrait.boundingBox();
+    const titleBox = await title.boundingBox();
+    const statsBox = await stats.boundingBox();
+    const dockBox = await dock.boundingBox();
+    expect(portraitBox!.y, 'portrait starts above the hero title').toBeLessThan(titleBox!.y);
+    expect(portraitBox!.y + portraitBox!.height, 'portrait finishes before the title').toBeLessThan(titleBox!.y);
+    expect(statsBox!.y + statsBox!.height, 'proof strip clears the dock').toBeLessThanOrEqual(dockBox!.y);
+  });
+});
+
 test.describe('Mobile landscape 844×390', () => {
   test.use({ viewport: { width: 844, height: 390 } });
 
