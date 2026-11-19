@@ -16,15 +16,18 @@ export default function ProjectDialog({ project, gallery, tags, onClose }: Proje
 
   useEffect(() => {
     const dialog = dialogRef.current;
+    const root = document.documentElement;
     const returnFocus = document.activeElement as HTMLElement | null;
     const previousOverflow = document.body.style.overflow;
 
     document.body.style.overflow = 'hidden';
+    root.classList.add('has-project-dialog');
     if (dialog && !dialog.open) dialog.showModal();
     closeRef.current?.focus();
 
     return () => {
       document.body.style.overflow = previousOverflow;
+      root.classList.remove('has-project-dialog');
       returnFocus?.focus();
     };
   }, []);
