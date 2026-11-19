@@ -902,7 +902,8 @@ main{overflow-x:clip}
 .tech-cat[data-wide]{grid-column:span 2}
 .tech-cat:hover{border-color:var(--gold-deep)}
 .tech-cat-watermark{display:none}
-.tech-cat-head{display:flex;align-items:center;justify-content:space-between}
+.tech-cat-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tech-cat-count{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;color:var(--faint);border:1px solid var(--line-soft);border-radius:var(--r);padding:3px 7px;background:var(--bg2)}
 .tech-cat-icon{display:flex;align-items:center;justify-content:center;width:22px;height:22px;color:var(--gold);opacity:1}
 .tech-cat-icon svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.5}
 .tech-cat-name{margin:0;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);display:flex;align-items:center;gap:8px}
