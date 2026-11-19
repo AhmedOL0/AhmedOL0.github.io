@@ -1,7 +1,8 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import Section from './Section';
+import ProjectDialog from './ProjectDialog';
 import { useLang } from '../i18n-data';
-import { PROJECT_CATS, PROJECT_IMAGES, PROJECT_TAGS, PROJECT_THUMBS, thumbTitle, type ProjectImageT } from '../i18n-data';
+import { PROJECT_CATS, PROJECT_GALLERIES, PROJECT_IMAGES, PROJECT_TAGS, PROJECT_THUMBS, thumbTitle, type ProjectGalleryImageT, type ProjectImageT } from '../i18n-data';
 
 const filterKeys = ['all', 'web', 'mobile', 'backend', 'ai', 'iot'] as const;
 
@@ -30,6 +31,7 @@ function ThumbMotif({ id }: { id: string }) {
 export default function Work() {
   const { t } = useLang();
   const [f, setF] = useState<(typeof filterKeys)[number]>('all');
+  const [openProject, setOpenProject] = useState<number | null>(null);
   const labels: Record<(typeof filterKeys)[number], string> = {
     all: t.filters.all, web: t.filters.web, mobile: t.filters.mobile,
     backend: t.filters.backend, ai: t.filters.ai, iot: t.filters.iot,
@@ -98,16 +100,33 @@ export default function Work() {
           if (f !== 'all' && !PROJECT_CATS[i].includes(f)) return null;
           const th = thumbTitle(p);
           return (
-            <Card key={cardIds[i]} p={p} th={th} i={i} cardId={cardIds[i]} image={PROJECT_IMAGES[i]} />
+            <Card
+              key={cardIds[i]}
+              p={p}
+              th={th}
+              i={i}
+              cardId={cardIds[i]}
+              image={PROJECT_IMAGES[i]}
+              gallery={PROJECT_GALLERIES[i]}
+              onExplore={() => setOpenProject(i)}
+            />
           );
         })}
       </div>
       <p className="note work-footnote">{t.work.walkthroughNote}</p>
+      {openProject !== null && (
+        <ProjectDialog
+          project={t.work.projects[openProject]}
+          gallery={PROJECT_GALLERIES[openProject]}
+          tags={PROJECT_TAGS[openProject]}
+          onClose={() => setOpenProject(null)}
+        />
+      )}
     </Section>
   );
 }
 
-function Card({ p, th, i, cardId, image }: { p: { year: string; kind: string; title: string; description: string; highlight: string; result?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; cardId: string; image: ProjectImageT | null }) {
+function Card({ p, th, i, cardId, image, gallery, onExplore }: { p: { year: string; kind: string; title: string; description: string; highlight: string; result?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; cardId: string; image: ProjectImageT | null; gallery: ProjectGalleryImageT[]; onExplore: () => void }) {
   const { t, lang } = useLang();
   const [tagsExpanded, setTagsExpanded] = useState(false);
 
@@ -170,9 +189,18 @@ function Card({ p, th, i, cardId, image }: { p: { year: string; kind: string; ti
             </button>
           )}
         </div>
-        {p.linkHref && (
-          <div className="flex items-center gap-3 pt-1">
-            <a className="btn btn-ghost btn-sm" href={p.linkHref} target="_blank" rel="noopener noreferrer">{p.linkLabel}<span className="arr">→</span></a>
+        {(gallery.length > 0 || p.linkHref) && (
+          <div className="card-actions">
+            {gallery.length > 0 && (
+              <button type="button" className="explore-project" aria-haspopup="dialog" onClick={onExplore}>
+                {t.work.explore}<span aria-hidden="true">+</span>
+              </button>
+            )}
+            {p.linkHref && (
+              <a className="btn btn-ghost btn-sm" href={p.linkHref} target="_blank" rel="noopener noreferrer">
+                {p.linkLabel}<span className="arr">&rarr;</span>
+              </a>
+            )}
           </div>
         )}
       </div>
