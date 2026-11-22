@@ -132,9 +132,9 @@ export function useBackToTop(threshold = 700) {
       raf = requestAnimationFrame(() => {
         raf = 0;
         const y = window.scrollY;
-        // Show only when past the threshold AND not scrolling down,
-        // so the button never sits on content the visitor is reading.
-        setShow(y > threshold && y <= last);
+        // Show only when past the threshold AND actually scrolling up,
+        // so duplicate same-position events never surface the button.
+        setShow(y > threshold && y < last);
         last = y;
       });
     };

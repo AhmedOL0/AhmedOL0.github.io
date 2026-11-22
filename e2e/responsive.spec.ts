@@ -50,6 +50,28 @@ for (const vp of VIEWPORTS) {
       }
     });
 
+    test('floating top controls clear the hero eyebrow', async ({ page }) => {
+      const overlap = await page.evaluate(() => {
+        const eyebrow = document.querySelector('.hero-eyebrow');
+        if (!eyebrow) return 'eyebrow missing';
+        const range = document.createRange();
+        range.selectNodeContents(eyebrow);
+        const lines = Array.from(range.getClientRects()).filter((r) => r.width > 2);
+        const controls = Array.from(document.querySelectorAll('.top-right, .cv-menu'))
+          .map((el) => el.getBoundingClientRect());
+        for (const control of controls) {
+          for (const line of lines) {
+            if (control.left < line.right && control.right > line.left
+              && control.top < line.bottom && control.bottom > line.top) {
+              return `control ${Math.round(control.left)}..${Math.round(control.right)} × ${Math.round(control.top)}..${Math.round(control.bottom)} overlaps eyebrow line ${Math.round(line.left)}..${Math.round(line.right)} × ${Math.round(line.top)}..${Math.round(line.bottom)}`;
+            }
+          }
+        }
+        return null;
+      });
+      expect(overlap).toBeNull();
+    });
+
     test('no text is clipped or overflowed', async ({ page }) => {
       const overflowed = await page.evaluate(() => {
         const els = document.querySelectorAll('h1, h2, h3, p, a, button');

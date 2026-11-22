@@ -574,33 +574,33 @@ a.direct-link:hover{text-decoration:underline;text-underline-offset:3px}
 }
 
 /* Hero actions */
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
 /* Hero contact strip: direct reachability right under the CTAs */
-.hero-contact{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin-top:18px;font-family:var(--mono);font-size:.74rem;letter-spacing:.03em;color:var(--muted)}
+.hero-contact{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin-top:20px;font-family:var(--mono);font-size:.74rem;letter-spacing:.03em;color:var(--muted)}
 .hero-contact a,.hero-contact .hero-loc{display:inline-flex;align-items:center;min-height:44px}
 .hero-contact a{color:var(--gold);text-decoration:none}
 .hero-contact a:hover{text-decoration:underline;text-underline-offset:3px}
 .hero-loc{display:inline-flex;align-items:center;gap:8px}
 /* Hero proof strip: values computed from shipped content (see Hero.tsx) */
-.hero-stats{display:flex;gap:28px;flex-wrap:wrap;margin:22px 0 0;padding:0}
+.hero-stats{display:flex;gap:28px;flex-wrap:wrap;margin:24px 0 0;padding:0}
 .hero-stat{display:flex;flex-direction:column;gap:2px;margin:0}
 .hero-stat dt{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);order:2}
 .hero-stat dd{margin:0;font-family:var(--serif);font-size:1.5rem;font-weight:500;line-height:1;color:var(--ink);order:1}
 /* Dossier cover: hero clears the floating dock at rest */
 .hero-block--top{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
-.hero-lede{color:var(--muted);font-size:clamp(.95rem,1.6vw,1.05rem);line-height:1.7;max-width:44ch;margin-top:12px}
+.hero-lede{color:var(--muted);font-size:clamp(.95rem,1.6vw,1.05rem);line-height:1.7;max-width:44ch;margin-top:14px}
 .lede-short{display:none}
 @media(max-width:640px){
   .lede-full{display:none}
   .lede-short{display:block}
 }
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;padding:6px 12px;border-radius:var(--r);background:transparent;border:1px solid var(--line)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;padding:6px 12px;border-radius:var(--r);background:transparent;border:1px solid var(--line)}
 .hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--sage)}
 .hero-title-em{font-style:italic;color:var(--gold)}
 .hero-title{font-family:var(--serif);font-weight:500;line-height:1.06;letter-spacing:-.015em;margin:0;font-size:clamp(2.4rem,5.5vw,3.8rem);color:var(--ink)}
 
 /* Identity plate: dossier record plate */
-.plate{display:grid;grid-template-columns:auto 1fr;gap:16px 20px;align-items:center;border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:18px 20px;margin-top:22px;max-width:560px}
+.plate{display:grid;grid-template-columns:auto 1fr;gap:16px 20px;align-items:center;border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:18px 20px;margin-top:28px;max-width:560px}
 .plate-mark{width:58px;height:58px;border:1px solid var(--line);border-radius:var(--r);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
 .plate-seal{font-family:var(--serif);font-size:1.5rem;font-weight:600;letter-spacing:-.02em;line-height:1}
 .plate-seal em{font-style:italic;font-weight:500}
@@ -660,11 +660,11 @@ a.direct-link:hover{text-decoration:underline;text-underline-offset:3px}
      into the dock band on narrow screens (buttons also wrap to two rows).
      DOM order unchanged, so screen-reader/keyboard order is unaffected. */
   .hero-content{display:flex;flex-direction:column}
-  .hero-actions{order:1;margin-top:16px}
-  .hero-contact{order:2;margin-top:16px}
-  .hero-stats{order:3;margin-top:18px;gap:22px}
+  .hero-actions{order:1;margin-top:20px}
+  .hero-contact{order:2;margin-top:18px}
+  .hero-stats{order:3;margin-top:20px;gap:22px}
   .plate{order:4}
-  .hero-visual{display:grid;place-items:center;max-width:320px;margin-top:24px;--portrait:240px}
+  .hero-visual{display:grid;place-items:center;max-width:320px;margin-top:8px;--portrait:240px}
 }
 
 /* Top pills + language switcher: dossier index markers */
@@ -677,7 +677,7 @@ a.direct-link:hover{text-decoration:underline;text-underline-offset:3px}
 .cv-menu summary{list-style:none;display:inline-flex;align-items:center;min-height:44px;padding:8px 20px;cursor:pointer;font-family:var(--mono);font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;color:var(--gold)}
 .cv-menu summary::-webkit-details-marker{display:none}
 .cv-menu[open] summary{color:var(--gold-hi)}
-.cv-menu-panel{position:absolute;top:calc(100% + 8px);left:0;width:230px;padding:8px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);box-shadow:0 18px 50px rgba(0,0,0,.28);z-index:70}
+.cv-menu-panel{position:absolute;top:calc(100% + 8px);right:0;left:auto;width:230px;padding:8px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);box-shadow:0 18px 50px rgba(0,0,0,.28);z-index:70}
 .cv-menu-label{margin:6px 8px 4px;font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
 .cv-menu-panel a{display:flex;align-items:center;justify-content:space-between;min-height:44px;padding:8px 10px;border-radius:var(--r);color:var(--muted);text-decoration:none;font-size:.82rem}
 .cv-menu-panel a:hover,.cv-menu-panel a:focus-visible{background:var(--bg2);color:var(--gold)}
@@ -830,18 +830,18 @@ main{overflow-x:clip}
   .hero-block{padding-bottom:16px}
   .hero-inner{gap:12px}
   .hero-visual{width:calc(var(--hero-p) + 40px);max-width:calc(var(--hero-p) + 40px);height:calc(var(--hero-p) + 40px);aspect-ratio:auto;margin-top:8px;--portrait:var(--hero-p)}
-  .hero-eyebrow{margin-bottom:12px}
-  .hero-lede{margin-top:6px}
-  .hero-actions{margin-top:0}
+  .hero-eyebrow{margin-bottom:16px}
+  .hero-lede{margin-top:10px}
+  .hero-actions{margin-top:14px}
 }
 /* Short viewports: keep the portrait clear of the dock band. */
 @media(max-height:650px){
   .hero-block--top{justify-content:flex-start}
   .hero-title{font-size:clamp(1.5rem,2.4vw,1.9rem)}
   .hero-lede{font-size:.85rem;line-height:1.5}
-  .hero-eyebrow{margin-bottom:12px}
-  .hero-lede{margin-top:6px}
-  .hero-actions{margin-top:0}
+  .hero-eyebrow{margin-bottom:14px}
+  .hero-lede{margin-top:8px}
+  .hero-actions{margin-top:10px}
 }
 /* Short wide viewports: the full 420px portrait column would drop into the dock band */
 @media(max-height:560px){
@@ -869,10 +869,10 @@ main{overflow-x:clip}
 @media (min-width:360px) and (max-width:412px) and (min-height:810px),
   (min-width:413px) and (max-width:640px) and (min-height:880px){
   .hero-inner{gap:18px}
-  .hero-visual{order:-1;width:clamp(196px, calc(100svh - 640px), 248px);height:clamp(196px, calc(100svh - 640px), 248px);max-width:248px;aspect-ratio:auto;margin:0 auto;--portrait:clamp(148px, calc(100svh - 688px), 200px)}
+  .hero-visual{order:-1;width:clamp(184px, calc(100svh - 660px), 240px);height:clamp(184px, calc(100svh - 660px), 240px);max-width:240px;aspect-ratio:auto;margin:0 auto;--portrait:clamp(148px, calc(100svh - 688px), 200px)}
   .hero-content{order:1}
-  .hero-actions{margin-top:16px}
-  .hero-stats{margin-top:8px}
+  .hero-actions{margin-top:18px}
+  .hero-stats{margin-top:12px}
 }
 
 /* ── What I Do: capability folios ── */
@@ -1021,3 +1021,40 @@ main{overflow-x:clip}
   .about-main{flex:1;min-width:0}
   .about-langs{flex:0 0 260px;padding:24px}
 }
+
+/* The top controls float above the page: on phones (and short landscape
+   windows) the header cluster takes the top band, so the hero copy starts
+   below it instead of under it. */
+@media(max-width:640px), (max-height:500px) and (orientation:landscape){
+  .hero-block--top{padding-top:calc(76px + env(safe-area-inset-top,0px))}
+}
+/* Tablet single-column heroes: let the availability pill hug its text so it
+   ends before the header cluster instead of running underneath it. */
+@media(min-width:641px) and (max-width:959px){
+  .hero-eyebrow{align-self:flex-start;width:fit-content}
+}
+/* Narrow tablet windows: cap the eyebrow before the right-hand header cluster
+   instead of pushing the whole hero down under it. Between 753 and 959px the
+   label fits on one line once its tracking is tightened. */
+@media(min-width:641px) and (max-width:752px) and (min-height:501px){
+  .hero-eyebrow{max-width:calc(100% - 230px)}
+}
+@media(min-width:753px) and (max-width:959px){
+  .hero-eyebrow{letter-spacing:.07em}
+}
+@media(min-width:960px) and (max-width:1279px){
+  .hero-eyebrow{letter-spacing:.06em}
+}
+/* Short laptops: keep the proof strip above the floating dock while retaining
+   the extra hero breathing room. */
+@media(min-width:960px) and (max-height:820px){
+  .hero-title{font-size:clamp(2.6rem,5vw,3.4rem)}
+  .hero-lede{font-size:.95rem;line-height:1.6}
+  .plate{margin-top:24px;padding:14px 18px}
+  .hero-stats{margin-top:20px}
+  /* The hero copy runs to the bottom of the fold here: dock the navigation
+     under the portrait column so it never masks the contact strip. */
+  .dock{left:auto;right:calc(28px + env(safe-area-inset-right,0px));transform:translateY(80px);animation:dock-in-right .5s ease .2s forwards}
+  #toTop{bottom:100px}
+}
+@keyframes dock-in-right{to{transform:translateY(0)}}
