@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import Section from './Section';
 import ProjectDialog from './ProjectDialog';
 import { useLang } from '../i18n-data';
-import { PROJECT_CATS, PROJECT_GALLERIES, PROJECT_IMAGES, PROJECT_TAGS, PROJECT_THUMBS, thumbTitle, type ProjectGalleryImageT, type ProjectImageT } from '../i18n-data';
+import { PROJECT_CATS, PROJECT_GALLERIES, PROJECT_TAGS, PROJECT_THUMBS, thumbTitle, type ProjectGalleryImageT } from '../i18n-data';
 
 const filterKeys = ['all', 'web', 'mobile', 'backend', 'ai', 'iot'] as const;
 
@@ -157,7 +157,6 @@ export default function Work() {
               th={th}
               i={i}
               cardId={cardIds[i]}
-              image={PROJECT_IMAGES[i]}
               gallery={PROJECT_GALLERIES[i]}
               onExplore={() => openCaseStudy(i)}
             />
@@ -181,9 +180,14 @@ export default function Work() {
   );
 }
 
-function Card({ p, th, i, cardId, image, gallery, onExplore }: { p: { year: string; kind: string; title: string; description: string; highlight: string; result?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; cardId: string; image: ProjectImageT | null; gallery: ProjectGalleryImageT[]; onExplore: () => void }) {
+function Card({ p, th, i, cardId, gallery, onExplore }: { p: { year: string; kind: string; title: string; description: string; highlight: string; result?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; cardId: string; gallery: ProjectGalleryImageT[]; onExplore: () => void }) {
   const { t, lang } = useLang();
   const [tagsExpanded, setTagsExpanded] = useState(false);
+  const [shotIndex, setShotIndex] = useState(0);
+  const changeShot = (delta: number) => {
+    if (gallery.length < 2) return;
+    setShotIndex((prev) => (prev + delta + gallery.length) % gallery.length);
+  };
 
   return (
     <article
@@ -191,19 +195,51 @@ function Card({ p, th, i, cardId, image, gallery, onExplore }: { p: { year: stri
       className="card rise" style={{ animationDelay: `${Math.min(i, 5) * 90}ms` }}
       onAnimationEnd={(e) => { e.currentTarget.classList.remove('rise'); }}
     >
-      <div className={`thumb ${PROJECT_THUMBS[i]}${image ? ' thumb--image' : ''}`}>
-        {image ? (
-          <img
-            className="thumb-img"
-            src={image.src}
-            srcSet={image.srcSet}
-            sizes="(min-width: 1024px) 550px, calc(100vw - 32px)"
-            width={image.width}
-            height={image.height}
-            alt={image.alt[lang]}
-            loading="lazy"
-            decoding="async"
-          />
+      <div className={`thumb ${PROJECT_THUMBS[i]}${gallery.length > 0 ? ' thumb--image thumb--carousel' : ''}`}>
+        {gallery.length > 0 ? (
+          <>
+            <img className="thumb-bg" src={gallery[shotIndex].src} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+            <div className="thumb-stage">
+              <img
+                key={gallery[shotIndex].src}
+                className="thumb-img"
+                src={gallery[shotIndex].src}
+                width={gallery[shotIndex].width}
+                height={gallery[shotIndex].height}
+                alt={gallery[shotIndex].alt[lang]}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            {gallery.length > 1 && (
+              <>
+                <button type="button" className="thumb-nav thumb-nav--prev" onClick={() => changeShot(-1)} aria-label={t.work.previousScreen}>
+                  <span aria-hidden="true">&larr;</span>
+                </button>
+                <button type="button" className="thumb-nav thumb-nav--next" onClick={() => changeShot(1)} aria-label={t.work.nextScreen}>
+                  <span aria-hidden="true">&rarr;</span>
+                </button>
+                <div className="thumb-dots" role="group" aria-label={t.work.screensLabel}>
+                  {gallery.map((shot, index) => (
+                    <button
+                      key={shot.src}
+                      type="button"
+                      className={`thumb-dot${index === shotIndex ? ' active' : ''}`}
+                      aria-label={`${index + 1} / ${gallery.length}: ${shot.label[lang]}`}
+                      aria-current={index === shotIndex ? 'true' : undefined}
+                      onClick={() => setShotIndex(index)}
+                    >
+                      <span aria-hidden="true" />
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+            <span className="thumb-count" aria-live="polite">
+              <span className="thumb-count-label">{gallery[shotIndex].label[lang]}</span>
+              <span className="thumb-count-index">{String(shotIndex + 1).padStart(2, '0')} / {String(gallery.length).padStart(2, '0')}</span>
+            </span>
+          </>
         ) : (
           <>
             <ThumbMotif id={cardId} />
@@ -211,9 +247,6 @@ function Card({ p, th, i, cardId, image, gallery, onExplore }: { p: { year: stri
           </>
         )}
         <span className="tag-corner">{p.year}</span>
-        {image && gallery.length > 0 && (
-          <span className="thumb-count" aria-hidden="true">{gallery.length} {t.work.screensShort}</span>
-        )}
       </div>
       <div className="body flex flex-col gap-1.5 p-3.5 sm:p-[20px_22px_22px] flex-1">
         <span className="flag">{p.kind}</span>

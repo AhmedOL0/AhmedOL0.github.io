@@ -11,14 +11,6 @@ export type ProjectT = {
   description: string; highlight: string; result?: string; linkLabel?: string; linkHref?: string;
 };
 
-export type ProjectImageT = {
-  src: string;
-  srcSet: string;
-  width: number;
-  height: number;
-  alt: Record<Lang, string>;
-};
-
 export type ProjectGalleryImageT = {
   src: string;
   width: number;
@@ -48,7 +40,7 @@ export type Dict = {
   whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; metricLabels: [string, string, string, string]; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
-  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; showMoreTags: string; filterCount: string; filterCountOne: string; filterGroup: string; walkthroughNote: string; notesSummary: string; approachLabel: string; outcomeLabel: string; explore: string; close: string; discuss: string; screensLabel: string; screensShort: string; previousProject: string; nextProject: string; previousScreen: string; nextScreen: string; enlarge: string; projects: ProjectT[] };
+  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; showMoreTags: string; filterCount: string; filterCountOne: string; filterGroup: string; walkthroughNote: string; notesSummary: string; approachLabel: string; outcomeLabel: string; explore: string; close: string; discuss: string; screensLabel: string; previousProject: string; nextProject: string; previousScreen: string; nextScreen: string; enlarge: string; projects: ProjectT[] };
   exp: { kicker: string; title: string; latest: string; jobs: JobT[] };
   edu: { kicker: string; title: string; sub: string; entries: EduT[] };
   behind: { kicker: string; title: string; sub: string; dailyLabel: string; daily: string; exploredLabel: string; explored: string; categories: TechCategory[] };
@@ -126,7 +118,7 @@ const en: Dict = {
     showLess: 'show less', showFewer: 'Show fewer tags', showMoreTags: 'Show {count} more tags', filterCount: 'Showing {count} of {total} projects', filterCountOne: 'Showing 1 of {total} projects', filterGroup: 'Filter projects by discipline',
     walkthroughNote: 'Live demos, private repositories and hardware: code walkthroughs and guided demos available on request.',
     notesSummary: 'Engineering notes', approachLabel: 'Approach', outcomeLabel: 'Outcome',
-    explore: 'Explore project', close: 'Close', discuss: 'Discuss this project', screensLabel: 'Project screens', screensShort: 'screens',
+    explore: 'Explore project', close: 'Close', discuss: 'Discuss this project', screensLabel: 'Project screens',
     previousProject: 'Previous project', nextProject: 'Next project', previousScreen: 'Previous screen', nextScreen: 'Next screen', enlarge: 'Enlarge screen',
     projects: [
       { title: 'OdemLab: AI skincare e-commerce', year: 'Flagship', kind: 'Team of 4 · Private repo', heading: 'OdemLab', lead: 'd',
@@ -284,7 +276,7 @@ const fr: Dict = {
     showLess: 'voir moins', showFewer: 'Afficher moins', showMoreTags: 'Afficher {count} autres tags', filterCount: '{count} projets sur {total} affichés', filterCountOne: '1 projet sur {total} affichés', filterGroup: 'Filtrer les projets par discipline',
     walkthroughNote: 'D\u00e9mos en direct, d\u00e9p\u00f4ts priv\u00e9s et mat\u00e9riel : revues de code et d\u00e9monstrations guid\u00e9es sur demande.',
     notesSummary: 'Notes techniques', approachLabel: 'Approche', outcomeLabel: 'R\u00e9sultat',
-    explore: 'Explorer le projet', close: 'Fermer', discuss: 'Discuter de ce projet', screensLabel: '\u00c9crans du projet', screensShort: '\u00e9crans',
+    explore: 'Explorer le projet', close: 'Fermer', discuss: 'Discuter de ce projet', screensLabel: '\u00c9crans du projet',
     previousProject: 'Projet pr\u00e9c\u00e9dent', nextProject: 'Projet suivant', previousScreen: '\u00c9cran pr\u00e9c\u00e9dent', nextScreen: '\u00c9cran suivant', enlarge: 'Agrandir l\u2019\u00e9cran',
     projects: [
       { title: 'OdemLab: e-commerce cosm\u00e9tique IA', year: 'Vitrine', kind: '\u00c9quipe de 4 \u00b7 D\u00e9p\u00f4t priv\u00e9', heading: 'OdemLab', lead: 'd',
@@ -403,63 +395,22 @@ export const PROJECT_CATS: string[][] = [
 ];
 export const PROJECT_THUMBS = ['thumb-odem', 'thumb-procure', 'thumb-med', 'thumb-fit', 'thumb-campus', 'thumb-sum', 'thumb-iot'];
 
-export const PROJECT_IMAGES: (ProjectImageT | null)[] = [
-  {
-    src: '/assets/work/odemlab-1200.webp',
-    srcSet: '/assets/work/odemlab-600.webp 600w, /assets/work/odemlab-1200.webp 1200w',
-    width: 1200,
-    height: 800,
-    alt: {
-      en: 'OdemLab mobile app: AI skin scan, shop and routine tracking',
-      fr: 'Application mobile OdemLab : scan de peau, boutique et suivi de routine',
-    },
-  },
-  {
-    src: '/assets/work/procureflow-1200.webp',
-    srcSet: '/assets/work/procureflow-600.webp 600w, /assets/work/procureflow-1200.webp 1200w',
-    width: 1200,
-    height: 800,
-    alt: {
-      en: 'ProcureFlow procurement dashboard and approval inbox',
-      fr: 'Tableau de bord ProcureFlow et bo\u00eete d\u2019approbation',
-    },
-  },
-  null,
-  {
-    src: '/assets/work/fittrack-1200.webp',
-    srcSet: '/assets/work/fittrack-600.webp 600w, /assets/work/fittrack-1200.webp 1200w',
-    width: 1200,
-    height: 800,
-    alt: {
-      en: 'FitTrack landing page with personalized programs and progress tracking',
-      fr: 'Page d\u2019accueil FitTrack avec programmes personnalis\u00e9s et suivi de progression',
-    },
-  },
-  {
-    src: '/assets/work/smart-campus-1200.webp',
-    srcSet: '/assets/work/smart-campus-600.webp 600w, /assets/work/smart-campus-1200.webp 1200w',
-    width: 1200,
-    height: 800,
-    alt: {
-      en: 'Smart Campus mobile screens for home, schedule and room reservations',
-      fr: '\u00c9crans mobiles Smart Campus : accueil, emploi du temps et r\u00e9servations de salles',
-    },
-  },
-  null,
-  null,
-];
-
 export const PROJECT_GALLERIES: ProjectGalleryImageT[][] = [
   [
     {
-      src: '/assets/work/gallery/odemlab-scan.webp', width: 465, height: 990,
-      alt: { en: 'OdemLab AI skin scan screen', fr: '\u00c9cran de scan de peau IA OdemLab' },
-      label: { en: 'Skin scan', fr: 'Scan de peau' },
+      src: '/assets/work/gallery/odemlab-site.webp', width: 800, height: 397,
+      alt: { en: 'OdemLab website storefront', fr: 'Vitrine web OdemLab' },
+      label: { en: 'Website', fr: 'Site web' },
     },
     {
       src: '/assets/work/gallery/odemlab-shop.webp', width: 465, height: 990,
       alt: { en: 'OdemLab mobile shop with product recommendations', fr: 'Boutique mobile OdemLab avec recommandations produits' },
       label: { en: 'Shop', fr: 'Boutique' },
+    },
+    {
+      src: '/assets/work/gallery/odemlab-scan.webp', width: 465, height: 990,
+      alt: { en: 'OdemLab AI skin scan screen', fr: '\u00c9cran de scan de peau IA OdemLab' },
+      label: { en: 'Skin scan', fr: 'Scan de peau' },
     },
     {
       src: '/assets/work/gallery/odemlab-routine.webp', width: 465, height: 1003,
@@ -470,11 +421,6 @@ export const PROJECT_GALLERIES: ProjectGalleryImageT[][] = [
       src: '/assets/work/gallery/odemlab-loyalty.webp', width: 465, height: 990,
       alt: { en: 'OdemLab loyalty points screen', fr: '\u00c9cran de fid\u00e9lit\u00e9 OdemLab' },
       label: { en: 'Loyalty', fr: 'Fid\u00e9lit\u00e9' },
-    },
-    {
-      src: '/assets/work/gallery/odemlab-site.webp', width: 800, height: 397,
-      alt: { en: 'OdemLab website storefront', fr: 'Vitrine web OdemLab' },
-      label: { en: 'Website', fr: 'Site web' },
     },
     {
       src: '/assets/work/gallery/odemlab-catalogue.webp', width: 800, height: 394,

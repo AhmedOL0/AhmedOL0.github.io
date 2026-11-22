@@ -50,9 +50,12 @@ test.describe('Case-study content', () => {
   });
 
   test('project previews are real, lazy-loaded and described', async ({ page }) => {
-    const previews = page.locator('#work .thumb--image img');
+    const previews = page.locator('#work .thumb--image .thumb-img');
     await expect(previews).toHaveCount(4);
     await expect(page.locator('#work .thumb-count')).toHaveCount(4);
+    const firstCard = page.locator('#work .card').first();
+    await firstCard.locator('.thumb-nav--next').click();
+    await expect(firstCard.locator('.thumb-count-index')).toHaveText('02 / 06');
     for (let i = 0; i < 4; i++) {
       const img = previews.nth(i);
       await expect(img).toHaveAttribute('loading', 'lazy');
