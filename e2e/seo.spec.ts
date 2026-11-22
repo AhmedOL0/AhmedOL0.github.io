@@ -6,6 +6,16 @@ test.describe('SEO & Meta', () => {
     await page.waitForLoadState('networkidle');
   });
 
+  test('raw HTML contains crawlable portfolio content', async ({ request }) => {
+    const response = await request.get('/');
+    expect(response.ok()).toBeTruthy();
+    const html = await response.text();
+    expect(html).toContain('Ahmed Ouarrali');
+    expect(html).toContain('OdemLab');
+    expect(html).toContain('ahmedouarrali12@gmail.com');
+    expect(html).toContain('CV_Ahmed_Ouarrali_EN.pdf');
+  });
+
   test('page has a title', async ({ page }) => {
     const title = await page.title();
     expect(title.length).toBeGreaterThan(0);

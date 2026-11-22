@@ -42,7 +42,7 @@ npm run dev
 
 ## Testing
 
-The e2e suite runs against chromium, firefox, webkit and mobile-chrome (560 checks). It covers content integrity (including a French copy leak guard), accessibility (WCAG 2.2), keyboard navigation, responsive layout, security meta, SEO, print output, and mobile journeys.
+The e2e suite runs against chromium, firefox, webkit and mobile-chrome (564 checks). It covers content integrity (including a French copy leak guard), accessibility (WCAG 2.2), keyboard navigation, responsive layout, security meta, SEO, print output, and mobile journeys.
 
 Run it against a production build:
 
@@ -73,4 +73,4 @@ public/           static assets, fonts, CV, llms.txt, portfolio.json, manifest
 
 ## Assets
 
-`public/assets/` holds responsive portraits (`photo-240.webp` / `photo-480.webp` with `.jpg` fallbacks) and `CV_Ahmed_Ouarrali.pdf`. Self-hosted latin variable fonts live in `public/fonts/`. Machine-readable metadata (`llms.txt`, `portfolio.json`, `sitemap.xml`, `robots.txt`) ships alongside.
+`public/assets/` holds responsive portraits (`photo-240.webp` / `photo-480.webp` with `.jpg` fallbacks) and the final CVs (`CV_Ahmed_Ouarrali_EN.pdf` / `CV_Ahmed_Ouarrali_FR.pdf`). Self-hosted latin variable fonts live in `public/fonts/`. Machine-readable metadata (`llms.txt`, `portfolio.json`, `sitemap.xml`, `robots.txt`) ships alongside.

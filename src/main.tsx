@@ -3,7 +3,10 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 
-createRoot(document.getElementById('root')!).render(
+const root = document.getElementById('root')!;
+// Remove the static, crawlable fallback before mounting the interactive app.
+root.replaceChildren();
+createRoot(root).render(
   <StrictMode>
     <App />
   </StrictMode>,

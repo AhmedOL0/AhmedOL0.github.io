@@ -1,8 +1,8 @@
 {
   "name": "Ahmed Ouarrali",
   "role": "Full-Stack Software Engineer",
-  "seeking": "PFE internship (Spring Boot, Next.js, React Native, Flutter)",
-  "location": "Morocco (UTC+1), open to remote",
+  "seeking": "Final-year engineering internship (PFE), February-June 2027, backend or full-stack (Java / Spring Boot)",
+  "location": "Morocco (UTC+1), open to Morocco and Europe, remote",
   "url": "https://ahmedol0.github.io/",
   "email": "ahmedouarrali12@gmail.com",
   "phone": "+212 645 372 099",
@@ -13,27 +13,27 @@
   "education": [
     {
       "school": "ENSIASD, Ibn Zohr University",
-      "title": "Software Engineering (AI & Data Science)",
-      "years": "2024 – Present"
+      "title": "Engineering cycle in software engineering (AI and data science coursework)",
+      "years": "2024 – 2027 (expected)"
     },
     {
-      "school": "DUT",
-      "title": "Computer Science (IoT thesis: cane counting system, ESP8266 + laser sensor)",
+      "school": "EST Oujda, Higher School of Technology",
+      "title": "DUT in embedded computer engineering (IoT thesis: cane counting system, ESP8266 + laser sensor)",
       "years": "2022 – 2024"
     }
   ],
   "stack": {
     "backend": ["Spring Boot", "Java 21", "Laravel", "Flask", "Flyway", "JUnit 5", "Testcontainers"],
-    "frontend_mobile": ["Next.js", "React", "Angular", "React Native", "Expo", "Flutter", "TypeScript", "Tailwind CSS"],
-    "data_ai": ["PostgreSQL", "MySQL", "Redis", "Firebase", "PyTorch", "CamemBERT", "spaCy", "Groq", "Gemini AI"],
-    "devops_quality": ["Docker", "GitHub Actions", "Google Cloud Run", "Playwright", "axe-core", "Stripe"]
+    "frontend_mobile": ["Next.js", "React", "Angular", "Flutter", "TypeScript", "Tailwind CSS"],
+    "data_ai": ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Flyway", "Firebase", "PyTorch", "CamemBERT", "spaCy", "Groq"],
+    "devops_quality": ["Docker", "Git", "GitHub Actions", "Google Cloud Run", "OpenAPI", "Playwright", "axe-core"]
   },
   "projects": [
     {
       "title": "OdemLab",
       "year": "2026",
-      "summary": "AI-augmented skincare e-commerce",
-      "stack": ["Spring Boot", "Next.js", "React Native", "PostgreSQL", "Redis", "Stripe", "Gemini AI", "Playwright"],
+      "summary": "Skincare commerce platform (Zorium, team of four); backend and web contributions",
+      "stack": ["Java 21", "Spring Boot", "Next.js", "React", "TypeScript", "PostgreSQL", "Redis", "Flyway", "OpenAPI", "Docker", "Google Cloud Run", "GitHub Actions"],
       "anchor": "#work-odemlab"
     },
     {
@@ -45,22 +45,22 @@
       "repo": "https://github.com/AhmedOL0/ProcureFlow"
     },
     {
-      "title": "Medical appointment platform",
+      "title": "MediCare",
       "year": "2025",
-      "summary": "Laravel clinic booking (internship)",
-      "stack": ["Laravel", "MySQL", "Bootstrap", "Chart.js"]
+      "summary": "Laravel clinic management with specialty search, booking and patient records (internship)",
+      "stack": ["PHP", "Laravel", "MySQL", "JavaScript", "Bootstrap"]
     },
     {
       "title": "FitTrack",
       "year": "2025",
-      "summary": "Fitness training platform",
-      "stack": ["Spring Boot", "Next.js", "MySQL", "Docker"]
+      "summary": "Fitness training and progress platform",
+      "stack": ["Java", "Spring Boot", "Next.js", "React", "TypeScript", "MySQL", "Docker"]
     },
     {
       "title": "Smart Campus Companion",
       "year": "2026",
-      "summary": "Flutter campus app with QR room info, AR explored",
-      "stack": ["Flutter", "Firebase", "ARCore", "ARKit"]
+      "summary": "Flutter campus app with QR room sheets, AR view, timetable, bookings and incident reports",
+      "stack": ["Flutter", "Dart", "Firebase", "Firestore", "Riverpod", "ARCore/ARKit", "QR Scanner"]
     },
     {
       "title": "SmartSummarizer",
@@ -72,7 +72,7 @@
       "title": "Cane counting system",
       "year": "2024",
       "summary": "ESP8266 + laser sensor IoT (DUT thesis)",
-      "stack": ["ESP8266", "Arduino", "PHP", "MySQL"]
+      "stack": ["ESP8266", "VL53L0X", "PHP", "MySQL"]
     }
   ],
   "languages": [
@@ -84,6 +84,8 @@
     "languages": ["en", "fr"],
     "sitemap": "https://ahmedol0.github.io/sitemap.xml",
     "llms": "https://ahmedol0.github.io/llms.txt",
-    "resume": "https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali.pdf"
+    "resume": "https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali_EN.pdf",
+    "resume_en": "https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali_EN.pdf",
+    "resume_fr": "https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali_FR.pdf"
   }
 }
