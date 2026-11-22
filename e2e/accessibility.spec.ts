@@ -135,7 +135,7 @@ test.describe('Accessibility (WCAG 2.2)', () => {
       expect(order[0], 'first stop is the skip link').toContain('A.skip-link');
     }
     for (const stop of order) {
-      expect(stop, `non-interactive tab stop: ${stop}`).toMatch(/^(A|BUTTON|INPUT|TEXTAREA)/);
+      expect(stop, `non-interactive tab stop: ${stop}`).toMatch(/^(A|BUTTON|INPUT|TEXTAREA|SUMMARY)/);
     }
     expect(order, 'no keyboard trap in first stops').not.toContain('NONE');
   });

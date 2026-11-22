@@ -56,14 +56,14 @@ test.describe('Navigation & Interaction', () => {
     const allBtn = page.locator('.filters button', { hasText: /all|tous/i });
     const webBtn = page.locator('.filters button', { hasText: /web/i });
 
-    await allBtn.click({ force: true });
-    const allCount = await page.locator('.card').count();
     const allBadge = Number(await allBtn.locator('.filter-count').innerText());
-    expect(allBadge).toBe(allCount);
+    await allBtn.evaluate((el) => (el as HTMLElement).click());
+    await expect.poll(() => page.locator('.card').count()).toBe(allBadge);
+    const allCount = allBadge;
 
     const webBadge = Number(await webBtn.locator('.filter-count').innerText());
-    await webBtn.click({ force: true });
-    await page.waitForTimeout(200);
+    await webBtn.evaluate((el) => (el as HTMLElement).click());
+    await expect.poll(() => page.locator('.card').count()).toBe(webBadge);
     const webCount = await page.locator('.card').count();
 
     expect(webCount).toBeLessThanOrEqual(allCount);
@@ -113,14 +113,18 @@ test.describe('Navigation & Interaction', () => {
     expect(await toTopBtn.getAttribute('class'), 'show class after scrolling up').toContain('show');
   });
 
-  test('CV download link works', async ({ page }) => {
-
-    // Two matches (top pill + footer button): assert on the first.
-    const cvLink = page.locator('a[href*="CV"][download]').first();
-    await expect(cvLink).toBeAttached();
-    const href = await cvLink.getAttribute('href');
-    expect(href).toContain('CV');
-    expect(href).toContain('.pdf');
+  test('full-stack and QA CV downloads are both available', async ({ page }) => {
+    const cvLinks = page.locator('a[href*="CV_Ahmed_Ouarrali"][download]');
+    await expect(cvLinks.first()).toBeAttached();
+    const hrefs = await cvLinks.evaluateAll((links) => links.map((link) => link.getAttribute('href') ?? ''));
+    for (const file of [
+      'CV_Ahmed_Ouarrali_EN.pdf',
+      'CV_Ahmed_Ouarrali_FR.pdf',
+      'CV_Ahmed_Ouarrali_QA_EN.pdf',
+      'CV_Ahmed_Ouarrali_QA_FR.pdf',
+    ]) {
+      expect(hrefs.some((href) => href.includes(file)), `${file} link present`).toBe(true);
+    }
   });
 
   test('pre-paint init respects saved theme and language', async ({ page }) => {

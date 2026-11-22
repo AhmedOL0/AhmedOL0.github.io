@@ -95,9 +95,12 @@ function Footer() {
         <p className="text-[.72rem] font-mono-d tracking-[.06em] order-2 sm:order-1 footer-built">
           {t.footer.built}
         </p>
-        <div className="flex items-center gap-4 order-1 sm:order-2">
+        <div className="flex flex-wrap items-center gap-3 order-1 sm:order-2">
           <a href={`assets/CV_Ahmed_Ouarrali_${lang === 'fr' ? 'FR' : 'EN'}.pdf`} download className="btn btn-sm btn-ghost">
-            {t.dock.resume} ↓
+            {t.dock.cvFullStack} ↓
+          </a>
+          <a href={`assets/CV_Ahmed_Ouarrali_QA_${lang === 'fr' ? 'FR' : 'EN'}.pdf`} download className="btn btn-sm btn-ghost">
+            {t.dock.cvQA} ↓
           </a>
           <a href="#top" className="no-underline text-[.78rem] font-mono-d tracking-[.06em] back-to-top">{t.footer.top} ↑</a>
         </div>

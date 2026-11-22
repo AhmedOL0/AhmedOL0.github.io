@@ -86,6 +86,8 @@
     "llms": "https://ahmedol0.github.io/llms.txt",
     "resume": "https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali_EN.pdf",
     "resume_en": "https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali_EN.pdf",
-    "resume_fr": "https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali_FR.pdf"
+    "resume_fr": "https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali_FR.pdf",
+    "resume_qa_en": "https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali_QA_EN.pdf",
+    "resume_qa_fr": "https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali_QA_FR.pdf"
   }
 }

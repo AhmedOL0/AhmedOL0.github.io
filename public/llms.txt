@@ -7,8 +7,10 @@
 ## Pages
 
 - [Home](https://ahmedol0.github.io/): single-page portfolio (EN/FR): hero, capabilities, process, selected work, experience, education, tech stack, about, contact.
-- [CV EN (PDF)](https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali_EN.pdf): full-stack CV in English.
-- [CV FR (PDF)](https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali_FR.pdf): CV full-stack en français.
+- [Full-Stack CV EN (PDF)](https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali_EN.pdf): full-stack CV in English.
+- [CV Full-Stack FR (PDF)](https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali_FR.pdf): CV full-stack en français.
+- [QA Automation CV EN (PDF)](https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali_QA_EN.pdf): QA automation CV in English.
+- [CV QA Automatisation FR (PDF)](https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali_QA_FR.pdf): CV QA automatisation en français.
 - [Social preview image](https://ahmedol0.github.io/og-image.png): Open Graph image (1200x630).
 
 ## Who I am
