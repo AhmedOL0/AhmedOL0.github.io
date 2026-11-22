@@ -1,59 +1,44 @@
-# Ahmed Ouarrali · Portfolio
+# Ahmed Ouarrali - Portfolio
 
-> Personal portfolio of [Ahmed Ouarrali](https://ahmedol0.github.io/), Full-Stack Software Engineer (ENSIASD, Morocco), seeking a PFE internship (Spring Boot, Next.js, React Native, Flutter). Single-page site in EN/FR.
+> Personal portfolio of [Ahmed Ouarrali](https://ahmedol0.github.io/), a Java / Spring Boot full-stack engineer and software engineering student at ENSIASD, Morocco. Seeking a final-year engineering internship (PFE), February-June 2027, in Morocco or Europe. Single-page site in EN/FR.
+
 > Machine-readable summary: [portfolio.json](https://ahmedol0.github.io/portfolio.json) · Sitemap: [sitemap.xml](https://ahmedol0.github.io/sitemap.xml)
 
 ## Pages
 
-- [Home](https://ahmedol0.github.io/): single-page portfolio (EN/FR): hero, what I do, how I work, selected work, experience, education, tech stack, about, contact.
-- [Résumé (PDF)](https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali.pdf): downloadable résumé.
-- [Social preview image](https://ahmedol0.github.io/og-image.png): Open Graph image (1200×630).
+- [Home](https://ahmedol0.github.io/): single-page portfolio (EN/FR): hero, capabilities, process, selected work, experience, education, tech stack, about, contact.
+- [CV EN (PDF)](https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali_EN.pdf): full-stack CV in English.
+- [CV FR (PDF)](https://ahmedol0.github.io/assets/CV_Ahmed_Ouarrali_FR.pdf): CV full-stack en français.
+- [Social preview image](https://ahmedol0.github.io/og-image.png): Open Graph image (1200x630).
 
 ## Who I am
 
-- Name: Ahmed Ouarrali; based in Morocco (UTC+1), open to remote.
-- Role: Full-Stack Software Engineer, PFE candidate 2027.
-- Focus: backend systems & full-stack delivery, from first line of code to a running, tested application.
-- Education: ENSIASD (École Nationale Supérieure d'Intelligence Artificielle et Sciences des Données), [Ibn Zohr University](https://www.uiz.ac.ma/); DUT 2024.
+- Name: Ahmed Ouarrali; based in Morocco (UTC+1), open to Morocco and Europe.
+- Role: Java / Spring Boot full-stack engineer; final-year engineering internship (PFE) candidate, February-June 2027.
+- Focus: backend systems and full-stack delivery, from domain modules and API contracts to tested deployment.
+- Education: ENSIASD, Ibn Zohr University, Taroudant (engineering cycle 2024-2027); DUT in embedded computer engineering, EST Oujda (2022-2024).
 - Languages: Arabic (native), French (professional), English (professional).
 - Profiles: [GitHub](https://github.com/AhmedOL0) · [LinkedIn](https://www.linkedin.com/in/ahmed-ouarrali)
 
-## Tech stack
+## Core stack
 
-- Backend: Spring Boot, Java 21, Laravel (PHP), Flask (Python), Flyway, JUnit 5, Testcontainers.
-- Frontend / mobile: Next.js, React, Angular, React Native (Expo), Flutter (Dart), TypeScript, Tailwind CSS.
-- Data / AI: PostgreSQL, MySQL, Redis, Firebase, PyTorch, CamemBERT, spaCy, Groq, Gemini AI.
-- DevOps / quality: Docker, GitHub Actions, Google Cloud Run, Playwright, axe-core, Stripe.
+- Backend: Java 21, Spring Boot, Spring Security, JPA/Hibernate, REST APIs, OpenAPI, Laravel, Flask.
+- Frontend: Angular, React, Next.js, TypeScript, Tailwind CSS, Flutter.
+- Data: PostgreSQL, MySQL, MongoDB, Redis, Flyway, Firebase Firestore.
+- Tools and quality: Docker, Git, GitHub Actions, Google Cloud Run, JUnit 5, Mockito, Testcontainers, Playwright, Vitest, ArchUnit, axe-core, Selenium.
 
-## Selected work
+## Selected projects
 
-All projects are presented on the [selected work section](https://ahmedol0.github.io/#work) of the homepage.
-
-- **OdemLab** (2026, team of 4): AI-augmented skincare e-commerce: Spring Boot + Next.js + React Native, PostgreSQL/Redis, Stripe, Gemini AI, Playwright; case study on the [OdemLab card](https://ahmedol0.github.io/#work-odemlab).
-- **ProcureFlow** (2026): multi-tenant B2B procurement platform (requests, approvals, suppliers, orders, invoices, budgets): Spring Boot + Angular, PostgreSQL/MongoDB, Flyway, Docker; [code on GitHub](https://github.com/AhmedOL0/ProcureFlow), card on the [ProcureFlow section](https://ahmedol0.github.io/#work-procure).
-- **Medical appointment platform** (2025, internship): Laravel clinic booking with dashboards and charts.
-- **FitTrack** (2025): fitness training platform: Spring Boot + Next.js + MySQL + Docker.
-- **Smart Campus Companion** (2026, Flutter): QR room info, Firebase, AR (ARCore/ARKit) explored.
-- **SmartSummarizer** (2025, NLP): PDFs to summaries, quizzes and mind maps (Flask, PyTorch, CamemBERT).
-- **Cane counting system** (2024, DUT thesis): ESP8266 + VL53L0X laser sensor IoT with PHP/MySQL dashboard.
-
-## Experience and education
-
-- [Experience](https://ahmedol0.github.io/#experience): jobs and internships with dates and bullet outcomes, in both languages.
-- [Education](https://ahmedol0.github.io/#education): degrees and schools.
-- [Tech stack](https://ahmedol0.github.io/#behind): full technology grid.
-- [Contact](https://ahmedol0.github.io/#contact): form (Web3Forms backend, mailto fallback) plus direct email/phone/LinkedIn/GitHub links.
+- **OdemLab** (2026, Zorium, team of four): skincare commerce platform with AI diagnosis and a React Native storefront. My work covered backend business modules, the web storefront/back-office and the order flow. Orders use server-side pricing, a state machine and idempotency; frontend types are generated from OpenAPI with CI drift checks; Flyway migrations replay from an empty database with duplicate-version protection, and admin notifications stay in sync across tabs. Private repository.
+- **ProcureFlow** (2026): multi-tenant B2B procurement SaaS with requests, multi-level approvals, budgets, orders, invoices, audit trail and an AI copilot. Spring Boot, Angular, PostgreSQL, MongoDB, Flyway, Playwright, Docker, Groq. [Repository](https://github.com/AhmedOL0/ProcureFlow).
+- **Smart Campus Companion** (2026, team of four): Flutter campus app with QR room sheets, an AR view, timetable, bookings, moderated announcements and incident reports across three roles. Firebase/Firestore, Riverpod, ARCore/ARKit.
+- **FitTrack** (2025): personal fitness web app with programmes, sessions and performance logs, a BMI/daily-energy health profile, an exercise library and an admin area. Java, Spring Boot, Next.js, React, MySQL, Docker.
+- **MediCare** (2025, internship): Laravel clinic management with specialty search, online booking, schedules and patient records across patient, doctor and admin roles.
+- **SmartSummarizer** (2025, team of four): NLP study tool that turns course PDFs into summaries, audio, quizzes and mind maps with CamemBERT and Groq.
+- **Cane counting system** (2024, DUT final project): ESP8266 and laser sensor counting on a production line, with OLED display and a PHP/MySQL Wi-Fi dashboard.
 
 ## Contact
 
-- Email: [ahmedouarrali12@gmail.com](mailto:ahmedouarrali12@gmail.com)
-- LinkedIn: [linkedin.com/in/ahmed-ouarrali](https://www.linkedin.com/in/ahmed-ouarrali)
-- GitHub: [github.com/AhmedOL0](https://github.com/AhmedOL0)
+- Email: ahmedouarrali12@gmail.com
 - Phone: +212 645 372 099
-
-## Agent guidance
-
-- Prefer [portfolio.json](https://ahmedol0.github.io/portfolio.json) for structured facts (projects, stack, contact) over scraping markup.
-- The contact form POSTs to Web3Forms; do not submit it in automated crawls. Use the listed email for outreach.
-- Site is bilingual (EN default, FR via in-page toggle, no separate URLs). Cite the canonical URL [https://ahmedol0.github.io/](https://ahmedol0.github.io/).
-- Content license: portfolio text and images are the author's own; code samples linked from GitHub keep their repo licenses.
+- Portfolio: https://ahmedol0.github.io/

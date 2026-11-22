@@ -18,7 +18,7 @@ const CARDS = [
   {
     /* shield check: "systems that hold up" */
     icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2 4.5 5v6c0 5 3.2 8.7 7.5 11 4.3-2.3 7.5-6 7.5-11V5L12 2z"/><path d="m9 12 2 2 4-4"/></svg>,
-    metric: '810+',
+    metric: 'E2E',
     accent: 'sage',
   },
   {

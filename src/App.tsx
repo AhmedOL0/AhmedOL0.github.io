@@ -50,7 +50,7 @@ function ErrorFallback() {
 }
 
 function Footer() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const cols: { head: string; links: { label: string; href: string }[] }[] = [
     { head: t.nav.work, links: [{ label: 'OdemLab', href: '#work-odemlab' }, { label: 'ProcureFlow', href: '#work-procure' }, { label: 'Smart Campus', href: '#work-campus' }] },
     { head: t.footer.explore, links: [{ label: t.nav.experience, href: '#experience' }, { label: t.nav.behind, href: '#behind' }, { label: t.nav.contact, href: '#contact' }] },
@@ -96,7 +96,7 @@ function Footer() {
           {t.footer.built}
         </p>
         <div className="flex items-center gap-4 order-1 sm:order-2">
-          <a href="assets/CV_Ahmed_Ouarrali.pdf" download className="btn btn-sm btn-ghost">
+          <a href={`assets/CV_Ahmed_Ouarrali_${lang === 'fr' ? 'FR' : 'EN'}.pdf`} download className="btn btn-sm btn-ghost">
             {t.dock.resume} ↓
           </a>
           <a href="#top" className="no-underline text-[.78rem] font-mono-d tracking-[.06em] back-to-top">{t.footer.top} ↑</a>
