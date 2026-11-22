@@ -9,6 +9,7 @@ export const LANGS: { code: Lang; label: string; aria: string }[] = [
 export type ProjectT = {
   title: string; year: string; kind: string; heading: string; lead: string;
   description: string; highlight: string; result?: string; linkLabel?: string; linkHref?: string;
+  role?: string; architecture?: string; quality?: string;
 };
 
 export type ProjectGalleryImageT = {
@@ -40,7 +41,7 @@ export type Dict = {
   whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; metricLabels: [string, string, string, string]; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
-  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; showMoreTags: string; filterCount: string; filterCountOne: string; filterGroup: string; walkthroughNote: string; notesSummary: string; approachLabel: string; outcomeLabel: string; explore: string; close: string; discuss: string; screensLabel: string; previousProject: string; nextProject: string; previousScreen: string; nextScreen: string; enlarge: string; projects: ProjectT[] };
+  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; showMoreTags: string; filterCount: string; filterCountOne: string; filterGroup: string; walkthroughNote: string; notesSummary: string; approachLabel: string; outcomeLabel: string; roleLabel: string; architectureLabel: string; qualityLabel: string; explore: string; close: string; discuss: string; screensLabel: string; previousProject: string; nextProject: string; previousScreen: string; nextScreen: string; enlarge: string; projects: ProjectT[] };
   exp: { kicker: string; title: string; latest: string; jobs: JobT[] };
   edu: { kicker: string; title: string; sub: string; entries: EduT[] };
   behind: { kicker: string; title: string; sub: string; dailyLabel: string; daily: string; exploredLabel: string; explored: string; categories: TechCategory[] };
@@ -55,7 +56,7 @@ export type Dict = {
     copy: string; copied: string; copyEmail: string; copyPhone: string;
   };
   footer: { top: string; elsewhere: string; explore: string; built: string; pageTitle: string };
-  dock: { home: string; whatIDo: string; work: string; contact: string; lang: string; nav: string; footerNav: string; toggle: string; toggleLight: string; toggleDark: string; resume: string; linkedin: string; github: string; email: string; backToTop: string };
+  dock: { home: string; whatIDo: string; work: string; contact: string; lang: string; nav: string; footerNav: string; toggle: string; toggleLight: string; toggleDark: string; resume: string; cvFullStack: string; cvQA: string; linkedin: string; github: string; email: string; backToTop: string };
   error: { label: string; title: string; sub: string; refresh: string; home: string; still: string };
 };
 
@@ -118,17 +119,24 @@ const en: Dict = {
     showLess: 'show less', showFewer: 'Show fewer tags', showMoreTags: 'Show {count} more tags', filterCount: 'Showing {count} of {total} projects', filterCountOne: 'Showing 1 of {total} projects', filterGroup: 'Filter projects by discipline',
     walkthroughNote: 'Live demos, private repositories and hardware: code walkthroughs and guided demos available on request.',
     notesSummary: 'Engineering notes', approachLabel: 'Approach', outcomeLabel: 'Outcome',
+    roleLabel: 'My role', architectureLabel: 'Architecture', qualityLabel: 'Quality and tests',
     explore: 'Explore project', close: 'Close', discuss: 'Discuss this project', screensLabel: 'Project screens',
     previousProject: 'Previous project', nextProject: 'Next project', previousScreen: 'Previous screen', nextScreen: 'Next screen', enlarge: 'Enlarge screen',
     projects: [
       { title: 'OdemLab: skincare commerce platform', year: 'Flagship', kind: 'Team of 4 · Private repo', heading: 'OdemLab', lead: 'd',
         description: 'Team-of-four skincare commerce platform with AI diagnosis and a React Native storefront. I built the backend business modules, web storefront/back-office and order flow.',
         highlight: 'Orders are priced server-side, guarded by a state machine and idempotency: clients cannot change an amount and duplicate orders are blocked. Frontend types are generated from OpenAPI, and CI fails on contract drift.',
-        result: 'Flyway migrations replay from an empty database, with a duplicate-version test. Admin notifications stay in sync across browser tabs.' },
+        result: 'Flyway migrations replay from an empty database, with a duplicate-version test. Admin notifications stay in sync across browser tabs.',
+        role: 'Backend and web. I built the business modules and order flow, plus the web storefront/back-office. The AI diagnosis and React Native app were teammates\u2019 work.',
+        architecture: 'Spring Boot modular monolith, Next.js/React web, PostgreSQL/Redis, OpenAPI-generated frontend types, Flyway, Google Cloud Run.',
+        quality: 'Server-side pricing, order state machine and idempotency; CI fails on OpenAPI drift; Flyway replay and duplicate-version protection.' },
       { title: 'ProcureFlow: B2B procurement platform', year: '2026', kind: 'Full-stack \u00b7 Spring Boot & Angular', heading: 'ProcureFlow', lead: 'F',
         description: 'A multi-tenant B2B procurement platform: requests, approvals, suppliers, orders, invoices and budgets. Requests move through a stepped approval workflow with bounded delegation, and budget is reserved atomically on approval.',
         highlight: 'Multi-tenant isolation: cross-tenant access answers 404, never 403. Amounts are recomputed server-side with idempotency keys, and frontend types are generated from the API contract.',
         result: 'JWT refresh-token rotation, bilingual FR/EN interface, and an AI copilot that cites workspace data and drafts requests from natural-language descriptions.',
+        role: 'Full-stack. Multi-tenant procurement workflows, approvals, budgets, data isolation and the AI copilot.',
+        architecture: 'Spring Boot modular monolith, Angular SPA, PostgreSQL/MongoDB, Flyway, short-lived JWT with rotation, Docker.',
+        quality: 'Tenant isolation, atomic budget reservation on approval, automated module-boundary checks and Playwright coverage.',
         linkLabel: 'View the repository', linkHref: 'https://github.com/AhmedOL0/ProcureFlow' },
       { title: 'MediCare: clinic management platform', year: '2025', kind: 'Internship · Full-stack', heading: 'MediCare', lead: 'Care',
         description: 'A clinic management platform with specialty search, online booking, schedules and patient records. Three role spaces: patient, doctor and admin.',
@@ -137,11 +145,15 @@ const en: Dict = {
       { title: 'FitTrack: training platform', year: '2025', kind: 'Team of 2 · Full-stack', heading: 'FitTrack', lead: 'i',
         description: 'A personal fitness web app for training programmes, sessions and performance logs, with a health profile (BMI, daily energy), exercise library and admin area.',
         highlight: 'Programme and session flows, health metrics and a full admin area for the exercise library.',
-        result: 'Admin area plus a personal health profile with BMI and daily energy.'},
+        result: 'Admin area plus a personal health profile with BMI and daily energy.',
+        role: 'Full-stack. Programmes, sessions, performance logs, health profile, exercise library and admin area.',
+        architecture: 'Spring Boot, Next.js/React, MySQL, Docker.'},
       { title: 'Smart Campus Companion', year: '2026', kind: 'Team of 4 · Flutter', heading: 'Campus', lead: 'a',
         description: 'A Flutter campus app: scan QR codes on room doors to open a room sheet with capacity and equipment, plus an AR view. Timetable, bookings, moderated announcements and incident reports across three roles.',
         highlight: 'QR-to-room sheet with an AR view; timetable, bookings, moderated announcements and incident reports across three roles.',
-        result: 'Three role spaces; QR room sheets and an AR view.'},
+        result: 'Three role spaces; QR room sheets and an AR view.',
+        role: 'Mobile. QR room sheets, AR view, timetable, bookings, moderated announcements and incident reports across three roles.',
+        architecture: 'Flutter, Firebase/Firestore, Riverpod, ARCore/ARKit.'},
       { title: 'SmartSummarizer', year: '2025', kind: 'Team of 4 · NLP', heading: 'Summarizer', lead: 'u',
         description: 'A team project that turns course PDFs into study tools: summaries, audio, quizzes and mind maps using CamemBERT and Groq.',
         highlight: 'PDFs become summaries and quizzes through CamemBERT extraction and Groq generation.',
@@ -218,7 +230,7 @@ const en: Dict = {
     copy: 'Copy', copied: 'Copied', copyEmail: 'Copy email address', copyPhone: 'Copy phone number',
   },
   footer: { top: 'Top', elsewhere: 'Elsewhere', explore: 'Explore', built: `\u00a9 ${new Date().getFullYear()} Ahmed Ouarrali \u00b7 Built with React, Tailwind CSS \u00b7 Deployed on GitHub Pages`, pageTitle: 'Ahmed Ouarrali, Java / Spring Boot Full-Stack Engineer | PFE Internship' },
-  dock: { home: 'Home', whatIDo: 'What I Do', work: 'Work', contact: 'Contact', lang: 'Language', nav: 'Quick navigation', footerNav: 'Footer navigation', toggle: 'Toggle light / dark mode', toggleLight: 'Switch to light mode', toggleDark: 'Switch to dark mode', resume: 'Résumé', linkedin: 'LinkedIn', github: 'GitHub', email: 'Email', backToTop: 'Back to top' },
+  dock: { home: 'Home', whatIDo: 'What I Do', work: 'Work', contact: 'Contact', lang: 'Language', nav: 'Quick navigation', footerNav: 'Footer navigation', toggle: 'Toggle light / dark mode', toggleLight: 'Switch to light mode', toggleDark: 'Switch to dark mode', resume: 'Résumé', cvFullStack: 'Full-Stack CV', cvQA: 'QA Automation CV', linkedin: 'LinkedIn', github: 'GitHub', email: 'Email', backToTop: 'Back to top' },
   error: {
     label: 'Error', title: 'Something went wrong.',
     sub: 'The page hit an unexpected error. Refreshing usually fixes it.',
@@ -276,17 +288,24 @@ const fr: Dict = {
     showLess: 'voir moins', showFewer: 'Afficher moins', showMoreTags: 'Afficher {count} autres tags', filterCount: '{count} projets sur {total} affichés', filterCountOne: '1 projet sur {total} affichés', filterGroup: 'Filtrer les projets par discipline',
     walkthroughNote: 'D\u00e9mos en direct, d\u00e9p\u00f4ts priv\u00e9s et mat\u00e9riel : revues de code et d\u00e9monstrations guid\u00e9es sur demande.',
     notesSummary: 'Notes techniques', approachLabel: 'Approche', outcomeLabel: 'R\u00e9sultat',
+    roleLabel: 'Mon r\u00f4le', architectureLabel: 'Architecture', qualityLabel: 'Qualit\u00e9 et tests',
     explore: 'Explorer le projet', close: 'Fermer', discuss: 'Discuter de ce projet', screensLabel: '\u00c9crans du projet',
     previousProject: 'Projet pr\u00e9c\u00e9dent', nextProject: 'Projet suivant', previousScreen: '\u00c9cran pr\u00e9c\u00e9dent', nextScreen: '\u00c9cran suivant', enlarge: 'Agrandir l\u2019\u00e9cran',
     projects: [
       { title: 'OdemLab : plateforme e-commerce soins', year: 'Vitrine', kind: '\u00c9quipe de 4 \u00b7 D\u00e9p\u00f4t priv\u00e9', heading: 'OdemLab', lead: 'd',
         description: 'Plateforme de soins de la peau d\u00e9velopp\u00e9e en \u00e9quipe de quatre, avec diagnostic IA et boutique React Native. J\u2019ai construit les modules m\u00e9tier backend, la vitrine web/back-office et le tunnel de commande.',
         highlight: 'Les commandes sont tarif\u00e9es c\u00f4t\u00e9 serveur, prot\u00e9g\u00e9es par une machine \u00e0 \u00e9tats et l\u2019idempotence : un client ne peut pas modifier un montant et une commande ne peut pas \u00eatre cr\u00e9\u00e9e deux fois. Les types frontend sont g\u00e9n\u00e9r\u00e9s depuis l\u2019OpenAPI, et la CI \u00e9choue en cas de d\u00e9rive.',
-        result: 'Les migrations Flyway se rejouent depuis une base vide, avec un test de version dupliqu\u00e9e. Les notifications admin restent synchronis\u00e9es entre les onglets.' },
+        result: 'Les migrations Flyway se rejouent depuis une base vide, avec un test de version dupliqu\u00e9e. Les notifications admin restent synchronis\u00e9es entre les onglets.',
+        role: 'Backend et web. J\u2019ai construit les modules m\u00e9tier et le tunnel de commande, ainsi que la vitrine web/back-office. Le diagnostic IA et l\u2019application React Native sont le travail de mes co\u00e9quipiers.',
+        architecture: 'Monolithe modulaire Spring Boot, web Next.js/React, PostgreSQL/Redis, types frontend g\u00e9n\u00e9r\u00e9s depuis OpenAPI, Flyway, Google Cloud Run.',
+        quality: 'Tarification serveur, machine \u00e0 \u00e9tats et idempotence des commandes ; CI en \u00e9chec sur d\u00e9rive OpenAPI ; migrations Flyway rejouables avec protection anti-version dupliqu\u00e9e.' },
       { title: 'ProcureFlow: approvisionnement B2B', year: '2026', kind: 'Full-stack \u00b7 Spring Boot & Angular', heading: 'ProcureFlow', lead: 'F',
         description: 'Plateforme d\u2019achats B2B multitenant : demandes, approbations, fournisseurs, commandes, factures et budgets. Les demandes suivent un circuit d\u2019approbation \u00e0 paliers avec d\u00e9l\u00e9gation born\u00e9e, et le budget est r\u00e9serv\u00e9 atomiquement \u00e0 l\u2019approbation.',
         highlight: 'Isolement multi-tenant : les acc\u00e8s inter-tenant r\u00e9pondent 404, jamais 403. Les montants sont recalcul\u00e9s c\u00f4t\u00e9 serveur avec des cl\u00e9s d\u2019idempotence, et les types du frontend sont g\u00e9n\u00e9r\u00e9s depuis le contrat d\u2019API.',
         result: 'Rotation des jetons JWT, interface bilingue FR/EN et copilote IA qui cite les donn\u00e9es de l\u2019espace de travail et r\u00e9dige des brouillons de demandes depuis une description en langage naturel.',
+        role: 'Full-stack. Workflows d\u2019approvisionnement multi-tenant, approbations, budgets, isolation des donn\u00e9es et copilote IA.',
+        architecture: 'Monolithe modulaire Spring Boot, SPA Angular, PostgreSQL/MongoDB, Flyway, JWT courts avec rotation, Docker.',
+        quality: 'Isolation multi-tenant, r\u00e9servation budg\u00e9taire atomique \u00e0 l\u2019approbation, fronti\u00e8res de modules v\u00e9rifi\u00e9es automatiquement et couverture Playwright.',
         linkLabel: 'Voir le d\u00e9p\u00f4t', linkHref: 'https://github.com/AhmedOL0/ProcureFlow' },
       { title: 'MediCare : plateforme de gestion de cabinet', year: '2025', kind: 'Stage \u00b7 Full-stack', heading: 'MediCare', lead: 'Care',
         description: 'Plateforme de gestion de cabinet m\u00e9dical avec recherche par sp\u00e9cialit\u00e9, r\u00e9servation en ligne, plannings et dossiers patients. Trois espaces : patient, m\u00e9decin et administrateur.',
@@ -295,11 +314,15 @@ const fr: Dict = {
       { title: 'FitTrack: suivi sportif', year: '2025', kind: '\u00c9quipe de 2 \u00b7 Full-stack', heading: 'FitTrack', lead: 'i',
         description: 'Application web de fitness personnel pour les programmes, s\u00e9ances et performances, avec profil sant\u00e9 (IMC, d\u00e9pense \u00e9nerg\u00e9tique), biblioth\u00e8que d\u2019exercices et espace admin.',
         highlight: 'Parcours programmes/s\u00e9ances, indicateurs sant\u00e9 et espace admin pour la biblioth\u00e8que d\u2019exercices.',
-        result: 'Espace admin et profil sant\u00e9 avec IMC et d\u00e9pense \u00e9nerg\u00e9tique.'},
+        result: 'Espace admin et profil sant\u00e9 avec IMC et d\u00e9pense \u00e9nerg\u00e9tique.',
+        role: 'Full-stack. Programmes, s\u00e9ances, performances, profil sant\u00e9, biblioth\u00e8que d\u2019exercices et espace admin.',
+        architecture: 'Spring Boot, Next.js/React, MySQL, Docker.'},
       { title: 'Smart Campus Companion', year: '2026', kind: '\u00c9quipe de 4 \u00b7 Flutter', heading: 'Campus', lead: 'a',
         description: 'Application Flutter de campus : scan des QR codes sur les portes pour ouvrir une fiche salle (capacit\u00e9, \u00e9quipements) avec vue RA. Emploi du temps, r\u00e9servations, annonces mod\u00e9r\u00e9es et signalements sur trois r\u00f4les.',
         highlight: 'Fiche salle par QR code avec vue RA ; emploi du temps, r\u00e9servations, annonces mod\u00e9r\u00e9es et signalements sur trois r\u00f4les.',
-        result: 'Trois espaces ; fiches salle par QR code et vue RA.'},
+        result: 'Trois espaces ; fiches salle par QR code et vue RA.',
+        role: 'Mobile. Fiches salle par QR code, vue RA, emploi du temps, r\u00e9servations, annonces mod\u00e9r\u00e9es et signalements sur trois r\u00f4les.',
+        architecture: 'Flutter, Firebase/Firestore, Riverpod, ARCore/ARKit.'},
       { title: 'SmartSummarizer', year: '2025', kind: '\u00c9quipe de 4 \u00b7 NLP', heading: 'R\u00e9sumeur', lead: 'u',
         description: 'Projet d\u2019\u00e9quipe qui transforme les PDF de cours en outils d\u2019\u00e9tude : r\u00e9sum\u00e9s, audio, quiz et cartes mentales avec CamemBERT et Groq.',
         highlight: 'Les PDF deviennent des r\u00e9sum\u00e9s et des quiz via l\u2019extraction CamemBERT et la g\u00e9n\u00e9ration Groq.',
@@ -376,7 +399,7 @@ const fr: Dict = {
     copy: 'Copier', copied: 'Copi\u00e9', copyEmail: 'Copier l\u2019adresse e-mail', copyPhone: 'Copier le num\u00e9ro de t\u00e9l\u00e9phone',
   },
   footer: { top: 'Haut', elsewhere: 'Ailleurs', explore: 'Explorer', built: `\u00a9 ${new Date().getFullYear()} Ahmed Ouarrali \u00b7 Construit avec React, Tailwind CSS \u00b7 D\u00e9ploy\u00e9 sur GitHub Pages`, pageTitle: 'Ahmed Ouarrali, Ing\u00e9nieur Full-Stack Java / Spring Boot | Stage PFE' },
-  dock: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', contact: 'Contact', lang: 'Langue', nav: 'Navigation rapide', footerNav: 'Navigation du pied de page', toggle: 'Basculer mode clair / sombre', toggleLight: 'Passer en mode clair', toggleDark: 'Passer en mode sombre', resume: 'CV', linkedin: 'LinkedIn', github: 'GitHub', email: 'E-mail', backToTop: 'Retour en haut' },
+  dock: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', contact: 'Contact', lang: 'Langue', nav: 'Navigation rapide', footerNav: 'Navigation du pied de page', toggle: 'Basculer mode clair / sombre', toggleLight: 'Passer en mode clair', toggleDark: 'Passer en mode sombre', resume: 'CV', cvFullStack: 'CV Full-Stack', cvQA: 'CV QA Automatisation', linkedin: 'LinkedIn', github: 'GitHub', email: 'E-mail', backToTop: 'Retour en haut' },
   error: {
     label: 'Erreur', title: 'Un probl\u00e8me est survenu.',
     sub: 'La page a rencontr\u00e9 une erreur inattendue. L\u2019actualiser suffit g\u00e9n\u00e9ralement.',

@@ -73,4 +73,4 @@ public/           static assets, fonts, CV, llms.txt, portfolio.json, manifest
 
 ## Assets
 
-`public/assets/` holds responsive portraits (`photo-240.webp` / `photo-480.webp` with `.jpg` fallbacks) and the final CVs (`CV_Ahmed_Ouarrali_EN.pdf` / `CV_Ahmed_Ouarrali_FR.pdf`). Self-hosted latin variable fonts live in `public/fonts/`. Machine-readable metadata (`llms.txt`, `portfolio.json`, `sitemap.xml`, `robots.txt`) ships alongside.
+`public/assets/` holds responsive portraits (`photo-240.webp` / `photo-480.webp` with `.jpg` fallbacks) and the final CVs (`CV_Ahmed_Ouarrali_EN.pdf`, `CV_Ahmed_Ouarrali_FR.pdf`, `CV_Ahmed_Ouarrali_QA_EN.pdf`, `CV_Ahmed_Ouarrali_QA_FR.pdf`). Self-hosted latin variable fonts live in `public/fonts/`. Machine-readable metadata (`llms.txt`, `portfolio.json`, `sitemap.xml`, `robots.txt`) ships alongside.

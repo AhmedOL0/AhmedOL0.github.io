@@ -98,6 +98,29 @@ export default function ProjectDialog({ project, gallery, tags, position, total,
         <div ref={scrollRef} className="pd-scroll">
           <p className="pd-desc">{project.description}</p>
 
+          {(project.role || project.architecture || project.quality) && (
+            <div className="pd-case">
+              {project.role && (
+                <div>
+                  <p className="pd-label">{t.work.roleLabel}</p>
+                  <p>{project.role}</p>
+                </div>
+              )}
+              {project.architecture && (
+                <div>
+                  <p className="pd-label">{t.work.architectureLabel}</p>
+                  <p>{project.architecture}</p>
+                </div>
+              )}
+              {project.quality && (
+                <div>
+                  <p className="pd-label">{t.work.qualityLabel}</p>
+                  <p>{project.quality}</p>
+                </div>
+              )}
+            </div>
+          )}
+
           <div className="pd-notes">
             <div>
               <p className="pd-label">{t.work.approachLabel}</p>

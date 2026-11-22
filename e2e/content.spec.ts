@@ -71,11 +71,13 @@ test.describe('Case-study content', () => {
   test('project dialog opens the full screen gallery and closes on Escape', async ({ page }) => {
     const explore = page.locator('#work .card').first().locator('.explore-project');
     await explore.scrollIntoViewIfNeeded();
-    await explore.click();
+    await expect(explore).toBeVisible();
+    await explore.evaluate((el) => (el as HTMLElement).click());
     const dialog = page.getByRole('dialog');
     await expect(dialog).toBeVisible();
     await expect(dialog.locator('.pd-shot img')).toHaveCount(6);
     await expect(dialog.locator('.pd-shot img').first()).toHaveAttribute('loading', 'lazy');
+    await expect(dialog.locator('.pd-case .pd-label')).toHaveCount(3);
     await expect(dialog.locator('.pd-close')).toBeFocused();
     const magnetic = await page.evaluate(() => document.documentElement.classList.contains('has-magnetic-cursor'));
     if (magnetic) {
@@ -95,8 +97,10 @@ test.describe('Case-study content', () => {
   test('case study mode navigates projects and enlarges screens', async ({ page }) => {
     const explore = page.locator('#work .card').first().locator('.explore-project');
     await explore.scrollIntoViewIfNeeded();
-    await explore.click();
+    await expect(explore).toBeVisible();
+    await explore.evaluate((el) => (el as HTMLElement).click());
     const dialog = page.getByRole('dialog');
+    await expect(dialog).toBeVisible();
     await expect(dialog.locator('.pd-count')).toHaveText('01 / 04');
     await page.keyboard.press('ArrowRight');
     await expect(dialog.locator('.pd-count')).toHaveText('02 / 04');
