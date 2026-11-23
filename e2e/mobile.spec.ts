@@ -118,23 +118,25 @@ test.describe('Mobile scroll fluidity', () => {
 test.describe('Mobile hero cover', () => {
   test.use({ viewport: { width: 390, height: 844 } });
 
-  test('portrait leads the hero copy on tall phones', async ({ page }) => {
+  test('portrait leads the hero copy on mobile', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
     await page.evaluate(() => document.fonts.ready);
     await page.waitForTimeout(800);
     const portrait = page.locator('.hero-visual');
+    const eyebrow = page.locator('.hero-eyebrow');
     const title = page.locator('h1');
-    const stats = page.locator('.hero-stats');
+    const actions = page.locator('.hero-actions');
     const dock = page.locator('.dock');
     await expect(portrait).toBeVisible();
     const portraitBox = await portrait.boundingBox();
+    const eyebrowBox = await eyebrow.boundingBox();
     const titleBox = await title.boundingBox();
-    const statsBox = await stats.boundingBox();
+    const actionsBox = await actions.boundingBox();
     const dockBox = await dock.boundingBox();
-    expect(portraitBox!.y, 'portrait starts above the hero title').toBeLessThan(titleBox!.y);
-    expect(portraitBox!.y + portraitBox!.height, 'portrait finishes before the title').toBeLessThan(titleBox!.y);
-    expect(statsBox!.y + statsBox!.height, 'proof strip clears the dock').toBeLessThanOrEqual(dockBox!.y);
+    expect(portraitBox!.y + portraitBox!.height, 'portrait finishes before the availability pill').toBeLessThan(eyebrowBox!.y);
+    expect(eyebrowBox!.y, 'availability pill precedes the title').toBeLessThan(titleBox!.y);
+    expect(actionsBox!.y + actionsBox!.height, 'CTAs clear the dock').toBeLessThanOrEqual(dockBox!.y);
   });
 });
 
