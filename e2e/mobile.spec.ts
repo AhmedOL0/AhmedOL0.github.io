@@ -118,7 +118,7 @@ test.describe('Mobile scroll fluidity', () => {
 test.describe('Mobile hero cover', () => {
   test.use({ viewport: { width: 390, height: 844 } });
 
-  test('portrait leads the hero copy on mobile', async ({ page }) => {
+  test('availability pill and portrait lead the mobile hero', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
     await page.evaluate(() => document.fonts.ready);
@@ -134,8 +134,8 @@ test.describe('Mobile hero cover', () => {
     const titleBox = await title.boundingBox();
     const actionsBox = await actions.boundingBox();
     const dockBox = await dock.boundingBox();
-    expect(portraitBox!.y + portraitBox!.height, 'portrait finishes before the availability pill').toBeLessThan(eyebrowBox!.y);
-    expect(eyebrowBox!.y, 'availability pill precedes the title').toBeLessThan(titleBox!.y);
+    expect(eyebrowBox!.y + eyebrowBox!.height, 'availability pill finishes before the portrait').toBeLessThan(portraitBox!.y);
+    expect(portraitBox!.y + portraitBox!.height, 'portrait finishes before the title').toBeLessThan(titleBox!.y);
     expect(actionsBox!.y + actionsBox!.height, 'CTAs clear the dock').toBeLessThanOrEqual(dockBox!.y);
   });
 });

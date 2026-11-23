@@ -862,18 +862,21 @@ main{overflow-x:clip}
 @media(max-width:959px) and (max-height:639px){
   .hero-visual{display:none}
 }
-/* Portrait phones: lead with the portrait card so the first screen reads as a
-   cover. The wrapper reserves room for the orbit frame and both edge chips, so
-   the availability pill starts cleanly below it. The portrait scales with the
-   viewport height to keep the CTAs clear of the floating dock on short phones. */
+/* Portrait phones: availability first, then the portrait card, then the copy.
+   `display:contents` lets the pill sit above the visual while the rest of the
+   copy follows it. The wrapper reserves room for the orbit frame and both edge
+   chips; the portrait scales with viewport height to keep CTAs clear of the dock. */
 @media(max-width:640px) and (orientation:portrait){
-  .hero-inner{gap:8px}
-  .hero-visual{order:-1;--portrait:clamp(110px, min(42vw, calc(100svh - 547px)), 200px);width:100%;height:calc(var(--portrait) + 82px);max-width:320px;aspect-ratio:auto;margin:0 auto}
-  .hero-content{order:1}
-  .hero-eyebrow{margin-bottom:18px}
-  .hero-lede{margin-top:12px}
-  .hero-actions{margin-top:14px}
-  .hero-stats{margin-top:20px}
+  .hero-inner{display:flex;flex-direction:column;gap:6px}
+  .hero-content{display:contents}
+  .hero-eyebrow{order:1;margin-bottom:8px}
+  .hero-visual{order:2;--portrait:clamp(110px, min(42vw, calc(100svh - 557px)), 200px);width:100%;height:calc(var(--portrait) + 82px);max-width:320px;aspect-ratio:auto;margin:0 auto}
+  .hero-title{order:3}
+  .hero-lede{order:4}
+  .hero-actions{order:5;margin-top:14px}
+  .hero-contact{order:6;margin-top:18px}
+  .hero-stats{order:7;margin-top:20px}
+  .plate{order:8}
 }
 
 /* ── What I Do: capability folios ── */
