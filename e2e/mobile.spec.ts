@@ -127,16 +127,49 @@ test.describe('Mobile hero cover', () => {
     const eyebrow = page.locator('.hero-eyebrow');
     const title = page.locator('h1');
     const actions = page.locator('.hero-actions');
+    const contact = page.locator('.hero-contact');
     const dock = page.locator('.dock');
     await expect(portrait).toBeVisible();
     const portraitBox = await portrait.boundingBox();
     const eyebrowBox = await eyebrow.boundingBox();
     const titleBox = await title.boundingBox();
     const actionsBox = await actions.boundingBox();
+    const contactBox = await contact.boundingBox();
     const dockBox = await dock.boundingBox();
     expect(eyebrowBox!.y + eyebrowBox!.height, 'availability pill finishes before the portrait').toBeLessThan(portraitBox!.y);
     expect(portraitBox!.y + portraitBox!.height, 'portrait finishes before the title').toBeLessThan(titleBox!.y);
     expect(actionsBox!.y + actionsBox!.height, 'CTAs clear the dock').toBeLessThanOrEqual(dockBox!.y);
+    expect(contactBox!.y + contactBox!.height, 'contact strip clears the dock').toBeLessThanOrEqual(dockBox!.y);
+    await expect(page.locator('.hero-stats')).toBeHidden();
+    await expect(page.locator('.plate')).toBeHidden();
+  });
+
+  test('mobile hero avoids the dock band across phone sizes', async ({ page }) => {
+    for (const vp of [
+      { width: 320, height: 844 },
+      { width: 375, height: 667 },
+      { width: 390, height: 844 },
+      { width: 430, height: 844 },
+    ]) {
+      await page.setViewportSize(vp);
+      await page.goto('/');
+      await page.waitForLoadState('domcontentloaded');
+      await page.evaluate(() => document.fonts.ready);
+      await page.waitForTimeout(500);
+
+      const dock = await page.locator('.dock').boundingBox();
+      const contact = page.locator('.hero-contact');
+      const contactVisible = await contact.isVisible();
+      if (vp.width <= 340 || vp.height <= 700) {
+        expect(contactVisible, `secondary contact hidden at ${vp.width}×${vp.height}`).toBe(false);
+      } else {
+        expect(contactVisible, `primary contact visible at ${vp.width}×${vp.height}`).toBe(true);
+        const contactBox = await contact.boundingBox();
+        expect(contactBox!.y + contactBox!.height, `contact clears the dock at ${vp.width}×${vp.height}`).toBeLessThanOrEqual(dock!.y);
+      }
+      await expect(page.locator('.hero-stats')).toBeHidden();
+      await expect(page.locator('.plate')).toBeHidden();
+    }
   });
 });
 
@@ -152,6 +185,9 @@ test.describe('Mobile landscape 844×390', () => {
     });
     expect(overflow, 'landscape overflow').toBeLessThanOrEqual(0);
     await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('.hero-contact')).toBeHidden();
+    await expect(page.locator('.hero-stats')).toBeHidden();
+    await expect(page.locator('.plate')).toBeHidden();
     const ctas = page.locator('.hero-actions .btn');
     for (let i = 0; i < await ctas.count(); i++) {
       const hit = await ctas.nth(i).evaluate((node) => {

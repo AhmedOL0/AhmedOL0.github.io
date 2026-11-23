@@ -5,6 +5,10 @@
 - Semantic static summary added inside the React root for non-JS clients and crawlers.
 - Raw-HTML SEO regression test added.
 - Mobile portrait view leads with the availability pill, then the portrait card and copy.
+- Mobile portrait keeps the first screen to the pitch and CTAs; the proof strip and identity plate stay on tablet/desktop, and very short/narrow screens drop the secondary contact strip.
+- Short laptops stack the contact channels on the left so the centered dock never covers them.
+- Mobile title scale is smoothed between 421px and 640px instead of jumping at the breakpoint.
+- The project carousel test now triggers the control directly, removing the intermittent Firefox click miss.
 - Hero, title, description, JSON-LD and OG image repositioned around Java / Spring Boot.
 - PFE spelled out as final-year engineering internship.
 - Metadata and sitemap dates refreshed.

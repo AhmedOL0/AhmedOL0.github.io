@@ -16,7 +16,7 @@
 
 - `npm run lint`: clean
 - `npm run build`: passes
-- Playwright: 588 tests passed
+- Playwright: 596 tests passed
 - Raw HTML contains name, projects, contact and CV links
 - No-JS rendering verified
 - CV endpoints served as PDF
