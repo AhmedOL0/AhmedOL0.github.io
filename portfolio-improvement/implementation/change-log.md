@@ -15,7 +15,6 @@
 - Header CV menu exposes all four downloads alongside the language and theme controls.
 - Hero header controls no longer overlap the availability pill; the eyebrow ends before the right-hand cluster.
 - Hero spacing rhythm increased between eyebrow, title, lede, plate, CTAs, proof strip and contact strip.
-- Short laptop widths dock the navigation under the portrait column so it does not mask the contact strip.
 - Back-to-top appears only on an actual upward scroll, not on duplicate same-position scroll events.
 - Footer exposes language-matched Full-Stack and QA CV links.
 - Static fallback exposes all four CV links.
