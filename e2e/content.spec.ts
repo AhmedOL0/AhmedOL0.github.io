@@ -54,7 +54,10 @@ test.describe('Case-study content', () => {
     await expect(previews).toHaveCount(4);
     await expect(page.locator('#work .thumb-count')).toHaveCount(4);
     const firstCard = page.locator('#work .card').first();
-    await firstCard.locator('.thumb-nav--next').click();
+    const next = firstCard.locator('.thumb-nav--next');
+    await next.scrollIntoViewIfNeeded();
+    await expect(next).toBeVisible();
+    await next.evaluate((el) => (el as HTMLElement).click());
     await expect(firstCard.locator('.thumb-count-index')).toHaveText('02 / 06');
     for (let i = 0; i < 4; i++) {
       const img = previews.nth(i);

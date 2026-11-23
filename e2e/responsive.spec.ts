@@ -153,6 +153,36 @@ for (const vp of VIEWPORTS) {
   });
 }
 
+test.describe('Short laptop hero', () => {
+  test.use({ viewport: { width: 1024, height: 768 } });
+
+  test('centered dock clears the hero contact channels', async ({ page }) => {
+    for (const vp of [
+      { width: 1024, height: 768 },
+      { width: 1180, height: 780 },
+      { width: 1280, height: 800 },
+    ]) {
+      await page.setViewportSize(vp);
+      await page.goto('/');
+      await page.waitForLoadState('domcontentloaded');
+      await page.waitForTimeout(500);
+      const dock = await page.locator('.dock').boundingBox();
+      const items = page.locator('.hero-contact a, .hero-contact .hero-loc');
+      await expect(items.first()).toBeVisible();
+      for (let i = 0; i < await items.count(); i++) {
+        const box = await items.nth(i).boundingBox();
+        if (!box) continue;
+        const overlaps = dock !== null
+          && box.x < dock.x + dock.width
+          && box.x + box.width > dock.x
+          && box.y < dock.y + dock.height
+          && box.y + box.height > dock.y;
+        expect(overlaps, `contact channel ${i} sits under the centered dock at ${vp.width}×${vp.height}`).toBe(false);
+      }
+    }
+  });
+});
+
 test.describe('Dock indicator', () => {
   test('tracks the active item across resizes', async ({ page }) => {
     const drift = () =>
