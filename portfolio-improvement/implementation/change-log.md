@@ -4,6 +4,7 @@
 
 - Semantic static summary added inside the React root for non-JS clients and crawlers.
 - Raw-HTML SEO regression test added.
+- Mobile portrait view leads with the portrait card, then the availability pill and copy.
 - Hero, title, description, JSON-LD and OG image repositioned around Java / Spring Boot.
 - PFE spelled out as final-year engineering internship.
 - Metadata and sitemap dates refreshed.
