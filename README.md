@@ -60,9 +60,10 @@ All seven projects are on the [live site](https://ahmedol0.github.io/#work).
 | Build | `tsc -b` and Vite production build | Pass |
 | Lint | oxlint | Clean |
 | E2E | Playwright across 4 browser profiles | 596 checks |
-| Lighthouse | Clean mobile baseline, extensions disabled | 89/100 · TBT 0 ms · CLS 0 |
+| Lighthouse | Clean run, unthrottled | 100/100 |
+| Lighthouse | Clean run, mobile throttled (Slow 4G + 4x CPU) | 89/100 · TBT 0 ms · CLS 0 |
 
-**About Lighthouse:** a normal Chrome profile includes extensions such as Bubble, ad blockers and GitHub utilities. They can add seconds of third-party JavaScript and make the audit look much worse than the site. Measure in Incognito with extensions disabled, or use a clean CLI profile. The live score also varies with GitHub Pages TTFB.
+**About Lighthouse:** a normal Chrome profile includes extensions such as Bubble, ad blockers and GitHub utilities. They can add seconds of third-party JavaScript and make the audit look much worse than the site. Measure in Incognito with extensions disabled, or use a clean CLI profile. Scores also depend on the throttle profile: this project reaches 100/100 unthrottled and 89/100 under Lighthouse's simulated mobile conditions. The live score can vary further with GitHub Pages TTFB.
 
 ## Run locally
 
