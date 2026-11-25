@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode, type TouchEvent } from 'react';
 import Section from './Section';
 import ProjectDialog from './ProjectDialog';
 import { useLang } from '../i18n-data';
@@ -185,9 +185,26 @@ function Card({ p, th, i, cardId, gallery, onExplore, featured = false }: { p: {
   const { t, lang } = useLang();
   const [tagsExpanded, setTagsExpanded] = useState(false);
   const [shotIndex, setShotIndex] = useState(0);
+  const touchRef = useRef<{ x: number; y: number } | null>(null);
   const changeShot = (delta: number) => {
     if (gallery.length < 2) return;
     setShotIndex((prev) => (prev + delta + gallery.length) % gallery.length);
+  };
+  const onTouchStart = (event: TouchEvent<HTMLDivElement>) => {
+    if ((event.target as HTMLElement).closest('button')) return;
+    const touch = event.touches[0];
+    touchRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+  const onTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
+    const start = touchRef.current;
+    touchRef.current = null;
+    if (!start || gallery.length < 2) return;
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+      changeShot(dx < 0 ? 1 : -1);
+    }
   };
 
   return (
@@ -196,7 +213,7 @@ function Card({ p, th, i, cardId, gallery, onExplore, featured = false }: { p: {
       className={`card rise${featured ? ' card--featured' : ''}`} style={{ animationDelay: `${Math.min(i, 5) * 90}ms` }}
       onAnimationEnd={(e) => { e.currentTarget.classList.remove('rise'); }}
     >
-      <div className={`thumb ${PROJECT_THUMBS[i]}${gallery.length > 0 ? ' thumb--image thumb--carousel' : ''}`}>
+      <div className={`thumb ${PROJECT_THUMBS[i]}${gallery.length > 0 ? ' thumb--image thumb--carousel' : ''}`} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         {gallery.length > 0 ? (
           <>
             <img className="thumb-bg" src={gallery[shotIndex].src} alt="" aria-hidden="true" loading="lazy" decoding="async" />
