@@ -962,6 +962,9 @@ main{overflow-x:clip}
 
 
 /* ── How I Work: loop protocol ── */
+.process-layout{margin-top:24px}
+.process-side{min-width:0}
+.process-sticky{display:none}
 .process-loop-wrap{display:grid;place-items:center;margin:26px auto 18px;width:min(280px,72vw)}
 .process-loop{position:relative;width:100%;aspect-ratio:1}
 .process-loop svg{width:100%;height:100%;display:block;overflow:visible}
@@ -998,14 +1001,21 @@ main{overflow-x:clip}
 .process-desc{margin:0;color:var(--muted);font-size:.85rem;line-height:1.55}
 .process-artifact{margin:auto 0 0;padding-top:10px;border-top:1px solid var(--line-soft);font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);line-height:1.5}
 .process-artifact span{color:var(--gold);margin-right:6px}
-@media(min-width:640px){
-  .process-flow{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:16px;padding-top:0}
-  .process-step{display:flex;flex-direction:column;align-items:center;text-align:center;padding-bottom:0;grid-template-columns:none;gap:14px}
-  .process-step:not(:nth-child(3n))::after{content:"";position:absolute;top:18px;left:calc(50% + 26px);width:calc(50% - 26px);height:1px;background:var(--line-soft);z-index:1}
-  .process-marker{align-items:center}
-  .process-line{display:none}
-  .process-card{width:100%}
-  .process-icon{margin-inline:auto}
+@media(max-width:1023px){
+  .process-sticky{display:block;position:sticky;top:0;z-index:20;margin:0 0 14px;padding:10px 0;background:var(--navbg);border-bottom:1px solid var(--line-soft);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  .process-sticky-line{display:flex;align-items:baseline;gap:7px;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+  .process-sticky-index{font-family:var(--serif);font-style:italic;font-size:1.35rem;line-height:1;color:var(--gold);letter-spacing:0}
+  .process-sticky-total{color:var(--faint)}
+  .process-sticky-label{margin-left:3px;color:var(--muted)}
+  .process-sticky-label::before{content:"\00b7";margin-right:7px;color:var(--line)}
+  .process-sticky-rail{display:flex;gap:4px;margin-top:8px}
+  .process-sticky-rail span{flex:1;height:2px;border-radius:2px;background:var(--line-soft)}
+  .process-sticky-rail span.on{background:var(--gold-deep)}
+}
+@media(min-width:1024px){
+  .process-layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:48px;align-items:start}
+  .process-loop-wrap{position:sticky;top:96px;margin:0;width:280px}
+  .process-side .process-flow{margin-top:0}
 }
 /* Mobile steps (AFTER base + desktop rules to win the cascade): drop the
    gutter rail (numbers live in-card via .step-tag), compress cards */
