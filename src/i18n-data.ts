@@ -45,7 +45,7 @@ export type Dict = {
   exp: { kicker: string; title: string; latest: string; jobs: JobT[] };
   edu: { kicker: string; title: string; sub: string; entries: EduT[] };
   behind: { kicker: string; title: string; sub: string; dailyLabel: string; daily: string; exploredLabel: string; explored: string; layerLabel: string; stackLabel: string; usedInLabel: string; categories: TechCategory[] };
-  aboutMe: { kicker: string; title: string; sub: string; role: string; body: string; interests: string[]; langsTitle: string; langs: { l: string; lvl: string }[]; principlesTitle: string; principles: string[] };
+  aboutMe: { kicker: string; title: string; sub: string; role: string; body: string; currentlyLabel: string; currentlyBuilding: string; currentlyOpen: string; interests: string[]; langsTitle: string; langs: { l: string; lvl: string }[]; principlesTitle: string; principles: string[] };
   contact: {
     kicker: string; title: string; sub: string; subEm: string; subEnd: string;
     name: string; namePh: string; email: string; emailPh: string; msg: string; msgPh: string;
@@ -53,6 +53,7 @@ export type Dict = {
     mailto: string;
     respondTime: string; retry: string;
     direct: string; phone: string; linkedin: string; github: string; loc: string;
+    briefRolesLabel: string; briefRoles: string; briefLocationLabel: string; briefLocation: string; briefReplyLabel: string;
     copy: string; copied: string; copyEmail: string; copyPhone: string;
   };
   footer: { top: string; elsewhere: string; explore: string; built: string; pageTitle: string };
@@ -230,6 +231,7 @@ const en: Dict = {
     sub: 'A bit about how I think and what drives me.',
     role: 'Engineering student \u00b7 Full-stack developer',
     body: 'I enjoy building things that work end-to-end. Not just the parts that show on screen, but the systems behind them. I\'m driven by the gap between a good idea and a working product, and I like being the person who bridges it. Currently focused on full-stack development and looking for a PFE internship where I can ship production code.',
+    currentlyLabel: 'Currently', currentlyBuilding: 'Building', currentlyOpen: 'Open for a PFE internship · February-June 2027.',
     interests: ['Open source', 'System design', 'Chess', 'Martial arts'],
     langsTitle: 'Languages',
     langs: [{ l: 'Arabic', lvl: 'native' }, { l: 'French', lvl: 'professional' }, { l: 'English', lvl: 'professional' }],
@@ -250,6 +252,7 @@ const en: Dict = {
     respondTime: 'Typically respond within 24 hours',
     retry: 'Try again',
     direct: 'Direct email', loc: 'Morocco', phone: 'Phone', linkedin: 'LinkedIn', github: 'GitHub',
+    briefRolesLabel: 'Roles', briefRoles: 'Backend · Full-stack · QA automation', briefLocationLabel: 'Location', briefLocation: 'Morocco · UTC+1 · remote-friendly', briefReplyLabel: 'Reply',
     copy: 'Copy', copied: 'Copied', copyEmail: 'Copy email address', copyPhone: 'Copy phone number',
   },
   footer: { top: 'Top', elsewhere: 'Elsewhere', explore: 'Explore', built: `\u00a9 ${new Date().getFullYear()} Ahmed Ouarrali \u00b7 React 19 \u00b7 Vite \u00b7 Tailwind CSS \u00b7 596 Playwright checks \u00b7 0 cookies \u00b7 GitHub Pages`, pageTitle: 'Ahmed Ouarrali, Java / Spring Boot Full-Stack Engineer | PFE Internship' },
@@ -422,6 +425,7 @@ const fr: Dict = {
     sub: 'Un peu sur ma fa\u00e7on de penser et ce qui me motive.',
     role: '\u00c9l\u00e8ve-ing\u00e9nieur \u00b7 D\u00e9veloppeur full-stack',
     body: 'J\u2019aime construire des choses qui marchent de bout en bout. Pas seulement les \u00e9l\u00e9ments visibles \u00e0 l\u2019\u00e9cran, mais aussi les syst\u00e8mes derri\u00e8re. Je suis motiv\u00e9 par l\u2019\u00e9cart entre une bonne id\u00e9e et un produit fonctionnel, et j\u2019aime \u00eatre la personne qui le comble. Actuellement concentr\u00e9 sur le d\u00e9veloppement full-stack et \u00e0 la recherche d\u2019un stage PFE o\u00f9 je peux livrer du code en production.',
+    currentlyLabel: 'En ce moment', currentlyBuilding: 'Je construis', currentlyOpen: 'Ouvert \u00e0 un stage PFE \u00b7 f\u00e9vrier-juin 2027.',
     interests: ['Open source', 'Conception de syst\u00e8mes', '\u00c9checs', 'Arts martiaux'],
     langsTitle: 'Langues',
     langs: [{ l: 'Arabe', lvl: 'maternelle' }, { l: 'Fran\u00e7ais', lvl: 'professionnel' }, { l: 'Anglais', lvl: 'professionnel' }],
@@ -442,6 +446,7 @@ const fr: Dict = {
     respondTime: 'Je r\u00e9ponds g\u00e9n\u00e9ralement sous 24 heures',
     retry: 'R\u00e9essayer',
     direct: 'E-mail direct', loc: 'Maroc', phone: 'T\u00e9l\u00e9phone', linkedin: 'LinkedIn', github: 'GitHub',
+    briefRolesLabel: 'R\u00f4les', briefRoles: 'Backend \u00b7 Full-stack \u00b7 QA automatisation', briefLocationLabel: 'Localisation', briefLocation: 'Maroc \u00b7 UTC+1 \u00b7 distantiel', briefReplyLabel: 'R\u00e9ponse',
     copy: 'Copier', copied: 'Copi\u00e9', copyEmail: 'Copier l\u2019adresse e-mail', copyPhone: 'Copier le num\u00e9ro de t\u00e9l\u00e9phone',
   },
   footer: { top: 'Haut', elsewhere: 'Ailleurs', explore: 'Explorer', built: `\u00a9 ${new Date().getFullYear()} Ahmed Ouarrali \u00b7 React 19 \u00b7 Vite \u00b7 Tailwind CSS \u00b7 596 checks Playwright \u00b7 0 cookies \u00b7 GitHub Pages`, pageTitle: 'Ahmed Ouarrali, Ing\u00e9nieur Full-Stack Java / Spring Boot | Stage PFE' },

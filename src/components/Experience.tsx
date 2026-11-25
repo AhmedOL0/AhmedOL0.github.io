@@ -86,16 +86,21 @@ export function Education() {
   const accents = ['amber', 'sage'] as const;
   return (
     <Section id="education" num="05" kicker={t.edu.kicker} title={t.edu.title} sub={t.edu.sub} variant="scale">
-      <div className="edu-grid mt-8 grid grid-cols-1 gap-5 lg:grid-cols-2">
+      <div className="edu-ledger mt-8">
         {t.edu.entries.map((e, i) => (
-          <article className={`edu-card edu-card--${accents[i]}`} key={e.title}>
-            <div className="edu-card-head">
-              <div className="edu-icon">{EDU_ICONS[i]}</div>
-              <div className="edu-years font-mono-d">{e.years}</div>
+          <article className={`edu-row edu-row--${accents[i]}`} key={e.title}>
+            <div className="edu-row-year">
+              <span className="edu-row-index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <span className="edu-years font-mono-d">{e.years}</span>
             </div>
-            <h3 className="font-serif-d">{e.title}</h3>
+            <div className="edu-row-main">
+              <div className="edu-row-title">
+                <span className="edu-icon">{EDU_ICONS[i]}</span>
+                <h3 className="font-serif-d">{e.title}</h3>
+              </div>
+              <p className="edu-desc">{e.desc}</p>
+            </div>
             <p className="edu-school">{e.school}</p>
-            <p className="edu-desc">{e.desc}</p>
           </article>
         ))}
       </div>

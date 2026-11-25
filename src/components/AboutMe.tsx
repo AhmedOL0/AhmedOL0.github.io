@@ -15,6 +15,14 @@ export default function AboutMe() {
               <p className="about-role">{t.aboutMe.role}</p>
             </div>
           </div>
+          <div className="about-current">
+            <span className="about-current-dot" aria-hidden="true" />
+            <span className="about-current-label">{t.aboutMe.currentlyLabel}</span>
+            <p className="about-current-text">
+              {t.aboutMe.currentlyBuilding} <a href="#work-procure">ProcureFlow</a>
+              <span aria-hidden="true"> · </span>{t.aboutMe.currentlyOpen}
+            </p>
+          </div>
           <p className="about-body text-[.92rem] sm:text-[1rem] leading-relaxed" style={{ color: 'var(--muted)' }}>
             {t.aboutMe.body}
           </p>

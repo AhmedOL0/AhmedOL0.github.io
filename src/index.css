@@ -349,7 +349,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .tag-corner{font-size:.68rem;padding:4px 10px;top:10px;right:12px}
   .top-left{left:calc(12px + env(safe-area-inset-left,0px)) !important;top:calc(12px + env(safe-area-inset-top,0px)) !important}
   [dir="rtl"] .top-left{left:auto !important;right:calc(12px + env(safe-area-inset-right,0px)) !important}
-  .edu-card{padding:20px 18px}
   .field>span{font-size:.92rem}
   .iconbtn{width:44px;height:44px}
   .timeline{gap:28px}
@@ -376,7 +375,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .filters{gap:6px !important}
   .filters button{padding:9px 6px;font-size:.72rem}
   #toTop{width:44px;height:44px;bottom:calc(88px + env(safe-area-inset-bottom,0px));right:calc(12px + env(safe-area-inset-right,0px))}
-  .edu-card{padding:16px 14px}
   .timeline{padding-left:0;gap:24px}
   .job h3{font-size:1rem}
   .job .where{font-size:.82rem}
@@ -407,16 +405,24 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .job li{color:var(--muted);font-size:.9rem;padding:3px 0 3px 20px;position:relative}
 .job li::before{content:"";position:absolute;left:2px;top:13px;width:12px;height:1px;background:var(--gold-deep)}
 
-/* Education */
-.edu-card{background:var(--card);border:1px solid var(--line);border-left:2px solid var(--gold-deep);border-radius:var(--r);padding:32px 34px;transition:border-color .25s}
-.edu-card--sage{border-left-color:var(--sage)}
-.edu-card:hover{border-color:var(--gold-deep)}
-.edu-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+/* Education: formation ledger */
+.edu-ledger{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.edu-row{--edu-accent:var(--gold-deep);display:grid;grid-template-columns:190px minmax(0,1fr) 270px;gap:28px;padding:24px 0 24px 18px;border-bottom:1px solid var(--line-soft);border-left:2px solid var(--edu-accent)}
+.edu-row--amber{--edu-accent:var(--amber)}
+.edu-row--sage{--edu-accent:var(--sage)}
+.edu-row-year{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.edu-row-index{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;color:var(--faint)}
 .edu-icon{width:36px;height:36px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;color:var(--gold);border:1px solid var(--line);flex-shrink:0}
 .edu-years{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);padding:4px 10px;border-radius:var(--r);display:inline-block}
-.edu-card h3{font-family:var(--serif);font-size:1.45rem;font-weight:500;line-height:1.25}
-.edu-school{font-size:.85rem;color:var(--muted);margin-top:4px}
+.edu-row-main{min-width:0}
+.edu-row-title{display:flex;align-items:flex-start;gap:12px}
+.edu-row-title h3{font-family:var(--serif);font-size:1.4rem;font-weight:500;line-height:1.2;margin:0}
+.edu-school{font-size:.82rem;color:var(--muted);margin:0;line-height:1.5}
 .edu-desc{font-size:.85rem;color:var(--faint);margin-top:8px;line-height:1.55}
+@media(max-width:1023px){
+  .edu-row{grid-template-columns:1fr;gap:12px;padding:20px 0 20px 16px}
+  .edu-row-title h3{font-size:1.25rem}
+}
 
 /* Magnetic cursor: exclusion-blend ring + core dot, fine pointers only */
 .magnetic-ring{position:fixed;top:0;left:0;width:36px;height:36px;border:1.5px solid #fff;border-radius:50%;mix-blend-mode:exclusion;pointer-events:none;z-index:200;opacity:0;transition:opacity .3s,width .25s ease,height .25s ease}
@@ -459,9 +465,14 @@ html.has-project-dialog .magnetic-dot{opacity:0!important}
 .tags span{transition:border-color .2s,color .2s}
 
 /* Contact */
-.contact-status{display:flex;align-items:center;flex-wrap:wrap;gap:7px 14px;margin-top:18px;padding:10px 14px;border:1px solid var(--line-soft);border-left:2px solid var(--sage);border-radius:var(--r);background:var(--card);font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.contact-status-dot{width:7px;height:7px;border-radius:50%;background:var(--sage);flex-shrink:0}
-.contact-status-note{margin-left:auto;color:var(--faint)}
+.contact-brief{margin-top:18px;border:1px solid var(--line-soft);border-left:2px solid var(--sage);border-radius:var(--r);background:var(--card);padding:14px 18px}
+.contact-brief-head{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+.contact-brief-dot{width:7px;height:7px;border-radius:50%;background:var(--sage);flex-shrink:0}
+.contact-brief-rows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 24px;margin:12px 0 0;padding:0}
+.contact-brief-rows div{min-width:0}
+.contact-brief-rows dt{font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.contact-brief-rows dd{margin:3px 0 0;font-size:.82rem;line-height:1.45;color:var(--muted)}
+@media(max-width:640px){.contact-brief{padding:12px 14px}.contact-brief-rows{grid-template-columns:1fr;gap:8px}}
 .contact-box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);position:relative;display:grid;grid-template-columns:1fr;gap:24px;padding:12px}
 .contact-box label{display:block;font-size:.78rem;color:var(--muted);margin:15px 0 6px;letter-spacing:.06em;text-transform:uppercase;font-family:var(--mono)}
 .contact-box input,.contact-box textarea{width:100%;background:var(--inputbg);border:1px solid var(--line);border-radius:var(--r);color:var(--ink);padding:13px 16px;font-family:var(--sans);font-size:.92rem;resize:vertical;transition:border-color .2s}
@@ -581,7 +592,6 @@ a.direct-link:hover{text-decoration:underline;text-underline-offset:3px}
   footer nav{grid-template-columns:1fr !important;gap:24px !important}
   footer nav > div:first-child{margin-bottom:8px}
   .footer-socials{margin-top:14px}
-  .contact-status-note{margin-left:0;flex-basis:100%}
 }
 
 /* Hero actions */
@@ -750,7 +760,7 @@ main{overflow-x:clip}
   .rise{opacity:1;animation:none}
   html{scroll-behavior:auto}
   .dock,.top-left,.top-right{animation:none}
-  .btn,.card,.tags span,.edu-card,.direct-item,.footer-link,.cap-toggle,.cap-icon,.thumb-img,.pd-shot-open img{transition:none}
+  .btn,.card,.tags span,.direct-item,.footer-link,.cap-toggle,.cap-icon,.thumb-img,.pd-shot-open img{transition:none}
   #toTop,.dock-indicator,.cap-chevron,.cap-details-wrap,.cap-details,.hero-actions .btn,.btn .arr,.timeline-fill,.process-ring-progress{transition:none}
   .thumb-img{animation:none}
   .process-node circle,.process-node text{transition:none}
@@ -767,7 +777,7 @@ main{overflow-x:clip}
     nav,.dock,.top-left,.top-right,#progress,#toTop,.filter-row,.grain,.skip-link,.send-spinner,.contact-box form,.below-fold-fallback{display:none}
     body{background:#fff;color:#111;font-size:11pt}
     .reveal,.rise{opacity:1!important;animation:none!important;transform:none}
-    .card,.edu-card{break-inside:avoid;box-shadow:none;border:1px solid #ddd}
+    .card,.edu-row{break-inside:avoid;box-shadow:none;border:1px solid #ddd}
     a{color:#111;text-decoration:underline}
     a[href]::after{content:" (" attr(href) ")";font-size:.8em;color:#666}
     a[href^="#"]::after,a[href^="mailto"]::after{content:""}
@@ -1051,6 +1061,13 @@ main{overflow-x:clip}
 .about-identity{display:flex;flex-direction:column;gap:2px}
 .about-name{margin:0;font-size:1.1rem;font-weight:600}
 .about-role{margin:0;font-size:.85rem;color:var(--muted)}
+.about-current{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:10px 14px;border:1px solid var(--line-soft);border-left:2px solid var(--sage);border-radius:var(--r);background:var(--card)}
+.about-current-dot{width:7px;height:7px;border-radius:50%;background:var(--sage);flex:none}
+.about-current-label{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.about-current-text{margin:0;font-size:.82rem;line-height:1.5;color:var(--muted)}
+.about-current-text a{color:var(--gold);text-decoration:none}
+.about-current-text a:hover{text-decoration:underline;text-underline-offset:3px}
+.about-current-text a:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
 .about-body{max-width:60ch}
 .about-interests{display:flex;flex-wrap:wrap;gap:8px}
 .about-principles{margin-top:20px}
