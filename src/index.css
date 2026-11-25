@@ -221,6 +221,17 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .tag-more:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .result{font-size:.84rem;font-weight:500;color:var(--ink);margin-top:2px;border-left:2px solid var(--gold-deep);padding-left:10px}
 .result-label{display:block;margin-bottom:2px;font-family:var(--mono);font-size:.6rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.card-role{display:flex;flex-wrap:wrap;gap:4px 8px;margin:1px 0 0;font-size:.78rem;line-height:1.5;color:var(--muted)}
+.card-role span{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);flex:none;padding-top:2px}
+.card-featured-label{align-self:flex-start;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line-soft);border-radius:var(--r);padding:3px 8px;background:var(--bg2);margin-bottom:2px}
+/* Featured case study: the first card becomes an editorial lead on desktop. */
+@media(min-width:1024px){
+  .card--featured{grid-column:1/-1;display:grid;grid-template-columns:1.12fr .88fr}
+  .card--featured .thumb{aspect-ratio:auto;min-height:420px;border-bottom:0;border-right:1px solid var(--line)}
+  .card--featured .thumb-stage{inset:24px 58px 50px}
+  .card--featured .body{padding:28px 30px 26px;justify-content:center}
+  .card--featured h3{font-size:clamp(1.6rem,2.5vw,2.1rem);line-height:1.08}
+}
 /* Engineering notes: progressive disclosure keeps cards scannable */
 .case-notes{margin-top:4px;border-top:1px solid var(--line-soft)}
 .case-notes summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:40px;padding:4px 0;font-family:var(--mono);font-size:.66rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;list-style:none}
@@ -915,6 +926,12 @@ main{overflow-x:clip}
 .cap-toggle{display:inline-flex;align-items:center;gap:5px;margin-top:14px;padding:6px 14px;border:1px solid var(--line-soft);border-radius:var(--r);background:transparent;color:var(--faint);font-size:.76rem;cursor:pointer;transition:border-color .2s,color .2s;font-family:var(--mono);letter-spacing:.04em}
 .cap-toggle:hover{border-color:var(--gold);color:var(--gold)}
 .cap-toggle-text{transition:color .2s}
+.cap-proof{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);text-decoration:none;width:fit-content;min-height:40px}
+.cap-proof span{font-family:var(--sans);font-size:1rem;line-height:1;transition:transform .2s}
+.cap-proof:hover{color:var(--gold-hi)}
+.cap-proof:hover span{transform:translateX(3px)}
+.cap-proof:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:2px}
+@media(max-width:820px){.cap-proof{min-height:44px}}
 .cap-chevron{transition:transform .3s var(--ease-snap);flex-shrink:0}
 .cap-chevron.open{transform:rotate(180deg)}
 .cap-details-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s var(--ease-snap)}

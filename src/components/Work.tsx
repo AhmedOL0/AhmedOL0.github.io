@@ -159,6 +159,7 @@ export default function Work() {
               cardId={cardIds[i]}
               gallery={PROJECT_GALLERIES[i]}
               onExplore={() => openCaseStudy(i)}
+              featured={i === 0}
             />
           );
         })}
@@ -180,7 +181,7 @@ export default function Work() {
   );
 }
 
-function Card({ p, th, i, cardId, gallery, onExplore }: { p: { year: string; kind: string; title: string; description: string; highlight: string; result?: string; linkHref?: string; linkLabel?: string }; th: { pre: string; em: string; post: string }; i: number; cardId: string; gallery: ProjectGalleryImageT[]; onExplore: () => void }) {
+function Card({ p, th, i, cardId, gallery, onExplore, featured = false }: { p: { year: string; kind: string; title: string; description: string; highlight: string; result?: string; linkHref?: string; linkLabel?: string; cardRole?: string }; th: { pre: string; em: string; post: string }; i: number; cardId: string; gallery: ProjectGalleryImageT[]; onExplore: () => void; featured?: boolean }) {
   const { t, lang } = useLang();
   const [tagsExpanded, setTagsExpanded] = useState(false);
   const [shotIndex, setShotIndex] = useState(0);
@@ -192,7 +193,7 @@ function Card({ p, th, i, cardId, gallery, onExplore }: { p: { year: string; kin
   return (
     <article
       id={`work-${cardId}`}
-      className="card rise" style={{ animationDelay: `${Math.min(i, 5) * 90}ms` }}
+      className={`card rise${featured ? ' card--featured' : ''}`} style={{ animationDelay: `${Math.min(i, 5) * 90}ms` }}
       onAnimationEnd={(e) => { e.currentTarget.classList.remove('rise'); }}
     >
       <div className={`thumb ${PROJECT_THUMBS[i]}${gallery.length > 0 ? ' thumb--image thumb--carousel' : ''}`}>
@@ -249,8 +250,12 @@ function Card({ p, th, i, cardId, gallery, onExplore }: { p: { year: string; kin
         <span className="tag-corner">{p.year}</span>
       </div>
       <div className="body flex flex-col gap-1.5 p-3.5 sm:p-[20px_22px_22px] flex-1">
+        {featured && <span className="card-featured-label">{t.work.featured}</span>}
         <span className="flag">{p.kind}</span>
         <h3 className="font-serif-d">{p.title}</h3>
+        {p.cardRole && (
+          <p className="card-role"><span>{t.work.roleLabel}</span>{p.cardRole}</p>
+        )}
         <p className="text-[.9rem] leading-[1.65]" style={{ color: 'var(--muted)' }}>{p.description}</p>
         {p.result && (
           <p className="result text-[.82rem] font-medium" style={{ color: 'var(--gold)' }}>
