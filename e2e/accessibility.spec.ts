@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
 
 test.describe('Accessibility (WCAG 2.2)', () => {
   test.beforeEach(async ({ page }) => {
@@ -54,9 +55,24 @@ test.describe('Accessibility (WCAG 2.2)', () => {
     await expect(skipLink).toBeVisible();
   });
 
-  test('navigation has accessible aria-label', async ({ page }) => {
+  test('navigation is labelled and has no serious axe violations', async ({ page }) => {
     const nav = page.locator('[role="navigation"]');
     await expect(nav).toHaveAttribute('aria-label');
+
+    await page.addStyleTag({ content: '*,*::before,*::after{transition:none!important;animation:none!important}.reveal,.reveal-left,.reveal-right,.reveal-scale,.stagger-item{opacity:1!important;transform:none!important}' });
+    const tags = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
+    for (const theme of ['light', 'dark'] as const) {
+      await page.evaluate((t) => document.documentElement.setAttribute('data-theme', t), theme);
+      await page.waitForTimeout(100);
+      const results = await new AxeBuilder({ page }).withTags(tags).analyze();
+      const serious = results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
+      expect(serious, `${theme}: ${JSON.stringify(serious, null, 2)}`).toEqual([]);
+    }
+
+    await page.locator('.cv-menu summary').click();
+    const menuResults = await new AxeBuilder({ page }).withTags(tags).analyze();
+    const menuSerious = menuResults.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
+    expect(menuSerious, `CV menu: ${JSON.stringify(menuSerious, null, 2)}`).toEqual([]);
   });
 
   test('headings follow sequential order (h1 → h2 → h3)', async ({ page }) => {

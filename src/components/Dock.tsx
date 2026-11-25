@@ -88,7 +88,7 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
       <div ref={wrapRef} inert={hidden || undefined} className={`top-right fixed right-5 top-5 z-50 flex max-w-[calc(100vw-2.5rem)] flex-wrap items-center justify-end gap-2 md:right-8${hidden ? ' top-pills-hidden' : ''}`}>
         <div className="langsw" role="group" aria-label={t.dock.lang}>
           {LANGS.map((l) => (
-            <button key={l.code} className={lang === l.code ? 'active' : ''} onClick={() => { setLang(l.code); setAnnounce(true); }} aria-pressed={lang === l.code} aria-label={l.aria}
+            <button key={l.code} className={lang === l.code ? 'active' : ''} onClick={() => { setLang(l.code); setAnnounce(true); }} aria-pressed={lang === l.code} aria-label={`${l.label} · ${l.aria}`}
               data-tip={l.aria}>
               {l.label}
             </button>
@@ -102,11 +102,11 @@ export function TopPills({ theme, onToggle }: { theme: string; onToggle: () => v
           <summary className="cv-menu-summary">{t.dock.resume}</summary>
           <div className="cv-menu-panel">
             <p className="cv-menu-label">{t.dock.cvFullStack}</p>
-            <a href="assets/CV_Ahmed_Ouarrali_EN.pdf" download onClick={() => { if (cvRef.current) cvRef.current.open = false; }} aria-label={`${t.dock.cvFullStack} EN`}>English <span>EN</span></a>
-            <a href="assets/CV_Ahmed_Ouarrali_FR.pdf" download onClick={() => { if (cvRef.current) cvRef.current.open = false; }} aria-label={`${t.dock.cvFullStack} FR`}>Français <span>FR</span></a>
+            <a href="assets/CV_Ahmed_Ouarrali_EN.pdf" download onClick={() => { if (cvRef.current) cvRef.current.open = false; }} aria-label={`${t.dock.cvFullStack} English EN`}>English <span>EN</span></a>
+            <a href="assets/CV_Ahmed_Ouarrali_FR.pdf" download onClick={() => { if (cvRef.current) cvRef.current.open = false; }} aria-label={`${t.dock.cvFullStack} Français FR`}>Français <span>FR</span></a>
             <p className="cv-menu-label">{t.dock.cvQA}</p>
-            <a href="assets/CV_Ahmed_Ouarrali_QA_EN.pdf" download onClick={() => { if (cvRef.current) cvRef.current.open = false; }} aria-label={`${t.dock.cvQA} EN`}>English <span>EN</span></a>
-            <a href="assets/CV_Ahmed_Ouarrali_QA_FR.pdf" download onClick={() => { if (cvRef.current) cvRef.current.open = false; }} aria-label={`${t.dock.cvQA} FR`}>Français <span>FR</span></a>
+            <a href="assets/CV_Ahmed_Ouarrali_QA_EN.pdf" download onClick={() => { if (cvRef.current) cvRef.current.open = false; }} aria-label={`${t.dock.cvQA} English EN`}>English <span>EN</span></a>
+            <a href="assets/CV_Ahmed_Ouarrali_QA_FR.pdf" download onClick={() => { if (cvRef.current) cvRef.current.open = false; }} aria-label={`${t.dock.cvQA} Français FR`}>Français <span>FR</span></a>
           </div>
         </details>
       </div>

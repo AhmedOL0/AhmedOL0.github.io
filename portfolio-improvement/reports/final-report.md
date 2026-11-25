@@ -17,13 +17,15 @@
 - `npm run lint`: clean
 - `npm run build`: passes
 - Playwright: 596 tests passed
+- Axe-core: no serious/critical violations in light, dark or the open CV menu
+- Lighthouse clean baseline: 100/100 unthrottled, 89/100 mobile throttled, TBT 0 ms, CLS 0
 - Raw HTML contains name, projects, contact and CV links
 - No-JS rendering verified
 - CV endpoints served as PDF
 
 ## Not independently scored
 
-No external designer or independent reviewer produced a numeric visual score in this pass. Lighthouse and axe were not measured in the deployment environment. The site should not claim external scores until those measurements exist.
+No external designer or independent reviewer produced a numeric visual score in this pass. The axe-core and Lighthouse results are clean local baselines, not independent third-party audits or real-device measurements. The site should not claim external scores until those measurements exist.
 
 ## Remaining
 

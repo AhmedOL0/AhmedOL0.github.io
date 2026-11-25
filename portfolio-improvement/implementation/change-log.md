@@ -9,6 +9,9 @@
 - Short laptops stack the contact channels on the left so the centered dock never covers them.
 - Mobile title scale is smoothed between 421px and 640px instead of jumping at the breakpoint.
 - The project carousel test now triggers the control directly, removing the intermittent Firefox click miss.
+- Axe-core serious/critical audit added to the accessibility spec, covering light, dark and the open CV menu.
+- Label-in-name fixes for language buttons, project filters and CV menu links.
+- README quality gates now document the clean axe baseline and both Lighthouse profiles (100 unthrottled, 89 mobile throttled).
 - Hero, title, description, JSON-LD and OG image repositioned around Java / Spring Boot.
 - PFE spelled out as final-year engineering internship.
 - Metadata and sitemap dates refreshed.
