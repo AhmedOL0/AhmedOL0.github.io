@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type TouchEvent } from 'react';
 import { createPortal } from 'react-dom';
 import TopLayerCursor from './TopLayerCursor';
 import { useLang, type ProjectGalleryImageT } from '../i18n-data';
@@ -16,6 +16,22 @@ export default function ProjectLightbox({ shot, position, total, onPrev, onNext,
   const { t, lang } = useLang();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const touchRef = useRef<{ x: number; y: number } | null>(null);
+  const onTouchStart = (event: TouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0];
+    touchRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+  const onTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
+    const start = touchRef.current;
+    touchRef.current = null;
+    if (!start || total < 2) return;
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+      if (dx < 0) onNext(); else onPrev();
+    }
+  };
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -64,7 +80,7 @@ export default function ProjectLightbox({ shot, position, total, onPrev, onNext,
             </button>
           </div>
         </div>
-        <div className="pl-frame">
+        <div className="pl-frame" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
           <img src={shot.src} width={shot.width} height={shot.height} alt={shot.alt[lang]} decoding="async" />
         </div>
       </div>
