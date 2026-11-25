@@ -6,26 +6,30 @@ const CARDS = [
   {
     /* stacked layers: "full-stack", every layer of the product */
     icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 2 9 5-9 5-9-5 9-5z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg>,
-    metric: '7+',
+    metric: '07',
     accent: 'amber',
+    proof: 'work' as const,
   },
   {
     /* app window: "interfaces people use" */
     icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><circle cx="6" cy="6.5" r=".9" fill="currentColor" stroke="none"/><path d="M7 13h4"/><path d="M7 16.5h7"/></svg>,
-    metric: 'WCAG',
+    metric: 'A11Y',
     accent: 'gold',
+    proof: 'cases' as const,
   },
   {
     /* shield check: "systems that hold up" */
     icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2 4.5 5v6c0 5 3.2 8.7 7.5 11 4.3-2.3 7.5-6 7.5-11V5L12 2z"/><path d="m9 12 2 2 4-4"/></svg>,
-    metric: 'E2E',
+    metric: '596',
     accent: 'sage',
+    proof: 'qa' as const,
   },
   {
     /* chat bubble with typing dots: "conversation across languages" */
     icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-5 4V6z"/><circle cx="9" cy="10" r="1.1" fill="currentColor" stroke="none"/><circle cx="12.5" cy="10" r="1.1" fill="currentColor" stroke="none"/><circle cx="16" cy="10" r="1.1" fill="currentColor" stroke="none"/></svg>,
-    metric: 'FR EN',
+    metric: 'EN/FR',
     accent: 'rust',
+    proof: 'stack' as const,
   },
 ];
 
@@ -43,9 +47,15 @@ export default function WhatIDo() {
 }
 
 function CapabilityCard({ cap, card, num }: { cap: { title: string; desc: string; details: string }; card: typeof CARDS[number]; num: number }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [open, setOpen] = useState(false);
   const detailsId = useId();
+  const proofHref = card.proof === 'qa'
+    ? `assets/CV_Ahmed_Ouarrali_QA_${lang === 'fr' ? 'FR' : 'EN'}.pdf`
+    : card.proof === 'stack' ? '#behind' : '#work';
+  const proofLabel = card.proof === 'cases'
+    ? t.whatIDo.proofCases
+    : card.proof === 'qa' ? t.whatIDo.proofQA : card.proof === 'stack' ? t.whatIDo.proofStack : 'OdemLab · ProcureFlow';
   return (
     <div className={`cap-card cap-card--${card.accent}`}>
       <div className="cap-card-head">
@@ -65,6 +75,9 @@ function CapabilityCard({ cap, card, num }: { cap: { title: string; desc: string
       <div id={detailsId} className={`cap-details-wrap${open ? ' open' : ''}`} role="region" aria-label={cap.title}>
         <p className="cap-details">{cap.details}</p>
       </div>
+      <a className="cap-proof" href={proofHref} {...(card.proof === 'qa' ? { download: true } : {})}>
+        {proofLabel}<span aria-hidden="true">&rarr;</span>
+      </a>
     </div>
   );
 }

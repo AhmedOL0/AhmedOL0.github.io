@@ -9,7 +9,7 @@ export const LANGS: { code: Lang; label: string; aria: string }[] = [
 export type ProjectT = {
   title: string; year: string; kind: string; heading: string; lead: string;
   description: string; highlight: string; result?: string; linkLabel?: string; linkHref?: string;
-  role?: string; architecture?: string; quality?: string;
+  cardRole?: string; role?: string; architecture?: string; quality?: string;
 };
 
 export type ProjectGalleryImageT = {
@@ -38,10 +38,10 @@ export type Dict = {
   nav: { home: string; whatIDo: string; work: string; experience: string; behind: string; contact: string; resume: string; skipToContent: string; langChanged: string };
   hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede: string; ledeShort: string; ctaWork: string; ctaContact: string; statsLabels: [string, string]; avail: string; photoChipA: string; photoChipB: string };
   plate: { roleLabel: string; role: string; focusLabel: string; focus: string; locLabel: string; loc: string; statusLabel: string; status: string };
-  whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; metricLabels: [string, string, string, string]; capabilities: Capability[] };
+  whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; metricLabels: [string, string, string, string]; proofCases: string; proofQA: string; proofStack: string; capabilities: Capability[] };
   howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
-  work: { kicker: string; title: string; sub: string; showLess: string; showFewer: string; showMoreTags: string; filterCount: string; filterCountOne: string; filterGroup: string; walkthroughNote: string; notesSummary: string; approachLabel: string; outcomeLabel: string; roleLabel: string; architectureLabel: string; qualityLabel: string; explore: string; close: string; discuss: string; screensLabel: string; previousProject: string; nextProject: string; previousScreen: string; nextScreen: string; enlarge: string; projects: ProjectT[] };
+  work: { kicker: string; title: string; sub: string; featured: string; showLess: string; showFewer: string; showMoreTags: string; filterCount: string; filterCountOne: string; filterGroup: string; walkthroughNote: string; notesSummary: string; approachLabel: string; outcomeLabel: string; roleLabel: string; architectureLabel: string; qualityLabel: string; explore: string; close: string; discuss: string; screensLabel: string; previousProject: string; nextProject: string; previousScreen: string; nextScreen: string; enlarge: string; projects: ProjectT[] };
   exp: { kicker: string; title: string; latest: string; jobs: JobT[] };
   edu: { kicker: string; title: string; sub: string; entries: EduT[] };
   behind: { kicker: string; title: string; sub: string; dailyLabel: string; daily: string; exploredLabel: string; explored: string; categories: TechCategory[] };
@@ -92,12 +92,13 @@ const en: Dict = {
     kicker: 'What I do', title: 'I turn complex ideas into simple, working products.',
     sub: 'From concept to deployment. I handle the full journey so you don\'t have to.',
     showDetails: 'Details', showLess: 'Less',
-    metricLabels: ['shipped', '2.2 AA', 'verified', 'AR'],
+    metricLabels: ['projects shipped', 'keyboard · focus · motion', 'Playwright checks', 'typed copy'],
+    proofCases: 'Case studies', proofQA: 'QA CV', proofStack: 'Stack',
     capabilities: [
       { title: 'Build complete products', desc: 'I take an idea from concept to a running application. Frontend, backend, database, and deployment. Everything connected, everything working.', details: 'Full-stack development with Java 21, Spring Boot, Next.js and React. REST APIs, contract-generated frontend types, authentication, PostgreSQL and deployment.' },
-      { title: 'Design intuitive interfaces', desc: 'I create web and mobile experiences that feel simple, even when the technology behind them is complex.', details: 'Responsive design, trilingual support (FR/EN/AR with real RTL), accessibility (WCAG 2.2), animations, and progressive disclosure.' },
-      { title: 'Build reliable systems', desc: 'I design the invisible parts. Data integrity, security, performance, and things that don\'t break when users depend on them.', details: 'Transactional integrity, optimistic locking, encrypted PII, rate limiting, circuit breakers, automated testing (unit → integration → E2E), and zero-downtime deployments.' },
-      { title: 'Work across languages', desc: 'I build in French, English, and Arabic. Including proper right-to-left support for Arabic speakers.', details: 'Full i18n with locale routing, RTL layout mirroring, and culturally adapted content across three languages.' },
+      { title: 'Design intuitive interfaces', desc: 'I create web and mobile experiences that feel simple, even when the technology behind them is complex.', details: 'Responsive design, accessibility (WCAG 2.2), keyboard and focus states, reduced motion, and progressive disclosure.' },
+      { title: 'Build reliable systems', desc: 'I design the invisible parts. Data integrity, security, performance, and things that don\'t break when users depend on them.', details: 'Transactional integrity, tenant isolation, idempotency, automated testing (unit → integration → E2E), and CI gates that block regressions.' },
+      { title: 'Ship bilingual products', desc: 'I build in French and English, with copy that stays consistent across both interfaces.', details: 'Typed EN/FR copy source, synchronized lang and title, and a test that catches untranslated French.' },
     ],
   },
   howIWork: {
@@ -116,6 +117,7 @@ const en: Dict = {
   work: {
     kicker: 'Selected work', title: 'Systems that run in production, not demos that run once.',
     sub: 'Seven builds across web, mobile, backend, AI and IoT. Each one deployed, used, or graded.',
+    featured: 'Featured case study',
     showLess: 'show less', showFewer: 'Show fewer tags', showMoreTags: 'Show {count} more tags', filterCount: 'Showing {count} of {total} projects', filterCountOne: 'Showing 1 of {total} projects', filterGroup: 'Filter projects by discipline',
     walkthroughNote: 'Live demos, private repositories and hardware: code walkthroughs and guided demos available on request.',
     notesSummary: 'Engineering notes', approachLabel: 'Approach', outcomeLabel: 'Outcome',
@@ -124,6 +126,7 @@ const en: Dict = {
     previousProject: 'Previous project', nextProject: 'Next project', previousScreen: 'Previous screen', nextScreen: 'Next screen', enlarge: 'Enlarge screen',
     projects: [
       { title: 'OdemLab: skincare commerce platform', year: 'Flagship', kind: 'Team of 4 · Private repo', heading: 'OdemLab', lead: 'd',
+        cardRole: 'Backend modules · web · order flow',
         description: 'Team-of-four skincare commerce platform with AI diagnosis and a React Native storefront. I built the backend business modules, web storefront/back-office and order flow.',
         highlight: 'Orders are priced server-side, guarded by a state machine and idempotency: clients cannot change an amount and duplicate orders are blocked. Frontend types are generated from OpenAPI, and CI fails on contract drift.',
         result: 'Flyway migrations replay from an empty database, with a duplicate-version test. Admin notifications stay in sync across browser tabs.',
@@ -131,6 +134,7 @@ const en: Dict = {
         architecture: 'Spring Boot modular monolith, Next.js/React web, PostgreSQL/Redis, OpenAPI-generated frontend types, Flyway, Google Cloud Run.',
         quality: 'Server-side pricing, order state machine and idempotency; CI fails on OpenAPI drift; Flyway replay and duplicate-version protection.' },
       { title: 'ProcureFlow: B2B procurement platform', year: '2026', kind: 'Full-stack \u00b7 Spring Boot & Angular', heading: 'ProcureFlow', lead: 'F',
+        cardRole: 'Requests · approvals · budgets · AI copilot',
         description: 'A multi-tenant B2B procurement platform: requests, approvals, suppliers, orders, invoices and budgets. Requests move through a stepped approval workflow with bounded delegation, and budget is reserved atomically on approval.',
         highlight: 'Multi-tenant isolation: cross-tenant access answers 404, never 403. Amounts are recomputed server-side with idempotency keys, and frontend types are generated from the API contract.',
         result: 'JWT refresh-token rotation, bilingual FR/EN interface, and an AI copilot that cites workspace data and drafts requests from natural-language descriptions.',
@@ -139,26 +143,31 @@ const en: Dict = {
         quality: 'Tenant isolation, atomic budget reservation on approval, automated module-boundary checks and Playwright coverage.',
         linkLabel: 'View the repository', linkHref: 'https://github.com/AhmedOL0/ProcureFlow' },
       { title: 'MediCare: clinic management platform', year: '2025', kind: 'Internship · Full-stack', heading: 'MediCare', lead: 'Care',
+        cardRole: 'Booking · schedules · patient records',
         description: 'A clinic management platform with specialty search, online booking, schedules and patient records. Three role spaces: patient, doctor and admin.',
         highlight: 'Separate spaces for patients, doctors and admins, with slot checks that prevent double bookings at write time.',
         result: 'Specialty search, online booking and patient records in one workflow.'},
       { title: 'FitTrack: training platform', year: '2025', kind: 'Team of 2 · Full-stack', heading: 'FitTrack', lead: 'i',
+        cardRole: 'Programmes · health profile · admin',
         description: 'A personal fitness web app for training programmes, sessions and performance logs, with a health profile (BMI, daily energy), exercise library and admin area.',
         highlight: 'Programme and session flows, health metrics and a full admin area for the exercise library.',
         result: 'Admin area plus a personal health profile with BMI and daily energy.',
         role: 'Full-stack. Programmes, sessions, performance logs, health profile, exercise library and admin area.',
         architecture: 'Spring Boot, Next.js/React, MySQL, Docker.'},
       { title: 'Smart Campus Companion', year: '2026', kind: 'Team of 4 · Flutter', heading: 'Campus', lead: 'a',
+        cardRole: 'QR rooms · AR view · bookings',
         description: 'A Flutter campus app: scan QR codes on room doors to open a room sheet with capacity and equipment, plus an AR view. Timetable, bookings, moderated announcements and incident reports across three roles.',
         highlight: 'QR-to-room sheet with an AR view; timetable, bookings, moderated announcements and incident reports across three roles.',
         result: 'Three role spaces; QR room sheets and an AR view.',
         role: 'Mobile. QR room sheets, AR view, timetable, bookings, moderated announcements and incident reports across three roles.',
         architecture: 'Flutter, Firebase/Firestore, Riverpod, ARCore/ARKit.'},
       { title: 'SmartSummarizer', year: '2025', kind: 'Team of 4 · NLP', heading: 'Summarizer', lead: 'u',
+        cardRole: 'Summaries · quizzes · mind maps',
         description: 'A team project that turns course PDFs into study tools: summaries, audio, quizzes and mind maps using CamemBERT and Groq.',
         highlight: 'PDFs become summaries and quizzes through CamemBERT extraction and Groq generation.',
         result: 'Team-built NLP study tool with summaries, quiz and mind-map outputs.'},
       { title: 'Cane counting system', year: '2024 · DUT thesis', kind: 'Embedded · Final-year project', heading: 'IoT', lead: 'T',
+        cardRole: 'Laser sensing · firmware · dashboard',
         description: 'An ESP8266 counting system using a laser sensor to count canes on a production line, with an OLED display and Wi-Fi dashboard.',
         highlight: 'Laser sensing with on-device counting and a Wi-Fi dashboard.',
         result: 'Production-line prototype with OLED display and a PHP/MySQL dashboard.'},
@@ -229,7 +238,7 @@ const en: Dict = {
     direct: 'Direct email', loc: 'Morocco', phone: 'Phone', linkedin: 'LinkedIn', github: 'GitHub',
     copy: 'Copy', copied: 'Copied', copyEmail: 'Copy email address', copyPhone: 'Copy phone number',
   },
-  footer: { top: 'Top', elsewhere: 'Elsewhere', explore: 'Explore', built: `\u00a9 ${new Date().getFullYear()} Ahmed Ouarrali \u00b7 Built with React, Tailwind CSS \u00b7 Deployed on GitHub Pages`, pageTitle: 'Ahmed Ouarrali, Java / Spring Boot Full-Stack Engineer | PFE Internship' },
+  footer: { top: 'Top', elsewhere: 'Elsewhere', explore: 'Explore', built: `\u00a9 ${new Date().getFullYear()} Ahmed Ouarrali \u00b7 React 19 \u00b7 Vite \u00b7 Tailwind CSS \u00b7 596 Playwright checks \u00b7 0 cookies \u00b7 GitHub Pages`, pageTitle: 'Ahmed Ouarrali, Java / Spring Boot Full-Stack Engineer | PFE Internship' },
   dock: { home: 'Home', whatIDo: 'What I Do', work: 'Work', contact: 'Contact', lang: 'Language', nav: 'Quick navigation', footerNav: 'Footer navigation', toggle: 'Toggle light / dark mode', toggleLight: 'Switch to light mode', toggleDark: 'Switch to dark mode', resume: 'Résumé', cvFullStack: 'Full-Stack CV', cvQA: 'QA Automation CV', linkedin: 'LinkedIn', github: 'GitHub', email: 'Email', backToTop: 'Back to top' },
   error: {
     label: 'Error', title: 'Something went wrong.',
@@ -261,12 +270,13 @@ const fr: Dict = {
     kicker: 'Ce que je fais', title: 'Je transforme des id\u00e9es complexes en produits simples et fonctionnels.',
     sub: 'Du concept au d\u00e9ploiement. Je g\u00e8re tout le parcours.',
     showDetails: 'D\u00e9tails', showLess: 'Moins',
-    metricLabels: ['livr\u00e9s', '2.2 AA', 'v\u00e9rifi\u00e9s', 'AR'],
+    metricLabels: ['projets livr\u00e9s', 'clavier · focus · mouvement', 'checks Playwright', 'copie typ\u00e9e'],
+    proofCases: '\u00c9tudes de cas', proofQA: 'CV QA', proofStack: 'Stack',
     capabilities: [
       { title: 'Construire des produits complets', desc: 'Je prends une id\u00e9e et la transforme en application fonctionnelle. Frontend, backend, base de donn\u00e9es et d\u00e9ploiement. Tout connect\u00e9, tout qui marche.', details: 'D\u00e9veloppement full-stack avec Java 21, Spring Boot, Next.js et React. APIs REST, types frontend g\u00e9n\u00e9r\u00e9s depuis le contrat, authentification, PostgreSQL et d\u00e9ploiement.' },
-      { title: 'Concevoir des interfaces intuitives', desc: 'Je cr\u00e9e des exp\u00e9riences web et mobile qui semblent simples, m\u00eame quand la technologie derri\u00e8re est complexe.', details: 'Design responsive, support trilingue (FR/EN/AR avec vrai RTL), accessibilit\u00e9 (WCAG 2.2), animations et divulgation progressive.' },
-      { title: 'Construire des syst\u00e8mes fiables', desc: 'Je con\u00e7ois les parties invisibles. Int\u00e9grit\u00e9 des donn\u00e9es, s\u00e9curit\u00e9, performance et tout ce qui ne casse pas quand les utilisateurs en d\u00e9pendent.', details: 'Int\u00e9grit\u00e9 transactionnelle, verrouillage optimiste, PII chiffr\u00e9, limitation de d\u00e9bit, coupe-circuits, tests automatis\u00e9s (unit\u00e9 \u2192 int\u00e9gration \u2192 E2E) et d\u00e9ploiements sans interruption.' },
-      { title: 'Travailler en plusieurs langues', desc: 'Je construis en fran\u00e7ais, anglais et arabe. Avec un vrai support RTL pour les locuteurs arabes.', details: 'i18n complet avec routage de locale, mise en miroir RTL et contenu adapt\u00e9 culturellement dans trois langues.' },
+      { title: 'Concevoir des interfaces intuitives', desc: 'Je cr\u00e9e des exp\u00e9riences web et mobile qui semblent simples, m\u00eame quand la technologie derri\u00e8re est complexe.', details: 'Design responsive, accessibilit\u00e9 (WCAG 2.2), clavier et focus, r\u00e9duction des animations et divulgation progressive.' },
+      { title: 'Construire des syst\u00e8mes fiables', desc: 'Je con\u00e7ois les parties invisibles. Int\u00e9grit\u00e9 des donn\u00e9es, s\u00e9curit\u00e9, performance et tout ce qui ne casse pas quand les utilisateurs en d\u00e9pendent.', details: 'Int\u00e9grit\u00e9 transactionnelle, isolation multi-tenant, idempotence, tests automatis\u00e9s (unit\u00e9 \u2192 int\u00e9gration \u2192 E2E) et gates CI qui bloquent les r\u00e9gressions.' },
+      { title: 'Livrer des produits bilingues', desc: 'Je construis en fran\u00e7ais et en anglais, avec une copie coh\u00e9rente dans les deux interfaces.', details: 'Source de copie EN/FR typ\u00e9e, synchronisation de lang et du titre, et un test qui d\u00e9tecte le fran\u00e7ais non traduit.' },
     ],
   },
   howIWork: {
@@ -285,6 +295,7 @@ const fr: Dict = {
   work: {
     kicker: 'Projets', title: 'Des syst\u00e8mes qui tournent en production, pas des d\u00e9mos qui tournent une fois.',
     sub: 'Sept r\u00e9alisations web, mobile, backend, IA et IoT. Chacune d\u00e9ploy\u00e9e, utilis\u00e9e ou \u00e9valu\u00e9e.',
+    featured: '\u00c9tude de cas \u00e0 la une',
     showLess: 'voir moins', showFewer: 'Afficher moins', showMoreTags: 'Afficher {count} autres tags', filterCount: '{count} projets sur {total} affichés', filterCountOne: '1 projet sur {total} affichés', filterGroup: 'Filtrer les projets par discipline',
     walkthroughNote: 'D\u00e9mos en direct, d\u00e9p\u00f4ts priv\u00e9s et mat\u00e9riel : revues de code et d\u00e9monstrations guid\u00e9es sur demande.',
     notesSummary: 'Notes techniques', approachLabel: 'Approche', outcomeLabel: 'R\u00e9sultat',
@@ -293,6 +304,7 @@ const fr: Dict = {
     previousProject: 'Projet pr\u00e9c\u00e9dent', nextProject: 'Projet suivant', previousScreen: '\u00c9cran pr\u00e9c\u00e9dent', nextScreen: '\u00c9cran suivant', enlarge: 'Agrandir l\u2019\u00e9cran',
     projects: [
       { title: 'OdemLab : plateforme e-commerce soins', year: 'Vitrine', kind: '\u00c9quipe de 4 \u00b7 D\u00e9p\u00f4t priv\u00e9', heading: 'OdemLab', lead: 'd',
+        cardRole: 'Modules m\u00e9tier \u00b7 web \u00b7 commandes',
         description: 'Plateforme de soins de la peau d\u00e9velopp\u00e9e en \u00e9quipe de quatre, avec diagnostic IA et boutique React Native. J\u2019ai construit les modules m\u00e9tier backend, la vitrine web/back-office et le tunnel de commande.',
         highlight: 'Les commandes sont tarif\u00e9es c\u00f4t\u00e9 serveur, prot\u00e9g\u00e9es par une machine \u00e0 \u00e9tats et l\u2019idempotence : un client ne peut pas modifier un montant et une commande ne peut pas \u00eatre cr\u00e9\u00e9e deux fois. Les types frontend sont g\u00e9n\u00e9r\u00e9s depuis l\u2019OpenAPI, et la CI \u00e9choue en cas de d\u00e9rive.',
         result: 'Les migrations Flyway se rejouent depuis une base vide, avec un test de version dupliqu\u00e9e. Les notifications admin restent synchronis\u00e9es entre les onglets.',
@@ -300,6 +312,7 @@ const fr: Dict = {
         architecture: 'Monolithe modulaire Spring Boot, web Next.js/React, PostgreSQL/Redis, types frontend g\u00e9n\u00e9r\u00e9s depuis OpenAPI, Flyway, Google Cloud Run.',
         quality: 'Tarification serveur, machine \u00e0 \u00e9tats et idempotence des commandes ; CI en \u00e9chec sur d\u00e9rive OpenAPI ; migrations Flyway rejouables avec protection anti-version dupliqu\u00e9e.' },
       { title: 'ProcureFlow: approvisionnement B2B', year: '2026', kind: 'Full-stack \u00b7 Spring Boot & Angular', heading: 'ProcureFlow', lead: 'F',
+        cardRole: 'Demandes \u00b7 approbations \u00b7 budgets \u00b7 copilote IA',
         description: 'Plateforme d\u2019achats B2B multitenant : demandes, approbations, fournisseurs, commandes, factures et budgets. Les demandes suivent un circuit d\u2019approbation \u00e0 paliers avec d\u00e9l\u00e9gation born\u00e9e, et le budget est r\u00e9serv\u00e9 atomiquement \u00e0 l\u2019approbation.',
         highlight: 'Isolement multi-tenant : les acc\u00e8s inter-tenant r\u00e9pondent 404, jamais 403. Les montants sont recalcul\u00e9s c\u00f4t\u00e9 serveur avec des cl\u00e9s d\u2019idempotence, et les types du frontend sont g\u00e9n\u00e9r\u00e9s depuis le contrat d\u2019API.',
         result: 'Rotation des jetons JWT, interface bilingue FR/EN et copilote IA qui cite les donn\u00e9es de l\u2019espace de travail et r\u00e9dige des brouillons de demandes depuis une description en langage naturel.',
@@ -308,26 +321,31 @@ const fr: Dict = {
         quality: 'Isolation multi-tenant, r\u00e9servation budg\u00e9taire atomique \u00e0 l\u2019approbation, fronti\u00e8res de modules v\u00e9rifi\u00e9es automatiquement et couverture Playwright.',
         linkLabel: 'Voir le d\u00e9p\u00f4t', linkHref: 'https://github.com/AhmedOL0/ProcureFlow' },
       { title: 'MediCare : plateforme de gestion de cabinet', year: '2025', kind: 'Stage \u00b7 Full-stack', heading: 'MediCare', lead: 'Care',
+        cardRole: 'R\u00e9servation \u00b7 plannings \u00b7 dossiers patients',
         description: 'Plateforme de gestion de cabinet m\u00e9dical avec recherche par sp\u00e9cialit\u00e9, r\u00e9servation en ligne, plannings et dossiers patients. Trois espaces : patient, m\u00e9decin et administrateur.',
         highlight: 'Espaces s\u00e9par\u00e9s pour patients, m\u00e9decins et administrateurs, avec contr\u00f4le des cr\u00e9neaux qui emp\u00eache les doubles r\u00e9servations \u00e0 l\u2019\u00e9criture.',
         result: 'Recherche par sp\u00e9cialit\u00e9, r\u00e9servation en ligne et dossiers patients dans un seul parcours.'},
       { title: 'FitTrack: suivi sportif', year: '2025', kind: '\u00c9quipe de 2 \u00b7 Full-stack', heading: 'FitTrack', lead: 'i',
+        cardRole: 'Programmes \u00b7 profil sant\u00e9 \u00b7 admin',
         description: 'Application web de fitness personnel pour les programmes, s\u00e9ances et performances, avec profil sant\u00e9 (IMC, d\u00e9pense \u00e9nerg\u00e9tique), biblioth\u00e8que d\u2019exercices et espace admin.',
         highlight: 'Parcours programmes/s\u00e9ances, indicateurs sant\u00e9 et espace admin pour la biblioth\u00e8que d\u2019exercices.',
         result: 'Espace admin et profil sant\u00e9 avec IMC et d\u00e9pense \u00e9nerg\u00e9tique.',
         role: 'Full-stack. Programmes, s\u00e9ances, performances, profil sant\u00e9, biblioth\u00e8que d\u2019exercices et espace admin.',
         architecture: 'Spring Boot, Next.js/React, MySQL, Docker.'},
       { title: 'Smart Campus Companion', year: '2026', kind: '\u00c9quipe de 4 \u00b7 Flutter', heading: 'Campus', lead: 'a',
+        cardRole: 'Salles QR \u00b7 vue RA \u00b7 r\u00e9servations',
         description: 'Application Flutter de campus : scan des QR codes sur les portes pour ouvrir une fiche salle (capacit\u00e9, \u00e9quipements) avec vue RA. Emploi du temps, r\u00e9servations, annonces mod\u00e9r\u00e9es et signalements sur trois r\u00f4les.',
         highlight: 'Fiche salle par QR code avec vue RA ; emploi du temps, r\u00e9servations, annonces mod\u00e9r\u00e9es et signalements sur trois r\u00f4les.',
         result: 'Trois espaces ; fiches salle par QR code et vue RA.',
         role: 'Mobile. Fiches salle par QR code, vue RA, emploi du temps, r\u00e9servations, annonces mod\u00e9r\u00e9es et signalements sur trois r\u00f4les.',
         architecture: 'Flutter, Firebase/Firestore, Riverpod, ARCore/ARKit.'},
       { title: 'SmartSummarizer', year: '2025', kind: '\u00c9quipe de 4 \u00b7 NLP', heading: 'R\u00e9sumeur', lead: 'u',
+        cardRole: 'R\u00e9sum\u00e9s \u00b7 quiz \u00b7 cartes mentales',
         description: 'Projet d\u2019\u00e9quipe qui transforme les PDF de cours en outils d\u2019\u00e9tude : r\u00e9sum\u00e9s, audio, quiz et cartes mentales avec CamemBERT et Groq.',
         highlight: 'Les PDF deviennent des r\u00e9sum\u00e9s et des quiz via l\u2019extraction CamemBERT et la g\u00e9n\u00e9ration Groq.',
         result: 'Outil d\u2019\u00e9tude NLP construit en \u00e9quipe, avec r\u00e9sum\u00e9s, quiz et cartes mentales.'},
       { title: 'Syst\u00e8me de comptage de cannes', year: '2024 \u00b7 PFE DUT', kind: 'Embarqu\u00e9 \u00b7 Projet de fin d\u2019\u00e9tudes', heading: 'IoT', lead: 'T',
+        cardRole: 'Capteur laser \u00b7 firmware \u00b7 dashboard',
         description: 'Syst\u00e8me de comptage bas\u00e9 sur ESP8266 utilisant un capteur laser pour compter les cannes sur une ligne de production, avec affichage OLED et tableau de bord Wi-Fi.',
         highlight: 'D\u00e9tection laser embarqu\u00e9e avec comptage local et tableau de bord Wi-Fi.',
         result: 'Prototype de ligne de production avec affichage OLED et tableau de bord PHP/MySQL.'},
@@ -398,7 +416,7 @@ const fr: Dict = {
     direct: 'E-mail direct', loc: 'Maroc', phone: 'T\u00e9l\u00e9phone', linkedin: 'LinkedIn', github: 'GitHub',
     copy: 'Copier', copied: 'Copi\u00e9', copyEmail: 'Copier l\u2019adresse e-mail', copyPhone: 'Copier le num\u00e9ro de t\u00e9l\u00e9phone',
   },
-  footer: { top: 'Haut', elsewhere: 'Ailleurs', explore: 'Explorer', built: `\u00a9 ${new Date().getFullYear()} Ahmed Ouarrali \u00b7 Construit avec React, Tailwind CSS \u00b7 D\u00e9ploy\u00e9 sur GitHub Pages`, pageTitle: 'Ahmed Ouarrali, Ing\u00e9nieur Full-Stack Java / Spring Boot | Stage PFE' },
+  footer: { top: 'Haut', elsewhere: 'Ailleurs', explore: 'Explorer', built: `\u00a9 ${new Date().getFullYear()} Ahmed Ouarrali \u00b7 React 19 \u00b7 Vite \u00b7 Tailwind CSS \u00b7 596 checks Playwright \u00b7 0 cookies \u00b7 GitHub Pages`, pageTitle: 'Ahmed Ouarrali, Ing\u00e9nieur Full-Stack Java / Spring Boot | Stage PFE' },
   dock: { home: 'Accueil', whatIDo: 'Ce que je fais', work: 'Projets', contact: 'Contact', lang: 'Langue', nav: 'Navigation rapide', footerNav: 'Navigation du pied de page', toggle: 'Basculer mode clair / sombre', toggleLight: 'Passer en mode clair', toggleDark: 'Passer en mode sombre', resume: 'CV', cvFullStack: 'CV Full-Stack', cvQA: 'CV QA Automatisation', linkedin: 'LinkedIn', github: 'GitHub', email: 'E-mail', backToTop: 'Retour en haut' },
   error: {
     label: 'Erreur', title: 'Un probl\u00e8me est survenu.',
