@@ -534,6 +534,11 @@ a.direct-link:hover{text-decoration:underline;text-underline-offset:3px}
 .dock{transition:transform .3s ease,translate .3s ease}
 .dock-indicator{position:absolute;top:50%;left:0;width:50px;height:42px;border-radius:var(--r);background:var(--bg2);border:1px solid var(--line);transform:translate(0,-50%);transition:transform .35s cubic-bezier(.32,.72,0,1),opacity .3s;pointer-events:none;z-index:0}
 .dock-hidden{translate:0 110px}
+.dock-label{display:none}
+@media(max-width:767px){
+  .dock-label{display:inline-flex;align-items:center;gap:6px;position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);padding:4px 9px;border:1px solid var(--line-soft);border-radius:var(--r);background:var(--navbg);font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);white-space:nowrap;pointer-events:none;z-index:2;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  .dock-label::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--sage);flex:none}
+}
 
 /* Nav bits */
 .iconbtn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:var(--r);background:transparent;cursor:pointer;transition:color .2s,border-color .2s;padding:0;flex:none}

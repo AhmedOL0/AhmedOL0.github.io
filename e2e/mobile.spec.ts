@@ -130,6 +130,8 @@ test.describe('Mobile hero cover', () => {
     const contact = page.locator('.hero-contact');
     const dock = page.locator('.dock');
     await expect(portrait).toBeVisible();
+    await expect(page.locator('.dock-label')).toBeVisible();
+    await expect(page.locator('.dock-label')).toHaveText(/home/i);
     const portraitBox = await portrait.boundingBox();
     const eyebrowBox = await eyebrow.boundingBox();
     const titleBox = await title.boundingBox();
