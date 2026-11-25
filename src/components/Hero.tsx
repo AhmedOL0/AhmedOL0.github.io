@@ -1,13 +1,6 @@
 import { useState } from 'react';
+import SealMark from './SealMark';
 import { useLang } from '../i18n-data';
-
-function Seal() {
-  return (
-    <span className="plate-seal" aria-hidden="true">
-      A<em>O</em>
-    </span>
-  );
-}
 
 export default function Hero() {
   const { t } = useLang();
@@ -36,9 +29,7 @@ export default function Hero() {
           <p className="hero-lede lede-full">{t.hero.lede}</p>
           <p className="hero-lede lede-short">{t.hero.ledeShort}</p>
           <div className="plate">
-            <div className="plate-mark" aria-hidden="true">
-              <Seal />
-            </div>
+            <SealMark className="plate-mark" />
             <dl className="plate-rows">
               <div className="plate-row">
                 <dt>{t.plate.roleLabel}</dt><dd>{t.plate.role}</dd>
