@@ -29,6 +29,14 @@ export default function HowIWork() {
   const [active, setActive] = useState(-1);
   const total = t.howIWork.steps.length;
   const current = active < 0 ? 0 : active;
+  const radius = 104;
+  const center = 130;
+  const circumference = 2 * Math.PI * radius;
+  const progress = (current + 1) / total;
+  const nodes = t.howIWork.steps.map((_, i) => {
+    const angle = -Math.PI / 2 + (i * 2 * Math.PI) / total;
+    return { x: center + radius * Math.cos(angle), y: center + radius * Math.sin(angle) };
+  });
 
   useEffect(() => {
     const flow = flowRef.current;
@@ -46,20 +54,36 @@ export default function HowIWork() {
 
   return (
     <Section id="how-i-work" num="02" kicker={t.howIWork.kicker} title={t.howIWork.title} sub={t.howIWork.sub} variant="left">
-      <div className="process-readout" aria-hidden="true">
-        <span className="process-readout-num">{String(current + 1).padStart(2, '0')}</span>
-        <span className="process-readout-total">/ {String(total).padStart(2, '0')}</span>
-        <span className="process-readout-label">{t.howIWork.steps[current].label}</span>
-      </div>
-      <div className="process-progress" aria-hidden="true">
-        <div
-          className="process-progress-fill"
-          style={{ width: `${active < 0 ? 0 : ((active + 1) / total) * 100}%` }}
-        />
+      <div className="process-loop-wrap" aria-hidden="true">
+        <div className="process-loop">
+          <svg viewBox="0 0 260 260" focusable="false">
+            <circle className="process-ring" cx="130" cy="130" r={radius} />
+            <circle
+              className="process-ring-progress"
+              cx="130"
+              cy="130"
+              r={radius}
+              strokeDasharray={`${progress * circumference} ${circumference}`}
+              transform="rotate(-90 130 130)"
+            />
+            {nodes.map((node, i) => (
+              <g key={t.howIWork.steps[i].label} className={i === current ? 'process-node is-active' : 'process-node'}>
+                <circle cx={node.x} cy={node.y} r="15" />
+                <text x={node.x} y={node.y + 4} textAnchor="middle">{String(i + 1).padStart(2, '0')}</text>
+              </g>
+            ))}
+            <circle className="process-core" cx="130" cy="130" r="62" />
+          </svg>
+          <div className="process-loop-center">
+            <span className="process-loop-num">{String(current + 1).padStart(2, '0')}</span>
+            <span className="process-loop-total">/ {String(total).padStart(2, '0')}</span>
+            <span className="process-loop-label">{t.howIWork.steps[current].label}</span>
+          </div>
+        </div>
       </div>
       <ol className="process-flow mt-6 sm:mt-8 list-none m-0 p-0" ref={flowRef}>
         {t.howIWork.steps.map((step, i) => (
-          <li className={`process-step${i === active ? ' active' : ''}`} key={step.label}>
+          <li className={`process-step${i === current ? ' active' : ''}`} key={step.label}>
             <div className="process-marker" aria-hidden="true">
               <div className="process-num">{String(i + 1).padStart(2, '0')}</div>
               {i < total - 1 && <div className="process-line" />}
@@ -71,6 +95,7 @@ export default function HowIWork() {
               <div className="process-icon">{STEPS[i].icon}</div>
               <h3 className="process-label">{step.label}</h3>
               <p className="process-desc">{step.desc}</p>
+              <p className="process-artifact"><span>{t.howIWork.artifactLabel}</span>{step.artifact}</p>
             </div>
           </li>
         ))}
