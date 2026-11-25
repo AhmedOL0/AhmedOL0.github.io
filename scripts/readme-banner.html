@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @font-face{font-family:'Newsreader';font-style:normal;font-weight:200 800;src:url('../public/fonts/newsreader-latin.woff2') format('woff2')}
+  @font-face{font-family:'Newsreader';font-style:italic;font-weight:200 800;src:url('../public/fonts/newsreader-latin-italic.woff2') format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:200 800;src:url('../public/fonts/inter-latin.woff2') format('woff2')}
+  @font-face{font-family:'Mono';font-style:normal;font-weight:200 800;src:url('../public/fonts/mono-latin.woff2') format('woff2')}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1600px;height:420px;overflow:hidden}
+  body{
+    background:#F7F4ED;color:#191713;position:relative;
+    font-family:'Newsreader',Georgia,serif;
+  }
+  .grid{position:absolute;inset:0;background-image:
+    linear-gradient(rgba(25,23,19,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(25,23,19,.045) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 80% 75% at 50% 50%,#000 15%,transparent 100%)}
+  .wash{position:absolute;inset:0;background:
+    radial-gradient(ellipse 55% 90% at 78% 45%,rgba(124,92,46,.09),transparent 70%),
+    radial-gradient(ellipse 60% 80% at 12% 10%,rgba(255,255,255,.6),transparent 70%)}
+  .frame{position:absolute;inset:18px;border:1px solid #DDD8CD;pointer-events:none}
+  .frame::before{content:"";position:absolute;inset:7px;border:1px solid #E7E2D6}
+  .copy{position:absolute;left:76px;top:55px;width:900px;z-index:2}
+  .eyebrow{display:flex;align-items:center;gap:10px;font-family:'Mono','Courier New',monospace;
+    font-size:13px;line-height:1;letter-spacing:.18em;text-transform:uppercase;color:#7C5C2E}
+  .dot{width:7px;height:7px;border-radius:50%;background:#6B7F5E;flex:none}
+  h1{font-size:86px;font-weight:500;line-height:.95;letter-spacing:-.025em;margin:26px 0 0;color:#191713}
+  .role{font-family:'Inter',system-ui,sans-serif;font-size:19px;line-height:1.35;color:#57534D;margin-top:12px;letter-spacing:.005em}
+  .tagline{font-size:33px;line-height:1.18;font-weight:400;color:#191713;margin-top:17px;letter-spacing:-.01em}
+  .tagline em{font-style:italic;color:#7C5C2E}
+  .rule{width:154px;height:1px;background:#B57F2E;opacity:.75;margin:22px 0 14px}
+  .meta{font-family:'Mono','Courier New',monospace;font-size:13px;line-height:1.9;letter-spacing:.09em;text-transform:uppercase;color:#5F5A52}
+  .meta .gold{color:#7C5C2E}
+  .meta .sep{color:#B57F2E;padding:0 5px}
+  .meta .url{text-transform:none;letter-spacing:.04em;color:#8A8378}
+  .portrait{position:absolute;right:82px;top:45px;width:330px;height:330px;z-index:2}
+  .orbit{position:absolute;inset:0;border:1px solid #DDD8CD;border-radius:4px;outline:1px solid #E7E2D6;outline-offset:7px;
+    background:#FCF9F2;display:grid;place-items:center}
+  .photo{width:244px;height:244px;border-radius:50%;overflow:hidden;border:1px solid #B57F2E;background:#E7E2D6;
+    box-shadow:0 0 0 8px rgba(247,244,237,.65)}
+  .photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .chip{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;
+    font-family:'Mono','Courier New',monospace;font-size:12.5px;line-height:1;letter-spacing:.15em;text-transform:uppercase;
+    color:#7C5C2E;background:#FCF9F2;border:1px solid #E7E2D6;border-radius:4px;padding:9px 16px}
+  .chip-top{top:0;transform:translate(-50%,-50%)}
+  .chip-bottom{bottom:0;transform:translate(-50%,50%)}
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="wash"></div>
+  <div class="frame"></div>
+  <div class="copy">
+    <p class="eyebrow"><span class="dot"></span>Open for PFE · 2027</p>
+    <h1>Ahmed Ouarrali</h1>
+    <p class="role">Java 21 / Spring Boot full-stack engineer</p>
+    <p class="tagline">Building <em>complete products</em>,<br>not just features.</p>
+    <div class="rule"></div>
+    <p class="meta">Java 21<span class="sep">·</span>Spring Boot<span class="sep">·</span>Angular / React<br>
+      <span class="gold">Full-Stack &amp; QA Automation</span><span class="sep">·</span>Morocco / Remote
+      <span class="sep">·</span><span class="url">ahmedol0.github.io</span></p>
+  </div>
+  <div class="portrait">
+    <div class="orbit">
+      <div class="photo"><img src="../public/assets/photo-480.jpg" alt=""></div>
+      <span class="chip chip-top">Full-Stack Engineer</span>
+      <span class="chip chip-bottom">QA &amp; Test Automation</span>
+    </div>
+  </div>
+</body>
+</html>
