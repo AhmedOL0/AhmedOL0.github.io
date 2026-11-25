@@ -41,65 +41,106 @@ export default function HowIWork() {
   useEffect(() => {
     const flow = flowRef.current;
     if (!flow) return;
-    const cards = Array.from(flow.querySelectorAll('.process-step'));
-    const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => {
-        if (e.isIntersecting) setActive(cards.indexOf(e.target as HTMLElement));
-      }),
-      { rootMargin: '-35% 0px -55% 0px', threshold: 0 },
-    );
-    cards.forEach((c) => io.observe(c));
-    return () => io.disconnect();
+    const cards = Array.from(flow.querySelectorAll<HTMLElement>('.process-step'));
+    let raf = 0;
+    let last = -1;
+    const update = () => {
+      raf = 0;
+      const flowRect = flow.getBoundingClientRect();
+      if (flowRect.bottom < -100 || flowRect.top > window.innerHeight + 100) return;
+      const focusLine = window.innerHeight * 0.42;
+      let best = 0;
+      let bestDistance = Infinity;
+      cards.forEach((card, i) => {
+        const rect = card.getBoundingClientRect();
+        const distance = Math.abs(rect.top + rect.height / 2 - focusLine);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          best = i;
+        }
+      });
+      if (best !== last) {
+        last = best;
+        setActive(best);
+      }
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   return (
     <Section id="how-i-work" num="02" kicker={t.howIWork.kicker} title={t.howIWork.title} sub={t.howIWork.sub} variant="left">
-      <div className="process-loop-wrap" aria-hidden="true">
-        <div className="process-loop">
-          <svg viewBox="0 0 260 260" focusable="false">
-            <circle className="process-ring" cx="130" cy="130" r={radius} />
-            <circle
-              className="process-ring-progress"
-              cx="130"
-              cy="130"
-              r={radius}
-              strokeDasharray={`${progress * circumference} ${circumference}`}
-              transform="rotate(-90 130 130)"
-            />
-            {nodes.map((node, i) => (
-              <g key={t.howIWork.steps[i].label} className={i === current ? 'process-node is-active' : 'process-node'}>
-                <circle cx={node.x} cy={node.y} r="15" />
-                <text x={node.x} y={node.y + 4} textAnchor="middle">{String(i + 1).padStart(2, '0')}</text>
-              </g>
-            ))}
-            <circle className="process-core" cx="130" cy="130" r="62" />
-          </svg>
-          <div className="process-loop-center">
-            <span className="process-loop-num">{String(current + 1).padStart(2, '0')}</span>
-            <span className="process-loop-total">/ {String(total).padStart(2, '0')}</span>
-            <span className="process-loop-label">{t.howIWork.steps[current].label}</span>
+      <div className="process-layout">
+        <div className="process-loop-wrap" aria-hidden="true">
+          <div className="process-loop">
+            <svg viewBox="0 0 260 260" focusable="false">
+              <circle className="process-ring" cx="130" cy="130" r={radius} />
+              <circle
+                className="process-ring-progress"
+                cx="130"
+                cy="130"
+                r={radius}
+                strokeDasharray={`${progress * circumference} ${circumference}`}
+                transform="rotate(-90 130 130)"
+              />
+              {nodes.map((node, i) => (
+                <g key={t.howIWork.steps[i].label} className={i === current ? 'process-node is-active' : 'process-node'}>
+                  <circle cx={node.x} cy={node.y} r="15" />
+                  <text x={node.x} y={node.y + 4} textAnchor="middle">{String(i + 1).padStart(2, '0')}</text>
+                </g>
+              ))}
+              <circle className="process-core" cx="130" cy="130" r="62" />
+            </svg>
+            <div className="process-loop-center">
+              <span className="process-loop-num">{String(current + 1).padStart(2, '0')}</span>
+              <span className="process-loop-total">/ {String(total).padStart(2, '0')}</span>
+              <span className="process-loop-label">{t.howIWork.steps[current].label}</span>
+            </div>
           </div>
         </div>
+        <div className="process-side">
+          <div className="process-sticky" aria-hidden="true">
+            <div className="process-sticky-line">
+              <span className="process-sticky-index">{String(current + 1).padStart(2, '0')}</span>
+              <span className="process-sticky-total">/ {String(total).padStart(2, '0')}</span>
+              <span className="process-sticky-label">{t.howIWork.steps[current].label}</span>
+            </div>
+            <div className="process-sticky-rail">
+              {t.howIWork.steps.map((step, i) => (
+                <span key={step.label} className={i <= current ? 'on' : ''} />
+              ))}
+            </div>
+          </div>
+          <ol className="process-flow mt-6 sm:mt-8 list-none m-0 p-0" ref={flowRef}>
+            {t.howIWork.steps.map((step, i) => (
+              <li className={`process-step${i === current ? ' active' : ''}`} key={step.label}>
+                <div className="process-marker" aria-hidden="true">
+                  <div className="process-num">{String(i + 1).padStart(2, '0')}</div>
+                  {i < total - 1 && <div className="process-line" />}
+                </div>
+                <div className="process-card">
+                  <span className="step-tag" aria-hidden="true">
+                    {String(i + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+                  </span>
+                  <div className="process-icon">{STEPS[i].icon}</div>
+                  <h3 className="process-label">{step.label}</h3>
+                  <p className="process-desc">{step.desc}</p>
+                  <p className="process-artifact"><span>{t.howIWork.artifactLabel}</span>{step.artifact}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
-      <ol className="process-flow mt-6 sm:mt-8 list-none m-0 p-0" ref={flowRef}>
-        {t.howIWork.steps.map((step, i) => (
-          <li className={`process-step${i === current ? ' active' : ''}`} key={step.label}>
-            <div className="process-marker" aria-hidden="true">
-              <div className="process-num">{String(i + 1).padStart(2, '0')}</div>
-              {i < total - 1 && <div className="process-line" />}
-            </div>
-            <div className="process-card">
-              <span className="step-tag" aria-hidden="true">
-                {String(i + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
-              </span>
-              <div className="process-icon">{STEPS[i].icon}</div>
-              <h3 className="process-label">{step.label}</h3>
-              <p className="process-desc">{step.desc}</p>
-              <p className="process-artifact"><span>{t.howIWork.artifactLabel}</span>{step.artifact}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
     </Section>
   );
 }
