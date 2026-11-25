@@ -132,10 +132,16 @@ export default function Contact() {
       <p className="sub">
         {t.contact.sub}<strong style={{ color: 'var(--ink)' }}>{t.contact.subEm}</strong>{t.contact.subEnd}
       </p>
-      <div className="contact-status">
-        <span className="contact-status-dot" aria-hidden="true" />
-        <span>{t.hero.avail}</span>
-        <span className="contact-status-note">{t.contact.respondTime}</span>
+      <div className="contact-brief">
+        <div className="contact-brief-head">
+          <span className="contact-brief-dot" aria-hidden="true" />
+          <span>{t.plate.status}</span>
+        </div>
+        <dl className="contact-brief-rows">
+          <div><dt>{t.contact.briefRolesLabel}</dt><dd>{t.contact.briefRoles}</dd></div>
+          <div><dt>{t.contact.briefLocationLabel}</dt><dd>{t.contact.briefLocation}</dd></div>
+          <div><dt>{t.contact.briefReplyLabel}</dt><dd>{t.contact.respondTime}</dd></div>
+        </dl>
       </div>
       <div className="contact-box mt-6 sm:mt-8">
         <form onSubmit={handleSubmit} aria-busy={sending} noValidate>
