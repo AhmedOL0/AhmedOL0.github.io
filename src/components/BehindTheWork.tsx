@@ -31,8 +31,6 @@ function TechIcon({ name }: { name: string }) {
   return <svg className="tech-item-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d={d}/></svg>;
 }
 
-const WIDE_CATS = new Set(['Frontend', 'Backend']);
-
 const CAT_ACCENTS = ['amber', 'sage', 'gold', 'rust', 'sage', 'amber'];
 
 export default function BehindTheWork() {
@@ -47,20 +45,29 @@ export default function BehindTheWork() {
           <dt>{t.behind.exploredLabel}</dt><dd>{t.behind.explored}</dd>
         </div>
       </dl>
-      <div className="tech-grid mt-6 sm:mt-8">
+      <div className="stack-map mt-6 sm:mt-8">
+        <div className="stack-map-head" aria-hidden="true">
+          <span>{t.behind.layerLabel}</span>
+          <span>{t.behind.stackLabel}</span>
+          <span>{t.behind.usedInLabel}</span>
+        </div>
         {t.behind.categories.map((cat, i) => (
-          <div className={`tech-cat tech-cat--${CAT_ACCENTS[i] || 'gold'}`} key={cat.name} data-wide={WIDE_CATS.has(cat.name) || undefined}>
-            <div className="tech-cat-watermark" aria-hidden="true">{CAT_ICONS[cat.name] || null}</div>
-            <div className="tech-cat-head">
-              <h3 className="tech-cat-name">
-                <span className="tech-cat-icon">{CAT_ICONS[cat.name] || null}</span>
-                {cat.name}
-              </h3>
-              <span className="tech-cat-count" aria-hidden="true">{String(cat.items.length).padStart(2, '0')}</span>
+          <div className={`stack-layer stack-layer--${CAT_ACCENTS[i] || 'gold'}`} key={cat.name}>
+            <div className="stack-layer-id">
+              <span className="stack-index">{String(i + 1).padStart(2, '0')}</span>
+              <span className="stack-icon">{CAT_ICONS[cat.name] || null}</span>
+              <h3 className="stack-name">{cat.name}</h3>
+              <span className="stack-count" aria-hidden="true">{String(cat.items.length).padStart(2, '0')}</span>
             </div>
-            <div className="tech-items">
+            <div className="tech-items stack-items">
               {cat.items.map((item) => (
                 <span key={item} className="tech-item"><TechIcon name={item}/>{item}</span>
+              ))}
+            </div>
+            <div className="stack-used">
+              <span className="stack-used-label">{t.behind.usedInLabel}</span>
+              {cat.usedIn.map((project) => (
+                <a key={project.href} href={project.href}>{project.label}</a>
               ))}
             </div>
           </div>

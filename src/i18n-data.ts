@@ -30,8 +30,8 @@ export type JobT = { when: string; title: string; org: string; where?: string; p
 export type EduT = { years: string; title: string; school: string; desc: string };
 
 export type Capability = { title: string; desc: string; details: string };
-export type ProcessStep = { label: string; desc: string };
-export type TechCategory = { name: string; items: string[] };
+export type ProcessStep = { label: string; desc: string; artifact: string };
+export type TechCategory = { name: string; items: string[]; usedIn: { label: string; href: string }[] };
 
 export type Dict = {
   dir: 'ltr' | 'rtl';
@@ -39,12 +39,12 @@ export type Dict = {
   hero: { badge: string; titleA: string; titleEm: string; titleB: string; lede: string; ledeShort: string; ctaWork: string; ctaContact: string; statsLabels: [string, string]; avail: string; photoChipA: string; photoChipB: string };
   plate: { roleLabel: string; role: string; focusLabel: string; focus: string; locLabel: string; loc: string; statusLabel: string; status: string };
   whatIDo: { kicker: string; title: string; sub: string; showDetails: string; showLess: string; metricLabels: [string, string, string, string]; proofCases: string; proofQA: string; proofStack: string; capabilities: Capability[] };
-  howIWork: { kicker: string; title: string; sub: string; steps: ProcessStep[] };
+  howIWork: { kicker: string; title: string; sub: string; artifactLabel: string; steps: ProcessStep[] };
   filters: { all: string; web: string; mobile: string; backend: string; ai: string; iot: string };
   work: { kicker: string; title: string; sub: string; featured: string; showLess: string; showFewer: string; showMoreTags: string; filterCount: string; filterCountOne: string; filterGroup: string; walkthroughNote: string; notesSummary: string; approachLabel: string; outcomeLabel: string; roleLabel: string; architectureLabel: string; qualityLabel: string; explore: string; close: string; discuss: string; screensLabel: string; previousProject: string; nextProject: string; previousScreen: string; nextScreen: string; enlarge: string; projects: ProjectT[] };
   exp: { kicker: string; title: string; latest: string; jobs: JobT[] };
   edu: { kicker: string; title: string; sub: string; entries: EduT[] };
-  behind: { kicker: string; title: string; sub: string; dailyLabel: string; daily: string; exploredLabel: string; explored: string; categories: TechCategory[] };
+  behind: { kicker: string; title: string; sub: string; dailyLabel: string; daily: string; exploredLabel: string; explored: string; layerLabel: string; stackLabel: string; usedInLabel: string; categories: TechCategory[] };
   aboutMe: { kicker: string; title: string; sub: string; role: string; body: string; interests: string[]; langsTitle: string; langs: { l: string; lvl: string }[]; principlesTitle: string; principles: string[] };
   contact: {
     kicker: string; title: string; sub: string; subEm: string; subEnd: string;
@@ -104,13 +104,14 @@ const en: Dict = {
   howIWork: {
     kicker: 'How I work', title: 'From idea to production, step by step.',
     sub: 'I don\'t just write code. I follow a process that turns ideas into reliable products.',
+    artifactLabel: 'Artifact',
     steps: [
-      { label: 'Understand', desc: 'I start by understanding the problem, users, and success criteria.' },
-      { label: 'Design', desc: 'I plan the architecture and data flow before writing code.' },
-      { label: 'Build', desc: 'I write clean, tested code in focused iterations.' },
-      { label: 'Test', desc: 'Every feature is verified from unit tests to browser flows.' },
-      { label: 'Deploy', desc: 'I ship to production with zero-downtime and health checks.' },
-      { label: 'Improve', desc: 'I monitor, measure, and iterate based on real usage.' },
+      { label: 'Understand', desc: 'I start by understanding the problem, users, and success criteria.', artifact: 'Brief · success criteria' },
+      { label: 'Design', desc: 'I plan the architecture and data flow before writing code.', artifact: 'Architecture · OpenAPI' },
+      { label: 'Build', desc: 'I write clean, tested code in focused iterations.', artifact: 'PR · typed contract' },
+      { label: 'Test', desc: 'Every feature is verified from unit tests to browser flows.', artifact: 'JUnit · Playwright' },
+      { label: 'Deploy', desc: 'I ship to production with zero-downtime and health checks.', artifact: 'Cloud Run revision' },
+      { label: 'Improve', desc: 'I monitor, measure, and iterate based on real usage.', artifact: 'Retro · metrics' },
     ],
   },
   filters: { all: 'All', web: 'Web', mobile: 'Mobile', backend: 'Backend', ai: 'AI', iot: 'IoT' },
@@ -202,13 +203,26 @@ const en: Dict = {
     sub: 'The technologies I use, organized by what they do.',
     dailyLabel: 'Heaviest use', daily: 'Java 21 \u00b7 Spring Boot \u00b7 Angular \u00b7 React \u00b7 Next.js \u00b7 TypeScript \u00b7 PostgreSQL \u00b7 Docker \u00b7 Playwright',
     exploredLabel: 'Also explored', explored: 'Flutter \u00b7 Laravel \u00b7 Firebase \u00b7 CamemBERT \u00b7 Vitest \u00b7 PyTorch',
+    layerLabel: 'Layer', stackLabel: 'Stack', usedInLabel: 'Used in',
     categories: [
-      { name: 'Frontend', items: ['React', 'Next.js', 'Angular', 'TypeScript', 'Tailwind CSS', 'Flutter'] },
-      { name: 'Backend', items: ['Java', 'Spring Boot', 'Spring Security', 'JPA/Hibernate', 'REST APIs', 'OpenAPI', 'Laravel', 'Flask', 'Python'] },
-      { name: 'Data', items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Flyway', 'Firebase Firestore'] },
-      { name: 'Cloud & DevOps', items: ['Docker', 'Git', 'GitHub Actions', 'Google Cloud Run'] },
-      { name: 'Testing', items: ['Playwright', 'JUnit 5', 'Mockito', 'Testcontainers', 'Vitest', 'ArchUnit', 'axe-core', 'Selenium'] },
-      { name: 'AI/ML', items: ['CamemBERT', 'spaCy', 'Groq', 'PyTorch'] },
+      { name: 'Frontend', items: ['React', 'Next.js', 'Angular', 'TypeScript', 'Tailwind CSS', 'Flutter'], usedIn: [
+        { label: 'OdemLab', href: '#work-odemlab' }, { label: 'ProcureFlow', href: '#work-procure' }, { label: 'FitTrack', href: '#work-fittrack' }, { label: 'Smart Campus', href: '#work-campus' },
+      ] },
+      { name: 'Backend', items: ['Java', 'Spring Boot', 'Spring Security', 'JPA/Hibernate', 'REST APIs', 'OpenAPI', 'Laravel', 'Flask', 'Python'], usedIn: [
+        { label: 'OdemLab', href: '#work-odemlab' }, { label: 'ProcureFlow', href: '#work-procure' }, { label: 'MediCare', href: '#work-medical' }, { label: 'FitTrack', href: '#work-fittrack' },
+      ] },
+      { name: 'Data', items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Flyway', 'Firebase Firestore'], usedIn: [
+        { label: 'OdemLab', href: '#work-odemlab' }, { label: 'ProcureFlow', href: '#work-procure' }, { label: 'MediCare', href: '#work-medical' }, { label: 'FitTrack', href: '#work-fittrack' }, { label: 'Smart Campus', href: '#work-campus' },
+      ] },
+      { name: 'Cloud & DevOps', items: ['Docker', 'Git', 'GitHub Actions', 'Google Cloud Run'], usedIn: [
+        { label: 'OdemLab', href: '#work-odemlab' }, { label: 'ProcureFlow', href: '#work-procure' }, { label: 'Portfolio', href: '#top' },
+      ] },
+      { name: 'Testing', items: ['Playwright', 'JUnit 5', 'Mockito', 'Testcontainers', 'Vitest', 'ArchUnit', 'axe-core', 'Selenium'], usedIn: [
+        { label: 'OdemLab', href: '#work-odemlab' }, { label: 'ProcureFlow', href: '#work-procure' }, { label: 'Portfolio', href: '#top' },
+      ] },
+      { name: 'AI/ML', items: ['CamemBERT', 'spaCy', 'Groq', 'PyTorch'], usedIn: [
+        { label: 'ProcureFlow', href: '#work-procure' }, { label: 'SmartSummarizer', href: '#work-summarizer' },
+      ] },
     ],
   },
   aboutMe: {
@@ -282,13 +296,14 @@ const fr: Dict = {
   howIWork: {
     kicker: 'Comment je travaille', title: 'De l\u2019id\u00e9e \u00e0 la production, \u00e9tape par \u00e9tape.',
     sub: 'Je n\u2019\u00e9cris pas juste du code. Je suis un processus qui transforme les id\u00e9es en produits fiables.',
+    artifactLabel: 'Livrable',
     steps: [
-      { label: 'Comprendre', desc: 'Je commence par comprendre le probl\u00e8me, les utilisateurs et le succ\u00e8s.' },
-      { label: 'Concevoir', desc: 'Je planifie l\u2019architecture et le flux de donn\u00e9es avant de coder.' },
-      { label: 'Construire', desc: 'J\u2019\u00e9cris du code propre et test\u00e9 en it\u00e9rations focales.' },
-      { label: 'Tester', desc: 'Chaque fonctionnalit\u00e9 est v\u00e9rifi\u00e9e, des tests unitaires aux parcours r\u00e9els.' },
-      { label: 'D\u00e9ployer', desc: 'Je livre en production sans interruption et avec contr\u00f4les de sant\u00e9.' },
-      { label: 'Am\u00e9liorer', desc: 'Je mesure, surveille et it\u00e8re selon l\u2019utilisation r\u00e9elle.' },
+      { label: 'Comprendre', desc: 'Je commence par comprendre le probl\u00e8me, les utilisateurs et le succ\u00e8s.', artifact: 'Brief \u00b7 crit\u00e8res de succ\u00e8s' },
+      { label: 'Concevoir', desc: 'Je planifie l\u2019architecture et le flux de donn\u00e9es avant de coder.', artifact: 'Architecture \u00b7 OpenAPI' },
+      { label: 'Construire', desc: 'J\u2019\u00e9cris du code propre et test\u00e9 en it\u00e9rations focales.', artifact: 'PR \u00b7 contrat typ\u00e9' },
+      { label: 'Tester', desc: 'Chaque fonctionnalit\u00e9 est v\u00e9rifi\u00e9e, des tests unitaires aux parcours r\u00e9els.', artifact: 'JUnit \u00b7 Playwright' },
+      { label: 'D\u00e9ployer', desc: 'Je livre en production sans interruption et avec contr\u00f4les de sant\u00e9.', artifact: 'R\u00e9vision Cloud Run' },
+      { label: 'Am\u00e9liorer', desc: 'Je mesure, surveille et it\u00e8re selon l\u2019utilisation r\u00e9elle.', artifact: 'R\u00e9tro \u00b7 m\u00e9triques' },
     ],
   },
   filters: { all: 'Tous', web: 'Web', mobile: 'Mobile', backend: 'Backend', ai: 'IA', iot: 'IoT' },
@@ -380,13 +395,26 @@ const fr: Dict = {
     sub: 'Les technologies que j\u2019utilise, organis\u00e9es par fonction.',
     dailyLabel: 'Usage intensif', daily: 'Java 21 \u00b7 Spring Boot \u00b7 Angular \u00b7 React \u00b7 Next.js \u00b7 TypeScript \u00b7 PostgreSQL \u00b7 Docker \u00b7 Playwright',
     exploredLabel: 'Aussi explor\u00e9', explored: 'Flutter \u00b7 Laravel \u00b7 Firebase \u00b7 CamemBERT \u00b7 Vitest \u00b7 PyTorch',
+    layerLabel: 'Couche', stackLabel: 'Stack', usedInLabel: 'Utilis\u00e9 dans',
     categories: [
-      { name: 'Frontend', items: ['React', 'Next.js', 'Angular', 'TypeScript', 'Tailwind CSS', 'Flutter'] },
-      { name: 'Backend', items: ['Java', 'Spring Boot', 'Spring Security', 'JPA/Hibernate', 'API REST', 'OpenAPI', 'Laravel', 'Flask', 'Python'] },
-      { name: 'Donn\u00e9es', items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Flyway', 'Firebase Firestore'] },
-      { name: 'Cloud & DevOps', items: ['Docker', 'Git', 'GitHub Actions', 'Google Cloud Run'] },
-      { name: 'Testing', items: ['Playwright', 'JUnit 5', 'Mockito', 'Testcontainers', 'Vitest', 'ArchUnit', 'axe-core', 'Selenium'] },
-      { name: 'IA/ML', items: ['CamemBERT', 'spaCy', 'Groq', 'PyTorch'] },
+      { name: 'Frontend', items: ['React', 'Next.js', 'Angular', 'TypeScript', 'Tailwind CSS', 'Flutter'], usedIn: [
+        { label: 'OdemLab', href: '#work-odemlab' }, { label: 'ProcureFlow', href: '#work-procure' }, { label: 'FitTrack', href: '#work-fittrack' }, { label: 'Smart Campus', href: '#work-campus' },
+      ] },
+      { name: 'Backend', items: ['Java', 'Spring Boot', 'Spring Security', 'JPA/Hibernate', 'API REST', 'OpenAPI', 'Laravel', 'Flask', 'Python'], usedIn: [
+        { label: 'OdemLab', href: '#work-odemlab' }, { label: 'ProcureFlow', href: '#work-procure' }, { label: 'MediCare', href: '#work-medical' }, { label: 'FitTrack', href: '#work-fittrack' },
+      ] },
+      { name: 'Donn\u00e9es', items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Flyway', 'Firebase Firestore'], usedIn: [
+        { label: 'OdemLab', href: '#work-odemlab' }, { label: 'ProcureFlow', href: '#work-procure' }, { label: 'MediCare', href: '#work-medical' }, { label: 'FitTrack', href: '#work-fittrack' }, { label: 'Smart Campus', href: '#work-campus' },
+      ] },
+      { name: 'Cloud & DevOps', items: ['Docker', 'Git', 'GitHub Actions', 'Google Cloud Run'], usedIn: [
+        { label: 'OdemLab', href: '#work-odemlab' }, { label: 'ProcureFlow', href: '#work-procure' }, { label: 'Portfolio', href: '#top' },
+      ] },
+      { name: 'Testing', items: ['Playwright', 'JUnit 5', 'Mockito', 'Testcontainers', 'Vitest', 'ArchUnit', 'axe-core', 'Selenium'], usedIn: [
+        { label: 'OdemLab', href: '#work-odemlab' }, { label: 'ProcureFlow', href: '#work-procure' }, { label: 'Portfolio', href: '#top' },
+      ] },
+      { name: 'IA/ML', items: ['CamemBERT', 'spaCy', 'Groq', 'PyTorch'], usedIn: [
+        { label: 'ProcureFlow', href: '#work-procure' }, { label: 'SmartSummarizer', href: '#work-summarizer' },
+      ] },
     ],
   },
   aboutMe: {
