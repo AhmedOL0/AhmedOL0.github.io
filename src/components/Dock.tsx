@@ -192,9 +192,11 @@ export default function Dock({ active, theme, onToggle }: { active: string; them
   ];
   const isActive = (id: string) =>
     id === 'top' ? active === '' : active === id;
+  const activeLabel = items.find((it) => isActive(it.id))?.label ?? t.dock.home;
   return (
     <div ref={dockRef} inert={hidden || undefined} className={`dock${hidden ? ' dock-hidden' : ''}`} role="navigation" aria-label={t.dock.nav}>
       <span ref={indicatorRef} className="dock-indicator" />
+      <span className="dock-label" aria-hidden="true">{activeLabel}</span>
       {items.map((it) => (
         <a key={it.id} href={it.href} aria-label={it.label}
           data-tip={it.label} data-magnetic
