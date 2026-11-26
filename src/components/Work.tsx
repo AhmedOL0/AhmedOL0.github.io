@@ -137,10 +137,9 @@ export default function Work() {
               className={f === k ? 'active' : ''}
               aria-pressed={f === k}
               aria-controls="work-grid"
-              aria-label={`${labels[k]}, ${counts[k]}`}
               onClick={() => setF(k)}
             >
-              <span>{labels[k]}</span><span className="filter-count" aria-hidden="true">{counts[k]}</span>
+              <span>{labels[k]}</span><span className="filter-count">{counts[k]}</span>
             </button>
           ))}
         </div>

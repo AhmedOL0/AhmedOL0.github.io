@@ -40,7 +40,7 @@ This repository is the source of my portfolio. It is not just a landing page: it
 - **Claims trace to the final CVs**: no invented metrics or demos. OdemLab's mobile app and AI diagnosis are explicitly labelled as teammates' work; my contribution was backend and web.
 - **Crawlable without JavaScript**: a semantic static summary lives in `#root` with the name, projects, contact and CV links. A raw-HTML test protects it; React then replaces it with the interactive app.
 - **Bilingual and accessible by construction**: one typed EN/FR copy source, synchronized `lang` and title, a French copy-leak test, skip link, focus states, reduced motion, 44px touch targets and layouts from 320px to desktop.
-- **The test suite is part of the product**: 596 checks across Chromium, Firefox, WebKit and mobile Chrome cover content, accessibility, keyboard navigation, responsive layout, SEO, security headers, print and mobile journeys.
+- **The test suite is part of the product**: 596 checks across Chromium, Firefox, WebKit and mobile Chrome cover content, accessibility (including axe-core serious/critical scans in light and dark), keyboard navigation, responsive layout, SEO, security headers, print and mobile journeys.
 - **No UI component library**: only React, React DOM and web-vitals at runtime. Tailwind CSS v4 compiles the utilities; the dossier layer is hand-written in `src/index.css`.
 
 ## Featured case studies
@@ -60,9 +60,11 @@ All seven projects are on the [live site](https://ahmedol0.github.io/#work).
 | Build | `tsc -b` and Vite production build | Pass |
 | Lint | oxlint | Clean |
 | E2E | Playwright across 4 browser profiles | 596 checks |
-| Lighthouse | Clean mobile baseline, extensions disabled | 89/100 · TBT 0 ms · CLS 0 |
+| Axe | Serious/critical WCAG violations, light + dark + CV menu | 0 |
+| Lighthouse | Clean run, unthrottled | 100/100 |
+| Lighthouse | Clean run, mobile throttled (Slow 4G + 4x CPU) | 89/100 · TBT 0 ms · CLS 0 |
 
-**About Lighthouse:** a normal Chrome profile includes extensions such as Bubble, ad blockers and GitHub utilities. They can add seconds of third-party JavaScript and make the audit look much worse than the site. Measure in Incognito with extensions disabled, or use a clean CLI profile. The live score also varies with GitHub Pages TTFB.
+**About Lighthouse and axe:** a normal Chrome profile includes extensions such as Bubble, ad blockers and GitHub utilities. They can add seconds of third-party JavaScript and make the audit look much worse than the site. Measure in Incognito with extensions disabled, or use a clean CLI profile. Lighthouse scores also depend on the throttle profile: this project reaches 100/100 unthrottled and 89/100 under Lighthouse's simulated mobile conditions. The live score can vary further with GitHub Pages TTFB. The axe scan runs in the Playwright accessibility spec against light, dark and the open CV menu.
 
 ## Run locally
 
